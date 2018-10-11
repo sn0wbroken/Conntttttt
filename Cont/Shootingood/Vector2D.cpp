@@ -1,23 +1,24 @@
 #include "Vector2D.h"
 
 
-
-Vector2D::Vector2D()
+template <typename T>
+Vector2D<T>::Vector2D()
 {
 }
 
-
-Vector2D::~Vector2D()
+template <typename T>
+Vector2D<T>::~Vector2D()
 {
 }
-
-void Vector2D::Move(float set_x, float set_y) {
+template <typename T>
+void Vector2D<T>::Move(T set_x, T set_y) {
 	x += set_x;
 	y += set_y;
 }
 
 // ”z’u
-void Vector2D::Arrange(float set_x, float set_y) {
+template <typename T>
+void Vector2D<T>::Arrange(T set_x, T set_y) {
 	x = set_x;
 	y = set_y;
 }

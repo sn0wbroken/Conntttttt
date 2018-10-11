@@ -1,22 +1,26 @@
 #include "Vector3D.h"
 
 // コンストラクタ
-Vector3D::Vector3D() {
+template <typename T>
+Vector3D<T>::Vector3D() {
 
 }
 // デストラクタ
-Vector3D::~Vector3D() {
+template <typename T>
+Vector3D<T>::~Vector3D() {
 
 }
 
 // 移動
-void Vector3D::Move(float set_x, float set_y, float set_z) {
+template <typename T>
+void Vector3D<T>::Move(T set_x, T set_y, T set_z) {
 	x += set_x;
 	y += set_y;
 	z += set_z;
 }
 // 配置
-void Vector3D::Arrange(float set_x, float set_y, float set_z) {
+template <typename T>
+void Vector3D<T>::Arrange(T set_x, T set_y, T set_z) {
 	x = set_x;
 	y = set_y;
 	z = set_z;
