@@ -1,6 +1,7 @@
 #pragma once
 
 // 座標関係を扱うクラス(3D)
+template <typename T>
 class Vector3D {
 public:
 	// コンストラクタ
@@ -9,15 +10,15 @@ public:
 	~Vector3D();
 
 	// x座標
-	float x;
+	T x;
 	// y座標
-	float y;
+	T y;
 	// z座標
-	float z;
+	T z;
 
 	// 移動
-	void Move(float set_x, float set_y, float set_z);
+	void Move(T set_x, T set_y, T set_z);
 	// 配置
-	void Arrange(float set_x, float set_y, float set_z);
+	void Arrange(T set_x, T set_y, T set_z);
 };
 

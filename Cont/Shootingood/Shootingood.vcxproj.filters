@@ -182,5 +182,8 @@
     <ClInclude Include="Vector3D.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

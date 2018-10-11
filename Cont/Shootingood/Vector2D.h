@@ -1,6 +1,7 @@
 #pragma once
 
 // 座標関係を扱うクラス(2D)
+template <typename T>
 class Vector2D {
 public:
 	// コンストラクタ
@@ -9,13 +10,13 @@ public:
 	~Vector2D();
 
 	// 移動
-	void Move(float set_x, float set_y);
+	void Move(T set_x,T set_y);
 	// 配置
-	void Arrange(float set_x, float set_y);
+	void Arrange(T set_x, T set_y);
 
 	// x座標
-	float x;
+	T x;
 	// y座標
-	float y;
+	T y;
 };
 

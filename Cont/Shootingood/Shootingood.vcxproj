@@ -192,6 +192,7 @@
     <ClInclude Include="Player_Action.h" />
     <ClInclude Include="Player_Manager.h" />
     <ClInclude Include="Player_Status.h" />
+    <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Result_Clear.h" />
     <ClInclude Include="Result_Game_Over.h" />
     <ClInclude Include="Scene_Base.h" />
