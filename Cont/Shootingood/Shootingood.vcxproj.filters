@@ -105,6 +105,9 @@
     <ClCompile Include="Vector3D.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="2D_Main_Scene.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define_Value.h">
@@ -182,7 +185,13 @@
     <ClInclude Include="Vector3D.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="2D_Main_Scene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Rectangle.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Ellipse.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
   </ItemGroup>

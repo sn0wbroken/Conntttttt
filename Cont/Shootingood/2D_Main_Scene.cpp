@@ -1,8 +1,8 @@
-#include"Main_Scene.h"
+#include "2D_Main_Scene.h"
 #include"Game_Manager.h"
 
 // コンストラクタ
-Main_Scene::Main_Scene() {
+Main_Scene_2D::Main_Scene_2D() {
 	UI_class = std::make_shared<UI>();
 
 	player = player_manager->player;
@@ -20,7 +20,7 @@ Main_Scene::Main_Scene() {
 }
 
 // 毎フレーム入る
-void Main_Scene::Update() {
+void Main_Scene_2D::Update() {
 	// エンターを押すまでゲームが進まない
 	if (is_interval) {
 		if (key_checker->key[KEY_INPUT_RETURN] == 1) {
@@ -29,7 +29,7 @@ void Main_Scene::Update() {
 		return;
 	}
 
-	player_action->Update();
+	player_action->Player_Controll();
 	player_manager->Update();
 	std::unique_ptr<Game_Manager> &game_manager = Game_Manager::Get_Instance();
 
@@ -51,12 +51,12 @@ void Main_Scene::Update() {
 		game_manager->Change_Scene(Game_Manager::Clear);
 		return;
 	}
-	
+
 	// 敵の弾に当たったら残機を減らす
 	if (Is_Enemy_Attack_Hit()) {
 		// 残機を減らす
 		player_manager->player_status->Dead();
-		
+
 		// 残機消失でゲームオーバー
 		if (!(player_manager->player_status->Get_Life() <= 0)) {
 			Player_Dead();
@@ -84,17 +84,17 @@ void Main_Scene::Update() {
 			game_manager->Change_Scene(Game_Manager::Game_Over);
 		}
 	}
-	
+
 	// プレイヤーの撃つ弾がエネミーに当たったらダメージを与える
 	Is_Player_Attack_Hit();
 }
 
 // メインシーンに必要なものを描画
-void Main_Scene::Render() {
+void Main_Scene_2D::Render() {
 	// 背景の描画
 	DrawExtendGraph(0, y1,
-					define_value.WINDOW_X - define_value.UI_SPACE, y1 + define_value.WINDOW_Y,
-					background_graph, TRUE);
+		define_value.WINDOW_X - define_value.UI_SPACE, y1 + define_value.WINDOW_Y,
+		background_graph, TRUE);
 	DrawExtendGraph(0, y2,
 		define_value.WINDOW_X - define_value.UI_SPACE, y2 + define_value.WINDOW_Y,
 		background_graph, TRUE);
@@ -120,17 +120,17 @@ void Main_Scene::Render() {
 }
 
 // 初期化
-void Main_Scene::Initialize() {
+void Main_Scene_2D::Initialize() {
 	// プレイヤーの初期化
 	player->Initialize();
 	player_action->Initialize();
-	
+
 	// エネミーの初期化
 	enemy_manager->Initialize();
 }
 
 // 背景の画像を動かす
-void Main_Scene::Scroll() {
+void Main_Scene_2D::Scroll() {
 	++y1;
 	++y2;
 
@@ -144,12 +144,12 @@ void Main_Scene::Scroll() {
 }
 
 // エネミーが全滅したかどうか 全滅したらtrue
-bool Main_Scene::Is_Enemy_All_Ded() {
+bool Main_Scene_2D::Is_Enemy_All_Ded() {
 	return enemy_manager->enemies.size() == 0;
 }
 
 // プレイヤーとエネミーが衝突したかどうか 衝突したらtrue
-bool Main_Scene::Is_Hit_Actor_Fellow() {
+bool Main_Scene_2D::Is_Hit_Actor_Fellow() {
 	for (auto& enemy : enemy_manager->enemies) {
 		if (collision->Box_To_Box(player->Get_Right_Edge(), player->Get_Left_Edge(), player->Get_Top_Edge(),
 			enemy.Get_Right_Edge(), enemy.Get_Left_Edge(), enemy.Get_Bottom_Edge())) {
@@ -160,7 +160,7 @@ bool Main_Scene::Is_Hit_Actor_Fellow() {
 }
 
 // プレイヤーがエネミーの攻撃を受けたかどうか 攻撃を受けたらtrue
-bool Main_Scene::Is_Enemy_Attack_Hit() {
+bool Main_Scene_2D::Is_Enemy_Attack_Hit() {
 	for (int i = 0; i < enemy_manager->enemies.size(); ++i) {
 		for (auto& enemy_bullet : enemy_manager->enemy_bullet) {
 			if (collision->Player_To_Enemy_Bullet(player->Get_Right_Edge(), player->Get_Left_Edge(), player->Get_Top_Edge(), player->Get_Bottom_Edge(),
@@ -172,7 +172,7 @@ bool Main_Scene::Is_Enemy_Attack_Hit() {
 }
 
 // プレイヤーの攻撃がエネミーに命中したか
-void Main_Scene::Is_Player_Attack_Hit() {
+void Main_Scene_2D::Is_Player_Attack_Hit() {
 	for (unsigned int i = 0; i < player->player_bullet.size(); ++i) {
 		auto& player_bullet = player->player_bullet[i];
 
@@ -196,7 +196,7 @@ void Main_Scene::Is_Player_Attack_Hit() {
 }
 
 // プレイヤーが死亡したときの処理
-void Main_Scene::Player_Dead() {
+void Main_Scene_2D::Player_Dead() {
 	is_interval = true;
 	enemy_manager->Reset_Enemy();
 	player->Initialize();
