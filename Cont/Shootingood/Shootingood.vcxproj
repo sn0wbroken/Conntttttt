@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="2D_Main_Scene.cpp" />
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Collision.cpp" />
@@ -175,9 +176,11 @@
     <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="2D_Main_Scene.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Define_Value.h" />
+    <ClInclude Include="Ellipse.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_AI.h" />
     <ClInclude Include="Enemy_Manager.h" />
