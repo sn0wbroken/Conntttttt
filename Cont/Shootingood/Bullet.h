@@ -26,10 +26,17 @@ public:
 	// 弾の移動
 	void Move(int x, int y);
 
-	// 画面下部から出ようとしていないか
+	// 画面右端から出ようとしてないか
+	bool Is_Over_Max_X();
+	// 画面下端から出ようとしていないか
 	bool Is_Over_Max_Y();
-	// 画面上部から出ようとしていないか
+	// 画面上端から出ようとしていないか
+	bool Is_Over_Min_X();
+	// 画面左端から出ようとしてないか
 	bool Is_Over_Min_Y();
+
+	// 弾丸が表示範囲外に出ているかを判断
+	bool Bullet_Off_Screen(Bullet& player_bullet);
 
 private:
 	// x座標
