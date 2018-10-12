@@ -2,6 +2,7 @@
 
 #include"DxLib.h"
 #include"Define_Value.h"
+#include "Rectangle.h"
 
 // アクターが打ち出す弾丸
 class Bullet {
@@ -17,14 +18,14 @@ public:
 	void Render();
 
 	// x座標を返す
-	int Get_X();
+	float Get_X();
 	// y座標を返す
-	int Get_Y();
+	float Get_Y();
 	// 半径を返す
 	int Get_Radius();
 
 	// 弾の移動
-	void Move(int x, int y);
+	void Move(float x, float y);
 
 	// 画面右端から出ようとしてないか
 	bool Is_Over_Max_X();
@@ -39,6 +40,7 @@ public:
 	bool Bullet_Off_Screen(Bullet& player_bullet);
 
 private:
+	Rectangle<float> a;
 	// x座標
 	int x;
 	// y座標

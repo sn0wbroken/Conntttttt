@@ -16,13 +16,13 @@ public:
 	virtual void Render() = 0;
 
 	// 現在のx座標を返す
-	int Get_X();
+	float Get_X();
 	// x座標を設定する
-	void Set_X(int set_x);
+	void Set_X(float set_x);
 	// 現在のy座標を返す
-	int Get_Y();
+	float Get_Y();
 	// y座標を設定する
-	void Set_Y(int set_y);
+	void Set_Y(float set_y);
 	// 幅を返す
 	int Get_Width();
 	// 高さを返す

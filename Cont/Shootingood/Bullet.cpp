@@ -8,6 +8,7 @@ Bullet::Bullet(int set_x, int set_y, int set_direction_x, int set_direction_y) {
 	y = set_y;
 	direction_x = set_direction_x;
 	direction_y = set_direction_y;
+	a.Left = 0;
 }
 
 // デストラクタ
@@ -27,12 +28,12 @@ void Bullet::Render() {
 }
 
 // x座用を返す
-int Bullet::Get_X() {
+float Bullet::Get_X() {
 	return x;
 }
 
 // y座標を取得
-int Bullet::Get_Y() {
+float Bullet::Get_Y() {
 	return y;
 }
 
@@ -42,7 +43,7 @@ int Bullet::Get_Radius() {
 }
 
 // 弾の移動
-void Bullet::Move(int set_x, int set_y) {
+void Bullet::Move(float set_x, float set_y) {
 	x += set_x;
 	y += set_y;
 }
