@@ -2,6 +2,7 @@
 
 #include"Actor.h"
 #include"Bullet.h"
+#include"Rect.h"
 
 #include<vector>
 
@@ -40,6 +41,8 @@ public:
 	std::vector<Bullet> player_bullet;
 
 private:
+	Rect<float>* rectangle;
+
 	// ‰æ‘œƒf[ƒ^
 	int player_graph;
 

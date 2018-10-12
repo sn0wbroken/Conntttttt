@@ -13,6 +13,8 @@ Player::Player() {
 	vector3->Arrange((define_value.WINDOW_X - define_value.UI_SPACE) / 2,
 					 define_value.WINDOW_Y - (height + (height / 2)), 0);
 
+	rectangle =  new Rect<float>(vector3->x, vector3->y);
+	
 	// プレイヤーの画像をロード
 	player_graph = LoadGraph("Picture/Player/Player.png");
 }
@@ -62,7 +64,6 @@ int Player::Get_Bottom_Edge() {
 }
 
 // 弾が出る位置を返す
-
 int Player::Get_Shoot_Point() {
 	return  vector3->x + (width / 2);
 }
