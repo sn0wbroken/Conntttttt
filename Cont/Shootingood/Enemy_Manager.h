@@ -43,14 +43,6 @@ private:
 	// コンストラクタ
 	Enemy_Manager();
 
-	// x座標
-	int x;
-	// y 座標
-	int y;
-
-	// 出現する敵を配置
-	void Arrange(int set_x, int set_y);
-
 	// 定数をまとめておく構造体
 	Define_Value define_value;
 

@@ -58,4 +58,3 @@ private:
 	// ダメージ判定(ダメージを受けたかどうか) ダメージを受けたらtrue
 	bool is_damage;
 };
-

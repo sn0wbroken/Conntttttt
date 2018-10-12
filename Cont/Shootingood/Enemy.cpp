@@ -1,14 +1,18 @@
 #include "Enemy.h"
 #include"Game_Manager.h"
 
-
 // コンストラクタ
-Enemy::Enemy(int set_x, int set_y) {
+Enemy::Enemy() {}
+
+// コピーコンストラクタ
+Enemy::Enemy(float set_x, float set_y) {
+	vector3 = new Vector3D;
+
 	// プレイするステージを取得
 	std::unique_ptr<Game_Manager>& game_manager = Game_Manager::Get_Instance();
 
-	x = set_x;
-	y = set_y;
+	// 配置
+	vector3->Arrange(set_x, set_y, 0);
 
 	initialize_position_x = set_x;
 	initialize_position_y = set_y;
@@ -33,37 +37,39 @@ Enemy::~Enemy() {}
 void Enemy::Render() {	
 	// 自分を描画
 	if (!enemy_status->Is_Damage()) {
-		DrawExtendGraph(x, y, x + width, y + height, enemy_graph, FALSE);
+		DrawExtendGraph(vector3->x, vector3->y, vector3->x + width, 
+						vector3->y + height, enemy_graph, FALSE);
 		return;
 	}
 	if (enemy_status->Is_Damage()) {
-		DrawExtendGraph(x, y, x + width, y + height, damage_enemy_graph, FALSE);
+		DrawExtendGraph(vector3->x, vector3->y, vector3->x + width, 
+						vector3->y + height, damage_enemy_graph, FALSE);
 	}
 }
 
 // エネミーの右端の座標を返す
 int Enemy::Get_Right_Edge() {
-	return x + width;
+	return vector3->x + width;
 }
 
 // エネミーの左端の座標を返す
 int Enemy::Get_Left_Edge() {
-	return x;
+	return vector3->x;
 }
 
 // エネミーの上端の座標を返す
 int Enemy::Get_Top_Edge() {
-	return y;
+	return vector3->y;
 }
 
 // エネミーの下端の座標を返す
 int Enemy::Get_Bottom_Edge() {
-	return y + height;
+	return vector3->y + height;
 }
 
 // 弾の発射する位置を返す
 int Enemy::Get_Shot_Point() {
-	return x + (width / 2);
+	return vector3->x + (width / 2);
 }
 
 // 初期x座標を返す
