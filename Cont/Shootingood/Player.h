@@ -6,7 +6,7 @@
 #include<vector>
 
 // プレイヤー本体のクラス
-class Player : public Actor{
+class Player : public Actor {
 public:
 	// コンストラクタ
 	Player();

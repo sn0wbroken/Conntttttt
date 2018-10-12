@@ -34,6 +34,10 @@ public:
 
 	// シーンを切り替える
 	void Change_Scene(eScene_State scene_state);
+
+	template<class T>
+	void Change_Scene_();
+
 	// クリア、ゲームオーバー時に呼ばれる。プレイステージを1に戻す
 	void Reset_Stage();
 	// ステージを進める ステージクリア時に呼ばれる

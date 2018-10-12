@@ -24,6 +24,9 @@ public:
 	// プレイヤーの操作をまとめる 毎フレーム呼び出し
 	void Player_Controll();
 
+	// 毎フレーム呼ばれる
+	void Update();
+
 	// 初期化
 	void Initialize();
 
@@ -48,18 +51,20 @@ private:
 	void Fire();
 	// 攻撃の種類を切り替える。毎フレーム受付ける
 	void Change_Fire_Type();
+	// 状態に応じたショットを設定する
+	void Player_Action::Set_Shot_Pattern();
 
-	// 右端から出ているか 移動の時にチェックする
-	bool Is_Over_Max_X();
-	// 左端から出ているか 移動の時にチェックする
-	bool Is_Over_Min_X();
+	// 打ち出した弾丸が画面外へ出ているかを判断する
+	bool Player_Action::Check_Off_Screen(Bullet& player_Bullet);
+	// 打ち出した弾丸が画面外に出ていたら消す
+	void Player_Action::Bullet_Off_Screen_Erase();
 	
-	// 弾幕の種類
+	// 弾幕の種類 //TODO:変数名少しわかりづらいか
 	std::function<void()> fire_type;
 
 	// 角度
 	float rad;
-	// 弾が発車される位置
+	// 弾が発射される位置
 	double position_x;
 	// sin波を作るために加算する値
 	int counter;

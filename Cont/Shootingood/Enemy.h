@@ -12,9 +12,9 @@
 class Enemy : public Actor {
 public:
 	// コンストラクタ
-	Enemy() {};
+	Enemy();
 	// コピーコンストラクタ
-	Enemy(int set_x, int set_y);
+	Enemy(float set_x, float set_y);
 	// デストラクタ
 	~Enemy();
 
@@ -41,9 +41,9 @@ public:
 
 private:
 	// 初期x座標を覚えておく
-	int initialize_position_x;
+	float initialize_position_x;
 	// 初期y座標を覚えておく
-	int initialize_position_y;
+	float initialize_position_y;
 
 	// エネミーの画像
 	int enemy_graph;

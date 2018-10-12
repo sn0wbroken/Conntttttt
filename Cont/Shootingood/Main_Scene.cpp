@@ -29,7 +29,7 @@ void Main_Scene::Update() {
 		return;
 	}
 
-	player_action->Player_Controll();
+	player_action->Update();
 	player_manager->Update();
 	std::unique_ptr<Game_Manager> &game_manager = Game_Manager::Get_Instance();
 

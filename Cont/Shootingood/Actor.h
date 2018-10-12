@@ -1,6 +1,7 @@
 #pragma once
 
 #include"DxLib.h"
+#include"Vector3D.h"
 #include"Define_Value.h"
 
 // アクターの基底のクラス
@@ -26,6 +27,10 @@ public:
 	int Get_Width();
 	// 高さを返す
 	int Get_Height();
+
+	Vector3D* Get_Vector3D() {
+		return vector3;
+	}
 	
 	// アクターの右端の座標を返す
 	virtual int Get_Right_Edge() = 0;
@@ -37,13 +42,12 @@ public:
 	virtual int Get_Bottom_Edge() = 0;
 
 protected:
+	// 座標関係のクラス
+	Vector3D* vector3;// = new Vector3D();
+
 	// 定数をまとめておく構造体
 	Define_Value define_value;
-	
-	// 自分のいるx座標
-	int x;
-	// 自分のいるy座標
-	int y;
+
 	// アクターの大きさ(幅)
 	int width;
 	// アクターの大きさ(高さ)
