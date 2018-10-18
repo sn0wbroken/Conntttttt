@@ -151,8 +151,8 @@ bool Main_Scene::Is_Enemy_All_Ded() {
 // プレイヤーとエネミーが衝突したかどうか 衝突したらtrue
 bool Main_Scene::Is_Hit_Actor_Fellow() {
 	for (auto& enemy : enemy_manager->enemies) {
-		if (collision->Box_To_Box(player->Get_Right_Edge(), player->Get_Left_Edge(), player->Get_Top_Edge(),
-			enemy.Get_Right_Edge(), enemy.Get_Left_Edge(), enemy.Get_Bottom_Edge())) {
+		if (collision->Box_To_Box((int)player->Get_Right_Edge(), (int)player->Get_Left_Edge(), (int)player->Get_Top_Edge(),
+			(int)enemy.Get_Right_Edge(), (int)enemy.Get_Left_Edge(), (int)enemy.Get_Bottom_Edge())) {
 			return true;
 		}
 	}
@@ -163,8 +163,8 @@ bool Main_Scene::Is_Hit_Actor_Fellow() {
 bool Main_Scene::Is_Enemy_Attack_Hit() {
 	for (int i = 0; i < enemy_manager->enemies.size(); ++i) {
 		for (auto& enemy_bullet : enemy_manager->enemy_bullet) {
-			if (collision->Player_To_Enemy_Bullet(player->Get_Right_Edge(), player->Get_Left_Edge(), player->Get_Top_Edge(), player->Get_Bottom_Edge(),
-				enemy_bullet.Get_X(), enemy_bullet.Get_Y(), enemy_bullet.Get_Radius()))
+			if (collision->Player_To_Enemy_Bullet((int)player->Get_Right_Edge(), (int)player->Get_Left_Edge(), (int)player->Get_Top_Edge(), (int)player->Get_Bottom_Edge(),
+				(int)enemy_bullet.Get_X(), (int)enemy_bullet.Get_Y(), enemy_bullet.Get_Radius()))
 				return true;
 		}
 	}

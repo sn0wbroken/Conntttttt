@@ -48,11 +48,11 @@ public:
 
 private:
 	//Œ»İ‚ÌÀ•W
-	Vector3D* vector3;
+	Vector3D vector3;
 	// ’e‚Ì”¼Œa
 	int radius;
 	//’e‚Ìi‚Ş•ûŒü
-	Vector3D* Direction;
+	Vector3D Direction;
 
 	// ’è”‚ğ‚Ü‚Æ‚ß‚Ä‚¨‚­\‘¢‘Ì
 	Define_Value define_value;

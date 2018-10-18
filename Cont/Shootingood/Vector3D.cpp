@@ -6,6 +6,18 @@ Vector3D::Vector3D() {
 
 }
 
+Vector3D::Vector3D(const Vector3D &vec){
+	x = vec.x;
+	y = vec.y;
+	z = vec.z;
+}
+
+Vector3D::Vector3D(const DxLib::VECTOR & vec){
+	x = vec.x;
+	y = vec.y;
+	z = vec.z;
+}
+
 // デストラクタ
 Vector3D::~Vector3D() {
 
@@ -13,7 +25,7 @@ Vector3D::~Vector3D() {
 
 DxLib::VECTOR Vector3D::GetVECTOR()
 {
-	return VGet( this->x,this->y,this->z );
+	return VGet( x,y,z );
 }
 
 // 移動

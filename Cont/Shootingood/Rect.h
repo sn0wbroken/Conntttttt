@@ -1,4 +1,5 @@
 #pragma once
+#include "Vector3D.h"
 
 // 矩形クラス
 template <typename T> 
@@ -19,9 +20,13 @@ public:
 
 	// コンストラクタ
 	Rect() {}
-	// コピーコンストラクタ
-	Rect(int x, int y) {}
-	// コピーコンストラクタ
+	// コンストラクタ
+	Rect(T _x, T _y) 
+	{
+		//x = _x;
+		//y = _y;
+	}
+	// コンストラクタ
 	Rect(T aTop, T aLeft,T aRight, T aBottom) {
 		top = aTop;
 		left = aLeft;
@@ -40,6 +45,16 @@ public:
 		
 	};
 
+	// 指定された点を含むかどうかを判定するメソッド
+	inline bool contains(const T x, const T y) const throw()
+	{
+		return x >= left && x < right && y >= top && y < bottom;
+	}
+	inline bool contains(const Vector3D point) const throw()
+	{
+		return contains(point.x, point.y);
+	}
+
 	//当たり判定 四角 クラス渡す
 	bool Intersects(const Rect<T> &right) {
 		return left       < right.right &&
@@ -51,4 +66,5 @@ public:
 	bool Intersects(T aTop, T aLeft, T aRight, T aBottom) {
 		return left < right && top < bottom && left < right && top < bottom;
 	}
+
 };

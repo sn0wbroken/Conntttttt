@@ -41,7 +41,7 @@ public:
 	std::vector<Bullet> player_bullet;
 
 private:
-	Rect<float>* rectangle;
+	Rect<float> rectangle;
 
 	// ‰æ‘œƒf[ƒ^
 	int player_graph;

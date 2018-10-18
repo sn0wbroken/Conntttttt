@@ -32,7 +32,7 @@ public:
 	// 高さを返す
 	int Get_Height();
 
-	Vector3D* Get_Vector3D() {
+	Vector3D Get_Vector3D() {
 		return vector3;
 	}
 	void Set_Vector3D(float set_x,float set_y,float set_z);
@@ -49,7 +49,7 @@ public:
 
 protected:
 	// 座標関係のクラス
-	Vector3D* vector3;// = new Vector3D();
+	Vector3D vector3;// = new Vector3D();
 
 	// 定数をまとめておく構造体
 	Define_Value define_value;
