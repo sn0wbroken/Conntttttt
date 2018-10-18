@@ -44,27 +44,27 @@ void Player::Render() {
 }
 
 // プレイヤーの右端の座標を返す
-int Player::Get_Right_Edge() {
+float Player::Get_Right_Edge() {
 	return vector3->x + width;
 }
 
 // プレイヤーの左端の座標を返す
-int Player::Get_Left_Edge() {
+float Player::Get_Left_Edge() {
 	return vector3->x;
 }
 
 // プレイヤーの上端の座標を返す
-int Player::Get_Top_Edge() {
+float Player::Get_Top_Edge() {
 	return vector3->y;
 }
 
 // プレイヤーの下端の座標を返す
-int Player::Get_Bottom_Edge() {
+float Player::Get_Bottom_Edge() {
 	return vector3->y + height;;
 }
 
 // 弾が出る位置を返す
-int Player::Get_Shoot_Point() {
+float Player::Get_Shoot_Point() {
 	return  vector3->x + (width / 2);
 }
 

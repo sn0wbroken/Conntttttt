@@ -5,4 +5,5 @@ class Ellipse {
 	T Center;
 	float Radius;
 
+
 };

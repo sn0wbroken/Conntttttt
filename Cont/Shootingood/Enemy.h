@@ -22,19 +22,19 @@ public:
 	void Render() override;
 
 	// エネミーの右端の座標を返す
-	int Get_Right_Edge() override;
+	float Get_Right_Edge() override;
 	// エネミーの左端の座標を返す
-	int Get_Left_Edge() override;
+	float Get_Left_Edge() override;
 	// エネミーの上端の座標を返す
-	int Get_Top_Edge() override;
+	float Get_Top_Edge() override;
 	// エネミーの下端の座標を返す
-	int Get_Bottom_Edge() override;
+	float Get_Bottom_Edge() override;
 	// 弾の発射する位置を返す
-	int Get_Shot_Point();
+	float Get_Shot_Point();
 	// 初期x座標を返す
-	int Get_Initialize_Position_X();
+	float Get_Initialize_Position_X();
 	// 初期y座標を返す
-	int Get_Initialize_Position_Y();
+	float Get_Initialize_Position_Y();
 
 	// エネミーのステータス関係のクラス
 	std::shared_ptr<Enemy_Status> enemy_status;

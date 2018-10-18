@@ -1,3 +1,4 @@
+#include "DxLib.h"
 #include "Vector3D.h"
 
 // コンストラクタ
@@ -8,6 +9,11 @@ Vector3D::Vector3D() {
 // デストラクタ
 Vector3D::~Vector3D() {
 
+}
+
+DxLib::VECTOR Vector3D::GetVECTOR()
+{
+	return VGet( this->x,this->y,this->z );
 }
 
 // 移動

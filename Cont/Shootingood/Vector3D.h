@@ -15,9 +15,11 @@ public:
 	// zÀ•W
 	float z;
 
+	DxLib::VECTOR GetVECTOR();
+
 	// ˆÚ“®
 	void Move(float set_x, float set_y, float set_z);
 	// ”z’u
-	void Arrange(float set_x, float set_y, float set_z);
+	void Arrange(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
 };
 
