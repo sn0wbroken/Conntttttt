@@ -7,7 +7,7 @@
 class Bullet {
 public:
 	// コンストラクタ
-	Bullet(float set_x = 0.0f, float set_y = 0.0f,float set_z = 0.0f, float set_direction_x = 0.0f, float set_direction_y = 0.0f,float set_direction_z = 0.0f);
+	Bullet(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f, float set_direction_x = 0.0f, float set_direction_y = 0.0f, float set_direction_z = 0.0f);
 	// デストラクタ
 	~Bullet();
 
@@ -32,7 +32,7 @@ public:
 	int Get_Radius();
 
 	// 弾の移動
-	void Move(float x = 0.0f, float y = 0.0f,float z = 0.0f);
+	void Move(float x = 0.0f, float y = 0.0f, float z = 0.0f);
 
 	// 画面右端から出ようとしてないか
 	bool Is_Over_Max_X();

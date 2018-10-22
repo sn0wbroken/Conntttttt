@@ -62,10 +62,10 @@ void Title_Scene::Update() {
 void Title_Scene::Render() {
 	DrawExtendGraph(0, 0, define_value.WINDOW_X, define_value.WINDOW_Y, background_graph, TRUE);
 
-	DrawTriangle(icon_position_x, icon_position_y, 
-				 icon_position_x, icon_position_y + icon_height, 
-				 icon_position_x + icon_width, icon_position_y + (icon_height / 2), 
-				 GetColor(0, 0, 0), TRUE);
+	DrawTriangle(icon_position_x, icon_position_y,
+		icon_position_x, icon_position_y + icon_height,
+		icon_position_x + icon_width, icon_position_y + (icon_height / 2),
+		GetColor(0, 0, 0), TRUE);
 
 	// マニュアル閲覧中なら、マニュアルを表示
 	if (is_watch_manual) {
@@ -80,7 +80,7 @@ void Title_Scene::Icon_Move() {
 		if (select_command == eSelect_Command::Start) {
 			return;
 		}
-		
+
 		// 押されたキーを取得する
 		auto input_key = KEY_INPUT_UP;
 		icon_position_y -= Define_Value::ICON_MOVE_VALUE;
@@ -104,30 +104,28 @@ void Title_Scene::Icon_Move() {
 // 操作に応じて選択しているものを変える
 void Title_Scene::Change_Decide(eSelect_Command now_select, int which_key) {
 	// 押されたキーによって処理を変える
-	switch(which_key) {
+	switch (which_key) {
 		// 上キーが押されていた場合
-		case KEY_INPUT_UP:
-			switch (now_select) {
-			case eSelect_Command::Manual:
-				select_command = eSelect_Command::Start;
-				break;
-			case eSelect_Command::Exit:
-				select_command = eSelect_Command::Manual;
-				break;
-			}
+	case KEY_INPUT_UP:
+		switch (now_select) {
+		case eSelect_Command::Manual:
+			select_command = eSelect_Command::Start;
 			break;
+		case eSelect_Command::Exit:
+			select_command = eSelect_Command::Manual;
+			break;
+		}
+		break;
 		// 下キーが押されていた場合
-		case KEY_INPUT_DOWN:
-			switch (now_select) {
-			case eSelect_Command::Start:
-				select_command = eSelect_Command::Manual;
-				break;
-			case eSelect_Command::Manual:
-				select_command = eSelect_Command::Exit;
-				break;
-			}
+	case KEY_INPUT_DOWN:
+		switch (now_select) {
+		case eSelect_Command::Start:
+			select_command = eSelect_Command::Manual;
 			break;
+		case eSelect_Command::Manual:
+			select_command = eSelect_Command::Exit;
+			break;
+		}
+		break;
 	}
 }
-
-

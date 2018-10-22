@@ -51,12 +51,12 @@ void Main_Scene::Update() {
 		game_manager->Change_Scene(Game_Manager::Clear);
 		return;
 	}
-	
+
 	// 敵の弾に当たったら残機を減らす
 	if (Is_Enemy_Attack_Hit()) {
 		// 残機を減らす
 		player_manager->player_status->Dead();
-		
+
 		// 残機消失でゲームオーバー
 		if (!(player_manager->player_status->Get_Life() <= 0)) {
 			Player_Dead();
@@ -84,7 +84,7 @@ void Main_Scene::Update() {
 			game_manager->Change_Scene(Game_Manager::Game_Over);
 		}
 	}
-	
+
 	// プレイヤーの撃つ弾がエネミーに当たったらダメージを与える
 	Is_Player_Attack_Hit();
 }
@@ -93,8 +93,8 @@ void Main_Scene::Update() {
 void Main_Scene::Render() {
 	// 背景の描画
 	DrawExtendGraph(0, y1,
-					define_value.WINDOW_X - define_value.UI_SPACE, y1 + define_value.WINDOW_Y,
-					background_graph, TRUE);
+		define_value.WINDOW_X - define_value.UI_SPACE, y1 + define_value.WINDOW_Y,
+		background_graph, TRUE);
 	DrawExtendGraph(0, y2,
 		define_value.WINDOW_X - define_value.UI_SPACE, y2 + define_value.WINDOW_Y,
 		background_graph, TRUE);
@@ -124,7 +124,7 @@ void Main_Scene::Initialize() {
 	// プレイヤーの初期化
 	player->Initialize();
 	player_action->Initialize();
-	
+
 	// エネミーの初期化
 	enemy_manager->Initialize();
 }

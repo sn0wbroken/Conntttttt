@@ -35,7 +35,7 @@ public:
 	Vector3D Get_Vector3D() {
 		return vector3;
 	}
-	void Set_Vector3D(float set_x,float set_y,float set_z);
+	void Set_Vector3D(float set_x, float set_y, float set_z);
 	void Set_Vector3D(Vector3D Vec3);
 
 	// アクターの右端の座標を返す

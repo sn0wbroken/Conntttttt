@@ -24,11 +24,11 @@ void Enemy_Manager::Update() {
 			enemy_status_->Initialize_Is_Damage();
 		}
 	}
-	
+
 	enemy_AI->Update();
 
 	// Œ‚‚Á‚½’e‚¾‚¯XV
-	for(auto& enemy_bullet_ : enemy_bullet){
+	for (auto& enemy_bullet_ : enemy_bullet) {
 		enemy_bullet_.Update();
 	}
 }

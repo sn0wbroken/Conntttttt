@@ -32,7 +32,7 @@ Enemy::Enemy(float set_x, float set_y) {
 Enemy::~Enemy() {}
 
 // •`‰æ
-void Enemy::Render() {	
+void Enemy::Render() {
 	// Ž©•ª‚ð•`‰æ
 	if (!enemy_status->Is_Damage()) {
 		DrawExtendGraph((int)vector3.x, (int)vector3.y, (int)vector3.x + width,

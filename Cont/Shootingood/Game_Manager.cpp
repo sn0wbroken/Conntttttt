@@ -57,11 +57,11 @@ void Game_Manager::Reset_Stage() {
 // ステージを進める ステージクリア時に呼ばれる
 void Game_Manager::Next_Stage() {
 	switch (stage) {
-		case eStage::stage1:
-			stage = eStage::stage2;
-			break;
-		case eStage::stage2:
-			stage = eStage::stage3;
-			break;
+	case eStage::stage1:
+		stage = eStage::stage2;
+		break;
+	case eStage::stage2:
+		stage = eStage::stage3;
+		break;
 	}
 }

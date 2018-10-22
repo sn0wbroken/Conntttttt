@@ -27,4 +27,3 @@ public:
 	// ”z’u
 	void Arrange(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
 };
-
