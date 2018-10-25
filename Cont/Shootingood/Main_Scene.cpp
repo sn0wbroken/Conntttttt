@@ -1,5 +1,6 @@
 #include"Main_Scene.h"
 #include"Game_Manager.h"
+#include "MazeGenerator.h"
 
 // コンストラクタ
 Main_Scene::Main_Scene() {
@@ -14,6 +15,10 @@ Main_Scene::Main_Scene() {
 
 	y1 = 0;
 	y2 = -define_value.MAX_WINDOW_Y;
+
+	Maze::MazeData alpha(90, 90);
+	alpha.MazeGenerator();
+	alpha.GetInfo().GetData();
 
 	// メインに入った時はインターバルとする
 	is_interval = true;

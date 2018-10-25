@@ -2,46 +2,52 @@
 
 Maze::MazeData::MazeData(const int height, const int width)
 {
-	m_info.m_height = height;
-	m_info.m_width = width;
+	maxheight = height;
+	maxwidth = width;
 	m_info.m_data.assign(static_cast<size_t> (height * width), 0.0f);
 }
 
 void Maze::MazeData::MazeGenerator()
 {
+	//高さx横+高さ+横 で添え字を出せる。
+	//0 X 1 + 0 * 1の場合は 1になるが-1してあげるといい heightは0から widthは1から
+
 	//Maze 作成アルゴリズム
 	//メルセンヌツイスター型乱数生成器
 	std::random_device rnd;
 	std::mt19937 mt(rnd());
 	//迷路の広さ決定用 狭すぎず広すぎず
-	std::uniform_int_distribution<> mazeran(30, 56);
+	std::uniform_int_distribution<> r_mazeheight(31, maxheight);
+	std::uniform_int_distribution<> r_mazewidth(31, maxwidth);
 	//ブロックを置く場所決定用
 	std::uniform_int_distribution<> randblock3(0, 2);
 	std::uniform_int_distribution<> randblock4(0, 3);
 	//偶数になるとずれるので奇数になるように。
 	do {
-		width = mazeran(mt);
-	} while (width % 2 != 1);
+		m_info.m_width = r_mazewidth(mt);
+	} while (m_info.m_width % 2 != 1);
 	do {
-		height = mazeran(mt);
-	} while (height % 2 != 1);
+		m_info.m_height = r_mazeheight(mt);
+	} while (m_info.m_height % 2 != 1);
 	//外側へ壁を挿入
-	for (int i = 0; i < width; i++) {
-		for (int n = 0; n < height; n++) {
-			if (n == 0 || i == 0 || n == height - 1 || i == width - 1) {
-				maze[i][n] = Block;
+	for (int i = 1; i < m_info.m_height; i++) {
+		for (int n = 0; n < m_info.m_width; n++) {
+			int pos = ((i * n) + (i + n)) - 1;//高さx横+高さ+横 - 1(MAGICNUMBER FUUUUUUUUUUUUUUCK) というのも0から始まる配列と1から始まるものが分かれるため
+			if (n == 0 || i == 0 || i == m_info.m_height - 1 || n == m_info.m_width - 1) {
+				m_info.m_data[pos] = Block;
 			}
 			else {
-				maze[i][n] = Path;
+				m_info.m_data[pos] = Path;
 			}
 		}
 	}
 
-	for (int x = 2; x < width - 1; x += 2)
+	for (int y = 2; y < m_info.m_height; y += 2)
 	{
-		for (int y = 2; y < height - 1; y += 2)
+		for (int x = 2; x < m_info.m_width; x += 2)
 		{
-			maze[x][y] = Block; //等間隔にブロックを設置
+			int pos1 = ((y * x) + (y + x)) - 1;//高さx横+高さ+横 - 1(MAGICNUMBER FUUUUUUUUUUUUUUCK) というのも0から始まる配列と1から始まるものが分かれるため
+			m_info.m_data[pos1] = Block; //等間隔にブロックを設置
 
 			while (true)
 			{
@@ -69,30 +75,26 @@ void Maze::MazeData::MazeGenerator()
 					wallX -= 1;
 					break;
 				}
+				int pos2 = ((wallY * wallX) + (wallY + wallX)) - 1;//高さx横+高さ+横 - 1(MAGICNUMBER FUUUUUUUUUUUUUUCK) というのも0から始まる配列と1から始まるものが分かれるため
 				//加算された座標にブロックがなければブロックを代入
-				if (maze[wallX][wallY] != Block)
+				if (m_info.m_data[pos2] != Block)
 				{
 					//ブロックを設置
-					maze[wallX][wallY] = Block;
+					m_info.m_data[pos2] = Block;
 					break;
 				}
 			}
 		}
 	}
 	//入り口にプレイヤーを設置
-	maze[1][0] = Player;
+	m_info.m_data[1] = Player;
 	//右下のほうにゴールを設置
-	maze[width - 2][height - 1] = Goal;
+	int pos = (((m_info.m_width - 2) * (m_info.m_height - 1)) + ((m_info.m_width - 2) + (m_info.m_height - 1)) - 1);
+	m_info.m_data[pos] = Goal;
+	pos = 1 + 1;
+}
 
-	int i = 0;
-
-	for (int r = 0; r < m_info.GetWidth(); r++) {
-		const int len = row.length();
-
-		for (int c = 0; c < info.m_col; c++) {
-			const std::string::size_type pos = chipNo.find(row[c]);
-
-			info.m_data[i++] = static_cast<float> (pos - 1);
-		}
-	}
+Maze::MazeDataInfo Maze::MazeData::GetInfo()
+{
+	return m_info;
 }

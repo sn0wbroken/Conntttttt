@@ -15,8 +15,8 @@ namespace Maze {
 
 	struct MazeDataInfo //TODO::要修正
 	{
-		int m_height;	//高さ
-		int m_width;	//長さ
+		int m_height;	//縦幅
+		int m_width;	//横幅
 		std::vector<float> m_data; //マップ配置データ
 
 		inline int GetHeight()
@@ -36,6 +36,7 @@ namespace Maze {
 
 	class MazeData
 	{
+	public:
 		// コンストラクタ
 		MazeData(const int height, const int width);
 		// デストラクタ
@@ -43,6 +44,11 @@ namespace Maze {
 		//迷路作成機
 		void MazeGenerator();
 
+		MazeDataInfo GetInfo();
+	private:
 		MazeDataInfo m_info;
+
+		int maxheight;
+		int maxwidth;
 	};
 }
