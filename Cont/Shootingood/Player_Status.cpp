@@ -13,7 +13,6 @@ Player_Status::Player_Status() {
 
 // デストラクタ
 Player_Status::~Player_Status() {
-
 }
 
 // 死んだら呼ばれる。残機を1減らす

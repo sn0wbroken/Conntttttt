@@ -3,7 +3,7 @@
 
 // コンストラクタ
 Player_Action::Player_Action(std::shared_ptr<Player> set_player,
-							 std::shared_ptr<Player_Status> set_player_statsu) {
+	std::shared_ptr<Player_Status> set_player_statsu) {
 	player = set_player;
 	player_status = set_player_statsu;
 
@@ -116,7 +116,7 @@ void Player_Action::Change_Fire_Type() {
 // 打ち出した弾丸が画面外に出ているか判断する
 bool Player_Action::Check_Off_Screen(Bullet& player_bullet) {
 	return player_bullet.Is_Over_Max_X() || player_bullet.Is_Over_Min_X() ||
-		   player_bullet.Is_Over_Max_Y() || player_bullet.Is_Over_Min_Y();
+		player_bullet.Is_Over_Max_Y() || player_bullet.Is_Over_Min_Y();
 }
 
 // 打ち出した弾丸が範囲外に出ていたら消す

@@ -23,7 +23,7 @@ public:
 	friend class Unique_Component<Game_Manager>;
 
 	// 現在の状態
-	eScene_State scene_state;	
+	eScene_State scene_state;
 	// stageを返す
 	eStage Get_Stage();
 
@@ -49,11 +49,10 @@ public:
 private:
 	// コンストラクタ
 	Game_Manager();
-	
+
 	// プレイするステージ
 	eStage stage;
 
 	// シーンの基底クラス
 	Scene_Base* scene_base;
-
 };

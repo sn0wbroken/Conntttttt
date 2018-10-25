@@ -21,7 +21,7 @@ public:
 
 	// UIを表示するときのX座標
 	static const int UI_X = 640;
-	// UIを表示するときのY座標の基準値 
+	// UIを表示するときのY座標の基準値
 	static const int UI_BASE_Y = 50;
 	// UI同士のスペース
 	static const int FELLOW_UI_SPACE = 40;
@@ -43,7 +43,7 @@ public:
 	// プレイヤーの最大体力
 	static const int PLAYER_MAX_LIFE = 3;
 	// プレイヤーの大きさ(幅)
-	static const int PLAYER_WIDTH  = 48;
+	static const int PLAYER_WIDTH = 48;
 	// プレイヤーの大きさ(高さ)
 	static const int PLAYER_HEIGHT = 48;
 	// プレイヤーの移動速度
@@ -91,5 +91,4 @@ public:
 	static const int MAX_PAGE_NUBER = 2;
 
 #pragma endregion
-
 };

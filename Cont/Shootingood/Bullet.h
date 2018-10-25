@@ -2,12 +2,12 @@
 
 #include"DxLib.h"
 #include"Define_Value.h"
-
+#include "Vector3D.h"
 // アクターが打ち出す弾丸
 class Bullet {
 public:
 	// コンストラクタ
-	Bullet(int set_x, int set_y, int set_direction_x, int set_direction_y);
+	Bullet(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f, float set_direction_x = 0.0f, float set_direction_y = 0.0f, float set_direction_z = 0.0f);
 	// デストラクタ
 	~Bullet();
 
@@ -17,14 +17,22 @@ public:
 	void Render();
 
 	// x座標を返す
-	int Get_X();
+	float Get_X();
+	// x座標を設定する
+	void Set_X(float set_x);
 	// y座標を返す
-	int Get_Y();
+	float Get_Y();
+	// y座標を設定する
+	void Set_Y(float set_y);
+	// z座標を返す
+	float Get_Z();
+	// z座標を設定する
+	void Set_Z(float set_z);
 	// 半径を返す
 	int Get_Radius();
 
 	// 弾の移動
-	void Move(int x, int y);
+	void Move(float x = 0.0f, float y = 0.0f, float z = 0.0f);
 
 	// 画面右端から出ようとしてないか
 	bool Is_Over_Max_X();
@@ -39,16 +47,12 @@ public:
 	bool Bullet_Off_Screen(Bullet& player_bullet);
 
 private:
-	// x座標
-	int x;
-	// y座標
-	int y;
+	//現在の座標
+	Vector3D vector3;
 	// 弾の半径
 	int radius;
-	// 弾の飛んでいく方向x
-	int direction_x;
-	// 弾の飛んでいく方向y
-	int direction_y;
+	//弾の進む方向
+	Vector3D Direction;
 
 	// 定数をまとめておく構造体
 	Define_Value define_value;

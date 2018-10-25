@@ -52,7 +52,7 @@ private:
 	int attack_span;
 	// 打ち出す弾の速度
 	int bullet_speed;
-	
+
 	// 死亡判定 trueで死亡
 	bool is_dead;
 	// ダメージ判定(ダメージを受けたかどうか) ダメージを受けたらtrue
