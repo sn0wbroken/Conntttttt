@@ -194,6 +194,7 @@
     <ClInclude Include="Player_Action.h" />
     <ClInclude Include="Player_Manager.h" />
     <ClInclude Include="Player_Status.h" />
+    <ClInclude Include="RandomNumGenerator.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Rectangle_Size.h" />
     <ClInclude Include="Result_Clear.h" />

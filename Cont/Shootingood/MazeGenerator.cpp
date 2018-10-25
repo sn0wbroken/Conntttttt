@@ -1,33 +1,32 @@
 #include "MazeGenerator.h"
+#include "RandomNumGenerator.h"
 
 Maze::MazeData::MazeData(const int height, const int width)
 {
 	maxheight = height;
 	maxwidth = width;
-	m_info.m_data.assign(static_cast<size_t> (height * width), 0.0f);
+	m_info.m_data.assign(static_cast<size_t> (height * width), 0);
 }
 
 void Maze::MazeData::MazeGenerator()
 {
 	//高さx横+高さ+横 で添え字を出せる。
 	//0 X 1 + 0 * 1の場合は 1になるが-1してあげるといい heightは0から widthは1から
-
+	//ランダマイザー
+	Utility::NumGenerator *randomNum();
 	//Maze 作成アルゴリズム
 	//メルセンヌツイスター型乱数生成器
 	std::random_device rnd;
 	std::mt19937 mt(rnd());
-	//迷路の広さ決定用 狭すぎず広すぎず
-	std::uniform_int_distribution<> r_mazeheight(31, maxheight);
-	std::uniform_int_distribution<> r_mazewidth(31, maxwidth);
 	//ブロックを置く場所決定用
 	std::uniform_int_distribution<> randblock3(0, 2);
 	std::uniform_int_distribution<> randblock4(0, 3);
 	//偶数になるとずれるので奇数になるように。
 	do {
-		m_info.m_width = r_mazewidth(mt);
+		m_info.m_width = randomNum()->GenerateNum(31, maxheight);
 	} while (m_info.m_width % 2 != 1);
 	do {
-		m_info.m_height = r_mazeheight(mt);
+		m_info.m_height = randomNum()->GenerateNum(31,maxwidth);
 	} while (m_info.m_height % 2 != 1);
 	//外側へ壁を挿入
 	for (int i = 1; i < m_info.m_height; i++) {
@@ -53,10 +52,10 @@ void Maze::MazeData::MazeGenerator()
 			{
 				int direction; //方向変数
 				if (x == 2) {
-					direction = randblock4(mt); //方向
+					direction = randomNum->GenerateNum(0,3); //方向
 				}
 				else {
-					direction = randblock3(mt);//方向
+					direction = randomNum->GenerateNum(0,2);//方向
 				}
 				int wallX = x;//x座標
 				int wallY = y;//y座標

@@ -16,10 +16,6 @@ Main_Scene::Main_Scene() {
 	y1 = 0;
 	y2 = -define_value.MAX_WINDOW_Y;
 
-	Maze::MazeData alpha(90, 90);
-	alpha.MazeGenerator();
-	alpha.GetInfo().GetData();
-
 	// メインに入った時はインターバルとする
 	is_interval = true;
 }
@@ -103,8 +99,6 @@ void Main_Scene::Render() {
 	DrawExtendGraph(0, y2,
 		define_value.WINDOW_X - define_value.UI_SPACE, y2 + define_value.WINDOW_Y,
 		background_graph, TRUE);
-
-	DrawCircle(400, 300, 100, GetColor(255, 255, 255), true);
 
 	// アクターの描画
 	player->Render();
