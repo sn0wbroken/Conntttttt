@@ -9,9 +9,20 @@ Player::Player() {
 
 	// 初期位置は画面の中央
 	vector3.Arrange((define_value.WINDOW_X - define_value.UI_SPACE) / 2,
-		define_value.WINDOW_Y - (height + (height / 2)), 0);
+	define_value.WINDOW_Y - (height + (height / 2)), 0);
 
 	rectangle = Rect<float>(vector3.x, vector3.y);
+
+	//TEST------------------------------------
+	// 初期座標を設定
+	matrix[0] = VGet(250.0f, 250.0f, 0.0f);
+	matrix[1] = VGet(225.0f, 200.0f, 0.0f);
+	matrix[2] = VGet(275.0f, 200.0f, 0.0f);
+	auto wdith  = matrix[2].x - matrix[1].x;
+	auto height = matrix[1].y - matrix[0].y;
+	// 重心(三角形の中心)
+	center = VGet(matrix[1].x + (width / 2), matrix[0].y + (height / 2), 0.0f);
+	//----------------------------------------
 
 	// プレイヤーの画像をロード
 	player_graph = LoadGraph("Picture/Player/Player.png");
@@ -34,6 +45,22 @@ void Player::Initialize() {
 void Player::Render() {
 	// 自分を描画
 	DrawExtendGraph(vector3.x, vector3.y, Get_Right_Edge(), Get_Bottom_Edge(), player_graph, TRUE);
+
+	//TEST--------------------------------------------------
+	if (CheckHitKey(KEY_INPUT_RIGHT)) {
+		auto hoge = -64.0f;
+		MATRIX rot_x = MGetRotZ(M_PI / hoge);
+		auto t_ = MMult(MGetTranslate(VScale(center, -1.0f)), MMult(rot_x, MGetTranslate(center)));
+
+		matrix[0] = VTransform(matrix[0], t_);
+		matrix[1] = VTransform(matrix[1], t_);
+		matrix[2] = VTransform(matrix[2], t_);
+	}
+
+	DrawTriangle3D(matrix[0],
+		matrix[1],
+		matrix[2], GetColor(0, 255, 0), TRUE);
+	//------------------------------------------------------
 
 	// 撃った弾だけ描画
 	for (auto& player_bullet_ : player_bullet) {

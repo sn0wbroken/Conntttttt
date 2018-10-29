@@ -1,5 +1,8 @@
 #pragma once
 
+#define _USE_MATH_DEFINES
+
+
 #include"Actor.h"
 #include"Bullet.h"
 #include"Rect.h"
@@ -40,7 +43,13 @@ public:
 	// プレイヤーが撃つ弾
 	std::vector<Bullet> player_bullet;
 
+	//TEST-------------
+	DxLib::VECTOR matrix[3];
+	VECTOR center;
+	//-----------------
+
 private:
+	// 矩形クラス
 	Rect<float> rectangle;
 
 	// 画像データ
