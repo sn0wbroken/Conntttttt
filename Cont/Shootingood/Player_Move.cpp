@@ -31,14 +31,3 @@ void Player_Move::Move() {
 		player->Set_X(player_x -= player_status->Get_Speed());
 	}
 }
-
-//TEST
-VECTOR Player_Move::Rotation(VECTOR vector) {
-	MATRIX rot_x = MGetRotX(M_PI / 4.0f);
-
-	auto rad = static_cast<float>(M_PI / 360.0f);
-
-	VECTOR vec = VTransform(vector, rot_x);
-
-	return vec;
-}

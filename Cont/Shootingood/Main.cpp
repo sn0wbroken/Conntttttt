@@ -5,6 +5,8 @@
 #include"Scene_Base.h"
 #include"Key_Checker.h"
 
+#include"CSV_Reader.h"
+
 // メイン
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nCmdShow*/) {
 	// 定数をまとめておく構造体
@@ -24,6 +26,10 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 		// エラーが起きたら終了
 		return -1;
 	}
+
+	//TEST
+	CSV_Reader* reader = new CSV_Reader();
+	auto hoge = reader->statuses;
 
 	// 最初のシーンへ
 	game_manager->Change_Scene(game_manager->scene_state);

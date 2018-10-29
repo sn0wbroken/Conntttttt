@@ -43,11 +43,6 @@ public:
 	// プレイヤーが撃つ弾
 	std::vector<Bullet> player_bullet;
 
-	//TEST-------------
-	DxLib::VECTOR matrix[3];
-	VECTOR center;
-	//-----------------
-
 private:
 	// 矩形クラス
 	Rect<float> rectangle;

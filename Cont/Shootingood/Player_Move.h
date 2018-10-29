@@ -22,17 +22,7 @@ public:
 	// プレイヤーを移動させる
 	void Move();
 
-	//TEST
-	// プレイヤーを回転させる
-	VECTOR Rotation(VECTOR vector);
-
 private:
-	// TEST---------------
-	int x;
-	int y;
-	int z;
-	//--------------------
-
 	std::shared_ptr<Player> player;
 	std::shared_ptr<Player_Status> player_status;
 };

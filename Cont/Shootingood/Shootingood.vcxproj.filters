@@ -102,14 +102,14 @@
     <ClCompile Include="Vector3D.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="MazeGenerator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Player_Move.cpp">
       <Filter>ソース ファイル\Actor\Player</Filter>
     </ClCompile>
     <ClCompile Include="Player_Shot.cpp">
       <Filter>ソース ファイル\Actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Json_Reader.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -194,14 +194,22 @@
     <ClInclude Include="Rectangle_Size.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="MazeGenerator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Player_Move.h">
       <Filter>ヘッダー ファイル\Actor\Player</Filter>
     </ClInclude>
     <ClInclude Include="Player_Shot.h">
       <Filter>ヘッダー ファイル\Actor\Player</Filter>
     </ClInclude>
+    <ClInclude Include="CSV_Reader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MazeGenerator.cpp">
+      <Filter>ソース ファイル</Filter>
+    </None>
+    <None Include="MazeGenerator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </None>
   </ItemGroup>
 </Project>
