@@ -1,5 +1,8 @@
 #pragma once
 
+#define _USE_MATH_DEFINES
+
+
 #include"Actor.h"
 #include"Bullet.h"
 #include"Rect.h"
@@ -41,6 +44,7 @@ public:
 	std::vector<Bullet> player_bullet;
 
 private:
+	// 矩形クラス
 	Rect<float> rectangle;
 
 	// 画像データ

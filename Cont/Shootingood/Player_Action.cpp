@@ -7,6 +7,8 @@ Player_Action::Player_Action(std::shared_ptr<Player> set_player,
 	player = set_player;
 	player_status = set_player_statsu;
 
+	player_move = std::make_shared<Player_Move>(player, player_status);
+
 	counter = 0;
 	amplitude = 15;
 
@@ -29,7 +31,8 @@ void Player_Action::Update() {
 // プレイヤーの操作を受け付ける 毎フレーム呼び出し
 void Player_Action::Player_Controll() {
 	// 移動
-	Move();
+	//player_move->Move();
+	//player_move->Rotation();
 	// 攻撃
 	Fire();
 	// ショットタイプの切り替え
@@ -40,22 +43,6 @@ void Player_Action::Player_Controll() {
 void Player_Action::Initialize() {
 	// 初期状態は直線に飛ばすもの
 	Set_Shot_Pattern();
-}
-
-// プレイヤーを移動させる
-void Player_Action::Move() {
-	// 同時押しでは動かないように
-	if (CheckHitKey(KEY_INPUT_RIGHT) && CheckHitKey(KEY_INPUT_LEFT)) {
-		return;
-	}
-	if (CheckHitKey(KEY_INPUT_RIGHT)) {
-		int player_x = player->Get_X();
-		player->Set_X(player_x += player_status->Get_Speed());
-	}
-	else if (CheckHitKey(KEY_INPUT_LEFT)) {
-		int player_x = player->Get_X();
-		player->Set_X(player_x -= player_status->Get_Speed());
-	}
 }
 
 // 弾を発射
@@ -116,7 +103,7 @@ void Player_Action::Change_Fire_Type() {
 // 打ち出した弾丸が画面外に出ているか判断する
 bool Player_Action::Check_Off_Screen(Bullet& player_bullet) {
 	return player_bullet.Is_Over_Max_X() || player_bullet.Is_Over_Min_X() ||
-		player_bullet.Is_Over_Max_Y() || player_bullet.Is_Over_Min_Y();
+		   player_bullet.Is_Over_Max_Y() || player_bullet.Is_Over_Min_Y();
 }
 
 // 打ち出した弾丸が範囲外に出ていたら消す

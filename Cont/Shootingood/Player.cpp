@@ -9,7 +9,7 @@ Player::Player() {
 
 	// ‰ŠúˆÊ’u‚Í‰æ–Ê‚Ì’†‰›
 	vector3.Arrange((define_value.WINDOW_X - define_value.UI_SPACE) / 2,
-		define_value.WINDOW_Y - (height + (height / 2)), 0);
+	define_value.WINDOW_Y - (height + (height / 2)), 0);
 
 	rectangle = Rect<float>(vector3.x, vector3.y);
 

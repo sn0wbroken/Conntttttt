@@ -5,6 +5,7 @@
 #include"DxLib.h"
 #include"Enum.h"
 #include"Player.h"
+#include"Player_Move.h"
 #include"Key_Checker.h"
 #include"Player_Status.h"
 
@@ -39,14 +40,15 @@ private:
 
 	// プレイヤー本体のクラス
 	std::shared_ptr<Player> player;
+	// プレイヤーの移動を管理するクラス
+	std::shared_ptr<Player_Move> player_move;
 	// プレイヤーのステータス関係のクラス
 	std::shared_ptr<Player_Status> player_status;
 
 	// キー入力をチェックするクラス
 	std::unique_ptr<Key_Checker>& key_checker = Key_Checker::Get_Instance();
 
-	// プレイヤーを移動させる
-	void Move();
+
 	// 弾を発射
 	void Fire();
 	// 攻撃の種類を切り替える。毎フレーム受付ける
