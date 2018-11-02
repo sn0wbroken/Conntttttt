@@ -37,10 +37,13 @@ namespace Maze {
 	class MazeData
 	{
 	public:
+		MazeData();
 		// コンストラクタ
 		MazeData(const int height, const int width);
 		// デストラクタ
 		~MazeData() {};
+
+		void setMazeSize(const int height, const int width);
 		//迷路作成機
 		void MazeGenerator();
 

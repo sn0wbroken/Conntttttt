@@ -163,10 +163,12 @@
     <ClCompile Include="Main_Scene.cpp" />
     <ClCompile Include="Manual.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
+    <ClCompile Include="MazeScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_Action.cpp" />
     <ClCompile Include="Player_Manager.cpp" />
     <ClCompile Include="Player_Status.cpp" />
+    <ClCompile Include="RandomNumGenerator.cpp" />
     <ClCompile Include="Result_Clear.cpp" />
     <ClCompile Include="Result_Game_Over.cpp" />
     <ClCompile Include="Scene_Base.cpp" />
@@ -190,6 +192,7 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="Manual.h" />
     <ClInclude Include="MazeGenerator.h" />
+    <ClInclude Include="MazeScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player_Action.h" />
     <ClInclude Include="Player_Manager.h" />

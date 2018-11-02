@@ -1,5 +1,6 @@
 #include"Title_Scene.h"
 #include"Game_Manager.h"
+#include "MazeGenerator.h"
 
 // コンストラクタ
 Title_Scene::Title_Scene() {
@@ -17,6 +18,12 @@ Title_Scene::Title_Scene() {
 
 	// 初期位置はStartから
 	select_command = eSelect_Command::Start;
+
+	//生成テスト TODO::DeleteIt
+#if 1
+	Maze::MazeData Test(90,90);
+	Test.MazeGenerator();
+#endif
 }
 
 // 毎フレーム入る
