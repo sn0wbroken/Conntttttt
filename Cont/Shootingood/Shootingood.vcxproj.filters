@@ -108,9 +108,6 @@
     <ClCompile Include="Player_Shot.cpp">
       <Filter>ソース ファイル\Actor\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Json_Reader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define_Value.h">
@@ -201,6 +198,12 @@
       <Filter>ヘッダー ファイル\Actor\Player</Filter>
     </ClInclude>
     <ClInclude Include="CSV_Reader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Json_Reader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

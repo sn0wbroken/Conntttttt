@@ -31,7 +31,6 @@ void Player_Action::Update() {
 // プレイヤーの操作を受け付ける 毎フレーム呼び出し
 void Player_Action::Player_Controll() {
 	// 移動
-	//player_move->Move();
 	//player_move->Rotation();
 	// 攻撃
 	Fire();

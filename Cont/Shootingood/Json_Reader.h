@@ -1,8 +1,8 @@
 #pragma once
 
-#include"DxLib.h"
-
+#include<vector>
 #include<string>
+#include<utility>
 #include<fstream>
 
 //TEST_STATUS
@@ -13,15 +13,14 @@ struct Status {
 	int atk;
 };
 
-// CSVファイル読み込み用クラス
-class CSV_Reader {
+// Json読み込みクラス
+class Json_Reader {
 public:
 	// コンストラクタ
-	CSV_Reader() {
-	}
+	Json_Reader() {};
 	// デストラクタ
-	~CSV_Reader() {}
-	
+	~Json_Reader() {};
+
 	// 読み取った完成系を格納
 	std::vector<Status> statuses;
 
@@ -58,9 +57,10 @@ public:
 	}
 
 	// 第一引数に取った文字列を、第二引数のデリミタで区切ったものを分ける
-	std::vector<std::string> Parse(const std::string & str, const std::string & delimiter) {
-		// 分けたものをいれる(これを返す)
-		std::vector<std::string> result;
+	std::string Parse(const std::string & str, const std::string & delimiter) {
+		//TEST_STRUCT
+		Status status;
+
 		// 調べる文字列の要素数
 		std::string::size_type pos = 0;
 
@@ -71,19 +71,18 @@ public:
 
 			// ↑でデリミタが見つからなくなる(読み取る文字列の終わり)まで来たら入る
 			if (p == std::string::npos) {
-				// 最後のデリミタから文字列の最期までを格納しておしまい
-				result.push_back(str.substr(pos));
+				// 最後のデリミタから文字列の終わりまでを返しておしまい
+				return str.substr(pos);
 				break;
 			}
 			// 見つかればこっち
 			else {
-				result.push_back(str.substr(pos, p - pos));
+				return str.substr(pos, p - pos);
 			}
 
 			// デリミタを読み飛ばすためにデリミタのサイズを足す
 			pos = p + delimiter.size();
 		}
-
-		return result;
 	}
+
 };

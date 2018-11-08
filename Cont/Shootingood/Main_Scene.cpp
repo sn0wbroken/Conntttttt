@@ -5,7 +5,8 @@
 Main_Scene::Main_Scene() {
 	UI_class = std::make_shared<UI>();
 
-	player = player_manager->player;
+	player = Factory<Player>::Create_Actor();
+	
 	player_action = player_manager->player_action;
 
 	collision = std::make_shared<Collision>();
