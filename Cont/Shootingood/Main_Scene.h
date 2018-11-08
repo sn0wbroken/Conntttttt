@@ -1,11 +1,11 @@
 #pragma once
 
 #include"UI.h"
+#include"Factory.h"
 #include"Collision.h"
 #include"Scene_Base.h"
 #include"Key_Checker.h"
 #include"Enemy_Manager.h"
-#include"Player_Manager.h"
 
 #include<memory>
 

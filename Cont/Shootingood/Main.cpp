@@ -5,8 +5,6 @@
 #include"Scene_Base.h"
 #include"Key_Checker.h"
 
-#include"CSV_Reader.h"
-
 // メイン
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nCmdShow*/) {
 	// 定数をまとめておく構造体
@@ -27,10 +25,6 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 		return -1;
 	}
 
-	//TEST
-	CSV_Reader* reader = new CSV_Reader();
-	auto hoge = reader->statuses;
-
 	// 最初のシーンへ
 	game_manager->Change_Scene(game_manager->scene_state);
 
@@ -44,6 +38,13 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 		key_Checker->Update_Key();
 		game_manager->Update();
 		game_manager->Render();
+
+
+		// 標準ライトをポイントライトにする
+		ChangeLightTypePoint(VGet(define_value.WINDOW_X / 2, define_value.WINDOW_Y / 2, -100.0f), 2000.0f, 0.0f, 0.002f, 0.0f);
+		SetLightPosition(VGet(400.0f, -30.0f, -100.0f));
+		DrawSphere3D(VGet(320.0f, 200.0f, 0.0f), 80.0f, 32, GetColor(255, 0, 0), GetColor(255, 255, 255), TRUE);
+
 
 		// FPSを60で固定
 		int startTime = GetNowCount();

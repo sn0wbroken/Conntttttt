@@ -108,6 +108,7 @@
     <ClCompile Include="Player_Shot.cpp">
       <Filter>ソース ファイル\Actor\Player</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Json_Reader.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -117,6 +118,8 @@
     <ClCompile Include="MazeScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
+=======
+>>>>>>> ishikuraBranch
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define_Value.h">
@@ -209,11 +212,19 @@
     <ClInclude Include="CSV_Reader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="RandomNumGenerator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="MazeScene.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
+=======
+    <ClInclude Include="Json_Reader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>ヘッダー ファイル</Filter>
+>>>>>>> ishikuraBranch
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
