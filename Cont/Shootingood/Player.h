@@ -1,8 +1,5 @@
 #pragma once
 
-#define _USE_MATH_DEFINES
-
-
 #include"Actor.h"
 #include"Bullet.h"
 #include"Rect.h"
@@ -47,12 +44,8 @@ private:
 	// 矩形クラス
 	Rect<float> rectangle;
 
-	// 画像データ
-	int player_graph;
-
 	// 死亡判定。死んでいたらtrue
 	bool is_dead;
-
 	// パワーアップ状態か
 	bool is_power_up;
 };

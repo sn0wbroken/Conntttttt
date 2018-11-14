@@ -5,7 +5,7 @@
 Main_Scene::Main_Scene() {
 	UI_class = std::make_shared<UI>();
 
-	player = Factory<Player>::Create_Actor();
+	player = player_manager->player;
 	
 	player_action = player_manager->player_action;
 
@@ -99,8 +99,6 @@ void Main_Scene::Render() {
 	DrawExtendGraph(0, y2,
 		define_value.WINDOW_X - define_value.UI_SPACE, y2 + define_value.WINDOW_Y,
 		background_graph, TRUE);
-
-	DrawCircle(400, 300, 100, GetColor(255, 255, 255), true);
 
 	// アクターの描画
 	player->Render();

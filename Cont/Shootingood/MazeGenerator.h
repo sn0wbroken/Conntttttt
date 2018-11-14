@@ -13,7 +13,7 @@ namespace Maze {
 		Player,
 	};
 
-	struct MazeDataInfo //TODO::óvèCê≥
+	struct MazeDataInfo //TODO:óvèCê≥
 	{
 		int m_height;	//çÇÇ≥
 		int m_width;	//í∑Ç≥

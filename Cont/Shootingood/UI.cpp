@@ -36,7 +36,7 @@ void UI::Enemy_Number() {
 // プレイヤーの攻撃タイプを表示
 void UI::Player_Shot_Type() {
 	std::string player_shot;
-	switch (static_cast<int>(player_manager->player_action->shot_type)) {
+	switch (static_cast<int>(player_manager->player_weapon->shot_type)) {
 	case 0:
 		player_shot = "Straight";
 		break;

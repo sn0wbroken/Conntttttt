@@ -54,6 +54,10 @@ public:
 	static constexpr float PLAYER_BULLET_SPEED = 15.0f;
 	// プレイヤーの初期残機
 	static const int PLAYER_INITIALIZE_LIFE = 3;
+	// プレイヤーの回転速度
+	static constexpr float PLAYER_ROTATE_SPEED = 6.0f;
+
+#define pla_rota = (6.0F)
 
 #pragma endregion
 
