@@ -10,7 +10,7 @@ Player::Player() {
 	// 初期化
 	Initialize();
 
-	rectangle = Rect<float>(vector3.x, vector3.y);
+	rectangle = Rect<float>(vector3.x, vector3.y, width,height);
 
 	//TODO:リテラル多
 	// プレイヤーのモデルハンドルを格納
@@ -48,22 +48,22 @@ void Player::Render() {
 
 // プレイヤーの右端の座標を返す
 float Player::Get_Right_Edge() {
-	return vector3.x + width;
+	return rectangle.right;
 }
 
 // プレイヤーの左端の座標を返す
 float Player::Get_Left_Edge() {
-	return vector3.x;
+	return rectangle.left;
 }
 
 // プレイヤーの上端の座標を返す
 float Player::Get_Top_Edge() {
-	return vector3.y;
+	return rectangle.top;
 }
 
 // プレイヤーの下端の座標を返す
 float Player::Get_Bottom_Edge() {
-	return vector3.y + height;;
+	return rectangle.bottom;
 }
 
 // 弾が出る位置を返す

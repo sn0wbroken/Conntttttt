@@ -13,25 +13,11 @@ namespace Maze {
 		Player,
 	};
 
-	struct MazeDataInfo //TODO:要修正
+	struct MazeDataInfo
 	{
 		int m_height;	//縦幅
 		int m_width;	//横幅
 		std::vector<float> m_data; //マップ配置データ
-
-		inline int GetHeight()
-		{
-			return m_height;
-		};
-		inline int GetWidth()
-		{
-			return m_width;
-		};
-
-		inline std::vector<float> GetData()
-		{
-			return m_data;
-		};
 	};
 
 	class MazeData
