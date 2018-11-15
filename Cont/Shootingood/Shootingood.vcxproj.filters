@@ -215,19 +215,17 @@
     <ClInclude Include="CSV_Reader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="RandomNumGenerator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="MazeScene.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
-=======
+     </ClInclude>
     <ClInclude Include="Json_Reader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Factory.h">
       <Filter>ヘッダー ファイル</Filter>
->>>>>>> ishikuraBranch
     </ClInclude>
     <ClInclude Include="Weapon.h">
       <Filter>ヘッダー ファイル</Filter>

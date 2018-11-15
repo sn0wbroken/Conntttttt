@@ -166,7 +166,6 @@
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
     <ClCompile Include="MazeScene.cpp" />
-    <None Include="MazeGenerator.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_Action.cpp" />
     <ClCompile Include="Player_Manager.cpp" />
@@ -203,7 +202,6 @@
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="MazeGenerator.h" />
     <ClInclude Include="MazeScene.h" />
-    <None Include="MazeGenerator.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player_Action.h" />
     <ClInclude Include="Player_Manager.h" />
