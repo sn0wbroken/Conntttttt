@@ -46,6 +46,9 @@ public:
 	virtual float Get_Top_Edge() = 0;
 	// アクターの下端の座標を返す
 	virtual float Get_Bottom_Edge() = 0;
+	
+	// アクターのモデルハンドルを返す
+	int &Get_Model_Handle();
 
 protected:
 	// 座標関係のクラス
@@ -53,6 +56,9 @@ protected:
 
 	// 定数をまとめておく構造体
 	Define_Value define_value;
+
+	// モデルのハンドル
+	int model_handle;
 
 	// アクターの大きさ(幅)
 	int width;

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "DxLib.h"
 
 // 座標関係を扱うクラス
@@ -6,10 +7,10 @@ class Vector3D {
 public:
 	// コンストラクタ
 	Vector3D();
-	//コピーコンストラクタ
+	// コピーコンストラクタ
 	Vector3D(const Vector3D &vec);
-	//コピーコンストラクタ
-	Vector3D(const DxLib::VECTOR &vec);
+	// コピーコンストラクタ
+	Vector3D(const VECTOR &vec);
 	// デストラクタ
 	~Vector3D();
 
@@ -19,8 +20,8 @@ public:
 	float y;
 	// z座標
 	float z;
-	//DxlibのVECTORを使う
-	DxLib::VECTOR GetVECTOR();
+	// DxlibのVECTORを使う
+	VECTOR GetVECTOR();
 
 	// 移動
 	void Move(float set_x, float set_y, float set_z);

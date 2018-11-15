@@ -3,8 +3,8 @@
 #include"Player.h"
 #include"Player_Status.h"
 #include"Player_Action.h"
+#include"Player_Weapon.h"
 #include"Unique_Component.h"
-
 #include"Define_Value.h"
 
 #include<memory>
@@ -16,18 +16,20 @@ public:
 	void Update();
 
 	// プレイヤー本体のクラス
-	std::shared_ptr<Player> player = std::make_shared<Player>();
+	std::shared_ptr<Player> player;
 	// プレイヤーのステータス関係を扱うクラス
-	std::shared_ptr<Player_Status> player_status = std::make_shared<Player_Status>();
+	std::shared_ptr<Player_Status> player_status;
 	// プレイヤーの行動を管理するクラス
-	std::shared_ptr<Player_Action> player_action = std::make_shared<Player_Action>(player, player_status);
+	std::shared_ptr<Player_Action> player_action;
+	// プレイヤーの持つ武器のクラス
+	std::shared_ptr<Player_Weapon> player_weapon;
 
 	// デストラクタ
 	~Player_Manager() {};
 
 private:
 	// コンストラクタ
-	Player_Manager() {};
+	Player_Manager();
 
 	// 定数をまとめておく構造体
 	Define_Value define_value;

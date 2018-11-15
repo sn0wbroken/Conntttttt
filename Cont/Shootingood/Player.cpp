@@ -7,14 +7,20 @@ Player::Player() {
 	// プレイヤーの高さ
 	height = define_value.PLAYER_HEIGHT;
 
-	// 初期位置は画面の中央
-	vector3.Arrange((define_value.WINDOW_X - define_value.UI_SPACE) / 2,
-	define_value.WINDOW_Y - (height + (height / 2)), 0);
+	// 初期化
+	Initialize();
 
 	rectangle = Rect<float>(vector3.x, vector3.y);
 
-	// プレイヤーの画像をロード
-	player_graph = LoadGraph("Picture/Player/Player.png");
+	//TODO:リテラル多
+	// プレイヤーのモデルハンドルを格納
+	model_handle = MV1LoadModel("Resources/Player/Player.x");
+	// プレイヤーの座標を指定
+	MV1SetPosition(model_handle, VGet(vector3.x, vector3.y, 0.0f));
+	// プレイヤーの大きさを指定
+	MV1SetScale(model_handle, VGet(40.0f, 40.0f, 35.0f));
+	// プレイヤーの表示角度を調整
+	MV1SetRotationXYZ(model_handle, VGet(270 * (DX_PI_F / 180), 0.0f, 180 * (DX_PI_F / 180)));
 }
 
 // デストラクタ
@@ -22,18 +28,17 @@ Player::~Player() {}
 
 // 初期化
 void Player::Initialize() {
-	vector3.x = (define_value.WINDOW_X - define_value.UI_SPACE) / 2;
-	vector3.y = define_value.WINDOW_Y - (height + (height / 2));
+	vector3.Arrange((define_value.WINDOW_X - define_value.UI_SPACE) / 2, define_value.WINDOW_Y / 2, 0);
 	// 強化状態を元に戻す
 	is_power_up = false;
 
 	player_bullet.clear();
 }
 
-// プレイヤー、プレイヤーが撃った弾を描画
+// プレイヤーと、プレイヤーが撃った弾を描画
 void Player::Render() {
-	// 自分を描画
-	DrawExtendGraph(vector3.x, vector3.y, Get_Right_Edge(), Get_Bottom_Edge(), player_graph, TRUE);
+	MV1DrawModel(model_handle);
+	auto hoge = MV1GetRotationXYZ(model_handle);
 
 	// 撃った弾だけ描画
 	for (auto& player_bullet_ : player_bullet) {

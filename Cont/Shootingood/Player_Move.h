@@ -3,6 +3,7 @@
 #define _USE_MATH_DEFINES
 
 #include"DxLib.h"
+#include"Define_Value.h"
 #include"Player.h"
 #include"Player_Status.h"
 
@@ -19,10 +20,15 @@ public:
 	// デストラクタ
 	~Player_Move();
 
-	// プレイヤーを移動させる
+	// キー入力でプレイヤーを移動させる
 	void Move();
+	// キー入力でプレイヤーを回転させる
+	void Rotation();
 
 private:
+	// 定数をまとめておくクラス
+	Define_Value define_value;
+
 	std::shared_ptr<Player> player;
 	std::shared_ptr<Player_Status> player_status;
 };

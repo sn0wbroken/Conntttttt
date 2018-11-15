@@ -19,8 +19,7 @@ void Bullet::Update() {
 
 // ï`âÊ
 void Bullet::Render() {
-	DrawCircle((int)vector3.x, (int)vector3.y, radius,
-		GetColor(255, 0, 255), TRUE);
+	DrawSphere3D(VGet(vector3.x, vector3.y, vector3.z), 2, 32, GetColor(255, 0, 255), GetColor(0,0,0), TRUE);
 }
 
 // xç¿ópÇï‘Ç∑

@@ -37,7 +37,6 @@ public:
 	// ダメージを受ける。プレイヤーの弾に当たったら呼ばれる
 	void Damage();
 private:
-	//TODO: 余裕があればファクトリークラスを作る
 	// 簡易ファクトリー ステージに合わせてステータスを変更
 	void Fake_Factory(eStage stage);
 

@@ -5,7 +5,7 @@
 
 #include<memory>
 
-// ファクトリークラス TODO:とっても簡単な実装になっているので手の加えようはいくらでも
+// ファクトリークラス TODO:tenmlateだとわかりやすいが汎用性がないので修正
 template<class T>
 class Factory {
 public:
