@@ -20,24 +20,51 @@ public:
 
 	// コンストラクタ
 	Rect() {}
-	// コンストラクタ TODO:なにこれ。制作途中か？
-	Rect(T _x, T _y) {
-		//x = _x;
-		//y = _y;
+
+	//中心から作るコンストラクタ 座標と大きさ
+	Rect(T _x, T _y,T _width,T _height) {
+		x = _x;
+		y = _y;
+
+		width = _width;
+		height = _height;
+
+		//中心から作る
+		left = x - (width /2);
+		right = x + (width / 2);
+		top = y - (height / 2);
+		bottom = y + (height / 2);
 	}
+	//中心から 座標と半径
+	Rect(T _x, T _y, T _r)
+	{
+		x = _x;
+		y = _y;
+
+		left	= _x - _r;
+		right	= _x + _r;
+		top		= _y - _r;
+		bottom	= _y + _r;
+	}
+
 	// コンストラクタ
 	Rect(T aTop, T aLeft, T aRight, T aBottom) {
 		top = aTop;
 		left = aLeft;
 		right = aRight;
 		bottom = aBottom;
+
+		width = right - left;
+		height = bottom - top;
 	}
 	// コピーコンストラクタ
-	Rect(const Rect<T> &right) {
-		top = right.top;
-		left = right.left;
-		right = right.right;
-		bottom = right.bottom;
+	Rect(const Rect<T> &Right) {
+		top = Right.top;
+		left = Right.left;
+		right = Right.right;
+		bottom = Right.bottom;
+		width = Right.width;
+		height = Right.height;
 	}
 
 	void Initialize() {
