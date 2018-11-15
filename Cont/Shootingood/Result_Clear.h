@@ -22,4 +22,3 @@ private:
 	// キー入力をチェックするクラス
 	std::unique_ptr<Key_Checker>& key_checker = Key_Checker::Get_Instance();
 };
-

@@ -24,11 +24,11 @@ void Enemy_Manager::Update() {
 			enemy_status_->Initialize_Is_Damage();
 		}
 	}
-	
+
 	enemy_AI->Update();
 
 	// 撃った弾だけ更新
-	for(auto& enemy_bullet_ : enemy_bullet){
+	for (auto& enemy_bullet_ : enemy_bullet) {
 		enemy_bullet_.Update();
 	}
 }
@@ -50,10 +50,10 @@ void Enemy_Manager::Render() {
 // 敵を配置
 void Enemy_Manager::Enemy_Arrange() {
 	for (int i = 0; i < define_value.ENEMY_NUMBER; ++i) {
-		Arrange(((i % define_value.ENEMY_NUMBER) * define_value.ENEMY_WIDTH), ((define_value.ENEMY_HEIGHT / 2) + ((i % define_value.ENEMY_NUMBER) * define_value.ENEMY_HEIGHT)));
+		auto x = i % define_value.ENEMY_NUMBER * define_value.ENEMY_WIDTH;
+		auto y = define_value.ENEMY_HEIGHT / 2 + i % define_value.ENEMY_NUMBER * define_value.ENEMY_HEIGHT;
 		enemies.emplace_back(Enemy(x, y));
 	}
-
 	std::reverse(enemies.begin(), enemies.end());
 }
 
@@ -64,10 +64,4 @@ void Enemy_Manager::Reset_Enemy() {
 		enemy.Set_Y(enemy.Get_Initialize_Position_Y());
 		enemy_bullet.clear();
 	}
-}
-
-// 出現する敵を配置
-void Enemy_Manager::Arrange(int set_x, int set_y) {
-	x = set_x;
-	y = set_y;
 }

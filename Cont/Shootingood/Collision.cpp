@@ -10,12 +10,12 @@ bool Collision::Box_To_Box(int right_edge1, int left_edge1, int top_edge1, int r
 // プレイヤーとエネミーの弾の当たり判定
 bool Collision::Player_To_Enemy_Bullet(int right_edge, int left_edge, int top_edge, int bottom_edge, int bullet_position_x, int bullet_position_y, int bullet_radius) {
 	return
-	right_edge >= bullet_position_x - bullet_radius && left_edge <= bullet_position_x + bullet_radius &&
-	top_edge <= bullet_position_y + bullet_radius && bottom_edge >= bullet_position_y + bullet_radius;
+		right_edge >= bullet_position_x - bullet_radius && left_edge <= bullet_position_x + bullet_radius &&
+		top_edge <= bullet_position_y + bullet_radius && bottom_edge >= bullet_position_y + bullet_radius;
 }
 
 // エネミーとプレイヤーの弾の当たり判定
-  bool Collision::Enemy_To_Player_Bullet(int right_edge, int left_edge, int top_edge, int bottom_edge, int bullet_position_x, int bullet_position_y, int bullet_radius) {
+bool Collision::Enemy_To_Player_Bullet(int right_edge, int left_edge, int top_edge, int bottom_edge, int bullet_position_x, int bullet_position_y, int bullet_radius) {
 	return
 		right_edge >= bullet_position_x - bullet_radius && left_edge <= bullet_position_x + bullet_radius &&
 		top_edge <= bullet_position_y - bullet_radius && bottom_edge >= bullet_position_y + bullet_radius;

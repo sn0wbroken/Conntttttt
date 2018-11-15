@@ -2,11 +2,12 @@
 
 #include"Actor.h"
 #include"Bullet.h"
+#include"Rect.h"
 
 #include<vector>
 
 // プレイヤー本体のクラス
-class Player : public Actor{
+class Player : public Actor {
 public:
 	// コンストラクタ
 	Player();
@@ -20,16 +21,16 @@ public:
 	void Render() override;
 
 	// アクターの右端の座標を返す
-	virtual int Get_Right_Edge() override;
+	virtual float Get_Right_Edge() override;
 	// アクターの左端の座標を返す
-	virtual int Get_Left_Edge() override;
+	virtual float Get_Left_Edge() override;
 	// アクターの上端の座標を返す
-	virtual int Get_Top_Edge() override;
+	virtual float Get_Top_Edge() override;
 	// アクターの下端の座標を返す
-	virtual int Get_Bottom_Edge() override;
+	virtual float Get_Bottom_Edge() override;
 
 	// 弾が出る位置を返す
-	int Get_Shoot_Point();
+	float Get_Shoot_Point();
 
 	// パワーアップ状態であるかをセットする
 	void Set_Power_Up(bool set_is_power_up);
@@ -40,12 +41,11 @@ public:
 	std::vector<Bullet> player_bullet;
 
 private:
-	// 画像データ
-	int player_graph;
+	// 矩形クラス
+	Rect<float> rectangle;
 
 	// 死亡判定。死んでいたらtrue
 	bool is_dead;
-
 	// パワーアップ状態か
 	bool is_power_up;
 };

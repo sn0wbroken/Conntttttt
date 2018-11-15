@@ -3,9 +3,10 @@
 #include"Enemy_Manager.h"
 
 // コンストラクタ
-Enemy_Status::Enemy_Status() {}
+Enemy_Status::Enemy_Status() {};
+
 // コピーコンストラクタ
-Enemy_Status::Enemy_Status(eStage stage):
+Enemy_Status::Enemy_Status(eStage stage) :
 	hit_point(define_value.ENEMY_MAX_HP),
 	is_damage(false),
 	move_direction(eMove_Direction::Right) {
@@ -15,7 +16,6 @@ Enemy_Status::Enemy_Status(eStage stage):
 
 // デストラクタ
 Enemy_Status::~Enemy_Status() {
-
 }
 
 // 移動速度を返す
@@ -24,7 +24,7 @@ int Enemy_Status::Get_Speed() {
 }
 
 // Uターンさせる
-void Enemy_Status::U_Turn(){
+void Enemy_Status::U_Turn() {
 	speed = -speed;
 }
 
@@ -54,7 +54,7 @@ void Enemy_Status::Initialize_Is_Damage() {
 }
 
 // ダメージを受けたかどうかを返す
-bool Enemy_Status::Is_Damage(){
+bool Enemy_Status::Is_Damage() {
 	return is_damage;
 }
 
@@ -68,21 +68,21 @@ void Enemy_Status::Damage() {
 void Enemy_Status::Fake_Factory(eStage stage) {
 	switch (stage) {
 	case eStage::stage1:
-		speed        = 5;
-		hit_point    = 15;
-		attack_span  = 80;
+		speed = 5;
+		hit_point = 15;
+		attack_span = 80;
 		bullet_speed = 5;
 		break;
 	case eStage::stage2:
-		speed        = 8;
-		hit_point    = 30;
-		attack_span  = 60;
+		speed = 8;
+		hit_point = 30;
+		attack_span = 60;
 		bullet_speed = 8;
 		break;
 	case eStage::stage3:
-		speed        = 12;
-		hit_point    = 45;
-		attack_span  = 50;
+		speed = 12;
+		hit_point = 45;
+		attack_span = 50;
 		bullet_speed = 12;
 		break;
 	}

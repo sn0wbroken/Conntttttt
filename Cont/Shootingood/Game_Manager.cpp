@@ -48,6 +48,7 @@ void Game_Manager::Change_Scene(eScene_State check_scene_state) {
 		break;
 	}
 }
+
 // クリア、ゲームオーバー時に呼ばれる。プレイステージを1に戻す
 void Game_Manager::Reset_Stage() {
 	stage = eStage::stage1;
@@ -56,11 +57,11 @@ void Game_Manager::Reset_Stage() {
 // ステージを進める ステージクリア時に呼ばれる
 void Game_Manager::Next_Stage() {
 	switch (stage) {
-		case eStage::stage1:
-			stage = eStage::stage2;
-			break;
-		case eStage::stage2:
-			stage = eStage::stage3;
-			break;
+	case eStage::stage1:
+		stage = eStage::stage2;
+		break;
+	case eStage::stage2:
+		stage = eStage::stage3;
+		break;
 	}
 }

@@ -14,4 +14,3 @@ void Result_Clear::Update() {
 void Result_Clear::Render() {
 	DrawExtendGraph(0, 0, define_value.WINDOW_X, define_value.WINDOW_Y, background_graph, TRUE);
 }
-

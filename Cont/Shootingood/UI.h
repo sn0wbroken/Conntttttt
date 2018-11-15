@@ -19,7 +19,7 @@ public:
 	void Render();
 
 private:
-	std::unique_ptr<Enemy_Manager>& enemy_manager   = Enemy_Manager::Get_Instance();
+	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 
 	// エネミーの数を表示
@@ -30,7 +30,7 @@ private:
 	void Now_Stage();
 	// プレイヤーの残機を表示
 	void Player_Life();
-	
+
 	// 定数をまとめておく構造体s
 	Define_Value define_value;
 

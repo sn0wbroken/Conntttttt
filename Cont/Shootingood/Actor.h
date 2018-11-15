@@ -1,6 +1,7 @@
 #pragma once
 
 #include"DxLib.h"
+#include"Vector3D.h"
 #include"Define_Value.h"
 
 // アクターの基底のクラス
@@ -15,35 +16,50 @@ public:
 	virtual void Render() = 0;
 
 	// 現在のx座標を返す
-	int Get_X();
+	float Get_X();
 	// x座標を設定する
-	void Set_X(int set_x);
+	void Set_X(float set_x);
 	// 現在のy座標を返す
-	int Get_Y();
+	float Get_Y();
 	// y座標を設定する
-	void Set_Y(int set_y);
+	void Set_Y(float set_y);
+	//現在のz座標を返す
+	float Get_Z();
+	//z座標を設定する
+	void Set_Z(float set_z);
 	// 幅を返す
 	int Get_Width();
 	// 高さを返す
 	int Get_Height();
-	
+
+	Vector3D Get_Vector3D() {
+		return vector3;
+	}
+	void Set_Vector3D(float set_x, float set_y, float set_z);
+	void Set_Vector3D(Vector3D Vec3);
+
 	// アクターの右端の座標を返す
-	virtual int Get_Right_Edge() = 0;
+	virtual float Get_Right_Edge() = 0;
 	// アクターの左端の座標を返す
-	virtual int Get_Left_Edge() = 0;
+	virtual float Get_Left_Edge() = 0;
 	// アクターの上端の座標を返す
-	virtual int Get_Top_Edge() = 0;
+	virtual float Get_Top_Edge() = 0;
 	// アクターの下端の座標を返す
-	virtual int Get_Bottom_Edge() = 0;
+	virtual float Get_Bottom_Edge() = 0;
+	
+	// アクターのモデルハンドルを返す
+	int &Get_Model_Handle();
 
 protected:
+	// 座標関係のクラス
+	Vector3D vector3;// = new Vector3D();
+
 	// 定数をまとめておく構造体
 	Define_Value define_value;
-	
-	// 自分のいるx座標
-	int x;
-	// 自分のいるy座標
-	int y;
+
+	// モデルのハンドル
+	int model_handle;
+
 	// アクターの大きさ(幅)
 	int width;
 	// アクターの大きさ(高さ)

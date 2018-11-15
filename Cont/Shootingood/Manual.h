@@ -33,8 +33,7 @@ private:
 	//TODO:マジックナンバー
 	// マニュアルUIを格納する
 	int manual_graph[3];
-	
+
 	// 現在閲覧中のページの番号
 	int now_page_number;
 };
-

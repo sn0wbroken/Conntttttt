@@ -1,9 +1,9 @@
-#include<memory>
-
 #include"DxLib.h"
 #include"Game_Manager.h"
 #include"Scene_Base.h"
 #include"Key_Checker.h"
+
+#include<memory>
 
 // ÉÅÉCÉì
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nCmdShow*/) {

@@ -37,7 +37,6 @@ public:
 	// ダメージを受ける。プレイヤーの弾に当たったら呼ばれる
 	void Damage();
 private:
-	//TODO: 余裕があればファクトリークラスを作る
 	// 簡易ファクトリー ステージに合わせてステータスを変更
 	void Fake_Factory(eStage stage);
 
@@ -52,10 +51,9 @@ private:
 	int attack_span;
 	// 打ち出す弾の速度
 	int bullet_speed;
-	
+
 	// 死亡判定 trueで死亡
 	bool is_dead;
 	// ダメージ判定(ダメージを受けたかどうか) ダメージを受けたらtrue
 	bool is_damage;
 };
-

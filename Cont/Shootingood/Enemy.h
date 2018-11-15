@@ -12,9 +12,9 @@
 class Enemy : public Actor {
 public:
 	// コンストラクタ
-	Enemy() {};
+	Enemy();
 	// コピーコンストラクタ
-	Enemy(int set_x, int set_y);
+	Enemy(float set_x, float set_y);
 	// デストラクタ
 	~Enemy();
 
@@ -22,28 +22,28 @@ public:
 	void Render() override;
 
 	// エネミーの右端の座標を返す
-	int Get_Right_Edge() override;
+	float Get_Right_Edge() override;
 	// エネミーの左端の座標を返す
-	int Get_Left_Edge() override;
+	float Get_Left_Edge() override;
 	// エネミーの上端の座標を返す
-	int Get_Top_Edge() override;
+	float Get_Top_Edge() override;
 	// エネミーの下端の座標を返す
-	int Get_Bottom_Edge() override;
+	float Get_Bottom_Edge() override;
 	// 弾の発射する位置を返す
-	int Get_Shot_Point();
+	float Get_Shot_Point();
 	// 初期x座標を返す
-	int Get_Initialize_Position_X();
+	float Get_Initialize_Position_X();
 	// 初期y座標を返す
-	int Get_Initialize_Position_Y();
+	float Get_Initialize_Position_Y();
 
 	// エネミーのステータス関係のクラス
 	std::shared_ptr<Enemy_Status> enemy_status;
 
 private:
 	// 初期x座標を覚えておく
-	int initialize_position_x;
+	float initialize_position_x;
 	// 初期y座標を覚えておく
-	int initialize_position_y;
+	float initialize_position_y;
 
 	// エネミーの画像
 	int enemy_graph;

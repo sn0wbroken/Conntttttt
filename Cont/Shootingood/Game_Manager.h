@@ -23,7 +23,7 @@ public:
 	friend class Unique_Component<Game_Manager>;
 
 	// 現在の状態
-	eScene_State scene_state;	
+	eScene_State scene_state;
 	// stageを返す
 	eStage Get_Stage();
 
@@ -34,6 +34,10 @@ public:
 
 	// シーンを切り替える
 	void Change_Scene(eScene_State scene_state);
+
+	template<class T>
+	void Change_Scene_();
+
 	// クリア、ゲームオーバー時に呼ばれる。プレイステージを1に戻す
 	void Reset_Stage();
 	// ステージを進める ステージクリア時に呼ばれる
@@ -45,11 +49,10 @@ public:
 private:
 	// コンストラクタ
 	Game_Manager();
-	
+
 	// プレイするステージ
 	eStage stage;
 
 	// シーンの基底クラス
 	Scene_Base* scene_base;
-
 };
