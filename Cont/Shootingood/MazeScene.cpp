@@ -93,10 +93,7 @@ void Maze_Scene::Update() {
 
 // メインシーンに必要なものを描画
 void Maze_Scene::Render() {
-	int i = 0;
-	while
-	Test.GetInfo().GetData();
-	DrawSphere3D(, 50.0f, 50,DxLib::GetColor(255,0,0),DxLib::GetColor(0,0,0),true);
+
 }
 
 // 初期化

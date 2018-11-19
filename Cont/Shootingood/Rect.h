@@ -17,8 +17,7 @@ public:
 	T width;
 	// 高さ
 	T height;
-
-	// コンストラクタ
+	
 	Rect() {}
 
 	//中心から作るコンストラクタ 座標と大きさ
@@ -47,8 +46,8 @@ public:
 		bottom	= _y + _r;
 	}
 
-	// コンストラクタ
-	Rect(T aTop, T aLeft, T aRight, T aBottom) {
+	// コンストラクタ TODO::分離方法がいまいち思いつかなかった
+	Rect(T aTop, T aLeft, T aRight, T aBottom,bool temp = true) {
 		top = aTop;
 		left = aLeft;
 		right = aRight;

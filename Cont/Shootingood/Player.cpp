@@ -10,7 +10,7 @@ Player::Player() {
 	// 初期化
 	Initialize();
 
-	rectangle = Rect<float>(vector3.x, vector3.y, width,height);
+	//rectangle = Rect<float>(vector3.x, vector3.y,(float)width,(float)height);
 
 	//TODO:リテラル多
 	// プレイヤーのモデルハンドルを格納
