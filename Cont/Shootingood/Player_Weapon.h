@@ -24,7 +24,7 @@ public:
 	void Update() override;
 
 	// プレイヤーのショットタイプ
-	ePlayer_Shot_Type shot_type;
+	eBom_Type ebom_type;
 
 private:
 	std::shared_ptr<Player> player;
@@ -40,13 +40,8 @@ private:
 	// 状態に応じたショットを設定する
 	void Set_Shot_Pattern();
 
-	// 打ち出した弾丸が画面外へ出ているかを判断する
-	bool Check_Off_Screen(Bullet& player_Bullet);
-	// 打ち出した弾丸が画面外に出ていたら消す
-	void Bullet_Off_Screen_Erase();
-
 	// 弾幕の種類
-	std::function<void()> fire_type;
+	std::function<void()> bom_type;
 	// 角度
 	float radian;
 	// 弾が発射される位置

@@ -171,7 +171,6 @@
     <ClCompile Include="Player_Action.cpp" />
     <ClCompile Include="Player_Manager.cpp" />
     <ClCompile Include="Player_Move.cpp" />
-    <ClCompile Include="Player_Shot.cpp" />
     <ClCompile Include="Player_Status.cpp" />
     <ClCompile Include="Result_Clear.cpp" />
     <ClCompile Include="Result_Game_Over.cpp" />
@@ -207,7 +206,6 @@
     <ClInclude Include="Player_Action.h" />
     <ClInclude Include="Player_Manager.h" />
     <ClInclude Include="Player_Move.h" />
-    <ClInclude Include="Player_Shot.h" />
     <ClInclude Include="Player_Status.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Rectangle_Size.h" />

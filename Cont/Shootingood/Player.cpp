@@ -30,8 +30,6 @@ void Player::Initialize() {
 	is_power_up = false;
 
 	is_dead = false;
-
-	player_bullet.clear();
 }
 
 //// プレイヤーの右端の座標を返す

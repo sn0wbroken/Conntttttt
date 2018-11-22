@@ -25,8 +25,6 @@ private:
 
 	// エネミーの数を表示
 	void Enemy_Number();
-	// プレイヤーの攻撃タイプを表示
-	void Player_Shot_Type();
 	// 現在プレイ中のステージを表示
 	void Now_Stage();
 	// プレイヤーの残機を表示

@@ -36,18 +36,6 @@ public:
 	// 弾の移動
 	void Move(float x = 0.0f, float y = 0.0f, float z = 0.0f);
 
-	// 画面右端から出ようとしてないか
-	bool Is_Over_Max_X();
-	// 画面下端から出ようとしていないか
-	bool Is_Over_Max_Y();
-	// 画面上端から出ようとしていないか
-	bool Is_Over_Min_X();
-	// 画面左端から出ようとしてないか
-	bool Is_Over_Min_Y();
-
-	// 弾丸が表示範囲外に出ているかを判断
-	bool Bullet_Off_Screen(Bullet& player_bullet);
-
 private:
 	//現在の座標
 	Vector3D vector3;
@@ -58,4 +46,15 @@ private:
 
 	// 定数をまとめておくクラス
 	Define_Value define_value;
+	
+	// 画面右端から出ようとしてないか
+	bool Is_Over_Max_X();
+	// 画面下端から出ようとしていないか
+	bool Is_Over_Max_Y();
+	// 画面上端から出ようとしていないか
+	bool Is_Over_Min_X();
+	// 画面左端から出ようとしてないか
+	bool Is_Over_Min_Y();
+	// 弾丸が表示範囲外に出ているかを判断
+	bool Bullet_Off_Screen(Bullet& player_bullet);
 };

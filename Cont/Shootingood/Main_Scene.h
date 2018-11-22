@@ -23,15 +23,8 @@ public:
 	// 初期化
 	void Initialize();
 
-	// プレイヤーとエネミーが衝突したかどうか
-	bool Is_Hit_Actor_Fellow();
-	// プレイヤーがエネミーの攻撃を受けたかどうか
-	bool Is_Enemy_Attack_Hit();
 	// エネミーが全滅したかどうか
 	bool Is_Enemy_All_Ded();
-
-	// プレイヤーの攻撃が敵に命中したか
-	void Is_Player_Attack_Hit();
 
 private:
 	// プレイヤーが死亡したときの処理

@@ -19,7 +19,6 @@ void Actor::Create_Actor(TCHAR*model_path) {
 			(*iterator)->Create_Actor(model_path);
 		}
 	}
-	//TODO: 警告吐く。何返す？
 }
 
 // アクティブなアクターを描画する

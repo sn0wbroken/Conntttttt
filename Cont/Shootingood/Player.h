@@ -34,9 +34,6 @@ public:
 	// パワーアップ状態であるかを返す
 	bool Get_Power_Up();
 
-	// プレイヤーが撃つ弾
-	std::vector<Bullet> player_bullet;
-
 private:
 	// 矩形クラス
 	Rect<float> rectangle;

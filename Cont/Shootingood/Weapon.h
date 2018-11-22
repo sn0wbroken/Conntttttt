@@ -13,9 +13,6 @@ public:
 	// 攻撃を行う
 	void Attack();
 
-	//// 更新処理
-	//void Update() override;
-
 	// 座標関係のクラス。銃口の座標として扱う
 	Vector3D vector3;
 };

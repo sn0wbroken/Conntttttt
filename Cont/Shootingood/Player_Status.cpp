@@ -12,7 +12,7 @@ Player_Status::~Player_Status() {
 }
 
 // €‚ñ‚¾‚çŒÄ‚Î‚ê‚éBc‹@‚ğ1Œ¸‚ç‚·
-void Player_Status::Dead() {
+void Player_Status::Damage() {
 	--life;
 }
 
@@ -29,4 +29,9 @@ int Player_Status::Get_Life() {
 // speed‚ğ•Ô‚·
 int Player_Status::Get_Speed() {
 	return speed;
+}
+
+// €‚ñ‚Å‚¢‚é‚©‚ğ•Ô‚·
+bool Player_Status::Get_Is_Dead() {
+	return life < 0;
 }

@@ -13,10 +13,12 @@ enum class eMove_Direction {
 	Left
 };
 
-// プレイヤーのショットタイプ
-enum class ePlayer_Shot_Type {
-	Straight,
-	Wave
+// TODO:ボムの実装に合わせる
+// プレイヤーのボムのタイプ
+enum class eBom_Type {
+	None, // ボム未所持状態
+	Hoge,
+	Fuga
 };
 
 // プレイするステージ

@@ -99,9 +99,6 @@
     <ClCompile Include="Player_Move.cpp">
       <Filter>ソース ファイル\Actor\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Player_Shot.cpp">
-      <Filter>ソース ファイル\Actor\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>ソース ファイル\Actor</Filter>
     </ClCompile>
@@ -198,9 +195,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Player_Move.h">
-      <Filter>ヘッダー ファイル\Actor\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="Player_Shot.h">
       <Filter>ヘッダー ファイル\Actor\Player</Filter>
     </ClInclude>
     <ClInclude Include="CSV_Reader.h">

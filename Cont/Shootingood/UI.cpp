@@ -9,7 +9,6 @@ UI::UI() {
 	player_weapon = player_manager->player_weapon;
 	
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
-	enemies = enemy_manager->enemies;
 
 	UI_background_graph = LoadGraph("Picture/UI/UI_Background.png");
 }
@@ -20,7 +19,6 @@ void UI::Render() {
 		define_value.WINDOW_X, define_value.MAX_WINDOW_Y, UI_background_graph, TRUE);
 	Now_Stage();
 	Enemy_Number();
-	Player_Shot_Type();
 	Player_Life();
 }
 
@@ -37,24 +35,6 @@ void UI::Enemy_Number() {
 	std::ostringstream enemy_number;
 	enemy_number << "残りエネミー : " << enemies.size();
 	DrawString(define_value.UI_X, define_value.UI_BASE_Y + define_value.FELLOW_UI_SPACE, enemy_number.str().c_str(), GetColor(0, 0, 0));
-}
-
-// プレイヤーの攻撃タイプを表示
-void UI::Player_Shot_Type() {
-	std::string player_shot;
-	switch (static_cast<int>(player_weapon->shot_type)) {
-	case 0:
-		player_shot = "Straight";
-		break;
-	case 1:
-		player_shot = "Wave";
-		break;
-	}
-
-	std::ostringstream player_shot_type;
-	player_shot_type << "ショットタイプ\n   " << player_shot;
-	DrawString(define_value.UI_X,
-		define_value.UI_BASE_Y + (define_value.FELLOW_UI_SPACE * 2), player_shot_type.str().c_str(), GetColor(0, 0, 0));
 }
 
 // プレイヤーの残機を表示

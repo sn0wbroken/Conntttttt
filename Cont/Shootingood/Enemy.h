@@ -18,9 +18,6 @@ public:
 	// デストラクタ
 	~Enemy();
 
-	// エネミーを描画
-	void Render() override;
-
 	// エネミーの右端の座標を返す
 	float Get_Right_Edge() override;
 	// エネミーの左端の座標を返す

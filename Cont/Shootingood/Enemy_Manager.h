@@ -17,24 +17,14 @@ public:
 	// エネミーのAIを管理	
 	std::shared_ptr<Enemy_AI> enemy_AI;
 
-	// 初期化
-	void Initialize();
-
 	// 毎フレーム呼ばれる
 	void Update();
-	// 描画
-	void Render();
 
 	// エネミーを配置
 	void Enemy_Arrange();
-	// エネミーを元の位置に配置しなおす
-	void Reset_Enemy();
 
-	// 画面上で動く敵
-	std::vector<Enemy> enemies;
-
-	// エネミーが撃つ弾
-	std::vector<Bullet> enemy_bullet;
+	// エネミーが全滅したかどうか
+	bool Is_Enemy_All_Ded();
 
 	// デストラクタ
 	~Enemy_Manager() {}

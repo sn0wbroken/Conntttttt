@@ -23,27 +23,16 @@ Enemy::Enemy(float set_x, float set_y) {
 	// ステータスをセット
 	enemy_status = std::make_shared<Enemy_Status>(scene_manager->Get_Stage());
 
-	// エネミーの画像をロード
-	enemy_graph = LoadGraph("Picture/Enemy/Evil_Enemy.png");
-	damage_enemy_graph = LoadGraph("Picture/Enemy/Damage_Evil_Enemy.png");
+	// TODO:画像の用意がまだなので
+	Create_Actor("Resources/Enemy/Enemy.x");
+	// エネミーの大きさを指定
+	MV1SetScale(model_handle, VGet(40.0f, 40.0f, 35.0f));
+	// エネミーの表示角度を調整
+	//MV1SetRotationXYZ(model_handle, VGet(270 * (DX_PI_F / 180), 0.0f, 180 * (DX_PI_F / 180)));
 }
 
 // デストラクタ
 Enemy::~Enemy() {}
-
-// 描画
-void Enemy::Render() {
-	// 自分を描画
-	if (!enemy_status->Is_Damage()) {
-		DrawExtendGraph((int)vector3.x, (int)vector3.y, (int)vector3.x + width,
-			(int)vector3.y + height, enemy_graph, FALSE);
-		return;
-	}
-	if (enemy_status->Is_Damage()) {
-		DrawExtendGraph((int)vector3.x, (int)vector3.y, (int)vector3.x + width,
-			(int)vector3.y + height, damage_enemy_graph, FALSE);
-	}
-}
 
 // エネミーの右端の座標を返す
 float Enemy::Get_Right_Edge() {

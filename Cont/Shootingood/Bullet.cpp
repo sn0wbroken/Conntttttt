@@ -3,7 +3,7 @@
 // コンストラクタ
 Bullet::Bullet(float set_x, float set_y, float set_z, float set_direction_x, float set_direction_y, float set_direction_z) {
 	radius = define_value.BULLET_RADIUS;
-
+ 
 	vector3.Arrange(set_x, set_y, set_z);
 	Direction.Arrange(set_direction_x, set_direction_y, set_direction_z);
 }
