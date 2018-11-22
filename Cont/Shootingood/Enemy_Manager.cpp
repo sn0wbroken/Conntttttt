@@ -3,7 +3,11 @@
 #include<iterator>
 
 // コンストラクタ
-Enemy_Manager::Enemy_Manager() {}
+Enemy_Manager::Enemy_Manager() {
+	enemy_status = std::make_shared<Enemy_Status>();
+
+	enemy_AI = std::make_shared<Enemy_AI>();
+}
 
 // 初期化
 void Enemy_Manager::Initialize() {
@@ -51,7 +55,7 @@ void Enemy_Manager::Render() {
 void Enemy_Manager::Enemy_Arrange() {
 	for (int i = 0; i < define_value.ENEMY_NUMBER; ++i) {
 		auto x = i % define_value.ENEMY_NUMBER * define_value.ENEMY_WIDTH;
-		auto y = define_value.ENEMY_HEIGHT / 2 + i % define_value.ENEMY_NUMBER * define_value.ENEMY_HEIGHT;
+		auto y = define_value.ENEMY_HEIGHT / 2 + i % define_value.ENEMY_NUMBER * define_value.ENEMY_HEIGHT;	
 		enemies.emplace_back(Enemy(x, y));
 	}
 	std::reverse(enemies.begin(), enemies.end());

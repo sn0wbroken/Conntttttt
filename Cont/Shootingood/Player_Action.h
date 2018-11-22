@@ -29,7 +29,7 @@ public:
 	void Initialize();
 
 private:
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 
 	// プレイヤー本体のクラス

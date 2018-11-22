@@ -1,6 +1,7 @@
 #pragma once
 
 #include"Enum.h"
+#include"Bullet.h"
 #include"Weapon.h"
 #include"Player.h"
 #include"Vector3D.h"
@@ -20,19 +21,17 @@ public:
 	~Player_Weapon();
 
 	// 更新処理
-	void Update();
+	void Update() override;
 
 	// プレイヤーのショットタイプ
 	ePlayer_Shot_Type shot_type;
 
 private:
-	// 定数をまとめておくクラス
-	Define_Value define_value;
-	// 座標関係のクラス。銃口の座標として扱う
-	Vector3D vector3;
-
 	std::shared_ptr<Player> player;
 	std::unique_ptr<Key_Checker>& key_checker = Key_Checker::Get_Instance();
+
+	// 初期化関数
+	void Initialize();
 
 	// キーの入力で弾を発射
 	void Fire();
@@ -49,7 +48,7 @@ private:
 	// 弾幕の種類
 	std::function<void()> fire_type;
 	// 角度
-	float rad;
+	float radian;
 	// 弾が発射される位置
 	double position_x;
 	// sin波を作るために加算する値

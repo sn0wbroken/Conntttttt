@@ -1,11 +1,7 @@
 #include"Player_Status.h"
 
-#include"Game_Manager.h"
-
 // コンストラクタ
 Player_Status::Player_Status() {
-	player = std::make_shared<Player>();
-
 	speed = define_value.PLAYER_SPEED;
 	attack = define_value.PLAYER_ATTACK;
 	life = define_value.PLAYER_INITIALIZE_LIFE;

@@ -30,7 +30,7 @@ private:
 	// 操作に応じて選択しているものを変える
 	void Change_Decide(eSelect_Command now_decide, int which_key);
 
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 
 	// 何を選択しているか

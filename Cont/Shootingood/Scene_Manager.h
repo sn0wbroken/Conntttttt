@@ -1,15 +1,14 @@
 #pragma once
 
 #include"Scene_Base.h"
+#include"Main_Scene.h"
+#include"Title_Scene.h"
+#include"Result_Clear.h"
+#include"Result_Game_Over.h"
 #include"Unique_Component.h"
 
-#include"Title_Scene.h"
-#include"Main_Scene.h"
-#include"Result_Game_Over.h"
-#include"Result_Clear.h"
-
 // ゲーム全体の進行を管理する
-class Game_Manager : public Unique_Component<Game_Manager> {
+class Scene_Manager : public Unique_Component<Scene_Manager> {
 public:
 	// どのシーンか(ゲームの状態)
 	enum eScene_State {
@@ -20,7 +19,7 @@ public:
 	};
 
 	// 引数に自身を指定したものだけに生成をゆるす
-	friend class Unique_Component<Game_Manager>;
+	friend class Unique_Component<Scene_Manager>;
 
 	// 現在の状態
 	eScene_State scene_state;
@@ -34,21 +33,17 @@ public:
 
 	// シーンを切り替える
 	void Change_Scene(eScene_State scene_state);
-
-	template<class T>
-	void Change_Scene_();
-
 	// クリア、ゲームオーバー時に呼ばれる。プレイステージを1に戻す
 	void Reset_Stage();
 	// ステージを進める ステージクリア時に呼ばれる
 	void Next_Stage();
 
 	// デストラクタ
-	~Game_Manager() {};
+	~Scene_Manager() {};
 
 private:
 	// コンストラクタ
-	Game_Manager();
+	Scene_Manager();
 
 	// プレイするステージ
 	eStage stage;

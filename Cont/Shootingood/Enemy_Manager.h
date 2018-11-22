@@ -13,9 +13,9 @@
 class Enemy_Manager : public  Unique_Component<Enemy_Manager> {
 public:
 	// エネミーのステータス関係を扱うクラス
-	std::shared_ptr<Enemy_Status> enemy_status = std::make_shared<Enemy_Status>();
-	// エネミーのAIを管理
-	std::shared_ptr<Enemy_AI> enemy_AI = std::make_shared<Enemy_AI>();
+	std::shared_ptr<Enemy_Status> enemy_status;
+	// エネミーのAIを管理	
+	std::shared_ptr<Enemy_AI> enemy_AI;
 
 	// 初期化
 	void Initialize();
@@ -43,7 +43,7 @@ private:
 	// コンストラクタ
 	Enemy_Manager();
 
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 
 	// 引数に自身を指定したものだけに生成をゆるす

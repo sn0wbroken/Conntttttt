@@ -2,6 +2,7 @@
 
 #include"DxLib.h"
 
+#include<vector>
 #include<string>
 #include<fstream>
 
@@ -45,6 +46,8 @@ public:
 			Status status;
 			// ","をデリミタとして行を小分けにする
 			auto readed_row = Parse(row, ",");
+
+			readed_row.size();
 
 			// 小分けにしたものを代入する
 			status.ID   = std::stoi(readed_row[0]);

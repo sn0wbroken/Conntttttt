@@ -1,10 +1,12 @@
 #pragma once
 
 #include"DxLib.h"
+#include"Actor.h"
+#include"Vector3D.h"
 #include"Define_Value.h"
-#include "Vector3D.h"
+
 // アクターが打ち出す弾丸
-class Bullet {
+class Bullet : public Actor {
 public:
 	// コンストラクタ
 	Bullet(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f, float set_direction_x = 0.0f, float set_direction_y = 0.0f, float set_direction_z = 0.0f);
@@ -12,9 +14,9 @@ public:
 	~Bullet();
 
 	// 毎フレーム呼ばれる
-	void Update();
+	void Update() override;
 	// 描画
-	void Render();
+	void Render() override;
 
 	// x座標を返す
 	float Get_X();
@@ -54,6 +56,6 @@ private:
 	//弾の進む方向
 	Vector3D Direction;
 
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 };

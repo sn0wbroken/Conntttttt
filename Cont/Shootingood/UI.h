@@ -19,8 +19,9 @@ public:
 	void Render();
 
 private:
-	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
-	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
+	std::shared_ptr<Player_Weapon> player_weapon;
+
+	std::vector<Enemy> enemies;
 
 	// エネミーの数を表示
 	void Enemy_Number();
@@ -31,7 +32,7 @@ private:
 	// プレイヤーの残機を表示
 	void Player_Life();
 
-	// 定数をまとめておく構造体s
+	// 定数をまとめておくクラスs
 	Define_Value define_value;
 
 	// UI表示域の背景

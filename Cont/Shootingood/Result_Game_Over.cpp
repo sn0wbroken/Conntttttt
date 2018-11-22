@@ -1,13 +1,13 @@
 #include"Result_Game_Over.h"
-#include"Game_Manager.h"
+#include"Scene_Manager.h"
 
 // 毎フレーム入る
 void Result_Game_Over::Update() {
-	std::unique_ptr<Game_Manager> &game_manager = Game_Manager::Get_Instance();
+	std::unique_ptr<Scene_Manager> &game_manager = Scene_Manager::Get_Instance();
 
 	// Enterキーでメインシーンへ
 	if (key_checker->key[KEY_INPUT_RETURN] == 1) {
-		game_manager->Change_Scene(Game_Manager::Title);
+		game_manager->Change_Scene(Scene_Manager::Title);
 	}
 }
 

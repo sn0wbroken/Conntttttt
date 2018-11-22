@@ -2,11 +2,11 @@
 
 // 毎フレーム入る
 void Result_Clear::Update() {
-	std::unique_ptr<Game_Manager> &game_manager = Game_Manager::Get_Instance();
+	std::unique_ptr<Scene_Manager> &scene_manager = Scene_Manager::Get_Instance();
 
 	// Enterキーでメインシーンへ
 	if (key_checker->key[KEY_INPUT_RETURN] == 1) {
-		game_manager->Change_Scene(Game_Manager::Title);
+		scene_manager->Change_Scene(Scene_Manager::Title);
 	}
 }
 

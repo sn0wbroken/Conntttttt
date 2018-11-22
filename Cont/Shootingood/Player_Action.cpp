@@ -1,5 +1,4 @@
 #include"Player_Action.h"
-#include"Player_Manager.h"
 
 // コンストラクタ
 Player_Action::Player_Action(std::shared_ptr<Player> set_player,
@@ -24,7 +23,6 @@ void Player_Action::Update() {
 void Player_Action::Player_Controll() {
 	// 移動
 	player_move->Rotation();
-
 }
 
 // 初期化

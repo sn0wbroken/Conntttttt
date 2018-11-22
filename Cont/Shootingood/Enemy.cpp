@@ -1,5 +1,5 @@
-#include "Enemy.h"
-#include"Game_Manager.h"
+#include"Enemy.h"
+#include"Scene_Manager.h"
 
 // コンストラクタ
 Enemy::Enemy() {}
@@ -7,7 +7,7 @@ Enemy::Enemy() {}
 // コピーコンストラクタ
 Enemy::Enemy(float set_x, float set_y) {
 	// プレイするステージを取得
-	std::unique_ptr<Game_Manager>& game_manager = Game_Manager::Get_Instance();
+	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
 
 	// 配置
 	vector3.Arrange(set_x, set_y, 0);
@@ -21,7 +21,7 @@ Enemy::Enemy(float set_x, float set_y) {
 	height = define_value.ENEMY_HEIGHT;
 
 	// ステータスをセット
-	enemy_status = std::make_shared<Enemy_Status>(game_manager->Get_Stage());
+	enemy_status = std::make_shared<Enemy_Status>(scene_manager->Get_Stage());
 
 	// エネミーの画像をロード
 	enemy_graph = LoadGraph("Picture/Enemy/Evil_Enemy.png");

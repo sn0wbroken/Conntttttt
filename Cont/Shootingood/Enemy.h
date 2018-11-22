@@ -1,15 +1,15 @@
 #pragma once
 
 #include"DxLib.h"
-#include"Actor.h"
 #include"Bullet.h"
+#include"Character.h"
 #include"Enemy_Status.h"
 
 #include<vector>
 #include<memory>
 
 // エネミー本体のクラス
-class Enemy : public Actor {
+class Enemy : public Character {
 public:
 	// コンストラクタ
 	Enemy();

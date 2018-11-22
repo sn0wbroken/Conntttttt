@@ -1,6 +1,5 @@
 #pragma once
 
-#include"Player.h"
 #include"Define_Value.h"
 
 #include<memory>
@@ -24,9 +23,7 @@ public:
 	int Get_Speed();
 
 private:
-	std::shared_ptr<Player> player;
-
-	// ’è”‚ğ‚Ü‚Æ‚ß‚Ä‚¨‚­\‘¢‘Ì
+	// ’è”‚ğ‚Ü‚Æ‚ß‚Ä‚¨‚­ƒNƒ‰ƒX
 	Define_Value define_value;
 
 	// UŒ‚—Í(“G‚ÌHP - UŒ‚—Í‚ÅŒvZ)

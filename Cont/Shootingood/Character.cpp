@@ -1,0 +1,86 @@
+#include"Character.h"
+
+// コンストラクタ
+Character::Character() {
+
+}
+
+// 現在のx座標を返す
+float Character::Get_X() {
+	return vector3.x;
+}
+// x座標をセットする
+void Character::Set_X(float set_x) {
+	vector3.x = set_x;
+}
+
+// 現在のy座標を返す
+float Character::Get_Y() {
+	return vector3.y;
+}
+// y座標を設定する
+void Character::Set_Y(float set_y) {
+	vector3.y = set_y;
+}
+
+// 現在のz座標を返す
+float Character::Get_Z() {
+	return vector3.z;
+}
+// z座標を設定する
+void Character::Set_Z(float set_z) {
+	vector3.z = set_z;
+}
+
+// 幅を返す
+int Character::Get_Width() {
+	return width;
+}
+// 高さを返す
+int Character::Get_Height() {
+	return height;
+}
+
+// 出現位置を設定する
+void Character::Set_Arrange_Poisition(float set_x, float set_y, float set_z) {
+	vector3.Arrange(set_x, set_y, set_z);
+}
+
+// vectorを設定する
+void Character::Set_Vector3D(Vector3D Vec3) {
+	vector3 = Vec3;
+}
+
+// アクターの右端の座標を返す
+float Character::Get_Right_Edge() {
+	return center_position.x - (width / 2);
+}
+// アクターの左端の座標を返す
+float Character::Get_Left_Edge() {
+	return center_position.x + (width / 2);
+}
+// アクターの上端の座標を返す
+float Character::Get_Top_Edge() {
+	return center_position.y - (height / 2);
+}
+// アクターの下端の座標を返す
+float Character::Get_Bottom_Edge() {
+	return center_position.y + (height / 2);
+}
+
+// アクターのモデルハンドルを返す
+int &Character::Get_Model_Handle() {
+	return model_handle;
+}
+
+// アクターオブジェクトを生成する
+void Character::Create_Actor(TCHAR* model_path) {
+	// プレイヤーのモデルハンドルを格納
+	model_handle = MV1LoadModel(model_path);
+}
+
+// 描画を行う
+void Character::Render() {
+	MV1DrawModel(model_handle);
+	Actor::Render();
+}

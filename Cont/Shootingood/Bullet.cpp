@@ -19,34 +19,33 @@ void Bullet::Update() {
 
 // 描画
 void Bullet::Render() {
-	DrawSphere3D(VGet(vector3.x, vector3.y, vector3.z), 2, 32, GetColor(255, 0, 255), GetColor(0,0,0), TRUE);
+	DrawSphere3D(VGet(vector3.x, vector3.y, vector3.z), 5, 5, GetColor(255, 0, 255), GetColor(0,0,0), TRUE);
 }
 
-// x座用を返す
+// x座標を返す
 float Bullet::Get_X() {
 	return vector3.x;
 }
-
+// x座標を設定する
 void Bullet::Set_X(float set_x) {
 	vector3.x = set_x;
 }
 
-// y座標を取得
+// y座標を返す
 float Bullet::Get_Y() {
 	return vector3.y;
 }
-
+// y座標を設定する
 void Bullet::Set_Y(float set_y) {
 	vector3.y = set_y;
 }
 
-float Bullet::Get_Z()
-{
+// z座標を返す
+float Bullet::Get_Z() {
 	return vector3.z;
 }
-
-void Bullet::Set_Z(float set_z)
-{
+// z座標を設定する
+void Bullet::Set_Z(float set_z) {
 	vector3.z = set_z;
 }
 
@@ -80,5 +79,5 @@ bool Bullet::Is_Over_Min_Y() {
 // 弾丸が画面外に出ているかを判断
 bool Bullet::Bullet_Off_Screen(Bullet& player_bullet) {
 	return player_bullet.Is_Over_Max_X() || player_bullet.Is_Over_Min_X() ||
-		player_bullet.Is_Over_Max_Y() || player_bullet.Is_Over_Min_Y();
+		   player_bullet.Is_Over_Max_Y() || player_bullet.Is_Over_Min_Y();
 }

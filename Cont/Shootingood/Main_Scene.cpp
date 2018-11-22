@@ -1,121 +1,25 @@
 #include"Main_Scene.h"
-#include"Game_Manager.h"
+#include"Scene_Manager.h"
 
 // コンストラクタ
 Main_Scene::Main_Scene() {
-	UI_class = std::make_shared<UI>();
-
+	// プレイヤーのマネージャクラス
+	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	player = player_manager->player;
-	
 	player_action = player_manager->player_action;
+	player_status = player_manager->player_status;
 
 	collision = std::make_shared<Collision>();
 
 	Initialize();
 
+	UI_class = std::make_shared<UI>();
+	
 	y1 = 0;
 	y2 = -define_value.MAX_WINDOW_Y;
 
 	// メインに入った時はインターバルとする
 	is_interval = true;
-}
-
-// 毎フレーム入る
-void Main_Scene::Update() {
-	// エンターを押すまでゲームが進まない
-	if (is_interval) {
-		if (key_checker->key[KEY_INPUT_RETURN] == 1) {
-			is_interval = false;
-		}
-		return;
-	}
-
-	player_action->Update();
-	player_manager->Update();
-	std::unique_ptr<Game_Manager> &game_manager = Game_Manager::Get_Instance();
-
-	// エネミーのアップデート処理
-	enemy_manager->Update();
-
-	// エネミーの殲滅でクリア
-	if (Is_Enemy_All_Ded()) {
-		// 最終ステージでなければ次のステージへ
-		if (!(static_cast<int>(game_manager->Get_Stage()) == define_value.FINAL_STAGE)) {
-			game_manager->Next_Stage();
-			is_interval = true;
-			Initialize();
-			player->Set_Power_Up(true);
-			return;
-		}
-		// 最終ステージクリアでリザルト
-		game_manager->Reset_Stage();
-		game_manager->Change_Scene(Game_Manager::Clear);
-		return;
-	}
-
-	// 敵の弾に当たったら残機を減らす
-	if (Is_Enemy_Attack_Hit()) {
-		// 残機を減らす
-		player_manager->player_status->Dead();
-
-		// 残機消失でゲームオーバー
-		if (!(player_manager->player_status->Get_Life() <= 0)) {
-			Player_Dead();
-		}
-		else {
-			player_manager->player_status->Reset_Life();
-			game_manager->Reset_Stage();
-			game_manager->Change_Scene(Game_Manager::Game_Over);
-		}
-		return;
-	}
-
-	// エネミーに当たったら残機を減らす
-	if (Is_Hit_Actor_Fellow()) {
-		// 残機を減らす
-		player_manager->player_status->Dead();
-
-		// 残機消失でゲームオーバー
-		if (!(player_manager->player_status->Get_Life() <= 0)) {
-			Player_Dead();
-		}
-		else {
-			player_manager->player_status->Reset_Life();
-			game_manager->Reset_Stage();
-			game_manager->Change_Scene(Game_Manager::Game_Over);
-		}
-	}
-
-	// プレイヤーの撃つ弾がエネミーに当たったらダメージを与える
-	Is_Player_Attack_Hit();
-}
-
-// メインシーンに必要なものを描画
-void Main_Scene::Render() {
-	// 背景の描画
-	DrawExtendGraph(0, y1,
-		define_value.WINDOW_X - define_value.UI_SPACE, y1 + define_value.WINDOW_Y,
-		background_graph, TRUE);
-	DrawExtendGraph(0, y2,
-		define_value.WINDOW_X - define_value.UI_SPACE, y2 + define_value.WINDOW_Y,
-		background_graph, TRUE);
-
-	// アクターの描画
-	player->Render();
-	enemy_manager->Render();
-
-	// UIの描画
-	UI_class->Render();
-
-	// インターバル中は背景のスクロール無し
-	if (is_interval) {
-		// アナウンスを表示
-		DrawString(300, 200, "Ready?", GetColor(0, 0, 0));
-		DrawString(285, 400, "Push Enter", GetColor(0, 0, 0));
-		return;
-	}
-	// 背景のスクロール
-	Scroll();
 }
 
 // 初期化
@@ -128,12 +32,114 @@ void Main_Scene::Initialize() {
 	enemy_manager->Initialize();
 }
 
+// 毎フレーム入る
+void Main_Scene::Update() {
+	std::unique_ptr<Key_Checker>& key_checker = Key_Checker::Get_Instance();
+	std::unique_ptr<Scene_Manager> &scene_manager = Scene_Manager::Get_Instance();
+
+	// エンターを押すまでゲームが進まない
+	if (is_interval) {
+		if (key_checker->key[KEY_INPUT_RETURN] == 1) {
+			is_interval = false;
+		}
+		return;
+	}
+
+	player_action->Update();
+	std::unique_ptr<TEST_GOD> &god = TEST_GOD::Get_Instance();
+	god->actor->Update();
+
+	// エネミーのアップデート処理
+	enemy_manager->Update();
+
+	// エネミーの殲滅でクリア
+	if (Is_Enemy_All_Ded()) {
+		// 最終ステージでなければ次のステージへ
+		if (!(static_cast<int>(scene_manager->Get_Stage()) == define_value.FINAL_STAGE)) {
+			scene_manager->Next_Stage();
+			is_interval = true;
+			Initialize();
+			player->Set_Power_Up(true);
+			return;
+		}
+		// 最終ステージクリアでリザルト
+		scene_manager->Reset_Stage();
+		scene_manager->Change_Scene(Scene_Manager::Clear);
+		return;
+	}
+
+	// 敵の弾に当たったら残機を減らす
+	if (Is_Enemy_Attack_Hit()) {
+		// 残機を減らす
+		player_status->Dead();
+
+		// 残機消失でゲームオーバー
+		if (!(player_status->Get_Life() <= 0)) {
+			Player_Dead();
+		}
+		else {
+			player_status->Reset_Life();
+			scene_manager->Reset_Stage();
+			scene_manager->Change_Scene(Scene_Manager::Game_Over);
+		}
+		return;
+	}
+
+	// エネミーに当たったら残機を減らす
+	if (Is_Hit_Actor_Fellow()) {
+		// 残機を減らす
+		player_status->Dead();
+
+		// 残機消失でゲームオーバー
+		if (!(player_status->Get_Life() <= 0)) {
+			Player_Dead();
+		}
+		else {
+			player_status->Reset_Life();
+			scene_manager->Reset_Stage();
+			scene_manager->Change_Scene(Scene_Manager::Game_Over);
+		}
+	}
+
+	// プレイヤーの撃つ弾がエネミーに当たったらダメージを与える
+	Is_Player_Attack_Hit();
+}
+
+// メインシーンに必要なものを描画
+void Main_Scene::Render() {
+	// 背景の描画 
+	DrawExtendGraph(0, y1,
+		define_value.WINDOW_X - define_value.UI_SPACE, y1 + define_value.WINDOW_Y,
+		background_graph, TRUE);
+	DrawExtendGraph(0, y2,
+		define_value.WINDOW_X - define_value.UI_SPACE, y2 + define_value.WINDOW_Y,
+		background_graph, TRUE);
+
+	enemy_manager->Render();
+
+	// UIの描画
+	UI_class->Render();
+	// オブジェクトの描画
+	auto &god = TEST_GOD::Get_Instance();
+	god->actor->Render();
+	
+	// インターバル中は背景のスクロール無し
+	if (is_interval) {
+		// アナウンスを表示
+		DrawString(300, 200, "Ready?", GetColor(0, 0, 0));
+		DrawString(285, 400, "Push Enter", GetColor(0, 0, 0));
+		return;
+	}
+	// 背景のスクロール
+	Scroll();
+}
+
 // 背景の画像を動かす
 void Main_Scene::Scroll() {
 	++y1;
 	++y2;
 
-	// 画面から完全に出切ったタイミングでもう1枚の背景の上に
+	// 画面から完全に出切ったタイミングでもう1枚の背景の上に動かす
 	if (y1 >= define_value.MAX_WINDOW_Y) {
 		y1 = -define_value.MAX_WINDOW_Y;
 	}
