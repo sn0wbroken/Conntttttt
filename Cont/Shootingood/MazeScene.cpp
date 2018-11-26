@@ -1,5 +1,4 @@
 #include"MazeScene.h"
-#include"Game_Manager.h"
 #include "MazeGenerator.h"
 
 // コンストラクタ

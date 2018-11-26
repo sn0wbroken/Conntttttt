@@ -170,7 +170,9 @@
     <ClCompile Include="TEST_GOD.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
-    <ClCompile Include="MazeScene.cpp" />
+    <ClCompile Include="MazeScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_Action.cpp" />
     <ClCompile Include="Player_Manager.cpp" />
@@ -227,6 +229,9 @@
     <ClInclude Include="UI.h" />
     <ClInclude Include="Unique_Component.h" />
     <ClInclude Include="Vector3D.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

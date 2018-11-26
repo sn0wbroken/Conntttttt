@@ -23,7 +23,7 @@ public:
 		auto ifstream = std::ifstream();
 		// ファイルを読み込む
 		ifstream.open(file_pass);
-		assert(ifstream.fail);
+		//assert(ifstream.fail);
 		// 行
 		std::string row;
 
