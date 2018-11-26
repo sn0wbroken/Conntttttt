@@ -4,7 +4,7 @@
 #include "CSV_Reader.h"
 #include"singleton.h"
 
-class CSVData : Singleton<CSVData>
+class CSVData : public Singleton<CSVData>
 {
 public:
 	CSVData();

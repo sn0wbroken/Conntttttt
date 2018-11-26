@@ -4,6 +4,7 @@
 #include"Scene_Base.h"
 #include"Key_Checker.h"
 #include"Manual.h"
+#include"CSVData.h"
 
 #include<memory>
 

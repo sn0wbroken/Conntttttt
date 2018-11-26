@@ -3,6 +3,7 @@
 //TODO::ここにCSVデータロード関数のコードを追加する
 CSVData::CSVData()
 {
+	LoadSound();
 }
 //TODO::いらないかも
 CSVData::~CSVData()
@@ -11,7 +12,7 @@ CSVData::~CSVData()
 //サウンドデータをロード Dxlibではサウンドデータをメモリに置いておくことが可能だが、
 void CSVData::LoadSound()
 {
-	std::vector<std::vector <std::string>> TempVector = reader.Read_File("Hello"); //TODO::後ほど変更
+	std::vector<std::vector <std::string>> TempVector = reader.Read_File("Resources/CSV/SoundPathes.csv");
 	for (const auto & a : TempVector)
 	{
 		M_SoundFiles TempSound;
@@ -25,6 +26,8 @@ void CSVData::LoadSound()
 			TempSound.FilePath = *i;
 			TempSound.SHandle = LoadSoundMem(TempSound.FilePath.c_str());
 			sounds.insert_or_assign(TempSound.ID, TempSound);
+			break;
 		}
 	}
+
 }
