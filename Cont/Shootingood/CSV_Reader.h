@@ -38,22 +38,7 @@ public:
 		// ファイルの終わりまで読む(ここではExcelの１行ずつになる)
 		while (!std::getline(ifstream, row).eof()) {
 			// ","をデリミタとして行を小分けにする
-<<<<<<< HEAD
 			Array.push_back(Parse(row, ","));
-=======
-			auto readed_row = Parse(row, ",");
-
-			readed_row.size();
-
-			// 小分けにしたものを代入する
-			status.ID   = std::stoi(readed_row[0]);
-			status.name = readed_row[1];
-			status.hp   = std::stoi(readed_row[2]);
-			status.atk  = std::stoi(readed_row[3]);
-
-			// 出来たものをまとめる
-			statuses.push_back(status);
->>>>>>> origin/ishikuraBranch
 		}
 		return Array;
 	}

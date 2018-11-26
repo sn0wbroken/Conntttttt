@@ -20,39 +20,8 @@ public:
 	
 	Rect() {}
 
-<<<<<<< HEAD
-	//中心から作るコンストラクタ 座標と大きさ
-	Rect(T _x, T _y,T _width,T _height) {
-		x = _x;
-		y = _y;
-
-		width = _width;
-		height = _height;
-
-		//中心から作る
-		left = x - (width /2);
-		right = x + (width / 2);
-		top = y - (height / 2);
-		bottom = y + (height / 2);
-	}
-	//中心から 座標と半径
-	Rect(T _x, T _y, T _r)
-	{
-		x = _x;
-		y = _y;
-
-		left	= _x - _r;
-		right	= _x + _r;
-		top		= _y - _r;
-		bottom	= _y + _r;
-	}
-
-	// コンストラクタ TODO::分離方法がいまいち思いつかなかった
-	Rect(T aTop, T aLeft, T aRight, T aBottom,bool temp = true) {
-=======
 	// コンストラクタ
 	Rect(T aTop, T aLeft, T aRight, T aBottom) {
->>>>>>> origin/ishikuraBranch
 		top = aTop;
 		left = aLeft;
 		right = aRight;

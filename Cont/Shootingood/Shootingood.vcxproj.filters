@@ -102,7 +102,6 @@
     <ClCompile Include="Character.cpp">
       <Filter>ソース ファイル\Actor</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="RandomNumGenerator.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -110,15 +109,14 @@
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
-=======
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="Actor.cpp">
->>>>>>> origin/ishikuraBranch
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="TEST_GOD.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="MazeGenerator.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -127,7 +125,7 @@
     </ClCompile>
     <ClCompile Include="CSVData.cpp">
       <Filter>ソース ファイル</Filter>
-=======
+    </ClCompile>
     <ClCompile Include="Player_Weapon.cpp">
       <Filter>ソース ファイル\Actor\Player</Filter>
     </ClCompile>
@@ -139,7 +137,6 @@
     </ClCompile>
     <ClCompile Include="Scene_Manager.cpp">
       <Filter>ソース ファイル\Scene</Filter>
->>>>>>> origin/ishikuraBranch
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,7 +242,6 @@
     <ClInclude Include="TEST_GOD.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="MazeGenerator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -253,7 +249,8 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CSVData.h">
-=======
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
     <ClInclude Include="Player_Weapon.h">
       <Filter>ヘッダー ファイル\Actor\Player</Filter>
     </ClInclude>
@@ -268,11 +265,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MazeGenerator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </None>
-    <None Include="MazeGenerator.h">
->>>>>>> origin/ishikuraBranch
+    <ClInclude Include="MazeGenerator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">

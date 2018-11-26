@@ -1,10 +1,5 @@
 #include"Title_Scene.h"
-<<<<<<< HEAD
-#include"Game_Manager.h"
-#include "MazeGenerator.h"
-=======
 #include"Scene_Manager.h"
->>>>>>> origin/ishikuraBranch
 
 // コンストラクタ
 Title_Scene::Title_Scene() {
