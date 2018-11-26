@@ -10,11 +10,16 @@ Player::Player() {
 	// 初期化
 	Initialize();
 
+<<<<<<< HEAD
 	//rectangle = Rect<float>(vector3.x, vector3.y,(float)width,(float)height);
 
 	//TODO:リテラル多
 	// プレイヤーのモデルハンドルを格納
 	model_handle = MV1LoadModel("Resources/Player/Player.x");
+=======
+	// モデルを取得
+	Create_Actor("Resources/Player/Player.x");
+>>>>>>> origin/ishikuraBranch
 	// プレイヤーの座標を指定
 	MV1SetPosition(model_handle, VGet(vector3.x, vector3.y, 0.0f));
 	// プレイヤーの大きさを指定
@@ -29,9 +34,9 @@ Player::~Player() {}
 // 初期化
 void Player::Initialize() {
 	vector3.Arrange((define_value.WINDOW_X - define_value.UI_SPACE) / 2, define_value.WINDOW_Y / 2, 0);
-	// 強化状態を元に戻す
 	is_power_up = false;
 
+<<<<<<< HEAD
 	player_bullet.clear();
 }
 
@@ -69,6 +74,9 @@ float Player::Get_Bottom_Edge() {
 // 弾が出る位置を返す
 float Player::Get_Shoot_Point() {
 	return  vector3.x + (width / 2);
+=======
+	is_dead = false;
+>>>>>>> origin/ishikuraBranch
 }
 
 // パワーアップ状態であるかをセットする

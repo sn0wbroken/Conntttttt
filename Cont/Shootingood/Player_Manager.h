@@ -1,22 +1,22 @@
 #pragma once
 
 #include"Player.h"
+#include"Define_Value.h"
+#include"Player_Move.h"
 #include"Player_Status.h"
 #include"Player_Action.h"
 #include"Player_Weapon.h"
 #include"Unique_Component.h"
-#include"Define_Value.h"
 
 #include<memory>
 
-// プレイヤーのマネージャークラス
+// プレイヤーのマネージャークラス(プレイヤーの情報(各クラス)を知っておく)
 class Player_Manager : public Unique_Component<Player_Manager> {
 public:
-	// 毎フレーム呼ばれる
-	void Update();
-
 	// プレイヤー本体のクラス
 	std::shared_ptr<Player> player;
+	// プレイヤーの動きを管理するクラス
+	std::shared_ptr<Player_Move> player_move;
 	// プレイヤーのステータス関係を扱うクラス
 	std::shared_ptr<Player_Status> player_status;
 	// プレイヤーの行動を管理するクラス

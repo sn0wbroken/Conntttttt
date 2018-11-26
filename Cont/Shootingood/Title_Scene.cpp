@@ -1,6 +1,10 @@
 #include"Title_Scene.h"
+<<<<<<< HEAD
 #include"Game_Manager.h"
 #include "MazeGenerator.h"
+=======
+#include"Scene_Manager.h"
+>>>>>>> origin/ishikuraBranch
 
 // コンストラクタ
 Title_Scene::Title_Scene() {
@@ -23,7 +27,7 @@ Title_Scene::Title_Scene() {
 // 毎フレーム入る
 void Title_Scene::Update() {
 	// ゲームの進行を管理するクラス
-	std::unique_ptr<Game_Manager> &game_manager = Game_Manager::Get_Instance();
+	std::unique_ptr<Scene_Manager> &game_manager = Scene_Manager::Get_Instance();
 
 	// エスケープキーでマニュアルの閲覧を終了
 	if (key_checker->key[KEY_INPUT_ESCAPE] == 1) {
@@ -39,7 +43,7 @@ void Title_Scene::Update() {
 		if (key_checker->key[KEY_INPUT_RETURN] == 1) {
 			switch (select_command) {
 			case eSelect_Command::Start:
-				game_manager->Change_Scene(Game_Manager::Main);
+				game_manager->Change_Scene(Scene_Manager::Main);
 				break;
 			case eSelect_Command::Manual:
 				// 操作説明UI表示

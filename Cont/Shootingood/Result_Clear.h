@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Scene_Base.h"
-#include"Game_Manager.h"
+#include"Scene_Base.h"
+#include"Scene_Manager.h"
 
 class Result_Clear : public Scene_Base {
 public:
@@ -16,7 +16,7 @@ public:
 	void Render() override;
 
 private:
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 
 	// キー入力をチェックするクラス

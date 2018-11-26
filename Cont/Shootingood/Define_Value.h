@@ -4,20 +4,20 @@
 class Define_Value {
 public:
 	// 画面サイズ 幅
-	static constexpr float WINDOW_X = 800.0f;
+	static const int WINDOW_X = 800;
 	// 画面サイズ 高さ
-	static constexpr float WINDOW_Y = 600.0f;
+	static const int WINDOW_Y = 600;
 	// UI表示スペース
 	static constexpr float UI_SPACE = 180.0f;
 
 	// ゲーム画面の左端
-	static constexpr float MIN_SCREEN_X = 0.0f;
+	int MIN_SCREEN_X = 0;
 	// ゲーム画面の右端(WINDOW_X - UI_SPACE)
 	static constexpr float MAX_SCREEN_X = 620.0f;
 	// 画面の上端
-	static constexpr float MIN_WINDOW_Y = 0.0f;
+	static const int MIN_WINDOW_Y = 0;
 	// 画面の下端
-	static constexpr float MAX_WINDOW_Y = 600.0f;
+	static const int MAX_WINDOW_Y = 600;
 
 	// UIを表示するときのX座標
 	static constexpr float UI_X = 640.0f;
@@ -56,8 +56,6 @@ public:
 	static const int PLAYER_INITIALIZE_LIFE = 3;
 	// プレイヤーの回転速度
 	static constexpr float PLAYER_ROTATE_SPEED = 6.0f;
-
-#define pla_rota = (6.0F)
 
 #pragma endregion
 

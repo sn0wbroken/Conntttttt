@@ -42,9 +42,6 @@
     <ClCompile Include="Main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Game_Manager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Main_Scene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
@@ -65,9 +62,6 @@
     </ClCompile>
     <ClCompile Include="Player_Status.cpp">
       <Filter>ソース ファイル\Actor\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor.cpp">
-      <Filter>ソース ファイル\Actor</Filter>
     </ClCompile>
     <ClCompile Include="Bullet.cpp">
       <Filter>ソース ファイル\Actor</Filter>
@@ -105,9 +99,10 @@
     <ClCompile Include="Player_Move.cpp">
       <Filter>ソース ファイル\Actor\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Player_Shot.cpp">
-      <Filter>ソース ファイル\Actor\Player</Filter>
+    <ClCompile Include="Character.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="RandomNumGenerator.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -115,11 +110,15 @@
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Weapon.cpp">
+=======
+    <ClCompile Include="Actor.cpp">
+>>>>>>> origin/ishikuraBranch
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Player_Weapon.cpp">
+    <ClCompile Include="TEST_GOD.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="MazeGenerator.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -128,13 +127,23 @@
     </ClCompile>
     <ClCompile Include="CSVData.cpp">
       <Filter>ソース ファイル</Filter>
+=======
+    <ClCompile Include="Player_Weapon.cpp">
+      <Filter>ソース ファイル\Actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>ソース ファイル\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy_Controller.cpp">
+      <Filter>ソース ファイル\Actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Manager.cpp">
+      <Filter>ソース ファイル\Scene</Filter>
+>>>>>>> origin/ishikuraBranch
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Define_Value.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Game_Manager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Unique_Component.h">
@@ -157,9 +166,6 @@
     </ClInclude>
     <ClInclude Include="Main_Scene.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor.h">
-      <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
@@ -215,9 +221,6 @@
     <ClInclude Include="Player_Move.h">
       <Filter>ヘッダー ファイル\Actor\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Player_Shot.h">
-      <Filter>ヘッダー ファイル\Actor\Player</Filter>
-    </ClInclude>
     <ClInclude Include="CSV_Reader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -233,12 +236,16 @@
     <ClInclude Include="Factory.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Weapon.h">
+    <ClInclude Include="Character.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Player_Weapon.h">
+    <ClInclude Include="TEST_GOD.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="MazeGenerator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -246,6 +253,26 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CSVData.h">
+=======
+    <ClInclude Include="Player_Weapon.h">
+      <Filter>ヘッダー ファイル\Actor\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
+      <Filter>ヘッダー ファイル\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Controller.h">
+      <Filter>ヘッダー ファイル\Actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Manager.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MazeGenerator.cpp">
+      <Filter>ソース ファイル</Filter>
+    </None>
+    <None Include="MazeGenerator.h">
+>>>>>>> origin/ishikuraBranch
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Singleton.h">

@@ -12,7 +12,7 @@ public:
 	// デストラクタ
 	~Key_Checker() {}
 
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 
 	// 引数に自身を指定したものだけに生成をゆるす

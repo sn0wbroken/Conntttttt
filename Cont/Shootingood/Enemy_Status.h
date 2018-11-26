@@ -40,7 +40,7 @@ private:
 	// 簡易ファクトリー ステージに合わせてステータスを変更
 	void Fake_Factory(eStage stage);
 
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 
 	// 移動速度

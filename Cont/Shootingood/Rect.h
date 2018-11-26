@@ -20,6 +20,7 @@ public:
 	
 	Rect() {}
 
+<<<<<<< HEAD
 	//中心から作るコンストラクタ 座標と大きさ
 	Rect(T _x, T _y,T _width,T _height) {
 		x = _x;
@@ -48,6 +49,10 @@ public:
 
 	// コンストラクタ TODO::分離方法がいまいち思いつかなかった
 	Rect(T aTop, T aLeft, T aRight, T aBottom,bool temp = true) {
+=======
+	// コンストラクタ
+	Rect(T aTop, T aLeft, T aRight, T aBottom) {
+>>>>>>> origin/ishikuraBranch
 		top = aTop;
 		left = aLeft;
 		right = aRight;

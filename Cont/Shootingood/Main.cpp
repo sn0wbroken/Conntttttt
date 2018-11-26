@@ -1,16 +1,18 @@
 #include"DxLib.h"
-#include"Game_Manager.h"
+#include"Scene_Manager.h"
 #include"Scene_Base.h"
 #include"Key_Checker.h"
 
 #include<memory>
 
+#include"TEST_GOD.h"
+
 // メイン
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nCmdShow*/) {
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 	// ゲームの進行を管理するクラス
-	std::unique_ptr<Game_Manager>& game_manager = Game_Manager::Get_Instance();
+	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
 	// キー入力をチェックするクラス
 	std::unique_ptr<Key_Checker>& key_Checker = Key_Checker::Get_Instance();
 
@@ -26,7 +28,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 	}
 
 	// 最初のシーンへ
-	game_manager->Change_Scene(game_manager->scene_state);
+	scene_manager->Change_Scene(scene_manager->scene_state);
 
 	// ゲームループ
 	while (ProcessMessage() != -1) {
@@ -36,8 +38,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 		SetDrawScreen(DX_SCREEN_BACK);
 
 		key_Checker->Update_Key();
-		game_manager->Update();
-		game_manager->Render();
+		scene_manager->Update();
+		scene_manager->Render();
 
 		// FPSを60で固定
 		int startTime = GetNowCount();

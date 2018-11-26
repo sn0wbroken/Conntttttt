@@ -30,7 +30,7 @@ private:
 	// 操作に応じて選択しているものを変える
 	void Change_Decide(eSelect_Command now_decide, int which_key);
 
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 
 	// 何を選択しているか
@@ -40,13 +40,13 @@ private:
 	std::unique_ptr<Key_Checker>& key_checker = Key_Checker::Get_Instance();
 
 	// 選択アイコンのx座標
-	int icon_position_x;
+	float icon_position_x;
 	// 選択アイコンのy座標
-	int icon_position_y;
+	float icon_position_y;
 	// 選択アイコンの幅
-	int icon_width;
+	float icon_width;
 	// 選択アイコンの高さ
-	int icon_height;
+	float icon_height;
 
 	// マニュアルを見ているか。選択されたらtrueに
 	bool is_watch_manual;

@@ -1,4 +1,6 @@
-#include "Weapon.h"
+#include"Weapon.h"
+#include"Player_Weapon.h"
+#include"Player_Manager.h"
 
 // コンストラクタ
 Weapon::Weapon() {
