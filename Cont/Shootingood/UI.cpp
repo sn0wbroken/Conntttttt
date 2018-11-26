@@ -15,7 +15,7 @@ UI::UI() {
 
 // 描画
 void UI::Render() {
-	DrawExtendGraph(define_value.MAX_SCREEN_X, define_value.MIN_WINDOW_Y,
+	DrawExtendGraph((int)define_value.MAX_SCREEN_X, (int)define_value.MIN_WINDOW_Y,
 		define_value.WINDOW_X, define_value.MAX_WINDOW_Y, UI_background_graph, TRUE);
 	Now_Stage();
 	Enemy_Number();
@@ -45,17 +45,9 @@ void UI::Player_Life() {
 
 	switch (player_manager->player_status->Get_Life()) {
 	case 2:
-		DrawCircle(define_value.UI_X + (define_value.ADJUSTMENT_VALUE * 50),
-			define_value.UI_BASE_Y + (define_value.FELLOW_UI_SPACE * 4) + (define_value.ADJUSTMENT_VALUE * 7.5), 5,
-			GetColor(150, 150, 255), TRUE);
+		// TODO: プレイヤーの残機表示用のモデルを描画
 		break;
 	case 3:
-		DrawCircle(define_value.UI_X + (define_value.ADJUSTMENT_VALUE * 50),
-			define_value.UI_BASE_Y + (define_value.FELLOW_UI_SPACE * 4) + (define_value.ADJUSTMENT_VALUE * 7.5), 5,
-			GetColor(150, 150, 255), TRUE);
-		DrawCircle(define_value.UI_X + (define_value.ADJUSTMENT_VALUE * 65),
-			define_value.UI_BASE_Y + (define_value.FELLOW_UI_SPACE * 4) + (define_value.ADJUSTMENT_VALUE * 7.5), 5,
-			GetColor(150, 150, 255), TRUE);
 		break;
 	}
 }

@@ -1,6 +1,4 @@
-#include "Enemy_Manager.h"
-
-#include<iterator>
+#include"Enemy_Manager.h"
 
 // コンストラクタ
 Enemy_Manager::Enemy_Manager() {
@@ -19,7 +17,6 @@ void Enemy_Manager::Update() {
 // 敵を配置
 void Enemy_Manager::Enemy_Arrange() {
 	std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(200, 200);
-	enemy->Actor::Add_Child(enemy);
 }
 
 // 敵が全滅しているかを返す。全滅でtrue

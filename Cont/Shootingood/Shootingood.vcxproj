@@ -157,6 +157,7 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_AI.cpp" />
+    <ClCompile Include="Enemy_Controller.cpp" />
     <ClCompile Include="Enemy_Manager.cpp" />
     <ClCompile Include="Enemy_Status.cpp" />
     <ClCompile Include="Scene_Manager.cpp" />
@@ -188,6 +189,7 @@
     <ClInclude Include="Ellipse.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_AI.h" />
+    <ClInclude Include="Enemy_Controller.h" />
     <ClInclude Include="Enemy_Manager.h" />
     <ClInclude Include="Enemy_Status.h" />
     <ClInclude Include="Enum.h" />

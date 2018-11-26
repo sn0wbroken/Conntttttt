@@ -41,20 +41,21 @@ public:
 	void Set_Vector3D(Vector3D Vec3);
 
 	// アクターの右端の座標を返す
-	virtual float Get_Right_Edge();
+	float Get_Right_Edge();
 	// アクターの左端の座標を返す
-	virtual float Get_Left_Edge();
+	float Get_Left_Edge();
 	// アクターの上端の座標を返す
-	virtual float Get_Top_Edge();
+	float Get_Top_Edge();
 	// アクターの下端の座標を返す
-	virtual float Get_Bottom_Edge();
+	float Get_Bottom_Edge();
 	
 	// アクターのモデルハンドルを返す
 	int &Get_Model_Handle();
 
 protected:
-	// 座標関係のクラス
+	// 自分のいる座標
 	Vector3D vector3;
+	// 自分の重心の座標
 	Vector3D center_position;
 
 	// 定数をまとめておくクラス
@@ -62,11 +63,6 @@ protected:
 
 	// 自身のインスタンスを保持
 	std::shared_ptr<Character> character;
-
-	// アクターオブジェクトを生成する
-	void Create_Actor(TCHAR* model_path) override;
-	// 描画を行う
-	void Render() override;
 
 	// モデルのハンドル
 	int model_handle;
@@ -78,4 +74,9 @@ protected:
 
 	// 死亡判定 trueで死亡
 	bool is_dead;
+	
+	// アクターオブジェクトを生成する
+	void Create_Actor(TCHAR* model_path) override;
+	// 描画を行う
+	void Render() override;
 };

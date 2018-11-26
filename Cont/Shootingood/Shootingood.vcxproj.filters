@@ -114,8 +114,11 @@
     <ClCompile Include="Weapon.cpp">
       <Filter>ソース ファイル\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy_Controller.cpp">
+      <Filter>ソース ファイル\Actor\Enemy</Filter>
+    </ClCompile>
     <ClCompile Include="Scene_Manager.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -221,8 +224,11 @@
     <ClInclude Include="Weapon.h">
       <Filter>ヘッダー ファイル\Actor</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy_Controller.h">
+      <Filter>ヘッダー ファイル\Actor\Enemy</Filter>
+    </ClInclude>
     <ClInclude Include="Scene_Manager.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

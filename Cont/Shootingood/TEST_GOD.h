@@ -5,6 +5,7 @@
 #include"Weapon.h"
 #include"Character.h"
 #include"Enemy_Manager.h"
+#include"Enemy_Controller.h"
 #include"Player_Manager.h"
 #include"Unique_Component.h"
 
@@ -25,6 +26,7 @@ public:
 	shared_ptr<Weapon> weapon;
 	shared_ptr<Bullet> bullet;
 	shared_ptr<Character> character;
+	shared_ptr<Enemy_Controller> enemy_controller;
 	
 };
 

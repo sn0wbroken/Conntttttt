@@ -20,11 +20,7 @@ public:
 
 	// コンストラクタ
 	Rect() {}
-	// コンストラクタ TODO:なにこれ。制作途中か？
-	Rect(T _x, T _y) {
-		//x = _x;
-		//y = _y;
-	}
+
 	// コンストラクタ
 	Rect(T aTop, T aLeft, T aRight, T aBottom) {
 		top = aTop;

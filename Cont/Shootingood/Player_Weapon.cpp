@@ -45,7 +45,8 @@ void Player_Weapon::Set_Shot_Pattern() {
 
 	bom_type = [&]() {
 		switch (ebom_type) {
-			
+		default: break;
+
 		}
 	};
 }

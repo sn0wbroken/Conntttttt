@@ -12,9 +12,6 @@ Enemy::Enemy(float set_x, float set_y) {
 	// 配置
 	vector3.Arrange(set_x, set_y, 0);
 
-	initialize_position_x = set_x;
-	initialize_position_y = set_y;
-
 	// エネミーの幅
 	width = define_value.ENEMY_WIDTH;
 	// エネミーの高さ
@@ -24,7 +21,8 @@ Enemy::Enemy(float set_x, float set_y) {
 	enemy_status = std::make_shared<Enemy_Status>(scene_manager->Get_Stage());
 
 	// TODO:画像の用意がまだなので
-	Create_Actor("Resources/Enemy/Enemy.x");
+	Create_Actor("Resources/Player/Bullet.x");
+	MV1SetPosition(model_handle, VGet(vector3.x, vector3.y, vector3.z));
 	// エネミーの大きさを指定
 	MV1SetScale(model_handle, VGet(40.0f, 40.0f, 35.0f));
 	// エネミーの表示角度を調整
@@ -33,38 +31,3 @@ Enemy::Enemy(float set_x, float set_y) {
 
 // デストラクタ
 Enemy::~Enemy() {}
-
-// エネミーの右端の座標を返す
-float Enemy::Get_Right_Edge() {
-	return vector3.x + width;
-}
-
-// エネミーの左端の座標を返す
-float Enemy::Get_Left_Edge() {
-	return vector3.x;
-}
-
-// エネミーの上端の座標を返す
-float Enemy::Get_Top_Edge() {
-	return vector3.y;
-}
-
-// エネミーの下端の座標を返す
-float Enemy::Get_Bottom_Edge() {
-	return vector3.y + height;
-}
-
-// 弾の発射する位置を返す
-float Enemy::Get_Shot_Point() {
-	return vector3.x + (width / 2);
-}
-
-// 初期x座標を返す
-float Enemy::Get_Initialize_Position_X() {
-	return initialize_position_x;
-}
-
-// 初期y座標を返す
-float Enemy::Get_Initialize_Position_Y() {
-	return initialize_position_y;
-}

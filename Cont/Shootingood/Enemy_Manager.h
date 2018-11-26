@@ -9,7 +9,7 @@
 #include<memory>
 #include<vector>
 
-// エネミーのマネージャークラス
+// エネミーのマネージャークラス(エネミーの情報(各クラス)を知っておく)
 class Enemy_Manager : public  Unique_Component<Enemy_Manager> {
 public:
 	// エネミーのステータス関係を扱うクラス

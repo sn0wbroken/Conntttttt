@@ -10,8 +10,7 @@ Player::Player() {
 	// 初期化
 	Initialize();
 
-	rectangle = Rect<float>(vector3.x, vector3.y);
-
+	// モデルを取得
 	Create_Actor("Resources/Player/Player.x");
 	// プレイヤーの座標を指定
 	MV1SetPosition(model_handle, VGet(vector3.x, vector3.y, 0.0f));
@@ -30,31 +29,6 @@ void Player::Initialize() {
 	is_power_up = false;
 
 	is_dead = false;
-}
-
-//// プレイヤーの右端の座標を返す
-//float Player::Get_Right_Edge() {
-//	return vector3.x + width;
-//}
-//
-//// プレイヤーの左端の座標を返す
-//float Player::Get_Left_Edge() {
-//	return vector3.x;
-//}
-//
-//// プレイヤーの上端の座標を返す
-//float Player::Get_Top_Edge() {
-//	return vector3.y;
-//}
-//
-//// プレイヤーの下端の座標を返す
-//float Player::Get_Bottom_Edge() {
-//	return vector3.y + height;
-//}
-
-// 弾が出る位置を返す
-float Player::Get_Shoot_Point() {
-	return  vector3.x + (width / 2);
 }
 
 // パワーアップ状態であるかをセットする
