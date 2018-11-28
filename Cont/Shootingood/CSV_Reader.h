@@ -4,15 +4,9 @@
 
 #include<vector>
 #include<string>
+#include <vector>
 #include<fstream>
-
-//TEST_STATUS
-struct Status {
-	int ID;
-	std::string name;
-	int hp;
-	int atk;
-};
+#include<cassert>
 
 // CSVファイル読み込み用クラス
 class CSV_Reader {
@@ -22,15 +16,14 @@ public:
 	}
 	// デストラクタ
 	~CSV_Reader() {}
-	
-	// 読み取った完成系を格納
-	std::vector<Status> statuses;
 
 	// ファイルの読み込みを行う
-	void Read_File(std::string file_pass) {
+
+	std::vector<std::vector <std::string>> Read_File(std::string file_pass) {
 		auto ifstream = std::ifstream();
 		// ファイルを読み込む
 		ifstream.open(file_pass);
+		//assert(ifstream.fail);
 		// 行
 		std::string row;
 
@@ -39,25 +32,15 @@ public:
 		std::getline(ifstream, row);
 		// 読んだいらない行を破棄する
 		ifstream.clear();
-
+		// 読み取った完成系を格納
+		std::vector<std::vector<std::string>> Array;
+		Array.resize(30);
 		// ファイルの終わりまで読む(ここではExcelの１行ずつになる)
 		while (!std::getline(ifstream, row).eof()) {
-			// 読み込んだものを入れる入れ物
-			Status status;
 			// ","をデリミタとして行を小分けにする
-			auto readed_row = Parse(row, ",");
-
-			readed_row.size();
-
-			// 小分けにしたものを代入する
-			status.ID   = std::stoi(readed_row[0]);
-			status.name = readed_row[1];
-			status.hp   = std::stoi(readed_row[2]);
-			status.atk  = std::stoi(readed_row[3]);
-
-			// 出来たものをまとめる
-			statuses.push_back(status);
+			Array.push_back(Parse(row, ","));
 		}
+		return Array;
 	}
 
 	// 第一引数に取った文字列を、第二引数のデリミタで区切ったものを分ける

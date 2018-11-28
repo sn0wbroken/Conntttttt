@@ -17,8 +17,7 @@ public:
 	T width;
 	// 高さ
 	T height;
-
-	// コンストラクタ
+	
 	Rect() {}
 
 	// コンストラクタ
@@ -27,13 +26,18 @@ public:
 		left = aLeft;
 		right = aRight;
 		bottom = aBottom;
+
+		width = right - left;
+		height = bottom - top;
 	}
 	// コピーコンストラクタ
-	Rect(const Rect<T> &right) {
-		top = right.top;
-		left = right.left;
-		right = right.right;
-		bottom = right.bottom;
+	Rect(const Rect<T> &Right) {
+		top = Right.top;
+		left = Right.left;
+		right = Right.right;
+		bottom = Right.bottom;
+		width = Right.width;
+		height = Right.height;
 	}
 
 	void Initialize() {
