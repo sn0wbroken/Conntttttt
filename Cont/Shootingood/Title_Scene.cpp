@@ -65,13 +65,11 @@ void Title_Scene::Update() {
 
 // 描画
 void Title_Scene::Render() {
-	//DrawExtendGraph(0, 0, define_value.WINDOW_X, define_value.WINDOW_Y, background_graph, TRUE);
-	DrawBillboard3D(VGet(0, 0, 0), 0.0f, 0.0f, 940, 0, background_graph, TRUE);
-	DrawTriangle3D(VGet(icon_position_x, icon_position_y, 1), VGet(icon_position_x, icon_position_y + icon_height, 1), VGet(icon_position_x + icon_width, icon_position_y + (icon_height / 2), 1), GetColor(0, 0, 0), TRUE);
-	//DrawTriangle(icon_position_x, icon_position_y,
-		//icon_position_x, icon_position_y + icon_height,
-	///	icon_position_x + icon_width, icon_position_y + (icon_height / 2),
-//GetColor(0, 0, 0), TRUE);
+	DrawExtendGraph(0, 0, define_value.WINDOW_X, define_value.WINDOW_Y, background_graph, TRUE);
+	DrawTriangle(icon_position_x, icon_position_y,
+		icon_position_x, icon_position_y + icon_height,
+	icon_position_x + icon_width, icon_position_y + (icon_height / 2),
+		GetColor(0, 0, 0), TRUE);
 
 	// マニュアル閲覧中なら、マニュアルを表示
 	if (is_watch_manual) {
