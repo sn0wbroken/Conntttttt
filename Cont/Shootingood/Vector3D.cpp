@@ -1,4 +1,5 @@
 #include "DxLib.h"
+#include <cmath>
 #include "Vector3D.h"
 
 // コンストラクタ
@@ -37,4 +38,9 @@ void Vector3D::Arrange(float set_x, float set_y, float set_z) {
 	x = set_x;
 	y = set_y;
 	z = set_z;
+}
+
+void Vector3D::Norm2() const
+{
+	
 }

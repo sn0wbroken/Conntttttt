@@ -13,6 +13,8 @@ public:
 	// 毎フレーム入る
 	void Update();
 
+
+	void MoveAI0();
 private:
 	// 定数をまとめておくクラス
 	Define_Value define_value;
