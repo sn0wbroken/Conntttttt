@@ -9,10 +9,14 @@ Main_Scene::Main_Scene() {
 	player_action = player_manager->player_action;
 	player_status = player_manager->player_status;
 
+	std::unique_ptr<TEST_GOD> &god = TEST_GOD::Get_Instance();
+	// “oêl•¨‚Ì‰Šú‰»‚ð‚·‚×‚Äs‚¤
+	god->actor->Initialize();
+
 	collision = std::make_shared<Collision>();
 
 	Initialize();
-
+	
 	UI_class = std::make_shared<UI>();
 	
 	y1 = 0;

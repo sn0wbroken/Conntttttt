@@ -2,14 +2,8 @@
 #include"Player_Manager.h"
 
 // コンストラクタ
-Player_Weapon::Player_Weapon() {}
+Player_Weapon::Player_Weapon() {
 
-// コピーコンストラクタ
-Player_Weapon::Player_Weapon(std::shared_ptr<Player> set_player) {
-	player = set_player;
-
-	// 初期化関数を呼び出す
-	Initialize();
 }
 
 // デストラクタ
@@ -26,6 +20,8 @@ void Player_Weapon::Update() {
 
 // 初期化関数
 void Player_Weapon::Initialize() {
+	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
+	player = player_manager->player;
 	// 座標を設定
 	vector3.Arrange(player->Get_X(), player->Get_Y() + player->Get_Height() / 2, player->Get_Z());
 }
@@ -46,7 +42,6 @@ void Player_Weapon::Set_Shot_Pattern() {
 	bom_type = [&]() {
 		switch (ebom_type) {
 		default: break;
-
 		}
 	};
 }

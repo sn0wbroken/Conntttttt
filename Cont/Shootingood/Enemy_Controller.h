@@ -10,4 +10,3 @@ public:
 	// デストラクタ
 	virtual ~Enemy_Controller();
 };
-

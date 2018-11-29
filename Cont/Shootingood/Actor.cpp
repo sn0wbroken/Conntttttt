@@ -21,6 +21,17 @@ void Actor::Create_Actor(TCHAR*model_path) {
 	}
 }
 
+// 初期化を行う
+void Actor::Initialize() {
+	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin();
+	while (iterator != children.end()) {
+		if ((*iterator)->actor_status != eActor_Status::Break) {
+			(*iterator)->Initialize();
+			++iterator;
+		}
+	}
+}
+
 // アクティブなアクターを描画する
 void Actor::Render() {
 	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin();

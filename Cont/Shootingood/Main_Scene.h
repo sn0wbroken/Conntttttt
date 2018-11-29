@@ -23,13 +23,10 @@ public:
 	// 初期化
 	void Initialize();
 
-	// エネミーが全滅したかどうか
-	bool Is_Enemy_All_Ded();
-
 private:
 	// プレイヤーが死亡したときの処理
 	void Player_Dead();
-
+	
 	// 定数をまとめておくクラス
 	Define_Value define_value;
 

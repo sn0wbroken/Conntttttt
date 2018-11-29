@@ -4,13 +4,14 @@
 #include"DxLib.h"
 #include"Vector3D.h"
 #include"Define_Value.h"
+#include"Unique_Component.h"
 
 #include<list>
 #include<string>
 #include<memory>
 
 // アクターの基底クラス
-class Actor {
+class Actor : public Unique_Component<Actor> {
 public:
 	// コンストラクタ
 	Actor();
@@ -22,6 +23,8 @@ public:
 
 	// アクターオブジェクトを生成する
 	virtual void Create_Actor(TCHAR* model_path);
+	// 初期化を行う
+	virtual void Initialize();
 	// アクティブなアクターを描画する
 	virtual void Render();
 	// 毎フレーム入る更新処理
