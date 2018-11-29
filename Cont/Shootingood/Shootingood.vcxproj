@@ -103,13 +103,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\????????????????_VC?;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\????????????????_VC?;%(AdditionalIncludeDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -170,9 +170,6 @@
     <ClCompile Include="TEST_GOD.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="MazeGenerator.cpp" />
-    <ClCompile Include="MazeScene.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_Action.cpp" />
     <ClCompile Include="Player_Manager.cpp" />
@@ -213,7 +210,6 @@
     <ClInclude Include="TEST_GOD.h" />
     <ClInclude Include="Weapon.h" />
     <ClInclude Include="MazeGenerator.h" />
-    <ClInclude Include="MazeScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player_Action.h" />
     <ClInclude Include="Player_Manager.h" />
