@@ -15,8 +15,6 @@ class Player_Weapon : public Weapon {
 public:
 	// コンストラクタ
 	Player_Weapon();
-	// コピーコンストラクタ
-	Player_Weapon(std::shared_ptr<Player> set_player);
 	// デストラクタ
 	~Player_Weapon();
 
@@ -31,7 +29,7 @@ private:
 	std::unique_ptr<Key_Checker>& key_checker = Key_Checker::Get_Instance();
 
 	// 初期化関数
-	void Initialize();
+	void Initialize() override;
 
 	// キーの入力で弾を発射
 	void Fire();

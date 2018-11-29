@@ -28,5 +28,7 @@ public:
 	shared_ptr<Character> character;
 	shared_ptr<Enemy_Controller> enemy_controller;
 	
+	// ˆø”‚É©g‚ğw’è‚µ‚½‚à‚Ì‚¾‚¯‚É¶¬‚ğ‚ä‚é‚·
+	friend class Unique_Component<TEST_GOD>;
 };
 

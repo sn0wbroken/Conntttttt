@@ -1,5 +1,7 @@
 #include "Player_Manager.h"
 
+#include"Actor.h"
+
 // コンストラクタ
 Player_Manager::Player_Manager() {
 	player = std::make_shared<Player>();
@@ -10,5 +12,5 @@ Player_Manager::Player_Manager() {
 
 	player_action = std::make_shared<Player_Action>();
 
-	player_weapon = std::make_shared<Player_Weapon>(player); 
+	player_weapon = std::make_shared<Player_Weapon>(); 
 }

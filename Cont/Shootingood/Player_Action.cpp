@@ -5,7 +5,6 @@
 Player_Action::Player_Action() {
 }
 
-
 // デストラクタ
 Player_Action::~Player_Action() {
 }
