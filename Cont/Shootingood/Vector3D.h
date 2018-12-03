@@ -7,6 +7,8 @@ class Vector3D {
 public:
 	// コンストラクタ
 	Vector3D();
+	//コンストラクタ
+	Vector3D(float x,float y,float z=0);
 	// コピーコンストラクタ
 	Vector3D(const Vector3D &vec);
 	// コピーコンストラクタ
@@ -27,6 +29,64 @@ public:
 	void Move(float set_x, float set_y, float set_z);
 	// 配置
 	void Arrange(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
-	// ノルム　ベクトルの長さ計算
-	void Norm2() const;
+#pragma region operator
+	//単体演算子
+	inline const Vector3D operator+(const Vector3D& vec)const
+	{
+		Vector3D tmp;
+		tmp.x = x + vec.x;
+		tmp.y = y + vec.y;
+		tmp.z = z + vec.z;
+		return tmp;
+	}
+
+	inline const Vector3D operator-(const Vector3D& vec)const
+	{
+		Vector3D tmp;
+		tmp.x = x - vec.x;
+		tmp.y = y - vec.y;
+		tmp.z = z - vec.z;
+		return tmp;
+	}
+
+	inline const Vector3D operator*(const Vector3D& vec) const
+	{
+		Vector3D tmp;
+		tmp.x = x * vec.x;
+		tmp.y = y * vec.y;
+		tmp.z = z * vec.z;
+		return tmp;
+	}
+
+	inline const Vector3D operator*(const float& flt)
+	{
+		Vector3D tmp;
+		tmp.x = x * flt;
+		tmp.y = y * flt;
+		tmp.z = z * flt;
+		return tmp;
+	}
+
+	inline const Vector3D operator/(const Vector3D& vec)const
+	{
+		Vector3D tmp;
+		tmp.x = x / vec.x;
+		tmp.y = y / vec.y;
+		tmp.z = z / vec.z;
+		return tmp;
+	}
+	// 演算子+イコール系
+	inline Vector3D operator+=(const Vector3D& vec)
+	{
+		x += vec.x;
+		y += vec.y;
+		z += vec.z;
+		return *this;
+	}
+	//DxLibのVector変換
+	inline operator DxLib::VECTOR() const throw
+	{
+		return DxLib::VGet(x, y, z);
+	}
+#pragma endregion
 };
