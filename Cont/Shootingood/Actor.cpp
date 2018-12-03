@@ -14,7 +14,7 @@ Actor::~Actor() {
 void Actor::Create_Actor(TCHAR*model_path) {
 	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin();
 	while (iterator != children.end()) {
-		if ((*iterator)->actor_status != eActor_Status::Break) {
+		if ((*iterator)->actor_state != eActor_State::Break) {
 			++iterator;
 			(*iterator)->Create_Actor(model_path);
 		}
@@ -25,8 +25,19 @@ void Actor::Create_Actor(TCHAR*model_path) {
 void Actor::Initialize() {
 	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin();
 	while (iterator != children.end()) {
-		if ((*iterator)->actor_status != eActor_Status::Break) {
+		if ((*iterator)->actor_state != eActor_State::Break) {
 			(*iterator)->Initialize();
+			++iterator;
+		}
+	}
+}
+
+// 毎フレーム入る更新処理
+void Actor::Update() {
+	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin();
+	while (iterator != children.end()) {
+		if ((*iterator)->actor_state != eActor_State::Break) {
+ 			(*iterator)->Update();
 			++iterator;
 		}
 	}
@@ -36,19 +47,8 @@ void Actor::Initialize() {
 void Actor::Render() {
 	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin();
 	while (iterator != children.end()) {
-		if ((*iterator)->actor_status != eActor_Status::Break) {
+		if ((*iterator)->actor_state != eActor_State::Break) {
 			(*iterator)->Render();
-			++iterator;
-		}
-	}
-}
-
-// 毎フレーム入る更新処理
-void Actor::Update() {
-	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin(); // Player_Weaponの代入で失敗
-	while (iterator != children.end()) {
-		if ((*iterator)->actor_status != eActor_Status::Break) {
- 			(*iterator)->Update();
 			++iterator;
 		}
 	}

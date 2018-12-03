@@ -22,6 +22,9 @@ public:
 	// パワーアップ状態であるかを返す
 	bool Get_Power_Up();
 
+	//TEST
+	std::list<Bullet*> magazine;
+
 private:
 	// 矩形クラス
 	Rect<float> rectangle;

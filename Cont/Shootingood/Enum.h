@@ -29,7 +29,7 @@ enum class eStage {
 };
 
 // アクターの状態。これを見て描画などの更新処理を行う
-enum class eActor_Status {
+enum class eActor_State {
 	Action,
 	Break
 };

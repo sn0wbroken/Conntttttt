@@ -43,12 +43,12 @@ void Player_Move::Rotation() {
 	}
 	else if (CheckHitKey(KEY_INPUT_RIGHT)) {
 		VECTOR player_rotation = MV1GetRotationXYZ(player->Get_Model_Handle());
-		MV1SetRotationXYZ(player->Get_Model_Handle(), 
-						  VGet(player_rotation.x, player_rotation.y, player_rotation.z - (define_value.PLAYER_ROTATE_SPEED * DX_PI_F / 180)));
+		MV1SetRotationXYZ(player->Get_Model_Handle(),
+						  VGet(player_rotation.x, player_rotation.y, player_rotation.z - define_value.ROTATION_VALUE));
 	}
 	else if (CheckHitKey(KEY_INPUT_LEFT)) {
 		VECTOR player_rotation = MV1GetRotationXYZ(player->Get_Model_Handle());
 		MV1SetRotationXYZ(player->Get_Model_Handle(), 
-						  VGet(player_rotation.x, player_rotation.y, player_rotation.z + (define_value.PLAYER_ROTATE_SPEED * DX_PI_F / 180)));
+						  VGet(player_rotation.x, player_rotation.y, player_rotation.z + define_value.ROTATION_VALUE));
 	}
 }

@@ -9,7 +9,9 @@
 class Bullet : public Actor {
 public:
 	// コンストラクタ
-	Bullet(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f, float set_direction_x = 0.0f, float set_direction_y = 0.0f, float set_direction_z = 0.0f);
+	Bullet();
+	//TEST
+	Bullet(Vector3D set_vector3, float set_radian, float set_speed);
 	// デストラクタ
 	~Bullet();
 
@@ -36,11 +38,15 @@ public:
 	// 弾の移動
 	void Move(float x = 0.0f, float y = 0.0f, float z = 0.0f);
 
+	// 飛んでいく角度
+	float radian;
+	// 飛んでいく速度
+	float speed;
+
 private:
-	//現在の座標
-	Vector3D vector3;
 	// 弾の半径
 	int radius;
+
 	//弾の進む方向
 	Vector3D Direction;
 
@@ -56,5 +62,5 @@ private:
 	// 画面左端から出ようとしてないか
 	bool Is_Over_Min_Y();
 	// 弾丸が表示範囲外に出ているかを判断
-	bool Bullet_Off_Screen(Bullet& player_bullet);
+	bool Bullet_Off_Screen();
 };

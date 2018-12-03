@@ -10,7 +10,7 @@
 #include<memory>
 #include<functional>
 
-// プレイヤーが扱う武器(攻撃)のクラス TODO:プレイヤーの仕様が固まってないのでひとまず抽象的な名前で
+// プレイヤーが扱う武器(攻撃)のクラス
 class Player_Weapon : public Weapon {
 public:
 	// コンストラクタ
@@ -20,6 +20,8 @@ public:
 
 	// 更新処理
 	void Update() override;
+	// 描画
+	void Render() override;
 
 	// プレイヤーのショットタイプ
 	eBom_Type ebom_type;
@@ -33,19 +35,17 @@ private:
 
 	// キーの入力で弾を発射
 	void Fire();
-	// キーの入力で攻撃の種類を切り替える。毎フレーム受付ける
-	void Change_Fire_Type();
 	// 状態に応じたショットを設定する
 	void Set_Shot_Pattern();
+	// 銃口の位置を変える
+	void Rotation();
 
 	// 弾幕の種類
 	std::function<void()> bom_type;
-	// 角度
-	float radian;
-	// 弾が発射される位置
-	double position_x;
+	// オイラー角
+	float degree = 0;
+	// ラジアン角
+	float radian = 0;
 	// sin波を作るために加算する値
-	int counter;
-	// 振れ幅
-	double amplitude;
+	int counter = 0;
 };
