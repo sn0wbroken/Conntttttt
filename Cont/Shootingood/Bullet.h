@@ -10,8 +10,6 @@ class Bullet : public Actor {
 public:
 	// コンストラクタ
 	Bullet();
-	//TEST
-	Bullet(Vector3D set_vector3, float set_radian, float set_speed);
 	// デストラクタ
 	~Bullet();
 

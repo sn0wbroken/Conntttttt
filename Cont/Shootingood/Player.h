@@ -22,7 +22,7 @@ public:
 	// パワーアップ状態であるかを返す
 	bool Get_Power_Up();
 
-	//TEST
+	// 弾倉。ボムの時に使う
 	std::list<Bullet*> magazine;
 
 private:

@@ -17,7 +17,7 @@ void Player_Weapon::Initialize() {
 	// À•W‚ğİ’è
 	vector3.Arrange(player->Get_X() - 1, player->Get_Y() + player->Get_Height() / 2, player->Get_Z());
 
-	//TEST
+	// ’eŠÛ‚ğ¶¬
 	for (int i = 0; i < define_value.MAX_BULLET; ++i) {
 		Bullet* bullet = new Bullet();
 		bullet->actor_state = eActor_State::Break;
@@ -31,6 +31,10 @@ void Player_Weapon::Update() {
 	Fire();
 	// ƒL[“ü—Í‚ÅeŒû‚ğ‰ñ“]‚³‚¹‚é
 	Rotation();
+
+	for (auto bullet : player->magazine) {
+		bullet->Update();
+	}
 
 	// q‚É‚à‰ñ‚·
 	Actor::Update();
@@ -46,13 +50,7 @@ void Player_Weapon::Render() {
 // ’e‚ğ¶¬(”­Ë)
 void Player_Weapon::Fire() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
-		for (auto bullet : player->magazine) {
-			bullet->actor_state = eActor_State::Action;
-			bullet->vector3d.x += vector3.x;
-			bullet->vector3d.y += vector3.y;
-			bullet->speed = 15;
-
-		}
+		
 	}
 }
 

@@ -5,13 +5,6 @@ Bullet::Bullet() {
 
 }
 
-Bullet::Bullet(Vector3D set_vector3, float set_radian, float set_speed) {
-	vector3d.Arrange(set_vector3.x, set_vector3.y, set_vector3.z);
-
-	speed = set_speed;
-	radian = set_radian;
-}
-
 // デストラクタ
 Bullet::~Bullet() {
 }
@@ -20,7 +13,7 @@ Bullet::~Bullet() {
 void Bullet::Update() {
 	if (actor_state == eActor_State::Action) {
 
-		Move(Direction.x, Direction.y, Direction.z);
+		Move(vector3d.x + speed, vector3d.y + speed, vector3d.z);
 
 		// 画面外に出ていたら消える
 		if (Bullet_Off_Screen()) {
@@ -32,7 +25,7 @@ void Bullet::Update() {
 // 描画
 void Bullet::Render() {
 	if (actor_state == eActor_State::Action) {
-			DrawSphere3D(vector3d.GetVECTOR(), 5, 5, GetColor(255, 0, 255), GetColor(0, 0, 0), TRUE);
+		DrawSphere3D(vector3d.GetVECTOR(), 5, 5, GetColor(255, 0, 255), GetColor(0, 0, 0), TRUE);
 	}
 }
 
@@ -70,7 +63,7 @@ int Bullet::Get_Radius() {
 
 // 弾の移動
 void Bullet::Move(float set_x, float set_y, float set_z) {
-	vector3d.Move(set_x += speed, set_y += speed, set_z += speed);
+	vector3d.Move(speed, speed, 0);
 }
 
 // 画面右端から出ようとしてないか
