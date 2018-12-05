@@ -20,6 +20,6 @@ public:
 private:
 	// ’è”‚ğ‚Ü‚Æ‚ß‚Ä‚¨‚­ƒNƒ‰ƒX
 	Define_Value define_value;
-	Vector3D * m_EPosition;
+	Vector3D * m_EPosition; //TODO::—vC³
 	int m_EnemyModel;
 };

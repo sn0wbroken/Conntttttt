@@ -21,7 +21,7 @@ public:
 	//CSVDataのコンストラクタが動いた時Load処理を開始するのでprivateにしておく
 	//構造体もprivateでいいかもしれない。
 private:
-	CSV_Reader reader; //TODO::とりあえずここに
+	CSV_Reader m_reader; //TODO::とりあえずここに
 #pragma region CSVデータロード関数
 	void LoadSound();
 #pragma endregion
