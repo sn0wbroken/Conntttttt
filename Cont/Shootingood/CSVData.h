@@ -1,17 +1,14 @@
 #pragma once 
-#include <string>
-#include <map>
-#include "CSV_Reader.h"
-#include"singleton.h"
+#include<string>
+#include<map>
+#include"CSV_Reader.h"
 
-class CSVData : public Singleton<CSVData>
-{
+class CSVData{
 public:
 	CSVData();
 	~CSVData();
 #pragma region CSVで読み込むデータの構造体
-	struct M_SoundFiles
-	{
+	struct m_SoundFile{
 		int			ID;			
 		std::string FileName;
 		std::string FilePath;
@@ -19,7 +16,7 @@ public:
 	};
 #pragma endregion
 #pragma region CSVデータの格納先
-	std::map<int, M_SoundFiles> sounds;
+	std::map<int, m_SoundFile> m_sounds;
 #pragma endregion
 	//CSVDataのコンストラクタが動いた時Load処理を開始するのでprivateにしておく
 	//構造体もprivateでいいかもしれない。

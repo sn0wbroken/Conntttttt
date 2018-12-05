@@ -1,11 +1,10 @@
 #pragma once
 
-#include <vector>
-#include <random>
+#include<vector>
+#include<random>
 
 namespace Maze {
-	enum MazeBlock
-	{
+	enum MazeBlock{
 		None,
 		Block,
 		Path,
@@ -13,15 +12,13 @@ namespace Maze {
 		Player,
 	};
 
-	struct MazeDataInfo
-	{
+	struct MazeDataInfo{
 		int m_height;	//縦幅
 		int m_width;	//横幅
 		std::vector<float> m_data; //マップ配置データ
 	};
 
-	class MazeData
-	{
+	class MazeData{
 	public:
 		MazeData();
 		// コンストラクタ
@@ -29,7 +26,7 @@ namespace Maze {
 		// デストラクタ
 		~MazeData() {};
 
-		void setMazeSize(const int height, const int width);
+		void set_MazeSize(const int height, const int width);
 		//迷路作成機
 		void MazeGenerator();
 
@@ -37,7 +34,7 @@ namespace Maze {
 	private:
 		MazeDataInfo m_info;
 
-		int maxheight;
-		int maxwidth;
+		int m_maxheight;
+		int m_maxwidth;
 	};
 }

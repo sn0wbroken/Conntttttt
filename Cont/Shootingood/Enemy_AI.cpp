@@ -32,7 +32,7 @@ void Enemy_AI::MoveAI0(Vector3D enemy, Vector3D player)
 	//// ベクトルから角度を計算
 	Vector3D cos = VMath::dot(FrontVector, m_Forward) / (VMath::VectorLength(FrontVector) * VMath::VectorLength(m_Forward));
 	m_Rotation = acosf(cos.x);
-
+	//内積計算
 	Vector3D dot = VMath::dot(UpVector, VMath::cross(FrontVector, m_Forward));
 	if (dot.x < 0) {
 		m_Rotation = -m_Rotation;
@@ -44,7 +44,7 @@ void Enemy_AI::MoveAI0(Vector3D enemy, Vector3D player)
 	Vector3D length = VMath::VectorLength(enemy - player);
 	if (length.x <= (/*deltatime * */2.0f)) { //TODO::MagicNumber
 		// 待ち状態になる
-		return;
+	return;
 	}
 	
 }

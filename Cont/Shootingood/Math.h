@@ -1,7 +1,7 @@
 #pragma once
-#include "Vector3D.h"
-namespace VMath
-{
+#include"Vector3D.h"
+//Vector計算用
+namespace VMath{
 #pragma region calclator
 	//ベクターの長さ
 	Vector3D VectorLength(Vector3D vec);

@@ -15,10 +15,6 @@ Title_Scene::Title_Scene() {
 	// ‘I‘ğ‚·‚é‚Ü‚Å‚ÍŒ©‚È‚¢
 	is_watch_manual = false;
 
-	const CSVData & Data(CSVData::getInstance());
-	CSVData::M_SoundFiles Sound = Data.sounds.at(114514);
-	DxLib::PlaySoundMem(Sound.SHandle,1);
-
 	// ‰ŠúˆÊ’u‚ÍStart‚©‚ç
 	select_command = eSelect_Command::Start;
 }
