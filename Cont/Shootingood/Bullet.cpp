@@ -12,7 +12,6 @@ Bullet::~Bullet() {
 // 毎フレーム呼ばれる
 void Bullet::Update() {
 	if (actor_state == eActor_State::Action) {
-
 		Move(vector3d.x + speed, vector3d.y + speed, vector3d.z);
 
 		// 画面外に出ていたら消える

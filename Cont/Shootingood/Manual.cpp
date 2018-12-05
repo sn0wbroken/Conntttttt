@@ -6,7 +6,7 @@ Manual::Manual() {
 	manual_graph[1] = LoadGraph("Picture/Manual/スライド2.PNG");
 	manual_graph[2] = LoadGraph("Picture/Manual/スライド3.PNG");
 
-	// 初期値はもちろん0
+	// スタートは0ページから
 	now_page_number = 0;
 }
 

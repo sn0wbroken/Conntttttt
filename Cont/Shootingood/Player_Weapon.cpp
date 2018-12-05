@@ -3,7 +3,7 @@
 #include"Bullet.h"
 
 // コンストラクタ
-Player_Weapon::Player_Weapon() {
+Player_Weapon::Player_Weapon() : degree(90) {
 
 }
 
@@ -14,10 +14,15 @@ Player_Weapon::~Player_Weapon() {	}
 void Player_Weapon::Initialize() {
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	player = player_manager->player;
-	// 座標を設定
-	vector3.Arrange(player->Get_X() - 1, player->Get_Y() + player->Get_Height() / 2, player->Get_Z());
 
-	// 弾丸を生成
+	// 半径を設定
+	radius = player->Get_Height() / 2 + 18;
+	// 中心座標を取得
+	center_position = player->vector3d;
+	// 銃口の座標を設定
+	vector3d.Arrange(center_position.x, center_position.y + radius, center_position.z);
+
+	// 弾丸をプーリング
 	for (int i = 0; i < define_value.MAX_BULLET; ++i) {
 		Bullet* bullet = new Bullet();
 		bullet->actor_state = eActor_State::Break;
@@ -50,7 +55,11 @@ void Player_Weapon::Render() {
 // 弾を生成(発射)
 void Player_Weapon::Fire() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
-		
+		for (auto bullet : player->magazine) {
+			bullet->Set_X(vector3d.x);
+			bullet->Set_Y(vector3d.y);
+			bullet->actor_state = eActor_State::Action;
+		}
 	}
 }
 
@@ -68,27 +77,24 @@ void Player_Weapon::Set_Shot_Pattern() {
 
 // 銃口の位置を変える(回転)
 void Player_Weapon::Rotation() {
+	// 同時入力で動かないように
+	if (CheckHitKey(KEY_INPUT_LEFT) && CheckHitKey(KEY_INPUT_RIGHT)) {
+		return;
+	}
+
 	if (CheckHitKey(KEY_INPUT_LEFT)) {
 		degree += define_value.ROTATION_VALUE;
 		radian = degree * DX_PI_F / 180;
 		
-		//vector3.x += cos(radian) * 15;
-		//vector3.y += sin(radian) * 15;
-
-		//MATRIX matrix;
-		//matrix = MGetRotZ(DX_PI_F / 64.0f);
-		//vector3 = VTransform(vector3.GetVECTOR(), matrix);
+		vector3d.x = center_position.x + radius * cos(radian);
+		vector3d.y = center_position.y + radius * sin(radian);
 	}
 	else if (CheckHitKey(KEY_INPUT_RIGHT)) {
-		degree += define_value.ROTATION_VALUE;
+		degree -= define_value.ROTATION_VALUE;
 		radian = degree * DX_PI_F / 180;
 
-		//vector3.x = cos(radian) * 15;
-		//vector3.y = sin(radian) * 15;
-
-		//MATRIX matrix;
-		//matrix = MGetRotZ(-DX_PI_F / 64.0f);
-		//vector3 = VTransform(vector3.GetVECTOR(), matrix);
+		vector3d.x = center_position.x + radius * cos(radian);
+		vector3d.y = center_position.y + radius * sin(radian);
 	}
 }
 

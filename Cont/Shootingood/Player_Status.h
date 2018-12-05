@@ -19,8 +19,6 @@ public:
 
 	// Žc‹@‚ð•Ô‚·
 	int Get_Life();
-	// ˆÚ“®‘¬“x‚ð•Ô‚·
-	int Get_Speed();
 
 	// Ž€‚ñ‚Å‚¢‚é‚©‚ð•Ô‚·
 	bool Get_Is_Dead();

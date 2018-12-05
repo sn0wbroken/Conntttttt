@@ -49,7 +49,7 @@ public:
 	static constexpr float PLAYER_WIDTH = 48.0f;
 	// プレイヤーの大きさ(高さ)
 	static constexpr float PLAYER_HEIGHT = 48.0f;
-	// プレイヤーの移動速度
+	// プレイヤーの回転速度(度数法6)
 	static constexpr float PLAYER_SPEED = 6.0f;
 	// プレイヤーの攻撃力
 	static const int PLAYER_ATTACK = 1;
@@ -99,6 +99,6 @@ public:
 
 #pragma endregion
 
-	// 速度が決まっているので回転角度(ラジアン)を知っておく
-	static constexpr float ROTATION_VALUE = PLAYER_ROTATE_SPEED * DX_PI_F / 180;
+	//TEST
+	static constexpr float ROTATION_VALUE = 6;
 };

@@ -42,10 +42,12 @@ private:
 
 	// 弾幕の種類
 	std::function<void()> bom_type;
-	// オイラー角
-	float degree = 0;
-	// ラジアン角
-	float radian = 0;
-	// sin波を作るために加算する値
-	int counter = 0;
+	// 回転の中心(プレイヤーの中心に同じ)
+	Vector3D center_position;
+	// 度数法
+	float degree;
+	// 弧度法
+	float radian;
+	// 半径(中心から銃口までの)
+	float radius;
 };
