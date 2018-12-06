@@ -24,7 +24,12 @@ public:
 	void Render() override;
 
 	// プレイヤーのショットタイプ
-	eBom_Type ebom_type;
+	eBomb_Type ebomb_type;
+
+	// プールから取り出したものを入れる入れ物
+	Bullet* bullet;
+	// プールから取得した撃ち出す弾をまとめる
+	std::list<Bullet*> bomb_bullets;
 
 private:
 	std::shared_ptr<Player> player;
@@ -40,8 +45,13 @@ private:
 	// 銃口の位置を変える
 	void Rotation();
 
+	// ボムの弾が有効かどうかを判断する
+	void Check_Enable_Bullet();
+	// 画面外に出た弾をプールへもどす
+	void Return_Bullet_Pooling();
+
 	// 弾幕の種類
-	std::function<void()> bom_type;
+	std::function<void()> bomb_type;
 	// 回転の中心(プレイヤーの中心に同じ)
 	Vector3D center_position;
 	// 度数法
@@ -50,6 +60,13 @@ private:
 	float radian;
 	// 半径(中心から銃口までの)
 	float radius;
+	// ボムの攻撃が計測しているかどうかのフラグ
+	bool living_bomb;
+
+	// 弾を撃った瞬間からカウント開始
+	int timer;
+	// timerがこの数値に達したら撃った弾を消す
+	int clear_count;
 
 	// 全方位に弾を飛ばすボム
 	void Fullrange_Shot(std::list<Bullet*> magazine);

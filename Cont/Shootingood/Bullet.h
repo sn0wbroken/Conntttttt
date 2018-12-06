@@ -13,8 +13,6 @@ public:
 	// デストラクタ
 	~Bullet();
 
-	// 毎フレーム呼ばれる
-	void Update() override;
 	// 描画
 	void Render() override;
 
@@ -39,6 +37,8 @@ public:
 	void Set_Radian(float set_radian);
 	// 飛んでいく速度を設定する
 	void Set_Speed(float set_speed);
+	// 弾丸が表示範囲外に出ているかを判断
+	bool Off_Screen();
 
 private:
 	// 弾の半径
@@ -59,6 +59,4 @@ private:
 	bool Is_Over_Min_X();
 	// 画面左端から出ようとしてないか
 	bool Is_Over_Min_Y();
-	// 弾丸が表示範囲外に出ているかを判断
-	bool Bullet_Off_Screen();
 };

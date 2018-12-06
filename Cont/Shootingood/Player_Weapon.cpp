@@ -3,12 +3,15 @@
 #include"Bullet.h"
 
 // コンストラクタ
-Player_Weapon::Player_Weapon() : degree(90) {
+Player_Weapon::Player_Weapon() : 
+	degree(90), 
+	living_bomb(false), 
+	timer(0) {
 
 }
 
 // デストラクタ
-Player_Weapon::~Player_Weapon() {	}
+Player_Weapon::~Player_Weapon() {}
 
 // 初期化関数
 void Player_Weapon::Initialize() {
@@ -37,9 +40,8 @@ void Player_Weapon::Update() {
 	// キー入力で銃口を回転させる
 	Rotation();
 
-	for (auto bullet : player->magazine) {
-		bullet->Update();
-	}
+	// ボムの弾が有効かどうかを判断する
+	Check_Enable_Bullet();
 
 	// 子にも回す
 	Actor::Update();
@@ -47,7 +49,7 @@ void Player_Weapon::Update() {
 
 // 描画
 void Player_Weapon::Render() {
-	for (auto bullet : player->magazine) {
+	for (auto bullet : bomb_bullets) {
 		bullet->Render();
 	}
 }
@@ -55,9 +57,11 @@ void Player_Weapon::Render() {
 // 弾を生成(発射)
 void Player_Weapon::Fire() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
-		ebom_type = eBom_Type::Fullrange;
+		ebomb_type = eBomb_Type::Fullrange;
+		//TODO:今は1種なので適当に撃った瞬間に関数を代入してる
 		Set_Shot_Pattern();
-		bom_type();
+		bomb_type();
+		living_bomb = true;
 	}
 }
 
@@ -66,9 +70,9 @@ void Player_Weapon::Set_Shot_Pattern() {
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	player = player_manager->player;
 
-	bom_type = [&]() {
-		switch (ebom_type) {
-			case eBom_Type::Fullrange:
+	bomb_type = [&]() {
+		switch (ebomb_type) {
+			case eBomb_Type::Fullrange:
 				Fullrange_Shot(player->magazine);
 				break;
 			default: break;
@@ -99,12 +103,39 @@ void Player_Weapon::Rotation() {
 	}
 }
 
+// ボムの弾が有効かどうかを判断する
+void Player_Weapon::Check_Enable_Bullet() {
+	if (living_bomb) {
+		if (timer == clear_count) {
+ 			Return_Bullet_Pooling();
+			bomb_bullets.clear();
+			living_bomb = false;
+			timer = 0;
+		}
+		++timer;
+	}
+}
+
+// 画面外に出た弾をプールへもどす
+void Player_Weapon::Return_Bullet_Pooling() {
+	// 仕事を終えた弾をプールに戻す
+	for (auto bullet : bomb_bullets) {
+		player->magazine.push_back(bullet);
+	}
+}
+
 // 全方位に弾を飛ばすボム
 void Player_Weapon::Fullrange_Shot(std::list<Bullet*> magazine) {
 	// 20発飛ばす
 	auto deglee = 360 / 20;
 
-	for (auto bullet : magazine) {
+	for (int i = 0; i < 20; ++i) {
+		bullet = player->magazine.back();
+		bomb_bullets.push_back(bullet);
+		player->magazine.pop_back();
+	}
+
+	for (auto bullet : bomb_bullets) {
 		// 弧度法に変換
 		auto radian = deglee * DX_PI_F / 180;
 	
@@ -112,8 +143,10 @@ void Player_Weapon::Fullrange_Shot(std::list<Bullet*> magazine) {
 		bullet->Set_Y(vector3d.y);
 		bullet->Set_Speed(15);
 		bullet->Set_Radian(radian);
-		bullet->actor_state = eActor_State::Action;
-	
+		bullet->actor_state = eActor_State::Action;	
+		
 		deglee += 360 / 20;
+		
+		clear_count = 30;
 	}
 }

@@ -9,16 +9,6 @@ Bullet::Bullet() {
 Bullet::~Bullet() {
 }
 
-// 毎フレーム呼ばれる
-void Bullet::Update() {
-	if (actor_state == eActor_State::Action) {
-		// 画面外に出ていたら消える
-		if (Bullet_Off_Screen()) {
-			//TODO:↑は判断だけ、消す処理を書く
-		}
-	}
-}
-
 // 描画
 void Bullet::Render() {
 	if (actor_state == eActor_State::Action) {
@@ -92,7 +82,10 @@ bool Bullet::Is_Over_Min_Y() {
 }
 
 // 弾丸が画面外に出ているかを判断
-bool Bullet::Bullet_Off_Screen() {
-	return Is_Over_Max_X() || Is_Over_Min_X() ||
-		   Is_Over_Max_Y() || Is_Over_Min_Y();
+bool Bullet::Off_Screen() {
+	if (actor_state == eActor_State::Action) {
+		return Is_Over_Max_X() || Is_Over_Min_X() ||
+			   Is_Over_Max_Y() || Is_Over_Min_Y();
+	}
+	return false;
 }

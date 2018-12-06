@@ -15,7 +15,7 @@ enum class eMove_Direction {
 
 // TODO:ボムの実装に合わせる
 // プレイヤーのボムのタイプ
-enum class eBom_Type {
+enum class eBomb_Type {
 	None, // ボム未所持状態
 	Fullrange, // 全方位に弾を飛ばす
 	Fuga
