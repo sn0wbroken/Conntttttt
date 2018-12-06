@@ -17,7 +17,7 @@ enum class eMove_Direction {
 // プレイヤーのボムのタイプ
 enum class eBom_Type {
 	None, // ボム未所持状態
-	Hoge,
+	Fullrange, // 全方位に弾を飛ばす
 	Fuga
 };
 

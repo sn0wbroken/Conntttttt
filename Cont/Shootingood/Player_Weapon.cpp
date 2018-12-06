@@ -55,11 +55,9 @@ void Player_Weapon::Render() {
 // ’e‚ð¶¬(”­ŽË)
 void Player_Weapon::Fire() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
-		for (auto bullet : player->magazine) {
-			bullet->Set_X(vector3d.x);
-			bullet->Set_Y(vector3d.y);
-			bullet->actor_state = eActor_State::Action;
-		}
+		ebom_type = eBom_Type::Fullrange;
+		Set_Shot_Pattern();
+		bom_type();
 	}
 }
 
@@ -70,7 +68,10 @@ void Player_Weapon::Set_Shot_Pattern() {
 
 	bom_type = [&]() {
 		switch (ebom_type) {
-		default: break;
+			case eBom_Type::Fullrange:
+				Fullrange_Shot(player->magazine);
+				break;
+			default: break;
 		}
 	};
 }
@@ -98,3 +99,21 @@ void Player_Weapon::Rotation() {
 	}
 }
 
+// ‘S•ûˆÊ‚É’e‚ð”ò‚Î‚·ƒ{ƒ€
+void Player_Weapon::Fullrange_Shot(std::list<Bullet*> magazine) {
+	// 20”­”ò‚Î‚·
+	auto deglee = 360 / 20;
+
+	for (auto bullet : magazine) {
+		// ŒÊ“x–@‚É•ÏŠ·
+		auto radian = deglee * DX_PI_F / 180;
+	
+		bullet->Set_X(vector3d.x);
+		bullet->Set_Y(vector3d.y);
+		bullet->Set_Speed(15);
+		bullet->Set_Radian(radian);
+		bullet->actor_state = eActor_State::Action;
+	
+		deglee += 360 / 20;
+	}
+}

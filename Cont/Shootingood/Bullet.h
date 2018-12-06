@@ -35,21 +35,21 @@ public:
 
 	// ’e‚ÌˆÚ“®
 	void Move(float x = 0.0f, float y = 0.0f, float z = 0.0f);
+	// ”ò‚ñ‚Å‚¢‚­Šp“x‚ğİ’è‚·‚é
+	void Set_Radian(float set_radian);
+	// ”ò‚ñ‚Å‚¢‚­‘¬“x‚ğİ’è‚·‚é
+	void Set_Speed(float set_speed);
 
+private:
+	// ’e‚Ì”¼Œa
+	int radius;
 	// ”ò‚ñ‚Å‚¢‚­Šp“x
 	float radian;
 	// ”ò‚ñ‚Å‚¢‚­‘¬“x
 	float speed;
 
-private:
-	// ’e‚Ì”¼Œa
-	int radius;
-
 	//’e‚Ìi‚Ş•ûŒü
 	Vector3D Direction;
-
-	// ’è”‚ğ‚Ü‚Æ‚ß‚Ä‚¨‚­ƒNƒ‰ƒX
-	Define_Value define_value;
 	
 	// ‰æ–Ê‰E’[‚©‚ço‚æ‚¤‚Æ‚µ‚Ä‚È‚¢‚©
 	bool Is_Over_Max_X();

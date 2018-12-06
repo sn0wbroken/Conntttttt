@@ -12,8 +12,6 @@ Bullet::~Bullet() {
 // 毎フレーム呼ばれる
 void Bullet::Update() {
 	if (actor_state == eActor_State::Action) {
-		Move(vector3d.x + speed, vector3d.y + speed, vector3d.z);
-
 		// 画面外に出ていたら消える
 		if (Bullet_Off_Screen()) {
 			//TODO:↑は判断だけ、消す処理を書く
@@ -25,6 +23,7 @@ void Bullet::Update() {
 void Bullet::Render() {
 	if (actor_state == eActor_State::Action) {
 		DrawSphere3D(vector3d.GetVECTOR(), 5, 5, GetColor(255, 0, 255), GetColor(0, 0, 0), TRUE);
+		Move(vector3d.x + speed, vector3d.y + speed, vector3d.z);
 	}
 }
 
@@ -62,7 +61,17 @@ int Bullet::Get_Radius() {
 
 // 弾の移動
 void Bullet::Move(float set_x, float set_y, float set_z) {
-	vector3d.Move(speed, speed, 0);
+	vector3d.Move(speed * cos(radian), speed * sin(radian), 0);
+}
+
+// 飛んでいく角度を設定する
+void Bullet::Set_Radian(float set_radian) {
+	radian = set_radian;
+}
+
+// 飛んでいく速度を設定する
+void Bullet::Set_Speed(float set_speed) {
+	speed = set_speed;
 }
 
 // 画面右端から出ようとしてないか

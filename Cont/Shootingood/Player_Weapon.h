@@ -50,4 +50,7 @@ private:
 	float radian;
 	// ”¼Œa(’†S‚©‚çeŒû‚Ü‚Å‚Ì)
 	float radius;
+
+	// ‘S•ûˆÊ‚É’e‚ğ”ò‚Î‚·ƒ{ƒ€
+	void Fullrange_Shot(std::list<Bullet*> magazine);
 };
