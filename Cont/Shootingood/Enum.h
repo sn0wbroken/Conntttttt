@@ -10,7 +10,9 @@ enum class eSelect_Command {
 // 移動する方向(エネミーのAIに使用)
 enum class eMove_Direction {
 	Right,
-	Left
+	Left,
+	Up,
+	Down
 };
 
 // TODO:ボムの実装に合わせる

@@ -2,24 +2,29 @@
 
 #include"Define_Value.h"
 #include"Vector3D.h"
-#include"Math.h"
+#include"Enemy.h"
 
 // エネミーのAIを管理
 class Enemy_AI {
 public:
 	// コンストラクタ
-	Enemy_AI(int Enemy_Model,Vector3D *EnemyPosition);
+	Enemy_AI();
 	// デストラクタ
 	~Enemy_AI();
 
 	// 毎フレーム入る
 	void Update();
 
+	void MoveAI0();
 
-	void MoveAI0(Vector3D enemy,Vector3D player);
+#pragma region Getter
+	Enemy_Status GetEnemyStatus()
+	{
+		return *m_enemy->enemy_status;
+	}
+#pragma endregion
+	std::shared_ptr<Enemy> m_enemy;
 private:
 	// 定数をまとめておくクラス
 	Define_Value define_value;
-	Vector3D * m_EPosition; //TODO::要修正
-	int m_EnemyModel;
 };

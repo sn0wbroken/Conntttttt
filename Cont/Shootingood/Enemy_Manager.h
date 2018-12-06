@@ -1,7 +1,6 @@
 #pragma once
 
-#include"Enemy.h"
-#include"Enemy_AI.h"
+#include"Enemy_Controller.h"
 #include"Enemy_Status.h"
 #include"Define_Value.h"
 #include"Unique_Component.h"
@@ -12,11 +11,10 @@
 // エネミーのマネージャークラス(エネミーの情報(各クラス)を知っておく)
 class Enemy_Manager : public  Unique_Component<Enemy_Manager> {
 public:
+	//エネミーのコントローラー　ここから動きを制御する
+	std::shared_ptr<Enemy_Controller> enemy_controller;
 	// エネミーのステータス関係を扱うクラス
 	std::shared_ptr<Enemy_Status> enemy_status;
-	// エネミーのAIを管理	
-	std::shared_ptr<Enemy_AI> enemy_AI;
-
 	// 毎フレーム呼ばれる
 	void Update();
 

@@ -2,15 +2,13 @@
 
 #include"DxLib.h"
 #include"Bullet.h"
+#include"Character.h"
 #include"Enemy_Status.h"
-#include"Enemy_Controller.h"
-#include"Enemy_AI.h"
 
 #include<vector>
-#include<memory>
 
 // エネミー本体のクラス
-class Enemy : public Enemy_Controller {
+class Enemy : public Character{
 public:
 	// コンストラクタ
 	Enemy();

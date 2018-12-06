@@ -2,16 +2,12 @@
 
 // コンストラクタ
 Enemy_Manager::Enemy_Manager() {
-	enemy_AI = std::make_shared<Enemy_AI>();
-	enemy_status = std::make_shared<Enemy_Status>();
-
-	// 配置
-	Enemy_Arrange();
+	enemy_controller = std::make_shared<Enemy_Controller>();
 }
 
 // 毎フレーム呼ばれる
 void Enemy_Manager::Update() {
-	enemy_AI->Update();
+	enemy_controller->Update();
 }
 
 // 敵を配置
