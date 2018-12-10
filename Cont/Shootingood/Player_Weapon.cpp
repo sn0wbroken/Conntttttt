@@ -19,11 +19,19 @@ void Player_Weapon::Initialize() {
 	player = player_manager->player;
 
 	// 半径を設定
-	radius = player->Get_Height() / 2 + 18;
+	radius = player->Get_Height() / 2 + 15;
+	// 初期配置の銃口の角度を設定
+	radian = degree * DX_PI_F / 180;
 	// 中心座標を取得
 	center_position = player->vector3d;
+	// プレイヤーの座標(定数で画面サイズ / 2)を基準にしても銃口とずれるので調整
+	center_position.x -= 2;
 	// 銃口の座標を設定
 	vector3d.Arrange(center_position.x, center_position.y + radius, center_position.z);
+	// 飛距離限界は銃口の座標を基準点とする
+	distance_limit = vector3d;
+	// 初期位置での弾の飛距離限界点を求める
+	Calculate_Distance_Limit();
 
 	// 弾丸をプーリング
 	for (int i = 0; i < define_value.MAX_BULLET; ++i) {
@@ -41,7 +49,7 @@ void Player_Weapon::Update() {
 	Rotation();
 
 	// ボムの弾が有効かどうかを判断する
-	Check_Enable_Bullet();
+	Check_Enable_Bomb();
 
 	// 子にも回す
 	Actor::Update();
@@ -49,6 +57,10 @@ void Player_Weapon::Update() {
 
 // 描画
 void Player_Weapon::Render() {
+	// 通常射撃の照準(弾の軌道)を線分で描画
+	DrawLine3D(vector3d.GetVECTOR(), distance_limit.GetVECTOR(), GetColor(255, 0, 0));
+	
+	// 撃ち出したボムの弾を描画
 	for (auto bullet : bomb_bullets) {
 		bullet->Render();
 	}
@@ -59,14 +71,14 @@ void Player_Weapon::Fire() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		ebomb_type = eBomb_Type::Fullrange;
 		//TODO:今は1種なので適当に撃った瞬間に関数を代入してる
-		Set_Shot_Pattern();
+		Set_Bomb();
 		bomb_type();
 		living_bomb = true;
 	}
 }
 
-// 状態に応じたショットを設定する
-void Player_Weapon::Set_Shot_Pattern() {
+// 状態に応じたボムを設定する
+void Player_Weapon::Set_Bomb() {
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	player = player_manager->player;
 
@@ -101,10 +113,13 @@ void Player_Weapon::Rotation() {
 		vector3d.x = center_position.x + radius * cos(radian);
 		vector3d.y = center_position.y + radius * sin(radian);
 	}
+
+	// 弾の飛距離限界点を求める
+	Calculate_Distance_Limit();
 }
 
 // ボムの弾が有効かどうかを判断する
-void Player_Weapon::Check_Enable_Bullet() {
+void Player_Weapon::Check_Enable_Bomb() {
 	if (living_bomb) {
 		if (timer == clear_count) {
  			Return_Bullet_Pooling();
@@ -124,10 +139,27 @@ void Player_Weapon::Return_Bullet_Pooling() {
 	}
 }
 
+// 弾の飛距離限界点を求める
+void Player_Weapon::Calculate_Distance_Limit() {
+	// 基準座標を取得
+	distance_limit = vector3d;
+
+	// 向いている方向へ点を打っていき、画面端へ到達した座標を飛距離限界点とする
+	while (true) {
+		if (distance_limit.x >= define_value.MAX_SCREEN_X || distance_limit.x <= define_value.MIN_SCREEN_X ||
+			distance_limit.y >= define_value.WINDOW_Y     || distance_limit.y <= define_value.MIN_WINDOW_Y) {
+			break;
+		}
+
+		distance_limit.x += 1 * cos(radian);
+		distance_limit.y += 1 * sin(radian);
+	}
+}
+
 // 全方位に弾を飛ばすボム
 void Player_Weapon::Fullrange_Shot(std::list<Bullet*> magazine) {
 	// 20発飛ばす
-	auto deglee = 360 / 20;
+	auto degree = 360 / 20;
 
 	for (int i = 0; i < 20; ++i) {
 		bullet = player->magazine.back();
@@ -137,7 +169,7 @@ void Player_Weapon::Fullrange_Shot(std::list<Bullet*> magazine) {
 
 	for (auto bullet : bomb_bullets) {
 		// 弧度法に変換
-		auto radian = deglee * DX_PI_F / 180;
+		auto radian = degree * DX_PI_F / 180;
 	
 		bullet->Set_X(vector3d.x);
 		bullet->Set_Y(vector3d.y);
@@ -145,7 +177,7 @@ void Player_Weapon::Fullrange_Shot(std::list<Bullet*> magazine) {
 		bullet->Set_Radian(radian);
 		bullet->actor_state = eActor_State::Action;	
 		
-		deglee += 360 / 20;
+		degree += 360 / 20;
 		
 		clear_count = 30;
 	}

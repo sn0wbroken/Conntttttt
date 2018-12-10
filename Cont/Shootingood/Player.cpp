@@ -12,7 +12,7 @@ Player::Player() {
 
 	// モデルを取得
 	Create_Actor("Resources/Player/Player.x");
-	// プレイヤーの座標を指定
+	// プレイヤーの座標を指定 
 	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, 0.0f));
 	// プレイヤーの表示角度を調整
 	MV1SetRotationXYZ(model_handle, VGet(270 * (DX_PI_F / 180), 0.0f, 180 * (DX_PI_F / 180)));

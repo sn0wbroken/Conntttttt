@@ -40,27 +40,37 @@ private:
 
 	// キーの入力で弾を発射
 	void Fire();
-	// 状態に応じたショットを設定する
-	void Set_Shot_Pattern();
+	// 状態に応じたボムを設定する
+	void Set_Bomb();
 	// 銃口の位置を変える
 	void Rotation();
 
 	// ボムの弾が有効かどうかを判断する
-	void Check_Enable_Bullet();
+	void Check_Enable_Bomb();
 	// 画面外に出た弾をプールへもどす
 	void Return_Bullet_Pooling();
+	// 弾の飛距離限界点を求める
+	void Calculate_Distance_Limit();
 
+	// 全方位に弾を飛ばすボム
+	void Fullrange_Shot(std::list<Bullet*> magazine);
+	
 	// 弾幕の種類
 	std::function<void()> bomb_type;
+	
 	// 回転の中心(プレイヤーの中心に同じ)
 	Vector3D center_position;
+	// 弾が飛ぶ最大地点
+	Vector3D distance_limit;
+
 	// 度数法
 	float degree;
 	// 弧度法
 	float radian;
 	// 半径(中心から銃口までの)
 	float radius;
-	// ボムの攻撃が計測しているかどうかのフラグ
+
+	// ボムの攻撃が継続しているかどうかのフラグ
 	bool living_bomb;
 
 	// 弾を撃った瞬間からカウント開始
@@ -68,6 +78,4 @@ private:
 	// timerがこの数値に達したら撃った弾を消す
 	int clear_count;
 
-	// 全方位に弾を飛ばすボム
-	void Fullrange_Shot(std::list<Bullet*> magazine);
 };
