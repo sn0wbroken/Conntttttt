@@ -32,10 +32,17 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
 	// ゲームループ
 	while (ProcessMessage() != -1) {
-		// 裏画面消す
+		// 画面をクリア
 		ClearDrawScreen();
 		// 描画先を裏画面に
 		SetDrawScreen(DX_SCREEN_BACK);
+
+		VECTOR camera_position;
+		camera_position.x = 0.0f;
+		camera_position.y = 500.0f;
+		camera_position.z = 0.0f;
+		SetCameraPositionAndTarget_UpVecY(camera_position, VGet((define_value.WINDOW_X - define_value.UI_SPACE) / 2, define_value.WINDOW_Y / 2, 0));
+
 
 		key_Checker->Update_Key();
 		scene_manager->Update();
@@ -47,7 +54,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 		WaitTimer(1000 / 60 - (endTime - startTime));
 
 		// 裏画面を表画面にコピー
-		ScreenFlip();
+		ScreenFlip();	
 	}
 
 	// 終了処理

@@ -49,13 +49,12 @@ private:
 	// エネミーのマネージャクラス
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 
-	// 背景の座標を動かす
+	// 背景の座標を動かす TODO:背景もモデルにするので気が付いたらいらなくなってるかも
 	void Scroll();
-
-	// 背景1のy座標
-	int y1;
-	// 背景2のy座標
-	int y2;
+	// 背景1のx座標
+	int x1;
+	// 背景2のx座標
+	int x2;
 
 	// ゲーム開始までのインターバル。操作不能。エンターキーの押下で解除(ゲームスタート)
 	bool is_interval;

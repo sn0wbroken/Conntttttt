@@ -30,13 +30,13 @@ void Player_Move::Rotation() {
 
 		VECTOR player_rotation = MV1GetRotationXYZ(player->Get_Model_Handle());
 		MV1SetRotationXYZ(player->Get_Model_Handle(),
-						  VGet(player_rotation.x, player_rotation.y, player_rotation.z - radian));
+						  VGet(player_rotation.x, player_rotation.y + radian, player_rotation.z));
 	}
 	else if (CheckHitKey(KEY_INPUT_LEFT)) {
 		auto radian = define_value.ROTATION_VALUE * DX_PI_F / 180;
 
 		VECTOR player_rotation = MV1GetRotationXYZ(player->Get_Model_Handle());
 		MV1SetRotationXYZ(player->Get_Model_Handle(), 
-						  VGet(player_rotation.x, player_rotation.y, player_rotation.z + radian));
+						  VGet(player_rotation.x, player_rotation.y - radian, player_rotation.z));
 	}
 }
