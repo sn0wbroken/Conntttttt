@@ -18,16 +18,15 @@ void Player_Weapon::Initialize() {
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	player = player_manager->player;
 
-	// ”¼Œa‚ðÝ’è
+	// ƒ‚ƒfƒ‹‚Ì‘å‚«‚³‚É‡‚Á‚½”¼Œa‚ðÝ’è
 	radius = player->Get_Height() / 2 + 15;
 	// ‰Šú”z’u‚ÌeŒû‚ÌŠp“x‚ðÝ’è
 	radian = degree * DX_PI_F / 180;
 	// ’†SÀ•W‚ðŽæ“¾
 	center_position = player->vector3d;
-	// ƒvƒŒƒCƒ„[‚ÌÀ•W(’è”‚Å‰æ–ÊƒTƒCƒY / 2)‚ðŠî€‚É‚µ‚Ä‚àeŒû‚Æ‚¸‚ê‚é‚Ì‚Å’²®
-	center_position.x -= 2;
 	// eŒû‚ÌÀ•W‚ðÝ’è
-	vector3d.Arrange(center_position.x, center_position.y + radius, center_position.z);
+	vector3d.Arrange(center_position.x - 1.5, center_position.y + 16, center_position.z - radius);
+
 	// ”ò‹——£ŒÀŠE‚ÍeŒû‚ÌÀ•W‚ðŠî€“_‚Æ‚·‚é
 	distance_limit = vector3d;
 	// ‰ŠúˆÊ’u‚Å‚Ì’e‚Ì”ò‹——£ŒÀŠE“_‚ð‹‚ß‚é
@@ -104,14 +103,14 @@ void Player_Weapon::Rotation() {
 		radian = degree * DX_PI_F / 180;
 		
 		vector3d.x = center_position.x + radius * cos(radian);
-		vector3d.y = center_position.y + radius * sin(radian);
+		vector3d.z = center_position.z + radius * sin(radian);
 	}
 	else if (CheckHitKey(KEY_INPUT_RIGHT)) {
 		degree -= define_value.ROTATION_VALUE;
 		radian = degree * DX_PI_F / 180;
 
 		vector3d.x = center_position.x + radius * cos(radian);
-		vector3d.y = center_position.y + radius * sin(radian);
+		vector3d.z = center_position.z + radius * sin(radian);
 	}
 
 	// ’e‚Ì”ò‹——£ŒÀŠE“_‚ð‹‚ß‚é
@@ -145,15 +144,15 @@ void Player_Weapon::Calculate_Distance_Limit() {
 	distance_limit = vector3d;
 
 	// Œü‚¢‚Ä‚¢‚é•ûŒü‚Ö“_‚ð‘Å‚Á‚Ä‚¢‚«A‰æ–Ê’[‚Ö“ž’B‚µ‚½À•W‚ð”ò‹——£ŒÀŠE“_‚Æ‚·‚é
-	while (true) {
-		if (distance_limit.x >= define_value.MAX_SCREEN_X || distance_limit.x <= define_value.MIN_SCREEN_X ||
-			distance_limit.y >= define_value.WINDOW_Y     || distance_limit.y <= define_value.MIN_WINDOW_Y) {
-			break;
-		}
+	//while (true) {
+	//	if (distance_limit.x >= define_value.MAX_SCREEN_X || distance_limit.x <= define_value.MIN_SCREEN_X ||
+	//		distance_limit.y >= define_value.WINDOW_Y     || distance_limit.y <= define_value.MIN_WINDOW_Y) {
+	//		break;
+	//	}
 
-		distance_limit.x += 1 * cos(radian);
-		distance_limit.y += 1 * sin(radian);
-	}
+		distance_limit.x -= 300 * cos(radian);
+		distance_limit.z -= 300 * sin(radian);
+	//}
 }
 
 // ‘S•ûˆÊ‚É’e‚ð”ò‚Î‚·ƒ{ƒ€
@@ -172,7 +171,7 @@ void Player_Weapon::Fullrange_Shot(std::list<Bullet*> magazine) {
 		auto radian = degree * DX_PI_F / 180;
 	
 		bullet->Set_X(vector3d.x);
-		bullet->Set_Y(vector3d.y);
+		bullet->Set_Z(vector3d.z);
 		bullet->Set_Speed(15);
 		bullet->Set_Radian(radian);
 		bullet->actor_state = eActor_State::Action;	

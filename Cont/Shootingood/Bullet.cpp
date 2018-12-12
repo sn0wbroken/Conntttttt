@@ -51,7 +51,7 @@ int Bullet::Get_Radius() {
 
 // ’e‚ÌˆÚ“®
 void Bullet::Move(float set_x, float set_y, float set_z) {
-	vector3d.Move(speed * cos(radian), speed * sin(radian), 0);
+	vector3d.Move(speed * cos(radian), 0.0f, speed * sin(radian));
 }
 
 // ”ò‚ñ‚Å‚¢‚­Šp“x‚ğİ’è‚·‚é

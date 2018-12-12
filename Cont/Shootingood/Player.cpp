@@ -23,7 +23,8 @@ Player::~Player() {}
 
 // ‰Šú‰»
 void Player::Initialize() {
-	vector3d.Arrange((define_value.WINDOW_X - define_value.UI_SPACE) / 2, define_value.WINDOW_Y / 2, 0);
+	// UI‚Ì•\¦ˆæ•ª‚¸‚ç‚·(ƒQ[ƒ€‰æ–Ê‚Ì’†S)
+	vector3d.Arrange(/*-define_value.UI_SPACE / 2*/0, 0, 0);
 	is_power_up = false;
 
 	is_dead = false;
