@@ -18,12 +18,12 @@ public:
 	void MoveAI0();
 
 #pragma region Getter
-	Enemy_Status GetEnemyStatus()
-	{
-		return *m_enemy->enemy_status;
-	}
+	//Enemy_Status GetEnemyStatus()
+	//{
+	//	return *m_enemy->enemy_status;
+	//}
 #pragma endregion
-	std::shared_ptr<Enemy> m_enemy;
+	std::shared_ptr<Enemy> enemy;
 private:
 	// ’è”‚ğ‚Ü‚Æ‚ß‚Ä‚¨‚­ƒNƒ‰ƒX
 	Define_Value define_value;
