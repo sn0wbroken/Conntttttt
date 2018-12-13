@@ -171,7 +171,9 @@
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TEST_GOD.cpp" />
     <ClCompile Include="Weapon.cpp" />
-    <ClCompile Include="MazeGenerator.cpp" />
+    <ClCompile Include="MazeGenerator.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_Action.cpp" />
     <ClCompile Include="Player_Manager.cpp" />
@@ -200,7 +202,6 @@
     <ClInclude Include="Enemy_Status.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Factory.h" />
-    <ClInclude Include="Math.h" />
     <ClInclude Include="Scene_Manager.h" />
     <ClInclude Include="Json_Reader.h" />
     <ClInclude Include="Key_Checker.h" />
@@ -211,7 +212,9 @@
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="TEST_GOD.h" />
     <ClInclude Include="Weapon.h" />
-    <ClInclude Include="MazeGenerator.h" />
+    <ClInclude Include="MazeGenerator.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player_Action.h" />
     <ClInclude Include="Player_Manager.h" />

@@ -28,7 +28,6 @@ public:
 
 	// 移動
 	void Move(float set_x, float set_y, float set_z);
-<<<<<<< HEAD
 	// 配置
 	void Arrange(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
 #pragma region operator
@@ -152,10 +151,8 @@ public:
 		return TempVector;
 	}
 #pragma endregion
-=======
 	// 値をセットする
 	void Set_Vector(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
 	// ノルム　ベクトルの長さ計算
-	void Norm2() const;
->>>>>>> ishikuraBranch
+	//void Norm2() const;
 };
