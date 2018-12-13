@@ -38,7 +38,7 @@ private:
 	// 初期化関数
 	void Initialize() override;
 
-	// キーの入力で弾を発射
+	// キー入力で攻撃を行う
 	void Fire();
 	// 状態に応じたボムを設定する
 	void Set_Bomb();
@@ -49,11 +49,13 @@ private:
 	void Check_Enable_Bomb();
 	// 画面外に出た弾をプールへもどす
 	void Return_Bullet_Pooling();
-	// 弾の飛距離限界点を求める
-	void Calculate_Distance_Limit();
 
+	// ボムを選択する
+	void Chose_Bomb();
 	// 全方位に弾を飛ばすボム
 	void Fullrange_Shot(std::list<Bullet*> magazine);
+	// 攻撃を降らす
+	void Rain(std::list<Bullet*> magazine);
 	
 	// 弾幕の種類
 	std::function<void()> bomb_type;
@@ -78,4 +80,7 @@ private:
 	// timerがこの数値に達したら撃った弾を消す
 	int clear_count;
 
+
+	//TEST
+	const float fire_range = 300;
 };

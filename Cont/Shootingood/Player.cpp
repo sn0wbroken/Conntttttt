@@ -24,7 +24,7 @@ Player::~Player() {}
 // ‰Šú‰»
 void Player::Initialize() {
 	// UI‚Ì•\¦ˆæ•ª‚¸‚ç‚·(ƒQ[ƒ€‰æ–Ê‚Ì’†S)
-	vector3d.Arrange(/*-define_value.UI_SPACE / 2*/0, 0, 0);
+	vector3d.Set_Vector(-define_value.UI_SPACE / 2, 0, 0);
 	is_power_up = false;
 
 	is_dead = false;

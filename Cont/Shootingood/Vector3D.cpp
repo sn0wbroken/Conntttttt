@@ -1,6 +1,8 @@
 #include "DxLib.h"
 #include "Vector3D.h"
 
+#include <cmath>
+
 // コンストラクタ
 Vector3D::Vector3D() {
 }
@@ -28,8 +30,7 @@ Vector3D::Vector3D(const DxLib::VECTOR & vec) {
 Vector3D::~Vector3D() {
 }
 
-DxLib::VECTOR Vector3D::GetVECTOR()
-{
+DxLib::VECTOR Vector3D::GetVECTOR() {
 	return VGet(x, y, z);
 }
 
@@ -40,7 +41,7 @@ void Vector3D::Move(float set_x, float set_y, float set_z) {
 	z += set_z;
 }
 // 配置
-void Vector3D::Arrange(float set_x, float set_y, float set_z) {
+void Vector3D::Set_Vector(float set_x, float set_y, float set_z) {
 	x = set_x;
 	y = set_y;
 	z = set_z;

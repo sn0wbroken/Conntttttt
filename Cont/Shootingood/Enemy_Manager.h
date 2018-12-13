@@ -1,6 +1,12 @@
 #pragma once
 
+<<<<<<< HEAD
 #include"Enemy_Controller.h"
+=======
+#include"Enemy.h"
+#include"Vector3D.h"
+#include"Enemy_AI.h"
+>>>>>>> ishikuraBranch
 #include"Enemy_Status.h"
 #include"Define_Value.h"
 #include"Unique_Component.h"
@@ -26,6 +32,9 @@ public:
 
 	// デストラクタ
 	~Enemy_Manager() {}
+
+	// 座標
+	Vector3D position;
 
 private:
 	// コンストラクタ

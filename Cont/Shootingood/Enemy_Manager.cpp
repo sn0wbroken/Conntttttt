@@ -12,7 +12,10 @@ void Enemy_Manager::Update() {
 
 // 敵を配置
 void Enemy_Manager::Enemy_Arrange() {
-	std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(200, 200);
+	position.x = 0;
+	position.y = 0;
+	position.z = 0;
+	std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(position);
 }
 
 // 敵が全滅しているかを返す。全滅でtrue

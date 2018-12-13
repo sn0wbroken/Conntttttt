@@ -1,6 +1,6 @@
-#include "RandomNumGenerator.h"
+#include "Random_Number_Generator.h"
 
-int Utility::NumGenerator::GenerateNum(int Min, int Max)
+int Utility::Number_Generator::Generate_Number(int Min, int Max)
 {
 	//メルセンヌツイスターを使うため変数を作成
 	std::uniform_int_distribution<> random(Min, Max); //範囲決定

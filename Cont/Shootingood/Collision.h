@@ -1,5 +1,7 @@
 #pragma once
 
+#include"Vector3D.h"
+
 // 当たり判定を行う
 class Collision {
 public:
@@ -16,4 +18,7 @@ public:
 
 	// エネミーとプレイヤーの弾の当たり判定
 	bool Enemy_To_Player_Bullet(int right_edge, int left_edge, int top_edge, int bottom_edge, int bullet_position_x, int bullet_position_y, int bullet_radius);
+
+	// 線分と面の当たり判定
+	bool Line_To_Face(int norm_1, int norm_2, Vector3D normal_vector);
 };

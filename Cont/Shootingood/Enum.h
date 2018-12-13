@@ -20,7 +20,7 @@ enum class eMove_Direction {
 enum class eBomb_Type {
 	None, // ボム未所持状態
 	Fullrange, // 全方位に弾を飛ばす
-	Fuga
+	Rain // 攻撃を降らす
 };
 
 // プレイするステージ

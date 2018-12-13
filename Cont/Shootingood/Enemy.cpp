@@ -5,12 +5,12 @@
 Enemy::Enemy() {}
 
 // コピーコンストラクタ
-Enemy::Enemy(float set_x, float set_y) {
+Enemy::Enemy(Vector3D position) {
 	// プレイするステージを取得
 	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
 
-	// 配置
-	vector3d.Arrange(set_x, set_y, 0);
+	//座標を設定
+	vector3d.Set_Vector(position.z, position.y, 0);
 
 	// エネミーの幅
 	width = define_value.ENEMY_WIDTH;
