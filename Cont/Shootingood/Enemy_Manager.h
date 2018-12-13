@@ -1,6 +1,7 @@
 #pragma once
 
 #include"Enemy.h"
+#include"Vector3D.h"
 #include"Enemy_AI.h"
 #include"Enemy_Status.h"
 #include"Define_Value.h"
@@ -28,6 +29,9 @@ public:
 
 	// デストラクタ
 	~Enemy_Manager() {}
+
+	// 座標
+	Vector3D position;
 
 private:
 	// コンストラクタ

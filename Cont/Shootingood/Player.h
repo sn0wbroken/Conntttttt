@@ -27,7 +27,7 @@ public:
 
 private:
 	// 矩形クラス
-	Rect<float> rectangle;
+	Rect* rectangle;
 
 	// 死亡判定。死んでいたらtrue
 	bool is_dead;

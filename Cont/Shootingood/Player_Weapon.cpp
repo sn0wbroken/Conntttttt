@@ -1,6 +1,7 @@
+#include"Bullet.h"
 #include"Player_Weapon.h"
 #include"Player_Manager.h"
-#include"Bullet.h"
+#include "Random_Number_Generator.h"
 
 // コンストラクタ
 Player_Weapon::Player_Weapon() : 
@@ -25,12 +26,11 @@ void Player_Weapon::Initialize() {
 	// 中心座標を取得
 	center_position = player->vector3d;
 	// 銃口の座標を設定
-	vector3d.Arrange(center_position.x - 1.5, center_position.y + 16, center_position.z - radius);
+	vector3d.Set_Vector(center_position.x - 1.5, center_position.y + 16, center_position.z - radius);
 
-	// 飛距離限界は銃口の座標を基準点とする
-	distance_limit = vector3d;
-	// 初期位置での弾の飛距離限界点を求める
-	Calculate_Distance_Limit();
+	// 通常攻撃の射程を設定する
+	distance_limit.x -= fire_range * cos(radian);
+	distance_limit.z -= fire_range * sin(radian);
 
 	// 弾丸をプーリング
 	for (int i = 0; i < define_value.MAX_BULLET; ++i) {
@@ -38,6 +38,11 @@ void Player_Weapon::Initialize() {
 		bullet->actor_state = eActor_State::Break;
 		player->magazine.push_back(bullet);
 	}
+
+	// 初期ボムを設定
+	bomb_type = [&]() {
+		Fullrange_Shot(player->magazine);
+	};
 }
 
 // 更新処理
@@ -46,7 +51,8 @@ void Player_Weapon::Update() {
 	Fire();
 	// キー入力で銃口を回転させる
 	Rotation();
-
+	// ボムを選択する
+	Chose_Bomb();
 	// ボムの弾が有効かどうかを判断する
 	Check_Enable_Bomb();
 
@@ -56,21 +62,19 @@ void Player_Weapon::Update() {
 
 // 描画
 void Player_Weapon::Render() {
-	// 通常射撃の照準(弾の軌道)を線分で描画
-	DrawLine3D(vector3d.GetVECTOR(), distance_limit.GetVECTOR(), GetColor(255, 0, 0));
-	
 	// 撃ち出したボムの弾を描画
 	for (auto bullet : bomb_bullets) {
 		bullet->Render();
 	}
 }
 
-// 弾を生成(発射)
+// 攻撃を行う
 void Player_Weapon::Fire() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
-		ebomb_type = eBomb_Type::Fullrange;
-		//TODO:今は1種なので適当に撃った瞬間に関数を代入してる
-		Set_Bomb();
+		// 通常攻撃
+	}
+
+	if (CheckHitKey(KEY_INPUT_RETURN)) {
 		bomb_type();
 		living_bomb = true;
 	}
@@ -86,6 +90,8 @@ void Player_Weapon::Set_Bomb() {
 			case eBomb_Type::Fullrange:
 				Fullrange_Shot(player->magazine);
 				break;
+			case eBomb_Type::Rain:
+				Rain(player->magazine);
 			default: break;
 		}
 	};
@@ -112,9 +118,6 @@ void Player_Weapon::Rotation() {
 		vector3d.x = center_position.x + radius * cos(radian);
 		vector3d.z = center_position.z + radius * sin(radian);
 	}
-
-	// 弾の飛距離限界点を求める
-	Calculate_Distance_Limit();
 }
 
 // ボムの弾が有効かどうかを判断する
@@ -138,21 +141,16 @@ void Player_Weapon::Return_Bullet_Pooling() {
 	}
 }
 
-// 弾の飛距離限界点を求める
-void Player_Weapon::Calculate_Distance_Limit() {
-	// 基準座標を取得
-	distance_limit = vector3d;
-
-	// 向いている方向へ点を打っていき、画面端へ到達した座標を飛距離限界点とする
-	//while (true) {
-	//	if (distance_limit.x >= define_value.MAX_SCREEN_X || distance_limit.x <= define_value.MIN_SCREEN_X ||
-	//		distance_limit.y >= define_value.WINDOW_Y     || distance_limit.y <= define_value.MIN_WINDOW_Y) {
-	//		break;
-	//	}
-
-		distance_limit.x -= 300 * cos(radian);
-		distance_limit.z -= 300 * sin(radian);
-	//}
+// ボムを選択する
+void Player_Weapon::Chose_Bomb() {
+	//TODO: ボムの撃てる条件を決める とりあえず2種類打てるようにしておく
+	if (CheckHitKey(KEY_INPUT_RIGHT)) {
+		ebomb_type = eBomb_Type::Fullrange;
+	}
+	else if (CheckHitKey(KEY_INPUT_LEFT)) {
+		ebomb_type = eBomb_Type::Rain;
+	}
+	Set_Bomb();
 }
 
 // 全方位に弾を飛ばすボム
@@ -172,12 +170,39 @@ void Player_Weapon::Fullrange_Shot(std::list<Bullet*> magazine) {
 	
 		bullet->Set_X(vector3d.x);
 		bullet->Set_Z(vector3d.z);
-		bullet->Set_Speed(15);
+		bullet->Set_Speed(15,0,15);
 		bullet->Set_Radian(radian);
-		bullet->actor_state = eActor_State::Action;	
+		bullet->actor_state = eActor_State::Action;
 		
 		degree += 360 / 20;
 		
 		clear_count = 30;
+	}
+}
+
+// 攻撃を降らす
+void Player_Weapon::Rain(std::list<Bullet*> magazine) {
+	// ランダマイザー
+	Utility::Number_Generator *random_number;
+	random_number = new Utility::Number_Generator;
+
+	for (int i = 0; i < 30; ++i) {
+		bullet = player->magazine.back();
+		bomb_bullets.push_back(bullet);
+		player->magazine.pop_back();
+	}
+
+	for (auto bullet : bomb_bullets) {
+		// 弧度法に変換
+		auto radian = 180 * DX_PI_F / 180;
+
+		bullet->Set_X(random_number->Generate_Number(-300, 300));
+		bullet->Set_Y(random_number->Generate_Number(400, 800));
+		bullet->Set_Z(random_number->Generate_Number(-300, 300));
+		bullet->Set_Speed(0, -10, 0);
+		bullet->Set_Radian(radian);
+		bullet->actor_state = eActor_State::Action;	
+
+		clear_count = 100;
 	}
 }

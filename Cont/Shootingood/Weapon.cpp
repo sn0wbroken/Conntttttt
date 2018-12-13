@@ -17,8 +17,3 @@ void Weapon::Initialize() {
 	// q‚à‰ñ‚·
 	Actor::Initialize();
 }
-
-// UŒ‚‚ğs‚¤
-void Weapon::Attack() {
-	
-}

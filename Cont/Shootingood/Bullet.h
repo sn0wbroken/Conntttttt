@@ -32,11 +32,11 @@ public:
 	int Get_Radius();
 
 	// ’e‚ÌˆÚ“®
-	void Move(float x = 0.0f, float y = 0.0f, float z = 0.0f);
+	void Move(float speed_x = 0.0f, float speed_y = 0.0f, float speed_z = 0.0f);
 	// ”ò‚ñ‚Å‚¢‚­Šp“x‚ğİ’è‚·‚é
 	void Set_Radian(float set_radian);
 	// ”ò‚ñ‚Å‚¢‚­‘¬“x‚ğİ’è‚·‚é
-	void Set_Speed(float set_speed);
+	void Set_Speed(float set_speed_x, float set_speed_y , float set_speed_z);
 	// ’eŠÛ‚ª•\¦”ÍˆÍŠO‚Éo‚Ä‚¢‚é‚©‚ğ”»’f
 	bool Off_Screen();
 
@@ -46,7 +46,7 @@ private:
 	// ”ò‚ñ‚Å‚¢‚­Šp“x
 	float radian;
 	// ”ò‚ñ‚Å‚¢‚­‘¬“x
-	float speed;
+	Vector3D speed;
 
 	//’e‚Ìi‚Ş•ûŒü
 	Vector3D Direction;

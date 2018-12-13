@@ -12,7 +12,4 @@ public:
 
 	// ‰Šú‰»
 	void Initialize() override;
-
-	// UŒ‚‚ğs‚¤
-	void Attack();
 };

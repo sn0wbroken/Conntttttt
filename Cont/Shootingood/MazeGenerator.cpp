@@ -1,5 +1,5 @@
 #include "MazeGenerator.h"
-#include "RandomNumGenerator.h"
+#include "Random_Number_Generator.h"
 
 Maze::MazeData::MazeData()
 {}
@@ -18,15 +18,15 @@ void Maze::MazeData::setMazeSize(const int height, const int width)
 void Maze::MazeData::MazeGenerator()
 {
 	//ランダマイザー
-	Utility::NumGenerator *randomNum;
-	randomNum = new Utility::NumGenerator;
+	Utility::Number_Generator *random_number;
+	random_number = new Utility::Number_Generator;
 	//Maze 作成アルゴリズム
 	//偶数になるとずれるので奇数になるように。
 	do {
-		m_info.m_width = randomNum->GenerateNum(31, maxheight);
+		m_info.m_width = random_number->Generate_Number(31, maxheight);
 	} while (m_info.m_width % 2 != 1);
 	do {
-		m_info.m_height = randomNum->GenerateNum(31,maxwidth);
+		m_info.m_height = random_number->Generate_Number(31,maxwidth);
 	} while (m_info.m_height % 2 != 1);
 	//外側へ壁を挿入
 	for (int x = 0; x < m_info.m_width; x++) {
@@ -50,10 +50,10 @@ void Maze::MazeData::MazeGenerator()
 			{
 				int direction; //方向変数
 				if (x == 2) {
-					direction = randomNum->GenerateNum(0, 3); //方向
+					direction = random_number->Generate_Number(0, 3); //方向
 				}
 				else {
-					direction = randomNum->GenerateNum(0, 2);//方向
+					direction = random_number->Generate_Number(0, 2);//方向
 				}
 				int wallX = x;//x座標
 				int wallY = y;//y座標

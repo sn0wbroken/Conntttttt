@@ -20,3 +20,9 @@ bool Collision::Enemy_To_Player_Bullet(int right_edge, int left_edge, int top_ed
 		right_edge >= bullet_position_x - bullet_radius && left_edge <= bullet_position_x + bullet_radius &&
 		top_edge <= bullet_position_y - bullet_radius && bottom_edge >= bullet_position_y + bullet_radius;
 }
+
+// ê¸ï™Ç∆ñ ÇÃìñÇΩÇËîªíË
+bool Collision::Line_To_Face(int norm_1, int norm_2, Vector3D normal_vector) {
+	return (norm_1 * normal_vector.x + norm_1 * normal_vector.y + norm_1 * normal_vector.z) *
+		   (norm_2 * normal_vector.x + norm_2 * normal_vector.y + norm_2 * normal_vector.z) <= 0;
+}

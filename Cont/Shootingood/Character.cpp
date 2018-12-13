@@ -43,7 +43,7 @@ int Character::Get_Height() {
 
 // oŒ»ˆÊ’u‚ğİ’è‚·‚é
 void Character::Set_Arrange_Poisition(float set_x, float set_y, float set_z) {
-	vector3d.Arrange(set_x, set_y, set_z);
+	vector3d.Set_Vector(set_x, set_y, set_z);
 }
 
 // vector‚ğİ’è‚·‚é

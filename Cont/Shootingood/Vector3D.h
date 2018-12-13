@@ -20,13 +20,13 @@ public:
 	float y;
 	// z座標
 	float z;
-	// DxlibのVECTORを使う
+	// DxlibのVECTORを使う(Dxlibの機能でこの型を扱うものが多い為合わせる)
 	VECTOR GetVECTOR();
 
 	// 移動
 	void Move(float set_x, float set_y, float set_z);
-	// 配置
-	void Arrange(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
+	// 値をセットする
+	void Set_Vector(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
 	// ノルム　ベクトルの長さ計算
 	void Norm2() const;
 };
