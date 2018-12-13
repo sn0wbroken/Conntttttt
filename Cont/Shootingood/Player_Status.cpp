@@ -2,7 +2,6 @@
 
 // コンストラクタ
 Player_Status::Player_Status() {
-	speed = define_value.PLAYER_SPEED;
 	attack = define_value.PLAYER_ATTACK;
 	life = define_value.PLAYER_INITIALIZE_LIFE;
 }
@@ -24,11 +23,6 @@ void Player_Status::Reset_Life() {
 // 残機を返す
 int Player_Status::Get_Life() {
 	return life;
-}
-
-// speedを返す
-int Player_Status::Get_Speed() {
-	return speed;
 }
 
 // 死んでいるかを返す

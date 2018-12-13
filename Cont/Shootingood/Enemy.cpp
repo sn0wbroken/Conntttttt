@@ -10,7 +10,7 @@ Enemy::Enemy(float set_x, float set_y) {
 	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
 
 	// 配置
-	vector3.Arrange(set_x, set_y, 0);
+	vector3d.Arrange(set_x, set_y, 0);
 
 	// エネミーの幅
 	width = define_value.ENEMY_WIDTH;
@@ -22,7 +22,7 @@ Enemy::Enemy(float set_x, float set_y) {
 
 	// TODO:画像の用意がまだなので
 	Create_Actor("Resources/Player/Bullet.x");
-	MV1SetPosition(model_handle, VGet(vector3.x, vector3.y, vector3.z));
+	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
 	// エネミーの大きさを指定
 	MV1SetScale(model_handle, VGet(40.0f, 40.0f, 35.0f));
 	// エネミーの表示角度を調整

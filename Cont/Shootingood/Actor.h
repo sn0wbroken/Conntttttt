@@ -19,16 +19,16 @@ public:
 	~Actor();
 
 	// アクターの状態を設定する
-	eActor_Status actor_status;
+	eActor_State actor_state;
 
 	// アクターオブジェクトを生成する
 	virtual void Create_Actor(TCHAR* model_path);
 	// 初期化を行う
 	virtual void Initialize();
-	// アクティブなアクターを描画する
-	virtual void Render();
 	// 毎フレーム入る更新処理
 	virtual void Update();
+	// アクティブなアクターを描画する
+	virtual void Render();
 
 	// 子を追加する。インスタンスが生成されたときに呼ばれる
 	void Add_Child(std::shared_ptr<Actor> const actor);
@@ -43,4 +43,3 @@ protected:
 	// 派生クラスを子として持っておく
 	std::list<std::shared_ptr<Actor>> children;
 };
-

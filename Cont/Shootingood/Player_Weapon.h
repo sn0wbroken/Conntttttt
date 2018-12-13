@@ -10,7 +10,7 @@
 #include<memory>
 #include<functional>
 
-// プレイヤーが扱う武器(攻撃)のクラス TODO:プレイヤーの仕様が固まってないのでひとまず抽象的な名前で
+// プレイヤーが扱う武器(攻撃)のクラス
 class Player_Weapon : public Weapon {
 public:
 	// コンストラクタ
@@ -20,9 +20,16 @@ public:
 
 	// 更新処理
 	void Update() override;
+	// 描画
+	void Render() override;
 
 	// プレイヤーのショットタイプ
-	eBom_Type ebom_type;
+	eBomb_Type ebomb_type;
+
+	// プールから取り出したものを入れる入れ物
+	Bullet* bullet;
+	// プールから取得した撃ち出す弾をまとめる
+	std::list<Bullet*> bomb_bullets;
 
 private:
 	std::shared_ptr<Player> player;
@@ -33,19 +40,42 @@ private:
 
 	// キーの入力で弾を発射
 	void Fire();
-	// キーの入力で攻撃の種類を切り替える。毎フレーム受付ける
-	void Change_Fire_Type();
-	// 状態に応じたショットを設定する
-	void Set_Shot_Pattern();
+	// 状態に応じたボムを設定する
+	void Set_Bomb();
+	// 銃口の位置を変える
+	void Rotation();
 
+	// ボムの弾が有効かどうかを判断する
+	void Check_Enable_Bomb();
+	// 画面外に出た弾をプールへもどす
+	void Return_Bullet_Pooling();
+	// 弾の飛距離限界点を求める
+	void Calculate_Distance_Limit();
+
+	// 全方位に弾を飛ばすボム
+	void Fullrange_Shot(std::list<Bullet*> magazine);
+	
 	// 弾幕の種類
-	std::function<void()> bom_type;
-	// 角度
+	std::function<void()> bomb_type;
+	
+	// 回転の中心(プレイヤーの中心に同じ)
+	Vector3D center_position;
+	// 弾が飛ぶ最大地点
+	Vector3D distance_limit;
+
+	// 度数法
+	float degree;
+	// 弧度法
 	float radian;
-	// 弾が発射される位置
-	double position_x;
-	// sin波を作るために加算する値
-	int counter;
-	// 振れ幅
-	double amplitude;
+	// 半径(中心から銃口までの)
+	float radius;
+
+	// ボムの攻撃が継続しているかどうかのフラグ
+	bool living_bomb;
+
+	// 弾を撃った瞬間からカウント開始
+	int timer;
+	// timerがこの数値に達したら撃った弾を消す
+	int clear_count;
+
 };

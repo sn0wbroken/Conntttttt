@@ -32,7 +32,7 @@ public:
 	int Get_Height();
 
 	Vector3D Get_Vector3D() {
-		return vector3;
+		return vector3d;
 	}
 
 	// 出現位置を設定する
@@ -53,9 +53,7 @@ public:
 	int &Get_Model_Handle();
 
 protected:
-	// 自分のいる座標
-	Vector3D vector3;
-	// 自分の重心の座標
+	// 自分のちゅうしｎの座標
 	Vector3D center_position;
 
 	// 定数をまとめておくクラス

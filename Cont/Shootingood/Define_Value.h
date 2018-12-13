@@ -1,5 +1,7 @@
 #pragma once
 
+#include"DxLib.h"
+
 // 定数をまとめる
 class Define_Value {
 public:
@@ -38,6 +40,7 @@ public:
 	// 調整用変数 UIの表示位置に使用
 	static constexpr float  ADJUSTMENT_VALUE = 1.0f;
 
+
 #pragma region プレイヤー
 
 	// プレイヤーの最大体力
@@ -46,7 +49,7 @@ public:
 	static constexpr float PLAYER_WIDTH = 48.0f;
 	// プレイヤーの大きさ(高さ)
 	static constexpr float PLAYER_HEIGHT = 48.0f;
-	// プレイヤーの移動速度
+	// プレイヤーの回転速度(度数法6)
 	static constexpr float PLAYER_SPEED = 6.0f;
 	// プレイヤーの攻撃力
 	static const int PLAYER_ATTACK = 1;
@@ -56,6 +59,8 @@ public:
 	static const int PLAYER_INITIALIZE_LIFE = 3;
 	// プレイヤーの回転速度
 	static constexpr float PLAYER_ROTATE_SPEED = 6.0f;
+	// プレイヤーが飛ばす弾の最大保持数(ボムの時に使う)
+	static const int MAX_BULLET = 100;
 
 #pragma endregion
 
@@ -93,4 +98,7 @@ public:
 	static const int MAX_PAGE_NUBER = 2;
 
 #pragma endregion
+
+	//TEST
+	static constexpr float ROTATION_VALUE = 6;
 };

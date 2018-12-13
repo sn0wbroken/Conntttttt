@@ -19,8 +19,8 @@ Main_Scene::Main_Scene() {
 	
 	UI_class = std::make_shared<UI>();
 	
-	y1 = 0;
-	y2 = -define_value.MAX_WINDOW_Y;
+	x1 = 0;
+	x2 = -define_value.MIN_SCREEN_X;
 
 	// メインに入った時はインターバルとする
 	is_interval = true;
@@ -79,14 +79,6 @@ void Main_Scene::Update() {
 
 // メインシーンに必要なものを描画
 void Main_Scene::Render() {
-	// 背景の描画 
-	DrawExtendGraph(0, y1,
-		define_value.WINDOW_X - define_value.UI_SPACE, y1 + define_value.WINDOW_Y,
-		background_graph, TRUE);
-	DrawExtendGraph(0, y2,
-		define_value.WINDOW_X - define_value.UI_SPACE, y2 + define_value.WINDOW_Y,
-		background_graph, TRUE);
-
 	// UIの描画
 	UI_class->Render();
 	// オブジェクトの描画
@@ -106,15 +98,15 @@ void Main_Scene::Render() {
 
 // 背景の画像を動かす
 void Main_Scene::Scroll() {
-	++y1;
-	++y2;
+	++x1;
+	++x2;
 
 	// 画面から完全に出切ったタイミングでもう1枚の背景の上に動かす
-	if (y1 >= define_value.MAX_WINDOW_Y) {
-		y1 = -define_value.MAX_WINDOW_Y;
+	if (x1 >= define_value.MAX_SCREEN_X) {
+		x1 = -define_value.MAX_SCREEN_X;
 	}
-	if (y2 >= define_value.MAX_WINDOW_Y) {
-		y2 = -define_value.MAX_WINDOW_Y;
+	if (x2 >= define_value.MAX_SCREEN_X) {
+		x2 = -define_value.MAX_SCREEN_X;
 	}
 }
 

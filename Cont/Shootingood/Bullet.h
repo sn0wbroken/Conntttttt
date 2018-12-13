@@ -9,12 +9,10 @@
 class Bullet : public Actor {
 public:
 	// コンストラクタ
-	Bullet(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f, float set_direction_x = 0.0f, float set_direction_y = 0.0f, float set_direction_z = 0.0f);
+	Bullet();
 	// デストラクタ
 	~Bullet();
 
-	// 毎フレーム呼ばれる
-	void Update() override;
 	// 描画
 	void Render() override;
 
@@ -35,17 +33,23 @@ public:
 
 	// 弾の移動
 	void Move(float x = 0.0f, float y = 0.0f, float z = 0.0f);
+	// 飛んでいく角度を設定する
+	void Set_Radian(float set_radian);
+	// 飛んでいく速度を設定する
+	void Set_Speed(float set_speed);
+	// 弾丸が表示範囲外に出ているかを判断
+	bool Off_Screen();
 
 private:
-	//現在の座標
-	Vector3D vector3;
 	// 弾の半径
 	int radius;
+	// 飛んでいく角度
+	float radian;
+	// 飛んでいく速度
+	float speed;
+
 	//弾の進む方向
 	Vector3D Direction;
-
-	// 定数をまとめておくクラス
-	Define_Value define_value;
 	
 	// 画面右端から出ようとしてないか
 	bool Is_Over_Max_X();
@@ -55,6 +59,4 @@ private:
 	bool Is_Over_Min_X();
 	// 画面左端から出ようとしてないか
 	bool Is_Over_Min_Y();
-	// 弾丸が表示範囲外に出ているかを判断
-	bool Bullet_Off_Screen(Bullet& player_bullet);
 };

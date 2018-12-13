@@ -17,9 +17,9 @@ enum class eMove_Direction {
 
 // TODO:ボムの実装に合わせる
 // プレイヤーのボムのタイプ
-enum class eBom_Type {
+enum class eBomb_Type {
 	None, // ボム未所持状態
-	Hoge,
+	Fullrange, // 全方位に弾を飛ばす
 	Fuga
 };
 
@@ -31,7 +31,7 @@ enum class eStage {
 };
 
 // アクターの状態。これを見て描画などの更新処理を行う
-enum class eActor_Status {
+enum class eActor_State {
 	Action,
 	Break
 };

@@ -12,10 +12,10 @@ Player::Player() {
 
 	// モデルを取得
 	Create_Actor("Resources/Player/Player.x");
-	// プレイヤーの座標を指定
-	MV1SetPosition(model_handle, VGet(vector3.x, vector3.y, 0.0f));
+	// プレイヤーの座標を指定 
+	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, 0.0f));
 	// プレイヤーの表示角度を調整
-	MV1SetRotationXYZ(model_handle, VGet(270 * (DX_PI_F / 180), 0.0f, 180 * (DX_PI_F / 180)));
+	MV1SetRotationXYZ(model_handle, VGet(0,0,0));
 }
 
 // デストラクタ
@@ -23,7 +23,8 @@ Player::~Player() {}
 
 // 初期化
 void Player::Initialize() {
-	vector3.Arrange((define_value.WINDOW_X - define_value.UI_SPACE) / 2, define_value.WINDOW_Y / 2, 0);
+	// UIの表示域分ずらす(ゲーム画面の中心)
+	vector3d.Arrange(/*-define_value.UI_SPACE / 2*/0, 0, 0);
 	is_power_up = false;
 
 	is_dead = false;

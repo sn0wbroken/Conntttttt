@@ -17,12 +17,10 @@ public:
 	~CSV_Reader() {}
 
 	// ファイルの読み込みを行う
-
 	std::vector<std::vector <std::string>> Read_File(std::string file_pass) {
 		auto ifstream = std::ifstream();
 		// ファイルを読み込む
 		ifstream.open(file_pass);
-		//assert(ifstream.fail);
 		// 行
 		std::string row;
 
@@ -32,14 +30,14 @@ public:
 		// 読んだいらない行を破棄する
 		ifstream.clear();
 		// 読み取った完成系を格納
-		std::vector<std::vector<std::string>> Array;
-		Array.resize(30);
+		std::vector<std::vector<std::string>> array;
+		array.resize(30);
 		// ファイルの終わりまで読む(ここではExcelの１行ずつになる)
 		while (!std::getline(ifstream, row).eof()) {
 			// ","をデリミタとして行を小分けにする
-			Array.push_back(Parse(row, ","));
+			array.push_back(Parse(row, ","));
 		}
-		return Array;
+		return array;
 	}
 
 	// 第一引数に取った文字列を、第二引数のデリミタで区切ったものを分ける
