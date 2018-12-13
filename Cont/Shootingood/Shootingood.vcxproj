@@ -200,6 +200,7 @@
     <ClInclude Include="Enemy_Status.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="Math.h" />
     <ClInclude Include="Scene_Manager.h" />
     <ClInclude Include="Json_Reader.h" />
     <ClInclude Include="Key_Checker.h" />
@@ -207,7 +208,6 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Manual.h" />
     <ClInclude Include="Player_Weapon.h" />
-    <ClInclude Include="Singleton.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="TEST_GOD.h" />
     <ClInclude Include="Weapon.h" />

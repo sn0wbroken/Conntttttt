@@ -1,32 +1,41 @@
+<<<<<<< HEAD
+#include"MazeGenerator.h"
+#include"RandomNumGenerator.h"
+=======
 #include "MazeGenerator.h"
 #include "Random_Number_Generator.h"
+>>>>>>> ishikuraBranch
 
-Maze::MazeData::MazeData()
-{}
-Maze::MazeData::MazeData(const int height, const int width)
-{
-	setMazeSize(height,width);
+Maze::MazeData::MazeData(){
+}
+Maze::MazeData::MazeData(const int height, const int width){
+	set_MazeSize(height,width);
 }
 
-void Maze::MazeData::setMazeSize(const int height, const int width)
-{
-	maxheight = height;
-	maxwidth = width;
+void Maze::MazeData::set_MazeSize(const int height, const int width){
+	m_maxheight = height;
+	m_maxwidth = width;
 	m_info.m_data.assign(static_cast<size_t> (height * width), 0);
 }
 
-void Maze::MazeData::MazeGenerator()
-{
+void Maze::MazeData::MazeGenerator(){
 	//ランダマイザー
 	Utility::Number_Generator *random_number;
 	random_number = new Utility::Number_Generator;
 	//Maze 作成アルゴリズム
 	//偶数になるとずれるので奇数になるように。
 	do {
+<<<<<<< HEAD
+		m_info.m_width = randomNum->GenerateNum(31, m_maxheight);
+	} while (m_info.m_width % 2 != 1);
+	do {
+		m_info.m_height = randomNum->GenerateNum(31,m_maxwidth);
+=======
 		m_info.m_width = random_number->Generate_Number(31, maxheight);
 	} while (m_info.m_width % 2 != 1);
 	do {
 		m_info.m_height = random_number->Generate_Number(31,maxwidth);
+>>>>>>> ishikuraBranch
 	} while (m_info.m_height % 2 != 1);
 	//外側へ壁を挿入
 	for (int x = 0; x < m_info.m_width; x++) {
@@ -88,7 +97,6 @@ void Maze::MazeData::MazeGenerator()
 	m_info.m_data[(m_info.m_width - 2) + ((m_info.m_height - 2) * m_info.m_width)] = Goal;
 }
 
-Maze::MazeDataInfo Maze::MazeData::GetInfo()
-{
+Maze::MazeDataInfo Maze::MazeData::GetInfo(){
 	return m_info;
 }

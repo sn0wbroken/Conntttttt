@@ -7,6 +7,13 @@
 Vector3D::Vector3D() {
 }
 
+Vector3D::Vector3D(float _x, float _y, float _z)
+{
+	x = _x;
+	y = _y;
+	z = _z;
+}
+
 Vector3D::Vector3D(const Vector3D &vec) {
 	x = vec.x;
 	y = vec.y;
@@ -38,9 +45,4 @@ void Vector3D::Set_Vector(float set_x, float set_y, float set_z) {
 	x = set_x;
 	y = set_y;
 	z = set_z;
-}
-
-void Vector3D::Norm2() const
-{
-	
 }

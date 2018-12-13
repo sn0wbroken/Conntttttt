@@ -251,6 +251,9 @@
     <ClInclude Include="Scene_Manager.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Math.h">
+=======
     <ClInclude Include="Rectangle.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -261,14 +264,12 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Random_Number_Generator.h">
+>>>>>>> ishikuraBranch
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MazeGenerator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Singleton.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
