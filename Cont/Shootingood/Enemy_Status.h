@@ -31,6 +31,8 @@ public:
 	bool Is_Dead();
 	// ダメージ判定を元に戻す
 	void Initialize_Is_Damage();
+	// ヒットポイントを元に戻す。
+	void Initialize_HitPoint();
 	// ダメージを受けたかどうかを返す
 	bool Is_Damage();
 

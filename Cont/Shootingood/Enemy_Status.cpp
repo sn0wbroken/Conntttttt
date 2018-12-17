@@ -53,6 +53,11 @@ void Enemy_Status::Initialize_Is_Damage() {
 	is_damage = false;
 }
 
+void Enemy_Status::Initialize_HitPoint()
+{
+	hit_point = define_value.ENEMY_MAX_HP;
+}
+
 // ƒ_ƒ[ƒW‚ğó‚¯‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·
 bool Enemy_Status::Is_Damage() {
 	return is_damage;

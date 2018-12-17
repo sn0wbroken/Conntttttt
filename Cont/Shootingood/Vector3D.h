@@ -130,21 +130,21 @@ public:
 	//ベクトルのノーマライズ
 	static Vector3D normalize(Vector3D vector)
 	{
-		float mag = 1 / Norm2(vector);
+		float mag = 1 / (float)Norm2(vector);
 		float _x = vector.x * mag;
 		float _y = vector.y * mag;
 
 		return Vector3D(VGet(_x, _y, 0));
 	}
 	//内積計算
-	static Vector3D dot(Vector3D vector,Vector3D vector2)
+	static float dot(Vector3D vector,Vector3D vector2)
 	{
 		float a[] = { vector.x,vector.y,vector.z };
 		float b[] = { vector2.x,vector2.y,vector2.z };
 		//スタンダードライブラリの内積計算
-		std::inner_product(a, a + sizeof(a) / sizeof(a[0]), b, 0);
+		float result = std::inner_product(a, a + sizeof(a) / sizeof(a[0]), b, 0);
 
-		return Vector3D();
+		return result;
 	}
 	//クロス積計算
 	static Vector3D cross(Vector3D vector,Vector3D vector2)
