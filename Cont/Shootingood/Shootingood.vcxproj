@@ -172,6 +172,7 @@
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="MazeGenerator.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player_Action.cpp" />

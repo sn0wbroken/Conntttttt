@@ -102,11 +102,17 @@ public:
 
 		return tmp;
 	}
-	//ノルム化
-	static double Norm2(double _x, double _y)
+	//ノルム化 個別指定バージョン
+	static double Norm2(double _x, double _y,double _z)
 	{
-		return sqrt(_x * _x + _y * _y);
+		return sqrt(_x * _x + _y * _y + _z * _z);
 	}
+	//ノルム化　Vector指定バージョン
+	static double Norm2(Vector3D vector)
+	{
+		return sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+	}
+
 	//平方根計算（バビロニア人メソッド）
 	static double sqrt(double s)
 	{
@@ -124,7 +130,7 @@ public:
 	//ベクトルのノーマライズ
 	static Vector3D normalize(Vector3D vector)
 	{
-		float mag = 1 / Norm2(vector.x, vector.y);
+		float mag = 1 / Norm2(vector);
 		float _x = vector.x * mag;
 		float _y = vector.y * mag;
 
