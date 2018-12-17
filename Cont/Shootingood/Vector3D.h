@@ -154,5 +154,5 @@ public:
 	// 値をセットする
 	void Set_Vector(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
 	// ノルム　ベクトルの長さ計算
-	void Norm2() const;
+	//void Norm2() const;
 };

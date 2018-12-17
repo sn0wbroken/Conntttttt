@@ -15,8 +15,8 @@ TEST_GOD::TEST_GOD() {
 	actor->Add_Child(weapon);
 	weapon->Add_Child(player_manager->player_weapon);
 
-	enemy_controller = make_shared<Enemy_Controller>();
-	actor->Add_Child(enemy_controller);
+//	enemy_controller = make_shared<Enemy_Controller>();
+//	actor->Add_Child(enemy_controller);
 }
 
 TEST_GOD::~TEST_GOD()

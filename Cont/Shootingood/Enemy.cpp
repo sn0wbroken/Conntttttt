@@ -10,7 +10,7 @@ Enemy::Enemy(Vector3D position) {
 	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
 
 	//座標を設定
-	vector3d.Set_Vector(position.z, position.y, 0);
+	vector3d.Set_Vector(position.x, position.y, position.z);
 
 	// エネミーの幅
 	width = define_value.ENEMY_WIDTH;
@@ -21,7 +21,7 @@ Enemy::Enemy(Vector3D position) {
 	enemy_status = std::make_shared<Enemy_Status>(scene_manager->Get_Stage());
 
 	// TODO:画像の用意がまだなので
-	Create_Actor("Resources/Player/Bullet.x");
+	Create_Actor("Resources/Enemy/Enemy.x");
 	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
 	// エネミーの大きさを指定
 	MV1SetScale(model_handle, VGet(40.0f, 40.0f, 35.0f));
