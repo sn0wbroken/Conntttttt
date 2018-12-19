@@ -53,7 +53,7 @@ public:
 	int &Get_Model_Handle();
 
 protected:
-	// 自分のちゅうしｎの座標
+	// 自分の中心の座標
 	Vector3D center_position;
 
 	// 定数をまとめておくクラス

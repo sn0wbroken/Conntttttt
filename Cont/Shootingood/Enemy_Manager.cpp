@@ -1,9 +1,11 @@
 #include"Enemy_Manager.h"
+#include<sstream>
 
 // コンストラクタ
 Enemy_Manager::Enemy_Manager() {
 	m_enemy = std::make_shared<std::vector<Enemy>>();
 	enemy_controller = std::make_shared<Enemy_Controller>();
+	Enemy_Arrange();
 }
 
 // 毎フレーム呼ばれる
@@ -13,7 +15,14 @@ void Enemy_Manager::Update() {
 	{
 		return;
 	}
-
+	for (auto enemy = m_enemy->begin();enemy != m_enemy->end();enemy++)
+	{
+		int handle = enemy->Get_Model_Handle();
+		std::stringstream oss;
+		oss << handle << std::endl;
+		OutputDebugString(oss.str().c_str());
+	}
+	OutputDebugString("called");
 	enemy_controller->Update();
 }
 
@@ -24,7 +33,7 @@ void Enemy_Manager::Enemy_Arrange() {
 		if(enemyitr == m_enemy->end())
 		{
 			//TODO::まだ値を決めていないため、0を挿入する
-			m_enemy->emplace_back(Vector3D(0.0f,0.0f,0.0f));
+			m_enemy->emplace_back(Vector3D(-60.0f,0.0f,0.0f));
 			break;
 		}
 		//使っていない敵がいれば再利用する。
@@ -34,11 +43,6 @@ void Enemy_Manager::Enemy_Arrange() {
 			enemyitr->Set_Vector3D(Vector3D(0.0f,0.0f,0.0f));
 			enemyitr->enemy_status->Initialize_HitPoint();
 		}
-	}
-	if (m_enemy->empty())
-	{
-		//TODO::まだ値を決めていないため、0を挿入する
-		m_enemy->emplace_back(Vector3D(0.0f, 0.0f, 0.0f));
 	}
 }
 

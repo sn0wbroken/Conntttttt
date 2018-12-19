@@ -22,9 +22,10 @@ Enemy::Enemy(Vector3D position) {
 
 	// TODO:画像の用意がまだなので
 	Create_Actor("Resources/Enemy/Enemy.x");
-	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
+
+	MV1SetPosition(model_handle, vector3d);
 	// エネミーの大きさを指定
-	MV1SetScale(model_handle, VGet(40.0f, 40.0f, 35.0f));
+	//MV1SetScale(model_handle, VGet(.0f, 40.0f, 35.0f));
 	// エネミーの表示角度を調整
 	//MV1SetRotationXYZ(model_handle, VGet(270 * (DX_PI_F / 180), 0.0f, 180 * (DX_PI_F / 180)));
 }
