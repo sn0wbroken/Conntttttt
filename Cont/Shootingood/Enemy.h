@@ -10,7 +10,7 @@
 #include<vector>
 
 // エネミー本体のクラス
-class Enemy : public Character {
+class Enemy : public Character, public std::enable_shared_from_this<Enemy> {
 public:
 	// コンストラクタ
 	Enemy();
@@ -22,8 +22,13 @@ public:
 	// エネミーのステータス関係のクラス
 	std::shared_ptr<Enemy_Status> enemy_status;
 
+	// 当たり判定に使用する矩形を生成する
+	void Set_Rects();
+
 	//TEST
 	void RENDER();
+	// 被せる矩形(当たり判定に使用)
+	std::map<std::string, Rect*> rects;
 
 private:
 	// 角度(度数法)
@@ -35,8 +40,6 @@ private:
 	int bullet_speed;
 	// エネミーの前方向の当たり判定の座標(プレイヤーの通常攻撃の当たり判定に使用)
 	Vector3D flont_face_position;
-	// 被せる区画(当たり判定に使用)
-	std::map<std::string, Rect*> rects;
 
 	//TEST
 	// モデルの原点からキャラクターの向きを基準に左端までの幅

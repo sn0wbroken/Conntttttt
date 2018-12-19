@@ -23,14 +23,25 @@ Enemy::Enemy(Vector3D position, float set_degree) {
 	// TODO:画像の用意がまだなので
 	Create_Actor("Resources/Enemy/Enemy.x");
 	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
+
 	//TEST
 	degree = set_degree;
 	radian = degree * (DX_PI_F / 180);
 	MV1SetRotationXYZ(model_handle, VGet(0, radian, 0)); // エネミーの表示角度を調整
+	// 当たり判定に使用する矩形を生成
+	Set_Rects();
 }
 
 // デストラクタ
 Enemy::~Enemy() {}
+
+// 当たり判定に使用する矩形を生成する
+void Enemy::Set_Rects() {
+	Rect rect;
+	rects["front_face"] = rect.Make_3DBox(shared_from_this());
+
+	モデルが来るだろうから作る
+}
 
 //TEST
 void Enemy::RENDER() {

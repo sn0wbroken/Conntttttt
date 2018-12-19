@@ -25,11 +25,17 @@ public:
 	float z;
 	// DxlibのVECTORを使う(Dxlibの機能でこの型を扱うものが多い為合わせる)
 	VECTOR GetVECTOR();
+	// 引数の要素を自作のVector3D型にして返す
+	Vector3D Get_Vector(float x, float y, float z);
+	// 値をセットする
+	void Set_Vector(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
 
 	// 移動
 	void Move(float set_x, float set_y, float set_z);
 	// 配置
 	void Arrange(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
+
+
 #pragma region operator
 	//単体演算子
 	inline const Vector3D operator+(const Vector3D& vec)const
@@ -157,8 +163,4 @@ public:
 		return TempVector;
 	}
 #pragma endregion
-	// 値をセットする
-	void Set_Vector(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
-	// ノルム　ベクトルの長さ計算
-	//void Norm2() const;
 };

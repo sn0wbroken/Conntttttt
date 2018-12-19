@@ -22,5 +22,5 @@ public:
 	float Get_Distance_Player_To_Enemy(std::shared_ptr<Enemy> enemy);
 
 	// ü•ª‚Æ•½–Ê‚Ì“–‚½‚è”»’è
-	bool Line_To_Face(std::shared_ptr<Enemy> enemy, Vector3D normal_vector);
+	bool Line_To_Face(std::shared_ptr<Enemy> enemy);
 };
