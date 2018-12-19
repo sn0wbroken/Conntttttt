@@ -6,6 +6,7 @@
 #include"Define_Value.h"
 #include"Unique_Component.h"
 
+#include<map>
 #include<list>
 #include<string>
 #include<memory>
@@ -31,7 +32,7 @@ public:
 	virtual void Render();
 
 	// 子を追加する。インスタンスが生成されたときに呼ばれる
-	void Add_Child(std::shared_ptr<Actor> const actor);
+	void Add_Child(std::string name, std::shared_ptr<Actor> const actor);
 
 	// 座標を扱うクラス
 	Vector3D vector3d;
@@ -41,5 +42,5 @@ protected:
 	Define_Value define_value;
 
 	// 派生クラスを子として持っておく
-	std::list<std::shared_ptr<Actor>> children;
+	std::map<std::string, std::shared_ptr<Actor>> children;
 };

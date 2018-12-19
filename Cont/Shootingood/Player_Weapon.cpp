@@ -196,6 +196,7 @@ void Player_Weapon::Rain(std::list<Bullet*> magazine) {
 		// ŒÊ“x–@‚É•ÏŠ·
 		auto radian = 180 * DX_PI_F / 180;
 
+		//TOOD:‚Ğ‚Æ‚Ü‚¸ì‚Á‚½‚¾‚¯—v’²®
 		bullet->Set_X(random_number->Generate_Number(-300, 300));
 		bullet->Set_Y(random_number->Generate_Number(400, 800));
 		bullet->Set_Z(random_number->Generate_Number(-300, 300));

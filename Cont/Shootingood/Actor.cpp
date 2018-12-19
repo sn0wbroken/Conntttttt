@@ -12,49 +12,42 @@ Actor::~Actor() {
 
 // アクターオブジェクトを生成する
 void Actor::Create_Actor(TCHAR*model_path) {
-	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin();
-	while (iterator != children.end()) {
-		if ((*iterator)->actor_state != eActor_State::Break) {
+	for (auto iterator = children.begin(); iterator != children.end(); ++iterator) {
+		if (iterator->second->actor_state != eActor_State::Break) {
 			++iterator;
-			(*iterator)->Create_Actor(model_path);
+			iterator->second->Create_Actor(model_path);
 		}
 	}
 }
 
 // 初期化を行う
 void Actor::Initialize() {
-	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin();
-	while (iterator != children.end()) {
-		if ((*iterator)->actor_state != eActor_State::Break) {
-			(*iterator)->Initialize();
-			++iterator;
+	for (auto iterator = children.begin(); iterator != children.end(); ++iterator) {
+		if (iterator->second->actor_state != eActor_State::Break) {
+			iterator->second->Initialize();
 		}
 	}
 }
 
 // 毎フレーム入る更新処理
 void Actor::Update() {
-	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin();
-	while (iterator != children.end()) {
-		if ((*iterator)->actor_state != eActor_State::Break) {
- 			(*iterator)->Update();
-			++iterator;
+	for (auto iterator = children.begin(); iterator != children.end(); ++iterator) {
+		if (iterator->second->actor_state != eActor_State::Break) {
+			iterator->second->Update();
 		}
 	}
 }
 
 // アクティブなアクターを描画する
 void Actor::Render() {
-	std::list<std::shared_ptr<Actor>>::iterator iterator = children.begin();
-	while (iterator != children.end()) {
-		if ((*iterator)->actor_state != eActor_State::Break) {
-			(*iterator)->Render();
-			++iterator;
+	for (auto iterator = children.begin(); iterator != children.end(); ++iterator) {
+		if (iterator->second->actor_state != eActor_State::Break) {
+			iterator->second->Render();
 		}
 	}
 }
 
 // 子を追加する
-void Actor::Add_Child(std::shared_ptr<Actor> const actor) {
-	children.push_back(actor);
+void Actor::Add_Child(std::string name, std::shared_ptr<Actor> const actor) {
+	children[name] = actor;
 }

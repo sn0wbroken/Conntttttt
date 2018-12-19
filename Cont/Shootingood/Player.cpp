@@ -6,7 +6,7 @@ Player::Player() {
 	width = define_value.PLAYER_WIDTH;
 	// ƒvƒŒƒCƒ„[‚Ì‚‚³
 	height = define_value.PLAYER_HEIGHT;
-
+	
 	// ‰Šú‰»
 	Initialize();
 

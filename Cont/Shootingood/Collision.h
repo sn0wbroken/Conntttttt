@@ -1,24 +1,26 @@
 #pragma once
 
-#include"Vector3D.h"
+#include"Actor.h"
+#include"Enemy_Manager.h"
+#include"Player_Manager.h"
 
 // 当たり判定を行う
-class Collision {
+class Collision : public Actor {
 public:
 	// コンストラクタ
-	Collision() {};
+	Collision();
 	// デストラクタ
 	~Collision() {};
 
-	// アクター同士での当たり判定
-	bool Box_To_Box(int right_edge1, int left_edge1, int top_edge1, int right_edge2, int left_edge2, int bottom_edge2);
+	// 計算式を利用する
+	Vector3D calculator;
 
-	// プレイヤーとエネミーの弾の当たり判定
-	bool Player_To_Enemy_Bullet(int right_edge, int left_edge, int top_edge, int bottom_edge, int bullet_position_x, int bullet_position_y, int bullet_radius);
+	// 毎フレーム呼ばれる更新処理
+	void Update() override;
 
-	// エネミーとプレイヤーの弾の当たり判定
-	bool Enemy_To_Player_Bullet(int right_edge, int left_edge, int top_edge, int bottom_edge, int bullet_position_x, int bullet_position_y, int bullet_radius);
+	// プレイヤーからエネミーまでの距離を求めて返す
+	float Get_Distance_Player_To_Enemy(std::shared_ptr<Enemy> enemy);
 
-	// 線分と面の当たり判定
-	bool Line_To_Face(int norm_1, int norm_2, Vector3D normal_vector);
+	// 線分と平面の当たり判定
+	bool Line_To_Face(std::shared_ptr<Enemy> enemy, Vector3D normal_vector);
 };

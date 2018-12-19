@@ -5,8 +5,6 @@
 
 #include<memory>
 
-#include"TEST_GOD.h"
-
 // ƒƒCƒ“
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nCmdShow*/) {
 	// ’è”‚ğ‚Ü‚Æ‚ß‚Ä‚¨‚­ƒNƒ‰ƒX

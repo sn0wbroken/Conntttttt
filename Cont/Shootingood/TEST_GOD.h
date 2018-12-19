@@ -4,6 +4,7 @@
 #include"Bullet.h"
 #include"Weapon.h"
 #include"Character.h"
+#include"Collision.h"
 #include"Enemy_Manager.h"
 #include"Enemy_Controller.h"
 #include"Player_Manager.h"
@@ -26,6 +27,7 @@ public:
 	shared_ptr<Weapon> weapon;
 	shared_ptr<Bullet> bullet;
 	shared_ptr<Character> character;
+	shared_ptr<Collision> collision;
 	shared_ptr<Enemy_Controller> enemy_controller;
 	
 	// ˆø”‚É©g‚ğw’è‚µ‚½‚à‚Ì‚¾‚¯‚É¶¬‚ğ‚ä‚é‚·

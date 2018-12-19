@@ -5,7 +5,7 @@
 Enemy::Enemy() {}
 
 // コピーコンストラクタ
-Enemy::Enemy(Vector3D position) {
+Enemy::Enemy(Vector3D position, float set_degree) {
 	// プレイするステージを取得
 	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
 
@@ -23,11 +23,28 @@ Enemy::Enemy(Vector3D position) {
 	// TODO:画像の用意がまだなので
 	Create_Actor("Resources/Enemy/Enemy.x");
 	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
-	// エネミーの大きさを指定
-	MV1SetScale(model_handle, VGet(40.0f, 40.0f, 35.0f));
-	// エネミーの表示角度を調整
-	//MV1SetRotationXYZ(model_handle, VGet(270 * (DX_PI_F / 180), 0.0f, 180 * (DX_PI_F / 180)));
+	//TEST
+	degree = set_degree;
+	radian = degree * (DX_PI_F / 180);
+	MV1SetRotationXYZ(model_handle, VGet(0, radian, 0)); // エネミーの表示角度を調整
 }
 
 // デストラクタ
 Enemy::~Enemy() {}
+
+//TEST
+void Enemy::RENDER() {
+	DrawSphere3D(vector3d.GetVECTOR(), 2, 5, GetColor(255, 0, 255), GetColor(0, 0, 0), TRUE);
+	
+	//DrawTriangle3D(
+	//	VGet(vector3d.x - (10 + cos(radian)), vector3d.y + (80 + sin(radian)), vector3d.z),
+	//	VGet(vector3d.x - (10 + cos(radian)), vector3d.y                     , vector3d.z - (20 + sin(radian))),
+	//	VGet(vector3d.x - (10 + cos(radian)), vector3d.y                     , vector3d.z + (20 + sin(radian))),
+	//	GetColor(0, 0, 0), FALSE);
+
+	//DrawTriangle3D(
+	//	VGet(vector3d.x                     , vector3d.y + (80 + sin(radian)), vector3d.z),
+	//	VGet(vector3d.x - (15 + cos(radian)), vector3d.y                     , vector3d.z - (10 + sin(radian))),
+	//	VGet(vector3d.x + (15 + cos(radian)), vector3d.y                     , vector3d.z - (10 + sin(radian))),
+	//	GetColor(0, 0, 0), FALSE);
+}

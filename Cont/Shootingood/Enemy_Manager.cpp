@@ -11,11 +11,12 @@ void Enemy_Manager::Update() {
 }
 
 // 敵を配置
-void Enemy_Manager::Enemy_Arrange() {
-	position.x = 0;
-	position.y = 0;
-	position.z = 0;
-	std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(position);
+void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
+	//TEST
+	position.x = set_vector3d.x;
+	position.y = set_vector3d.y;
+	position.z = set_vector3d.z;
+	enemies.push_back(std::make_shared<Enemy>(position, set_degree));
 }
 
 // 敵が全滅しているかを返す。全滅でtrue
