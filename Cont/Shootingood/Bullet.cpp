@@ -13,7 +13,7 @@ Bullet::~Bullet() {
 void Bullet::Render() {
 	if (actor_state == eActor_State::Action) {
 		DrawSphere3D(vector3d.GetVECTOR(), 5, 5, GetColor(255, 0, 255), GetColor(0, 0, 0), TRUE);
-		Move(vector3d.x + speed.x, vector3d.y + speed.y, vector3d.z + speed.z);
+		Move(vector3d.x, vector3d.y, vector3d.z);
 	}
 }
 

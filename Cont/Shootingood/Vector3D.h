@@ -25,11 +25,17 @@ public:
 	float z;
 	// DxlibのVECTORを使う(Dxlibの機能でこの型を扱うものが多い為合わせる)
 	VECTOR GetVECTOR();
+	// 引数の要素を自作のVector3D型にして返す
+	Vector3D Get_Vector(float x, float y, float z);
+	// 値をセットする
+	void Set_Vector(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
 
 	// 移動
 	void Move(float set_x, float set_y, float set_z);
 	// 配置
 	void Arrange(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
+
+
 #pragma region operator
 	//単体演算子
 	inline const Vector3D operator+(const Vector3D& vec)const
@@ -90,6 +96,7 @@ public:
 		return DxLib::VGet(x, y, z);
 	}
 #pragma endregion
+
 #pragma region Math
 	//ベクトルレングス
 	static Vector3D VectorLength(Vector3D vector)
@@ -102,15 +109,14 @@ public:
 
 		return tmp;
 	}
-	//ノルム化 個別指定バージョン
-	static double Norm2(double _x, double _y,double _z)
-	{
-		return sqrt(_x * _x + _y * _y + _z * _z);
+	// ノルムを返す
+	static double Norm(double x, double y, double z = 0) {
+		return sqrt(pow(x, 2) + pow(y , 2) + pow(x, 2));
 	}
-	//ノルム化　Vector指定バージョン
-	static double Norm2(Vector3D vector)
-	{
-		return sqrt(vector.x * vector.x + vector.y * vector.y + vector.z * vector.z);
+
+	// 2点間の距離を求める(3次元用)
+	static float Norm_3D(float x1, float y1, float z1, float x2, float y2, float z2) {
+		return sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2) + pow((z2 - z1), 2));
 	}
 
 	//平方根計算（バビロニア人メソッド）
@@ -130,7 +136,7 @@ public:
 	//ベクトルのノーマライズ
 	static Vector3D normalize(Vector3D vector)
 	{
-		float mag = 1 / (float)Norm2(vector);
+		float mag = 1 / Norm(vector.x, vector.y);
 		float _x = vector.x * mag;
 		float _y = vector.y * mag;
 
@@ -157,8 +163,4 @@ public:
 		return TempVector;
 	}
 #pragma endregion
-	// 値をセットする
-	void Set_Vector(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
-	// ノルム　ベクトルの長さ計算
-	//void Norm2() const;
 };

@@ -44,6 +44,12 @@ void Enemy_Manager::Enemy_Arrange() {
 			enemyitr->enemy_status->Initialize_HitPoint();
 		}
 	}
+void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
+	//TEST
+	position.x = set_vector3d.x;
+	position.y = set_vector3d.y;
+	position.z = set_vector3d.z;
+	enemies.push_back(std::make_shared<Enemy>(position, set_degree));
 }
 
 // “G‚ª‘S–Å‚µ‚Ä‚¢‚é‚©‚ğ•Ô‚·B‘S–Å‚Åtrue

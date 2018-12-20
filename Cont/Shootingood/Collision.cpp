@@ -1,28 +1,31 @@
 #include "Collision.h"
 
-// アクター同士での当たり判定
-bool Collision::Box_To_Box(int right_edge1, int left_edge1, int top_edge1, int right_edge2, int left_edge2, int bottom_edge2) {
-	return
-		right_edge1 >= left_edge2 && left_edge1 <= right_edge2 &&
-		top_edge1 <= bottom_edge2;
+Collision::Collision()
+{
 }
 
-// プレイヤーとエネミーの弾の当たり判定
-bool Collision::Player_To_Enemy_Bullet(int right_edge, int left_edge, int top_edge, int bottom_edge, int bullet_position_x, int bullet_position_y, int bullet_radius) {
-	return
-		right_edge >= bullet_position_x - bullet_radius && left_edge <= bullet_position_x + bullet_radius &&
-		top_edge <= bullet_position_y + bullet_radius && bottom_edge >= bullet_position_y + bullet_radius;
+// 毎フレーム呼ばれる更新処理
+void Collision::Update() {
+	//TEST
+	Line_To_Face(std::static_pointer_cast<Enemy>(Actor::children["Enemy_1"]));
+	Line_To_Face(std::static_pointer_cast<Enemy>(Actor::children["Enemy_2"]));
 }
 
-// エネミーとプレイヤーの弾の当たり判定
-bool Collision::Enemy_To_Player_Bullet(int right_edge, int left_edge, int top_edge, int bottom_edge, int bullet_position_x, int bullet_position_y, int bullet_radius) {
-	return
-		right_edge >= bullet_position_x - bullet_radius && left_edge <= bullet_position_x + bullet_radius &&
-		top_edge <= bullet_position_y - bullet_radius && bottom_edge >= bullet_position_y + bullet_radius;
+// プレイヤーからエネミーまでの距離を求めて返す
+float Collision::Get_Distance_Player_To_Enemy(std::shared_ptr<Enemy> enemy) {
+	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
+	auto player_position = player_manager->player->vector3d;
+	auto enemy_position = enemy->vector3d;
+
+	return calculator.Norm_3D(player_position.x, player_position.y, player_position.z, enemy_position.x, enemy_position.y, enemy_position.z);
 }
 
-// 線分と面の当たり判定
-bool Collision::Line_To_Face(int norm_1, int norm_2, Vector3D normal_vector) {
-	return (norm_1 * normal_vector.x + norm_1 * normal_vector.y + norm_1 * normal_vector.z) *
-		   (norm_2 * normal_vector.x + norm_2 * normal_vector.y + norm_2 * normal_vector.z) <= 0;
+// 線分と平面(プレイヤーの通常攻撃とエネミーの前面)の当たり判定
+bool Collision::Line_To_Face(std::shared_ptr<Enemy> enemy) {
+	auto norm_1 = Get_Distance_Player_To_Enemy(enemy);
+	
+	///norm2はプレイヤーの通常攻撃の届く最大地点の座標。///
+	return (norm_1 * enemy->rects["front_face"]->normal_vector.x + norm_1 * enemy->rects["front_face"]->normal_vector.y + norm_1 * enemy->rects["front_face"]->normal_vector.z) *
+		   (norm_2 * enemy->rects["front_face"]->normal_vector.x + norm_2 * enemy->rects["front_face"]->normal_vector.y + norm_2 * enemy->rects["front_face"]->normal_vector.z) <= 0;
+	return 0;
 }

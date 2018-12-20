@@ -1,4 +1,5 @@
 #include"Main_Scene.h"
+#include"Enemy_Manager.h"
 #include"Scene_Manager.h"
 
 // コンストラクタ
@@ -94,6 +95,11 @@ void Main_Scene::Render() {
 	}
 	// 背景のスクロール
 	Scroll();
+
+	//TEST
+	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
+	for(auto ene : enemy_manager->enemies)
+	ene->RENDER();
 }
 
 // 背景の画像を動かす

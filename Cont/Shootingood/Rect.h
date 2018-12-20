@@ -1,10 +1,22 @@
 #pragma once
 
-#include "Vector3D.h"
+#include"Actor.h"
+#include"Vector3D.h"
+
+#include<memory>
 
 // 矩形クラス
 class Rect {
 public:
+	// コンストラクタ
+	Rect() {};
+
+	// キャラクターの当たり判定用の箱を作って返す
+	std::list<Rect> Make_3DBox(std::shared_ptr<Actor> actor);
+
+	// 面の中心座標を返す
+	Vector3D Get_Centor_Point(float width, float height, float depth, Vector3D top_right);
+
 	// 四角形の左上隅の座標
 	Vector3D top_left;
 	// 四角形の右上隅の座標
@@ -13,22 +25,13 @@ public:
 	Vector3D bottom_right;
 	// 四角形の左下隅の座標
 	Vector3D bottom_left;
-	
 	// 法線ベクトル。線分との判定に使う
 	Vector3D normal_vector;
-
-	// 面の中心座標を返す
-	Vector3D Get_Centor_Point(float width, float height, Vector3D top_right);
 
 	// 幅
 	float width;
 	// 高さ
 	float height;
-
-	Rect() {}
-
-	void Initialize() {
-	};
 
 	/*// 指定された点を含むかどうかを判定するメソッド
 	inline bool contains(const float x, const float y) const throw() {

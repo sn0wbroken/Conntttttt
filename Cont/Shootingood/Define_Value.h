@@ -99,6 +99,6 @@ public:
 
 #pragma endregion
 
-	//TEST
+	// プレイヤーの回転角度(操作で1フレームに6度回転する)
 	static constexpr float ROTATION_VALUE = 6;
 };
