@@ -7,8 +7,7 @@
 Vector3D::Vector3D() {
 }
 
-Vector3D::Vector3D(float _x, float _y, float _z)
-{
+Vector3D::Vector3D(float _x, float _y, float _z) {
 	x = _x;
 	y = _y;
 	z = _z;

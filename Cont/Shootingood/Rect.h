@@ -4,15 +4,17 @@
 #include"Vector3D.h"
 
 #include<memory>
+#include<string>
+#include<unordered_map>
 
 // 矩形クラス
 class Rect {
 public:
 	// コンストラクタ
 	Rect() {};
-
+	
 	// キャラクターの当たり判定用の箱を作って返す
-	std::list<Rect> Make_3DBox(std::shared_ptr<Actor> actor);
+	std::unordered_map<std::string ,Rect> Make_3DBox(std::unordered_map<std::string, Rect>& actor);
 
 	// 面の中心座標を返す
 	Vector3D Get_Centor_Point(float width, float height, float depth, Vector3D top_right);

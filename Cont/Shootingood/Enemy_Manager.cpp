@@ -5,7 +5,7 @@
 Enemy_Manager::Enemy_Manager() {
 	m_enemy = std::make_shared<std::vector<Enemy>>();
 	enemy_controller = std::make_shared<Enemy_Controller>();
-	Enemy_Arrange();
+	//Enemy_Arrange();
 }
 
 // 毎フレーム呼ばれる
@@ -26,9 +26,9 @@ void Enemy_Manager::Update() {
 	enemy_controller->Update();
 }
 
-// 敵を配置
+/*// 敵を配置
 void Enemy_Manager::Enemy_Arrange() {
-	for (auto enemyitr = m_enemy->begin();; enemyitr++)
+	for (auto enemyitr = m_enemy->begin(); enemyitr++)
 	{
 		if(enemyitr == m_enemy->end())
 		{
@@ -43,8 +43,9 @@ void Enemy_Manager::Enemy_Arrange() {
 			enemyitr->Set_Vector3D(Vector3D(0.0f,0.0f,0.0f));
 			enemyitr->enemy_status->Initialize_HitPoint();
 		}
-	}
-void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
+	}*/
+
+	void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
 	//TEST
 	position.x = set_vector3d.x;
 	position.y = set_vector3d.y;

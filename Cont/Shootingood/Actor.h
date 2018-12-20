@@ -6,10 +6,10 @@
 #include"Define_Value.h"
 #include"Unique_Component.h"
 
-#include<map>
 #include<list>
 #include<string>
 #include<memory>
+#include<unordered_map>
 
 // アクターの基底クラス
 class Actor : public Unique_Component<Actor> {
@@ -37,10 +37,10 @@ public:
 	// 座標を扱うクラス
 	Vector3D vector3d;
 
+	// 派生クラスを子として持っておく
+	std::unordered_map<std::string, std::shared_ptr<Actor>> children;
+
 protected:
 	// 定数をまとめておくクラス
 	Define_Value define_value;
-
-	// 派生クラスを子として持っておく
-	std::map<std::string, std::shared_ptr<Actor>> children;
 };

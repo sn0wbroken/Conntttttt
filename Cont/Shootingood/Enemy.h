@@ -6,11 +6,11 @@
 #include"Character.h"
 #include"Enemy_Status.h"
 
-#include<map>
+#include<unordered_map>
 #include<vector>
 
 // エネミー本体のクラス
-class Enemy : public Character, public std::enable_shared_from_this<Enemy> {
+class Enemy : public Character {
 public:
 	// コンストラクタ
 	Enemy();
@@ -28,7 +28,7 @@ public:
 	//TEST
 	void RENDER();
 	// 被せる矩形(当たり判定に使用)
-	std::map<std::string, Rect*> rects;
+	std::unordered_map<std::string, Rect> rects;
 
 private:
 	// 角度(度数法)

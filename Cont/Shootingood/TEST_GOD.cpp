@@ -2,8 +2,7 @@
 
 TEST_GOD::TEST_GOD() {
 	unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
-
-	actor = make_shared<Actor>();
+	unique_ptr<Actor>& actor = Actor::Get_Instance();
 
 	character = make_shared<Character>();
 	actor->Add_Child("Character", character);
@@ -20,21 +19,21 @@ TEST_GOD::TEST_GOD() {
 	//TEST
 	unique_ptr<Enemy_Manager>& enemy_manager  = Enemy_Manager::Get_Instance();
 	Vector3D vec;
-	vec.x = 0.0f; vec.y = 0.0f; vec.z = 0.0f;
+	vec.x = -100.0f; vec.y = 0.0f; vec.z = -100.0f;
 	enemy_manager->Enemy_Arrange(vec, 180);
 	actor->Add_Child("Enemy_1" , enemy_manager->enemies.front());
 	
-	vec.x = 0.0f; vec.y = 0.0f; vec.z = 0.0f;
+	vec.x = 0.0f; vec.y = 0.0f; vec.z = -100.0f;
 	enemy_manager->Enemy_Arrange(vec, 90);
 	actor->Add_Child("Enemy_2" , enemy_manager->enemies.back());
 
-	vec.x = 0.0f; vec.y = 0.0f; vec.z = 0.0f;
+	vec.x = 100.0f; vec.y = 0.0f; vec.z = -100.0f;
 	enemy_manager->Enemy_Arrange(vec, 45);
 	actor->Add_Child("Enemy_3", enemy_manager->enemies.back());
 
-	vec.x = 0.0f; vec.y = 0.0f; vec.z = 0.0f;
-	enemy_manager->Enemy_Arrange(vec, 135);
-	actor->Add_Child("Enemy_4" ,enemy_manager->enemies.back());
+//	vec.x = 0.0f; vec.y = 0.0f; vec.z = -100.0f;
+//	enemy_manager->Enemy_Arrange(vec, 135);
+//	actor->Add_Child("Enemy_4" ,enemy_manager->enemies.back());
 }
 
 TEST_GOD::~TEST_GOD()

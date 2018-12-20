@@ -1,5 +1,6 @@
 #pragma once
 
+#include"Rect.h"
 #include"Actor.h"
 #include"DxLib.h"
 #include"Vector3D.h"
@@ -30,6 +31,9 @@ public:
 	int Get_Width();
 	// 高さを返す
 	int Get_Height();
+
+	// 矩形クラス。当たり判定に使う箱を生成するのに使用。
+	Rect rect;
 
 	Vector3D Get_Vector3D() {
 		return vector3d;

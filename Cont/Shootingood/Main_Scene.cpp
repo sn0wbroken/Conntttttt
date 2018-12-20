@@ -4,15 +4,18 @@
 
 // コンストラクタ
 Main_Scene::Main_Scene() {
+	// アクターを構成するオブジェクトを生成する
+	std::unique_ptr<TEST_GOD>& god = TEST_GOD::Get_Instance();
+
 	// プレイヤーのマネージャクラス
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	player = player_manager->player;
 	player_action = player_manager->player_action;
 	player_status = player_manager->player_status;
 
-	std::unique_ptr<TEST_GOD> &god = TEST_GOD::Get_Instance();
+	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	// 登場人物の初期化をすべて行う
-	god->actor->Initialize();
+	actor->Initialize();
 
 	collision = std::make_shared<Collision>();
 
@@ -48,8 +51,8 @@ void Main_Scene::Update() {
 	}
 
 	player_action->Update();
-	std::unique_ptr<TEST_GOD> &god = TEST_GOD::Get_Instance();
-	god->actor->Update();
+	unique_ptr<Actor>& actor = Actor::Get_Instance();
+	actor->Update();
 
 	// エネミーのアップデート処理
 	enemy_manager->Update();
@@ -83,8 +86,8 @@ void Main_Scene::Render() {
 	// UIの描画
 	UI_class->Render();
 	// オブジェクトの描画
-	auto &god = TEST_GOD::Get_Instance();
-	god->actor->Render();
+	unique_ptr<Actor>& actor = Actor::Get_Instance();
+	actor->Render();
 	
 	// インターバル中は背景のスクロール無し
 	if (is_interval) {

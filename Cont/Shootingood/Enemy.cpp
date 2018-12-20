@@ -37,21 +37,18 @@ Enemy::~Enemy() {}
 
 // 当たり判定に使用する矩形を生成する
 void Enemy::Set_Rects() {
-	Rect rect;
-	rects["front_face"] = rect.Make_3DBox(shared_from_this());
-
-	モデルが来るだろうから作る
+	rects = rect.Make_3DBox(rects);
 }
 
 //TEST
 void Enemy::RENDER() {
 	DrawSphere3D(vector3d.GetVECTOR(), 2, 5, GetColor(255, 0, 255), GetColor(0, 0, 0), TRUE);
 	
-	//DrawTriangle3D(
-	//	VGet(vector3d.x - (10 + cos(radian)), vector3d.y + (80 + sin(radian)), vector3d.z),
-	//	VGet(vector3d.x - (10 + cos(radian)), vector3d.y                     , vector3d.z - (20 + sin(radian))),
-	//	VGet(vector3d.x - (10 + cos(radian)), vector3d.y                     , vector3d.z + (20 + sin(radian))),
-	//	GetColor(0, 0, 0), FALSE);
+	DrawTriangle3D(
+		VGet(vector3d.x - (10 + cos(radian)), vector3d.y + (80 + sin(radian)), vector3d.z),
+		VGet(vector3d.x - (10 + cos(radian)), vector3d.y                     , vector3d.z - (20 + sin(radian))),
+		VGet(vector3d.x - (10 + cos(radian)), vector3d.y                     , vector3d.z + (20 + sin(radian))),
+		GetColor(0, 0, 0), FALSE);
 
 	//DrawTriangle3D(
 	//	VGet(vector3d.x                     , vector3d.y + (80 + sin(radian)), vector3d.z),
