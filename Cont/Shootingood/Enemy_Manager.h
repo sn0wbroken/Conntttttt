@@ -13,6 +13,10 @@
 // エネミーのマネージャークラス(エネミーの情報(各クラス)を知っておく)
 class Enemy_Manager : public Unique_Component<Enemy_Manager> {
 public:
+	//エネミーの配列　敵が複数いるため、配列化
+	std::shared_ptr<std::vector<Enemy>> m_enemy;
+	//エネミーの動きを制御するクラスというかAI
+	std::shared_ptr<Enemy_AI> m_enemyAI;
 	//エネミーのコントローラー　ここから動きを制御する
 	std::shared_ptr<Enemy_Controller> enemy_controller;
 	// エネミーのステータス関係を扱うクラス

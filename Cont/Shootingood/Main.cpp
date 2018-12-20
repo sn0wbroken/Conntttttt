@@ -5,6 +5,15 @@
 
 #include<memory>
 
+#include"TEST_GOD.h"
+
+//GPUを使用するためのコード
+extern "C"
+{
+	__declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
+	__declspec(dllexport) int AmdPowerXpressRequestHighPerformance = 1;
+}
+
 // メイン
 int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /*lpCmdLine*/, int /*nCmdShow*/) {
 	// 定数をまとめておくクラス

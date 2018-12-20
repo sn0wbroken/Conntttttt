@@ -14,8 +14,4 @@ public:
 	virtual ~Enemy_Controller();
 	//アップデート処理
 	void Update();
-	//エネミーを生成する。
-	void CreateEnemyAI();
-	//エネミ－を出現させる
-	void SpawnEnemy();
 };

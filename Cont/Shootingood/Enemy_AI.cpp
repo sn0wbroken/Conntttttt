@@ -21,6 +21,7 @@ Enemy_AI::~Enemy_AI() {}
 
 // –ˆƒtƒŒ[ƒ€“ü‚é
 void Enemy_AI::Update() {
+	
 }
 
 void Enemy_AI::MoveAI0()
