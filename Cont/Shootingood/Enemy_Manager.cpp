@@ -5,7 +5,7 @@
 Enemy_Manager::Enemy_Manager() {
 	//enemies = std::make_shared<std::vector<Enemy>>();
 	enemy_controller = std::make_shared<Enemy_Controller>();
-	Enemy_Arrange(Vector3D(0, 0, 0), 1.0f); //TODO::MagicNumber
+	//Enemy_Arrange();
 }
 
 // 毎フレーム呼ばれる
@@ -47,6 +47,13 @@ void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
 	{
 		enemies.emplace_back(std::make_shared<Enemy>(set_vector3d, set_degree));
 	}
+}
+	void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
+	//TEST
+	position.x = set_vector3d.x;
+	position.y = set_vector3d.y;
+	position.z = set_vector3d.z;
+	enemies.push_back(std::make_shared<Enemy>(position, set_degree));
 }
 
 // 敵が全滅しているかを返す。全滅でtrue

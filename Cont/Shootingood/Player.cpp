@@ -2,10 +2,8 @@
 
 // コンストラクタ
 Player::Player() {
-	// プレイヤーの幅
-	width = define_value.PLAYER_WIDTH;
-	// プレイヤーの高さ
-	height = define_value.PLAYER_HEIGHT;
+	// 大きさを設定
+	size.Set_Size(define_value.PLAYER_WIDTH, define_value.PLAYER_HEIGHT, define_value.PLAYER_DEPTH);
 	
 	// 初期化
 	Initialize();

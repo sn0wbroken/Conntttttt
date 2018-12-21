@@ -6,11 +6,11 @@
 #include"Character.h"
 #include"Enemy_Status.h"
 
-#include<map>
+#include<unordered_map>
 #include<vector>
 
 // エネミー本体のクラス
-class Enemy : public Character{
+class Enemy : public Character {
 public:
 	// コンストラクタ
 	Enemy();
@@ -28,7 +28,7 @@ public:
 	//TEST
 	void RENDER();
 	// 被せる矩形(当たり判定に使用)
-	std::map<std::string, Rect*> rects;
+	std::unordered_map<std::string, Rect> rects;
 
 	//角度を設定
 	void set_degree(float t_degree) {
@@ -45,15 +45,6 @@ private:
 	// エネミーの前方向の当たり判定の座標(プレイヤーの通常攻撃の当たり判定に使用)
 	Vector3D flont_face_position;
 
-	//TEST
-	// モデルの原点からキャラクターの向きを基準に左端までの幅
-	float width_1;
-	// モデルの原点からキャラクターの向きを基準に右端までの幅
-	float width_2;
-	// モデルの原点からキャラクターの向きを基準に上端までの高さ
-	float height_1;
-	// モデルの原点からキャラクターの向きを基準に奥の端までの奥行
-	float depth_1;
-	// モデルの原点からキャラクターの向きを基準に手前の端までの奥行
-	float depth_2;
+	// 矩形クラス。当たり判定に使う箱を生成するのに使用。
+	Rect rect;
 };

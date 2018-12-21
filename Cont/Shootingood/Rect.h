@@ -1,18 +1,23 @@
 #pragma once
 
-#include"Actor.h"
 #include"Vector3D.h"
+#include"Object_Size.h"
 
 #include<memory>
+#include<string>
+#include<unordered_map>
 
 // 矩形クラス
 class Rect {
 public:
 	// コンストラクタ
 	Rect() {};
+	
+	// 基準となる矩形、サイズを受け取り、当たり判定用の箱を作って返す。基準矩形は天井部。
+	std::unordered_map<std::string ,Rect> Make_3DBox(Rect rect, Object_Size size, std::unordered_map<std::string, Rect>& rects);
 
-	// キャラクターの当たり判定用の箱を作って返す
-	std::list<Rect> Make_3DBox(std::shared_ptr<Actor> actor);
+	// オブジェクトの大きさと基準点を受け取って、矩形を作って返す
+	Rect Make_Rectangle(Vector3D posiotin, Object_Size size);
 
 	// 面の中心座標を返す
 	Vector3D Get_Centor_Point(float width, float height, float depth, Vector3D top_right);
@@ -32,6 +37,9 @@ public:
 	float width;
 	// 高さ
 	float height;
+
+	// 3次元数の取得、計算に使用
+	Vector3D vector;
 
 	/*// 指定された点を含むかどうかを判定するメソッド
 	inline bool contains(const float x, const float y) const throw() {

@@ -23,7 +23,6 @@ public:
 	
 	~TEST_GOD();
 
-	shared_ptr<Actor> actor;
 	shared_ptr<Weapon> weapon;
 	shared_ptr<Bullet> bullet;
 	shared_ptr<Character> character;
