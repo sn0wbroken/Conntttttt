@@ -7,6 +7,18 @@ std::unordered_map<std::string, Rect> Rect::Make_3DBox(std::unordered_map<std::s
 	return  rects;
 }
 
+// エネミーの基準矩形を作って返す
+Rect Rect::Make_Enemy_Rectangle(Vector3D position, float width, float height, float depth) {
+	Rect result;
+//	auto tpo_left = vector.Get_Vector(position.)
+//	result.top_left     = 
+//	result.top_right    = 
+//	result.bottom_right	= 
+//	result.bottom_left  = 
+
+	return result;
+}
+
 // 面の中心座標を返す
 Vector3D Rect::Get_Centor_Point(float width, float height, float depth, Vector3D max_vertex) {
 	Vector3D vector3;

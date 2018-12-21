@@ -1,6 +1,5 @@
 #pragma once
 
-#include"Actor.h"
 #include"Vector3D.h"
 
 #include<memory>
@@ -15,6 +14,9 @@ public:
 	
 	// キャラクターの当たり判定用の箱を作って返す
 	std::unordered_map<std::string ,Rect> Make_3DBox(std::unordered_map<std::string, Rect>& actor);
+
+	// エネミーの矩形を作って返す
+	Rect Make_Enemy_Rectangle(Vector3D posiotin, float width, float height, float depth);
 
 	// 面の中心座標を返す
 	Vector3D Get_Centor_Point(float width, float height, float depth, Vector3D top_right);
@@ -34,6 +36,9 @@ public:
 	float width;
 	// 高さ
 	float height;
+
+	// 3次元数の取得、計算に使用
+	Vector3D vector;
 
 	/*// 指定された点を含むかどうかを判定するメソッド
 	inline bool contains(const float x, const float y) const throw() {

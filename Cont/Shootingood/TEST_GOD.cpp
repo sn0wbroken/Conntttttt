@@ -19,11 +19,11 @@ TEST_GOD::TEST_GOD() {
 	//TEST
 	unique_ptr<Enemy_Manager>& enemy_manager  = Enemy_Manager::Get_Instance();
 	Vector3D vec;
-	vec.x = -100.0f; vec.y = 0.0f; vec.z = -100.0f;
-	enemy_manager->Enemy_Arrange(vec, 180);
+	vec.x = -200.0f; vec.y = 0.0f; vec.z = -50.0f;
+	enemy_manager->Enemy_Arrange(vec, 90);
 	actor->Add_Child("Enemy_1" , enemy_manager->enemies.front());
 	
-	vec.x = 0.0f; vec.y = 0.0f; vec.z = -100.0f;
+	vec.x = 0.0f; vec.y = 0.0f; vec.z = 0.0f;
 	enemy_manager->Enemy_Arrange(vec, 90);
 	actor->Add_Child("Enemy_2" , enemy_manager->enemies.back());
 

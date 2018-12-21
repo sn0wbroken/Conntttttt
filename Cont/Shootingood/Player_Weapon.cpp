@@ -20,7 +20,7 @@ void Player_Weapon::Initialize() {
 	player = player_manager->player;
 
 	// モデルの大きさに合った半径を設定
-	radius = player->Get_Height() / 2 + 15;
+	radius = player->size.height / 2 + 15;
 	// 初期配置の銃口の角度を設定
 	radian = degree * DX_PI_F / 180;
 	// 中心座標を取得

@@ -1,6 +1,7 @@
 #pragma once
 
 #include"DxLib.h"
+
 #include<numeric>
 
 // 座標関係を扱うクラス
@@ -8,7 +9,7 @@ class Vector3D {
 public:
 	// コンストラクタ
 	Vector3D();
-	//コンストラクタ
+	// コピーコンストラクタ
 	Vector3D(float x,float y,float z=0);
 	// コピーコンストラクタ
 	Vector3D(const Vector3D &vec);
@@ -17,12 +18,6 @@ public:
 	// デストラクタ
 	~Vector3D();
 
-	// x座標
-	float x;
-	// y座標
-	float y;
-	// z座標
-	float z;
 	// DxlibのVECTORを使う(Dxlibの機能でこの型を扱うものが多い為合わせる)
 	VECTOR GetVECTOR();
 	// 引数の要素を自作のVector3D型にして返す
@@ -32,9 +27,40 @@ public:
 
 	// 移動
 	void Move(float set_x, float set_y, float set_z);
-	// 配置
-	void Arrange(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
 
+	//TODO:間違えて作っちゃったけど使い道ありそう…？
+	//// X座標に加算する
+	//Vector3D Add_X(float add_value);
+	//// Y座標に加算する
+	//Vector3D Add_Y(float add_value);
+	//// Z座標に加算する
+	//Vector3D Add_Z(float add_value);
+	//// X座標に減算する
+	//Vector3D Subtract_X(float add_value);
+	//// Y座標に減算する
+	//Vector3D Subtract_Y(float add_value);
+	//// Z座標に減算する
+	//Vector3D Subtract_Z(float add_value);
+	
+	// X座標に引数の値を加算した数値を返す
+	float Add_X(float add_value);
+	// Y座標に引数の値を加算した数値を返す
+	float Add_Y(float add_value);
+	// Z座標に引数の値を加算した数値を返す
+	float Add_Z(float add_value);
+	// X座標に引数の値を減算した数値を返す
+	float Subtract_X(float add_value);
+	// Y座標に引数の値を減算した数値を返す
+	float Subtract_Y(float add_value);
+	// Z座標に引数の値を減算した数値を返す
+	float Subtract_Z(float add_value);
+
+	// x座標
+	float x;
+	// y座標
+	float y;
+	// z座標
+	float z;
 
 #pragma region operator
 	//単体演算子

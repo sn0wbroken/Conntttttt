@@ -1,9 +1,9 @@
 #pragma once
 
-#include"Rect.h"
 #include"Actor.h"
 #include"DxLib.h"
 #include"Vector3D.h"
+#include"Object_Size.h"
 #include"Define_Value.h"
 
 // アクターの基底のクラス
@@ -22,22 +22,10 @@ public:
 	float Get_Y();
 	// y座標を設定する
 	void Set_Y(float set_y);
-
 	//現在のz座標を返す
 	float Get_Z();
 	//z座標を設定する
 	void Set_Z(float set_z);
-	// 幅を返す
-	int Get_Width();
-	// 高さを返す
-	int Get_Height();
-
-	// 矩形クラス。当たり判定に使う箱を生成するのに使用。
-	Rect rect;
-
-	Vector3D Get_Vector3D() {
-		return vector3d;
-	}
 
 	// 出現位置を設定する
 	void Set_Arrange_Poisition(float set_x, float set_y, float set_z);
@@ -56,6 +44,9 @@ public:
 	// アクターのモデルハンドルを返す
 	int &Get_Model_Handle();
 
+	// 大きさをまとめて保持
+	Object_Size size;
+
 protected:
 	// 自分の中心の座標
 	Vector3D center_position;
@@ -69,16 +60,12 @@ protected:
 	// モデルのハンドル
 	int model_handle;
 
-	// アクターの大きさ(幅)
-	int width;
-	// アクターの大きさ(高さ)
-	int height;
-
 	// 死亡判定 trueで死亡
 	bool is_dead;
 	
 	// アクターオブジェクトを生成する
 	void Create_Actor(TCHAR* model_path) override;
+
 	// 描画を行う
 	void Render() override;
 };

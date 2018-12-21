@@ -2,6 +2,8 @@
 
 #include"DxLib.h"
 
+//TODO:仕様変更により使ってないものも出てきたので、ひと段落着いたら見直す
+
 // 定数をまとめる
 class Define_Value {
 public:
@@ -49,6 +51,8 @@ public:
 	static constexpr float PLAYER_WIDTH = 48.0f;
 	// プレイヤーの大きさ(高さ)
 	static constexpr float PLAYER_HEIGHT = 48.0f;
+	// プレイヤーの大きさ(奥行)
+	static constexpr float PLAYER_DEPTH = 48.0f;
 	// プレイヤーの回転速度(度数法6)
 	static constexpr float PLAYER_SPEED = 6.0f;
 	// プレイヤーの攻撃力
@@ -69,9 +73,11 @@ public:
 	// 敵の体力の最大値
 	static const int ENEMY_MAX_HP = 30;
 	// エネミーの大きさ(幅)
-	static constexpr float ENEMY_WIDTH = 54.0f;
+	static constexpr float ENEMY_WIDTH = 15.0f;
 	// エネミーの大きさ(高さ)
-	static constexpr float ENEMY_HEIGHT = 36.0f;
+	static constexpr float ENEMY_HEIGHT = 10.0f;
+	// エネミーの大きさ(奥行)
+	static constexpr float ENEMY_DEPTH = 12.0f;
 	// 出現するエネミーの数
 	static const int ENEMY_NUMBER = 5;
 

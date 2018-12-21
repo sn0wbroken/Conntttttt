@@ -202,6 +202,7 @@
     <ClInclude Include="Enemy_Status.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Factory.h" />
+    <ClInclude Include="Object_Size.h" />
     <ClInclude Include="Scene_Manager.h" />
     <ClInclude Include="Json_Reader.h" />
     <ClInclude Include="Key_Checker.h" />

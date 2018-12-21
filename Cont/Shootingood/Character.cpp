@@ -32,15 +32,6 @@ void Character::Set_Z(float set_z) {
 	vector3d.z = set_z;
 }
 
-// 幅を返す
-int Character::Get_Width() {
-	return width;
-}
-// 高さを返す
-int Character::Get_Height() {
-	return height;
-}
-
 // 出現位置を設定する
 void Character::Set_Arrange_Poisition(float set_x, float set_y, float set_z) {
 	vector3d.Set_Vector(set_x, set_y, set_z);
@@ -53,19 +44,19 @@ void Character::Set_Vector3D(Vector3D Vec3) {
 
 // アクターの右端の座標を返す
 float Character::Get_Right_Edge() {
-	return center_position.x - (width / 2);
+	return center_position.x - (size.width / 2);
 }
 // アクターの左端の座標を返す
 float Character::Get_Left_Edge() {
-	return center_position.x + (width / 2);
+	return center_position.x + (size.width / 2);
 }
 // アクターの上端の座標を返す
 float Character::Get_Top_Edge() {
-	return center_position.y - (height / 2);
+	return center_position.y - (size.height / 2);
 }
 // アクターの下端の座標を返す
 float Character::Get_Bottom_Edge() {
-	return center_position.y + (height / 2);
+	return center_position.y + (size.height / 2);
 }
 
 // アクターのモデルハンドルを返す
