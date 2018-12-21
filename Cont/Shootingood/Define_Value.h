@@ -73,13 +73,15 @@ public:
 	// 敵の体力の最大値
 	static const int ENEMY_MAX_HP = 30;
 	// エネミーの大きさ(幅)
-	static constexpr float ENEMY_WIDTH = 15.0f;
+	static constexpr float ENEMY_WIDTH = 20.0f;
 	// エネミーの大きさ(高さ)
-	static constexpr float ENEMY_HEIGHT = 10.0f;
+	static constexpr float ENEMY_HEIGHT = 50.0f;
 	// エネミーの大きさ(奥行)
-	static constexpr float ENEMY_DEPTH = 12.0f;
+	static constexpr float ENEMY_DEPTH = 15.0f;
 	// 出現するエネミーの数
 	static const int ENEMY_NUMBER = 5;
+	// プレイヤーの回転角度(操作で1フレームに6度回転する)
+	static constexpr float ROTATION_VALUE = 6;
 
 #pragma endregion
 
@@ -105,6 +107,4 @@ public:
 
 #pragma endregion
 
-	// プレイヤーの回転角度(操作で1フレームに6度回転する)
-	static constexpr float ROTATION_VALUE = 6;
 };

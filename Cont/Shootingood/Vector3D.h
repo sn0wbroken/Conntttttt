@@ -28,19 +28,18 @@ public:
 	// 移動
 	void Move(float set_x, float set_y, float set_z);
 
-	//TODO:間違えて作っちゃったけど使い道ありそう…？
-	//// X座標に加算する
-	//Vector3D Add_X(float add_value);
-	//// Y座標に加算する
-	//Vector3D Add_Y(float add_value);
-	//// Z座標に加算する
-	//Vector3D Add_Z(float add_value);
-	//// X座標に減算する
-	//Vector3D Subtract_X(float add_value);
-	//// Y座標に減算する
-	//Vector3D Subtract_Y(float add_value);
-	//// Z座標に減算する
-	//Vector3D Subtract_Z(float add_value);
+	// X座標に引数の値を加算したVectorを返す
+	Vector3D Add_VectorX(float add_value);
+	// Y座標に引数の値を加算したVectorを返す
+	Vector3D Add_VectorY(float add_value);
+	// Z座標に引数の値を加算したVectorを返す
+	Vector3D Add_VectorZ(float add_value);
+	// X座標に引数の値を減算したVectorを返す
+	Vector3D Subtract_VectorX(float add_value);
+	// Y座標に引数の値を減算したVectorを返す
+	Vector3D Subtract_VectorY(float add_value);
+	// Z座標に引数の値を減算したVectorを返す
+	Vector3D Subtract_VectorZ(float add_value);
 	
 	// X座標に引数の値を加算した数値を返す
 	float Add_X(float add_value);

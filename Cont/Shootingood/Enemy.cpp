@@ -18,20 +18,20 @@ Enemy::Enemy(Vector3D position, float set_degree) {
 	// ステータスをセット
 	enemy_status = std::make_shared<Enemy_Status>(scene_manager->Get_Stage());
 
+	//TEST
+	degree = set_degree;
+	radian = degree * DX_PI_F / 180;
+
 	// モデルを設定する
 	Create_Actor("Resources/Enemy/Enemy.x");
 	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
 	MV1SetScale(model_handle, VGet(0.6f, 0.6f, 0.6f));
-	MV1SetRotationXYZ(model_handle, VGet(0, radian, 0)); // エネミーの表示角度を調整
+	MV1SetRotationXYZ(model_handle, VGet(0, radian, 0));
 
-	// 基準となる面を作成。被せる箱の天井にあたるもの
-	rect = rect.Make_Enemy_Rectangle(vector3d, size.width, size.height, size.depth);
+	// 基準となる面を生成。被せる箱の天井にあたるもの
+	rect = rect.Make_Rectangle(vector3d, size);
 	// 当たり判定に使用する矩形を生成
 	Set_Rects();
-	
-	//TEST
-	degree = set_degree;
-	radian = degree * DX_PI_F / 180;
 }
 
 // デストラクタ
@@ -44,11 +44,26 @@ void Enemy::Set_Rects() {
 
 //TEST
 void Enemy::RENDER() {
-	//VECTOR pos = VGet(vector3d.x + half_depth * cos(radian), vector3d.y, vector3d.z + half_width * cos(radian));
-	VECTOR pos = VGet(vector3d.x + size.Get_Helf_Depth(), vector3d.y, vector3d.z + size.Get_Helf_Width());
-
-	DrawSphere3D(pos, 2, 5, GetColor(255, 0, 255), GetColor(0, 0, 0), TRUE);
+//	VECTOR pos = VGet(vector3d.x + size.Get_Helf_Width(), vector3d.y + size.height, vector3d.z + size.Get_Helf_Depth());
+//	DrawSphere3D(pos, 2, 5, GetColor(255, 0, 255), GetColor(0, 0, 0), TRUE);
 	
+	//auto hoge = vector3d;
+	//hoge = hoge.Add_VectorX(size.Get_Helf_Depth());
+	//hoge = hoge.Add_VectorY(50);
+	//auto fuga = vector3d;
+	//fuga = fuga.Subtract_VectorX(size.Get_Helf_Depth());
+	//fuga = fuga.Add_VectorY(50);
+	//vector3d = vector3d.Add_VectorY(50);
+
+	DrawLine3D(vector3d, vector3d.Add_VectorX(size.Get_Helf_Depth())     , GetColor(0, 0, 0));
+	DrawLine3D(vector3d, vector3d.Subtract_VectorX(size.Get_Helf_Depth()), GetColor(0, 0, 0));
+
+	DrawLine3D(rect.top_right  , rect.top_left    , GetColor(0, 0, 0));
+	DrawLine3D(rect.top_right  , rect.bottom_right, GetColor(0, 0, 0));
+	DrawLine3D(rect.top_left   , rect.bottom_left , GetColor(0, 0, 0));
+	DrawLine3D(rect.bottom_left, rect.bottom_right, GetColor(0, 0, 0));
+
+
 	//DrawTriangle3D(
 	//	VGet(vector3d.x - (half_width * cos(radian)), vector3d.y + (80 + sin(radian)), vector3d.z),
 	//	VGet(vector3d.x - (half_width * cos(radian)), vector3d.y                     , vector3d.z - (half_depth * sin(radian))),

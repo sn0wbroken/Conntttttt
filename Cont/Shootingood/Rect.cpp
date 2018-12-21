@@ -7,15 +7,16 @@ std::unordered_map<std::string, Rect> Rect::Make_3DBox(std::unordered_map<std::s
 	return  rects;
 }
 
-// エネミーの基準矩形を作って返す
-Rect Rect::Make_Enemy_Rectangle(Vector3D position, float width, float height, float depth) {
-	Rect result;
-//	auto tpo_left = vector.Get_Vector(position.)
-//	result.top_left     = 
-//	result.top_right    = 
-//	result.bottom_right	= 
-//	result.bottom_left  = 
+// オブジェクトの大きさと座標から矩形を作って返す。座標は作る矩形の最大点
+Rect Rect::Make_Rectangle(Vector3D position, Object_Size size) {
+	// 矩形の最大点の座標
+	Vector3D top_vertex = VGet(position.x + size.Get_Helf_Depth(), position.y + size.height, position.z + size.Get_Helf_Width());
 
+	Rect result;
+	result.top_right    = top_vertex;
+	result.top_left     = top_vertex.Subtract_VectorX(size.depth);
+	result.bottom_right = top_vertex.Subtract_VectorZ(size.width);
+	result.bottom_left  = result.top_left.Subtract_VectorZ(size.width);
 	return result;
 }
 

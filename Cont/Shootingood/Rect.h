@@ -1,6 +1,7 @@
 #pragma once
 
 #include"Vector3D.h"
+#include"Object_Size.h"
 
 #include<memory>
 #include<string>
@@ -15,8 +16,8 @@ public:
 	// キャラクターの当たり判定用の箱を作って返す
 	std::unordered_map<std::string ,Rect> Make_3DBox(std::unordered_map<std::string, Rect>& actor);
 
-	// エネミーの矩形を作って返す
-	Rect Make_Enemy_Rectangle(Vector3D posiotin, float width, float height, float depth);
+	// オブジェクトの大きさと基準点を受け取って、矩形を作って返す
+	Rect Make_Rectangle(Vector3D posiotin, Object_Size size);
 
 	// 面の中心座標を返す
 	Vector3D Get_Centor_Point(float width, float height, float depth, Vector3D top_right);
