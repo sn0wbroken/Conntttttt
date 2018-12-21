@@ -30,8 +30,8 @@ void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
 	{
 		if (i == (signed int)enemies.size() - 1)
 		{
-			enemies.emplace_back(std::make_shared<Enemy>(set_vector3d, set_degree));
-			break;
+			enemies.push_back(std::make_shared<Enemy>(set_vector3d, set_degree));
+			return;
 		}
 		//使っていない敵がいれば再利用する。
 		if (enemy->enemy_status->Is_Dead())
@@ -39,22 +39,23 @@ void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
 			enemy->Set_Vector3D(set_vector3d);
 			enemy->set_degree(set_degree);
 			enemy->enemy_status->Initialize_HitPoint();
+			return;
 		}
 		i++;
 	}
 
 	if (i == 0)
 	{
-		enemies.emplace_back(std::make_shared<Enemy>(set_vector3d, set_degree));
+		enemies.push_back(std::make_shared<Enemy>(set_vector3d, set_degree));
 	}
 }
-	void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
-	//TEST
-	position.x = set_vector3d.x;
-	position.y = set_vector3d.y;
-	position.z = set_vector3d.z;
-	enemies.push_back(std::make_shared<Enemy>(position, set_degree));
-}
+//void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
+//	//TEST
+//	position.x = set_vector3d.x;
+//	position.y = set_vector3d.y;
+//	position.z = set_vector3d.z;
+//	enemies.push_back(std::make_shared<Enemy>(position, set_degree));
+//}
 
 // 敵が全滅しているかを返す。全滅でtrue
 bool Enemy_Manager::Is_Enemy_All_Ded() {
