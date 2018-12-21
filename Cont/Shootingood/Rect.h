@@ -13,8 +13,8 @@ public:
 	// コンストラクタ
 	Rect() {};
 	
-	// キャラクターの当たり判定用の箱を作って返す
-	std::unordered_map<std::string ,Rect> Make_3DBox(std::unordered_map<std::string, Rect>& actor);
+	// 基準となる矩形、サイズを受け取り、当たり判定用の箱を作って返す。基準矩形は天井部。
+	std::unordered_map<std::string ,Rect> Make_3DBox(Rect rect, Object_Size size, std::unordered_map<std::string, Rect>& rects);
 
 	// オブジェクトの大きさと基準点を受け取って、矩形を作って返す
 	Rect Make_Rectangle(Vector3D posiotin, Object_Size size);
