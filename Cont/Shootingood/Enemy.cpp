@@ -38,9 +38,7 @@ Enemy::~Enemy() {}
 // 当たり判定に使用する矩形を生成する
 void Enemy::Set_Rects() {
 	Rect rect;
-	rects["front_face"] = rect.Make_3DBox(shared_from_this());
-
-	モデルが来るだろうから作る
+//	rects["front_face"] = rect.Make_3DBox(shared_from_this());
 }
 
 //TEST

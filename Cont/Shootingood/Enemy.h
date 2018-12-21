@@ -10,7 +10,7 @@
 #include<vector>
 
 // エネミー本体のクラス
-class Enemy : public Character, public std::enable_shared_from_this<Enemy> {
+class Enemy : public Character{
 public:
 	// コンストラクタ
 	Enemy();
@@ -30,6 +30,10 @@ public:
 	// 被せる矩形(当たり判定に使用)
 	std::map<std::string, Rect*> rects;
 
+	//角度を設定
+	void set_degree(float t_degree) {
+		degree = t_degree;
+	}
 private:
 	// 角度(度数法)
 	float degree;

@@ -25,7 +25,7 @@ bool Collision::Line_To_Face(std::shared_ptr<Enemy> enemy) {
 	auto norm_1 = Get_Distance_Player_To_Enemy(enemy);
 	
 	///norm2はプレイヤーの通常攻撃の届く最大地点の座標。///
-	return (norm_1 * enemy->rects["front_face"]->normal_vector.x + norm_1 * enemy->rects["front_face"]->normal_vector.y + norm_1 * enemy->rects["front_face"]->normal_vector.z) *
-		   (norm_2 * enemy->rects["front_face"]->normal_vector.x + norm_2 * enemy->rects["front_face"]->normal_vector.y + norm_2 * enemy->rects["front_face"]->normal_vector.z) <= 0;
+	return (norm_1 * enemy->rects["front_face"]->normal_vector.x + norm_1 * enemy->rects["front_face"]->normal_vector.y + norm_1 * enemy->rects["front_face"]->normal_vector.z)/* *
+		   (norm_2 * enemy->rects["front_face"]->normal_vector.x + norm_2 * enemy->rects["front_face"]->normal_vector.y + norm_2 * enemy->rects["front_face"]->normal_vector.z) */<= 0;
 	return 0;
 }
