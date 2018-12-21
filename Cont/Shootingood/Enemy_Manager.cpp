@@ -28,12 +28,13 @@ void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
 	int i = 0; //itr
 	for (auto enemy : enemies)
 	{
+		//配列の中で誰も死んでいなかった場合は、新しく追加する。
 		if (i == (signed int)enemies.size() - 1)
 		{
 			enemies.push_back(std::make_shared<Enemy>(set_vector3d, set_degree));
 			return;
 		}
-		//使っていない敵がいれば再利用する。
+		//死んでいる敵がいれば再利用する。
 		if (enemy->enemy_status->Is_Dead())
 		{
 			enemy->Set_Vector3D(set_vector3d);
@@ -44,7 +45,8 @@ void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
 		i++;
 	}
 
-	if (i == 0)
+	//そもそも配列の中が空の場合こちらで追加する。
+	if (enemies.empty())
 	{
 		enemies.push_back(std::make_shared<Enemy>(set_vector3d, set_degree));
 	}
