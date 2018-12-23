@@ -135,7 +135,7 @@ public:
 		return tmp;
 	}
 	// ノルムを返す
-	static double Norm(double x, double y, double z = 0) {
+	static float Norm(float x, float y, float z = 0) {
 		return sqrt(pow(x, 2) + pow(y , 2) + pow(x, 2));
 	}
 
@@ -145,10 +145,10 @@ public:
 	}
 
 	//平方根計算（バビロニア人メソッド）
-	static double sqrt(double s)
+	static float sqrt(float s)
 	{
-		double tmp_x = s / 2.0; // Is there any better way to determine initial value?
-		double last_x = 0.0; // the value one before the last step
+		float tmp_x = s / 2.0; // Is there any better way to determine initial value?
+		float last_x = 0.0; // the value one before the last step
 
 		while (tmp_x != last_x) // until the difference is not significant
 		{ // apply Babylonian method step

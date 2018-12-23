@@ -30,6 +30,10 @@ public:
 	// 被せる矩形(当たり判定に使用)
 	std::unordered_map<std::string, Rect> rects;
 
+	//角度を設定
+	void set_degree(float t_degree) {
+		degree = t_degree;
+	}
 private:
 	// 角度(度数法)
 	float degree;
