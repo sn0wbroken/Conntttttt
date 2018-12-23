@@ -28,8 +28,8 @@ Enemy::Enemy(Vector3D position, float set_degree) {
 	MV1SetScale(model_handle, VGet(0.6f, 0.6f, 0.6f));
 	MV1SetRotationXYZ(model_handle, VGet(0, radian, 0));
 
-	// 基準となる面を生成。被せる箱の天井にあたるもの
-	rect = rect.Make_Rectangle(vector3d, size); ///TODO:top_faceに入れちゃえばいいのでは？///
+	// 基準となる面(天井部)を生成
+	rects["top_face"] = rect.Make_Top_Face(vector3d, size);
 	// 当たり判定に使用する矩形を生成
 	Set_Rects();
 }
@@ -39,14 +39,14 @@ Enemy::~Enemy() {}
 
 // 当たり判定に使用する矩形を生成する
 void Enemy::Set_Rects() {
-	rects = rect.Make_3DBox(rect, size, rects);
+	rects = rect.Make_3DBox(rects["top_face"], size, rects);
 }
 
 //TEST
 void Enemy::RENDER() {
 	//　あたり判定可視化(天井部のみ)
-	DrawLine3D(rect.top_right  , rect.top_left    , GetColor(0, 0, 0));
-	DrawLine3D(rect.top_right  , rect.bottom_right, GetColor(0, 0, 0));
-	DrawLine3D(rect.top_left   , rect.bottom_left , GetColor(0, 0, 0));
-	DrawLine3D(rect.bottom_left, rect.bottom_right, GetColor(0, 0, 0));
+	DrawLine3D(rects["top_face"].top_right  , rects["top_face"].top_left    , GetColor(0, 0, 0));
+	DrawLine3D(rects["top_face"].top_right  , rects["top_face"].bottom_right, GetColor(0, 0, 0));
+	DrawLine3D(rects["top_face"].top_left   , rects["top_face"].bottom_left , GetColor(0, 0, 0));
+	DrawLine3D(rects["top_face"].bottom_left, rects["top_face"].bottom_right, GetColor(0, 0, 0));
 }

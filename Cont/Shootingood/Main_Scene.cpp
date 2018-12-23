@@ -101,9 +101,10 @@ void Main_Scene::Render() {
 
 	//TEST
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
-	for(auto ene : enemy_manager->enemies)
-	ene->RENDER();
-}
+	for (auto ene : enemy_manager->enemies) {
+		ene->RENDER();
+	}
+}	
 
 // ”wŒi‚Ì‰æ‘œ‚ð“®‚©‚·
 void Main_Scene::Scroll() {

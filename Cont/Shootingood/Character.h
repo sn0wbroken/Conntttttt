@@ -1,5 +1,6 @@
 #pragma once
 
+#include"Rect.h"
 #include"Actor.h"
 #include"DxLib.h"
 #include"Vector3D.h"
@@ -68,4 +69,7 @@ protected:
 
 	// 描画を行う
 	void Render() override;
+
+	// 矩形の作成に使用
+	Rect rect;
 };
