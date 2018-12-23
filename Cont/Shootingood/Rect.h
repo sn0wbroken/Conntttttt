@@ -14,10 +14,10 @@ public:
 	Rect() {};
 	
 	// 基準となる矩形、サイズを受け取り、当たり判定用の箱を作って返す。基準矩形は天井部。
-	std::unordered_map<std::string ,Rect> Make_3DBox(Rect rect, Object_Size size, std::unordered_map<std::string, Rect>& rects);
+	std::unordered_map<std::string ,Rect> Make_3DBox(Rect top_face, Object_Size size, std::unordered_map<std::string, Rect>& rects);
 
-	// オブジェクトの大きさと基準点を受け取って、矩形を作って返す
-	Rect Make_Rectangle(Vector3D posiotin, Object_Size size);
+	// オブジェクトの大きさと座標から天井を作って返す。受け取る座標は作る矩形の最大点
+	Rect Make_Top_Face(Vector3D posiotin, Object_Size size);
 
 	// 面の中心座標を返す
 	Vector3D Get_Centor_Point(float width, float height, float depth, Vector3D top_right);

@@ -6,8 +6,8 @@
 #include"Character.h"
 #include"Enemy_Status.h"
 
-#include<unordered_map>
 #include<vector>
+#include<unordered_map>
 
 // エネミー本体のクラス
 class Enemy : public Character {
@@ -44,7 +44,4 @@ private:
 	int bullet_speed;
 	// エネミーの前方向の当たり判定の座標(プレイヤーの通常攻撃の当たり判定に使用)
 	Vector3D flont_face_position;
-
-	// 矩形クラス。当たり判定に使う箱を生成するのに使用。
-	Rect rect;
 };
