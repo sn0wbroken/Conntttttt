@@ -18,8 +18,8 @@ public:
 	// 毎フレーム呼ばれる更新処理
 	void Update() override;
 
-	// プレイヤーからエネミーまでの距離を求めて返す
-	float Get_Distance_Player_To_Enemy(std::shared_ptr<Enemy> enemy);
+	// 引数の2点間の距離を求めて返す
+	float Get_Distance(Vector3D coordinates_1, Vector3D coordinates_2);
 
 	// 線分と平面の当たり判定
 	bool Line_To_Face(std::shared_ptr<Enemy> enemy);

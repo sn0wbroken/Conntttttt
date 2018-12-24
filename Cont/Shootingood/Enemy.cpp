@@ -46,8 +46,8 @@ void Enemy::Set_Rects() {
 //TEST
 void Enemy::RENDER() {
 	//Å@Ç†ÇΩÇËîªíËâ¬éãâª(ìVà‰ïîÇÃÇ›)
-	DrawLine3D(rects["top_face"].top_right  , rects["top_face"].top_left    , GetColor(0, 0, 0));
-	DrawLine3D(rects["top_face"].top_right  , rects["top_face"].bottom_right, GetColor(0, 0, 0));
+	DrawLine3D(rects["top_face"].max_vertex  , rects["top_face"].top_left    , GetColor(0, 0, 0));
+	DrawLine3D(rects["top_face"].max_vertex  , rects["top_face"].bottom_right, GetColor(0, 0, 0));
 	DrawLine3D(rects["top_face"].top_left   , rects["top_face"].bottom_left , GetColor(0, 0, 0));
 	DrawLine3D(rects["top_face"].bottom_left, rects["top_face"].bottom_right, GetColor(0, 0, 0));
 }

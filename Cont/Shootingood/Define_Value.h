@@ -63,8 +63,8 @@ public:
 	static const int PLAYER_INITIALIZE_LIFE = 3;
 	// プレイヤーの回転速度
 	static constexpr float PLAYER_ROTATE_SPEED = 6.0f;
-	// プレイヤーが飛ばす弾の最大保持数(ボムの時に使う)
-	static const int MAX_BULLET = 100;
+	// プレイヤーが飛ばす弾の最大保持数(ボムの時に使う) TODO:操作がまだ曖昧でエラー吐くので大きめに
+	static const int MAX_BULLET = 500;
 
 #pragma endregion
 

@@ -8,7 +8,7 @@ TEST_GOD::TEST_GOD() {
 	actor->Add_Child("Character", character);
 
 	actor->Add_Child("Player", player_manager->player);
-
+	
 	weapon = make_shared<Weapon>();
 	actor->Add_Child("Weapon" ,weapon);
 	weapon->Add_Child("Player_Weapon" , player_manager->player_weapon);

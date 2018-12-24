@@ -207,3 +207,13 @@ void Player_Weapon::Rain(std::list<Bullet*> magazine) {
 		clear_count = 100;
 	}
 }
+
+// ’ÊíUŒ‚‚ÌË’öŒÀŠE“_‚ğ•Ô‚·
+Vector3D Player_Weapon::Get_Limit_Range() {
+	Vector3D result = vector3d;
+
+	// ’ÊíUŒ‚‚Ì”ò‹——£•ª“®‚¢‚½À•W‚ğ‹‚ß‚é
+	result.Move(fire_range * cos(radian), 0, fire_range * sin(radian));
+
+	return result;
+}

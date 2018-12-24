@@ -27,7 +27,7 @@ public:
 
 	//TEST
 	void RENDER();
-	// 被せる矩形(当たり判定に使用)
+	// 被せる矩形(当たり判定に使用) TODO:keyに難あり 左面、右面では合わない
 	std::unordered_map<std::string, Rect> rects;
 
 	//ラジアンを設定
