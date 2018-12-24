@@ -73,4 +73,5 @@ void Character::Create_Actor(TCHAR* model_path) {
 // •`‰æ‚ğs‚¤
 void Character::Render() {
 	MV1DrawModel(model_handle);
+	MV1SetPosition(model_handle, vector3d);
 }

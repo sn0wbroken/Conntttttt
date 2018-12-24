@@ -11,6 +11,7 @@ Enemy_Controller::~Enemy_Controller() {
 
 void Enemy_Controller::Update()
 {
+	OutputDebugString("Controller Called\n");
 	enemy_AI->Update();
 }
 

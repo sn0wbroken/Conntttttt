@@ -3,9 +3,7 @@
 
 // コンストラクタ
 Enemy_Manager::Enemy_Manager() {
-	//enemies = std::make_shared<std::vector<Enemy>>();
 	enemy_controller = std::make_shared<Enemy_Controller>();
-	//Enemy_Arrange();
 }
 
 // 毎フレーム呼ばれる
@@ -15,11 +13,7 @@ void Enemy_Manager::Update() {
 	{
 		return;
 	}
-	for (auto enemy : enemies)
-	{
-		//int handle = enemy->Get_Right_Edge;
-	}
-	OutputDebugString("called");
+	OutputDebugString("Manager_Called\n");
 	enemy_controller->Update();
 }
 

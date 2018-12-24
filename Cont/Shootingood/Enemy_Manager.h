@@ -14,11 +14,11 @@
 class Enemy_Manager : public Unique_Component<Enemy_Manager> {
 public:
 	//エネミーの動きを制御するクラスというかAI
-	std::shared_ptr<Enemy_AI> m_enemyAI;
+	//std::shared_ptr<Enemy_AI> m_enemyAI;
 	//エネミーのコントローラー　ここから動きを制御する
 	std::shared_ptr<Enemy_Controller> enemy_controller;
 	// エネミーのステータス関係を扱うクラス
-	std::shared_ptr<Enemy_Status> enemy_status;
+	//std::shared_ptr<Enemy_Status> enemy_status;
 	//TEST
 	std::list<std::shared_ptr<Enemy>> enemies;
 

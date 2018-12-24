@@ -34,6 +34,16 @@ public:
 	void set_degree(float t_degree) {
 		degree = t_degree;
 	}
+	//Šp“x‚ğæ“¾
+	inline float get_degree()
+	{
+		return degree;
+	}
+
+	inline float get_radian()
+	{
+		return radian;
+	}
 private:
 	// Šp“x(“x”–@)
 	float degree;
