@@ -1,5 +1,4 @@
 #include"Enemy_Manager.h"
-#include<sstream>
 
 // コンストラクタ
 Enemy_Manager::Enemy_Manager() {
@@ -13,28 +12,27 @@ void Enemy_Manager::Update() {
 	{
 		return;
 	}
-	OutputDebugString("Manager_Called\n");
 	enemy_controller->Update();
 }
 
 // 敵を配置
-void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
+void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, Vector3D set_playerpos) {
 	int i = 0; //itr
 	for (auto enemy : enemies)
 	{
 		//配列の中で誰も死んでいなかった場合は、新しく追加する。
 		if (i == (signed int)enemies.size() - 1)
 		{
-			enemies.push_back(std::make_shared<Enemy>(set_vector3d, set_degree));
-			return;
+			enemies.push_back(std::make_shared<Enemy>(set_vector3d, set_playerpos));
+			break;
 		}
 		//死んでいる敵がいれば再利用する。
 		if (enemy->enemy_status->Is_Dead())
 		{
 			enemy->Set_Vector3D(set_vector3d);
-			enemy->set_degree(set_degree);
+			enemy->set_radian(set_playerpos);
 			enemy->enemy_status->Initialize_HitPoint();
-			return;
+			break;
 		}
 		i++;
 	}
@@ -42,8 +40,11 @@ void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
 	//そもそも配列の中が空の場合こちらで追加する。
 	if (enemies.empty())
 	{
-		enemies.push_back(std::make_shared<Enemy>(set_vector3d, set_degree));
+		enemies.push_back(std::make_shared<Enemy>(set_vector3d, set_playerpos));
 	}
+	//追加する　しないとモデルが描画されない
+	std::unique_ptr<Actor>& actor = Actor::Get_Instance();
+	actor->Add_Child("Enemy" + enemies.size(), enemies.back());
 }
 //void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, float set_degree) {
 //	//TEST

@@ -26,7 +26,7 @@ public:
 	void Update();
 
 	// エネミーを配置
-	void Enemy_Arrange(Vector3D set_vector3d, float set_degree);
+	void Enemy_Arrange(Vector3D set_vector3d, Vector3D set_playerpos);
 
 	// エネミーが全滅したかどうか
 	bool Is_Enemy_All_Ded();

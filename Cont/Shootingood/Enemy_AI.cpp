@@ -1,17 +1,10 @@
 #include"Enum.h"
 #include"Enemy_AI.h"
 #include"Enemy_Manager.h"
-#include <sstream>
 
-////TODO::以下修正必要
-//const Vector3D FrontVector(-1,0,0); 
-//const Vector3D UpVector(0.0f, 1.0f, 0.0f); // 上向きベクトル
+#include<cmath>
 
 // コンストラクタ
-//必要なもの
-//エネミーのモデルID
-//エネミーの座標アドレス
-//プレイヤーの座標をどうにかする。
 Enemy_AI::Enemy_AI()
 {
 	//m_enemy = std::make_shared<Enemy>();
@@ -22,15 +15,11 @@ Enemy_AI::~Enemy_AI() {}
 
 // 毎フレーム入る
 void Enemy_AI::Update() {
-	OutputDebugString("AICalled\n");
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 	auto enemies = enemy_manager->enemies;
 	for (auto enemy : enemies) {
 		//TODO::MAGICNUMBER
-		std::stringstream oss;
-		oss << "EnemyRadian:"<<enemy->get_radian()<<"Forcalled" << std::endl;
-		OutputDebugString(oss.str().c_str());
-		enemy->vector3d.Move(30.0f * cos(enemy->get_radian()), 30.0f, 30.0f * sin(enemy->get_radian()));
+		enemy->vector3d.Move(5.0f * std::cosf(enemy->get_radian()), 0.0f, 5.0f * std::sinf(enemy->get_radian()));
 	}
 }
 
