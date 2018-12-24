@@ -42,6 +42,19 @@ Vector3D Vector3D::Get_Vector(float x, float y, float z) {
 	return result;
 }
 
+// XÀ•W‚ğ•Ô‚·
+float Vector3D::Get_X() {
+	return x;
+}
+// YÀ•W‚ğ•Ô‚·
+float Vector3D::Get_Y() {
+	return y;
+}
+// ZÀ•W‚ğ•Ô‚·
+float Vector3D::Get_Z() {
+	return z;
+}
+
 // ˆÚ“®
 void Vector3D::Move(float set_x, float set_y, float set_z) {
 	x += set_x;

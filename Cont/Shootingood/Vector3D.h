@@ -22,6 +22,12 @@ public:
 	VECTOR GetVECTOR();
 	// 引数の要素を自作のVector3D型にして返す
 	Vector3D Get_Vector(float x, float y, float z);
+	// X座標を返す
+	float Get_X();
+	// Y座標を返す
+	float Get_Y();
+	// Z座標を返す
+	float Get_Z();
 	// 値をセットする
 	void Set_Vector(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f);
 

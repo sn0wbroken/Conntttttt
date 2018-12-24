@@ -23,6 +23,9 @@ public:
 	// 描画
 	void Render() override;
 
+	// 通常攻撃の射程を返す
+	Vector3D Get_Limit_Range();
+
 	// プレイヤーのショットタイプ
 	eBomb_Type ebomb_type;
 
@@ -79,7 +82,6 @@ private:
 	int timer;
 	// timerがこの数値に達したら撃った弾を消す
 	int clear_count;
-
 
 	//TEST
 	const float fire_range = 300;

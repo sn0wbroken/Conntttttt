@@ -20,12 +20,12 @@ public:
 	Rect Make_Top_Face(Vector3D posiotin, Object_Size size);
 
 	// 面の中心座標を返す
-	Vector3D Get_Centor_Point(float width, float height, float depth, Vector3D top_right);
+	Vector3D Get_Centor_Point();
 
 	// 四角形の左上隅の座標
 	Vector3D top_left;
-	// 四角形の右上隅の座標
-	Vector3D top_right;
+	// 四角形の角で一番大きいもの(基準点に使う)
+	Vector3D max_vertex;
 	// 四角形の右下隅の座標
 	Vector3D bottom_right;
 	// 四角形の左下隅の座標
