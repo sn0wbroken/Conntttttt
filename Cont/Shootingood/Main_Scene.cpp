@@ -28,6 +28,7 @@ Main_Scene::Main_Scene() {
 
 	// メインに入った時はインターバルとする
 	is_interval = true;
+	m_timer = 0.0f;
 }
 
 // 初期化
@@ -53,7 +54,13 @@ void Main_Scene::Update() {
 	player_action->Update();
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	actor->Update();
-
+	m_timer += 0.01f;
+	if (m_timer >= 1.0f)
+	{
+		OutputDebugString("aaa");
+		enemy_manager->Enemy_Arrange(Vector3D(200.0f,0,200.0f),player->vector3d);
+		m_timer = 0.0f;
+	}
 	// エネミーのアップデート処理
 	enemy_manager->Update();
 

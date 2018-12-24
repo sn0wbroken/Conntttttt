@@ -14,11 +14,11 @@
 class Enemy_Manager : public Unique_Component<Enemy_Manager> {
 public:
 	//エネミーの動きを制御するクラスというかAI
-	std::shared_ptr<Enemy_AI> m_enemyAI;
+	//std::shared_ptr<Enemy_AI> m_enemyAI;
 	//エネミーのコントローラー　ここから動きを制御する
 	std::shared_ptr<Enemy_Controller> enemy_controller;
 	// エネミーのステータス関係を扱うクラス
-	std::shared_ptr<Enemy_Status> enemy_status;
+	//std::shared_ptr<Enemy_Status> enemy_status;
 	//TEST
 	std::list<std::shared_ptr<Enemy>> enemies;
 
@@ -26,7 +26,7 @@ public:
 	void Update();
 
 	// エネミーを配置
-	void Enemy_Arrange(Vector3D set_vector3d, float set_degree);
+	void Enemy_Arrange(Vector3D set_vector3d, Vector3D set_playerpos);
 
 	// エネミーが全滅したかどうか
 	bool Is_Enemy_All_Ded();

@@ -14,8 +14,8 @@ class Enemy : public Character {
 public:
 	// コンストラクタ
 	Enemy();
-	// コピーコンストラクタ
-	Enemy(Vector3D position, float set_degree);
+	// コンストラクタ
+	Enemy(Vector3D position,Vector3D set_playerpos);
 	// デストラクタ
 	~Enemy();
 
@@ -30,9 +30,21 @@ public:
 	// 被せる矩形(当たり判定に使用) TODO:keyに難あり 左面、右面では合わない
 	std::unordered_map<std::string, Rect> rects;
 
-	//角度を設定
-	void set_degree(float t_degree) {
-		degree = t_degree;
+	//ラジアンを設定
+	void set_radian(Vector3D set_playerpos) {
+
+		radian = Vector3D::MoveOnAngleOfElevation(set_playerpos, vector3d);
+		MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::RotateOnAngleOfElevation(set_playerpos, vector3d), 0));
+	}
+	//角度を取得
+	inline float get_degree()
+	{
+		return degree;
+	}
+	//ラジアンを取得
+	inline float get_radian()
+	{
+		return radian;
 	}
 private:
 	// 角度(度数法)
