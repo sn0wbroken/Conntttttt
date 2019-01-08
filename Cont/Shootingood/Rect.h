@@ -19,13 +19,21 @@ public:
 	// オブジェクトの大きさと座標から天井を作って返す。受け取る座標は作る矩形の最大点
 	Rect Make_Top_Face(Vector3D posiotin, Object_Size size);
 
-	// 面の中心座標を返す
-	Vector3D Get_Centor_Point();
+	// 貼られているモデルに合わせて動かす
+	void Move(std::unordered_map<std::string, Rect>& rects, float speed, float radian);
+
+	// 前面の中心座標を設定する
+	void Set_Centor_Position();
+	// 前面の中心座標を返す
+	Vector3D Get_Centor_Position();
+
+	// 法線ベクトルを返す
+	Vector3D Get_Normal_Vector(Rect rect);
 
 	// 四角形の左上隅の座標
 	Vector3D top_left;
 	// 四角形の角で一番大きいもの(基準点に使う)
-	Vector3D max_vertex;
+	Vector3D top_right;
 	// 四角形の右下隅の座標
 	Vector3D bottom_right;
 	// 四角形の左下隅の座標
@@ -33,11 +41,18 @@ public:
 	// 法線ベクトル。線分との判定に使う
 	Vector3D normal_vector;
 
+	// 矩形を回転させる
+	std::unordered_map<std::string, Rect> Rotation_Rectangle(std::unordered_map<std::string, Rect>& rects, float radian);
+
 	// 幅
 	float width;
 	// 高さ
 	float height;
 
+	// 面の中心座標
+	Vector3D centor_positon;
+
+private:
 	// 3次元数の取得、計算に使用
 	Vector3D vector;
 

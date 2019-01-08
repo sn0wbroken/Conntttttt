@@ -22,30 +22,22 @@ public:
 	// エネミーのステータス関係のクラス
 	std::shared_ptr<Enemy_Status> enemy_status;
 
-	// 当たり判定に使用する矩形を生成する
-	void Set_Rects();
-
-	//TEST
-	void RENDER();
-	// 被せる矩形(当たり判定に使用) TODO:keyに難あり 左面、右面では合わない
+	// 被せる矩形(当たり判定に使用) TODO:キーに難あり 左面、右面では合わない
 	std::unordered_map<std::string, Rect> rects;
 
-	//ラジアンを設定
-	void set_radian(Vector3D set_playerpos) {
+	//TEST 合ってたらSetはプライベート
+	// 当たり判定用の箱の中心
+	Vector3D collision_centor;
+	void Set_Collision_Centor(std::unordered_map<std::string, Rect> rects);
 
-		radian = Vector3D::MoveOnAngleOfElevation(set_playerpos, vector3d);
-		MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::RotateOnAngleOfElevation(set_playerpos, vector3d), 0));
-	}
-	//角度を取得
-	inline float get_degree()
-	{
-		return degree;
-	}
-	//ラジアンを取得
-	inline float get_radian()
-	{
-		return radian;
-	}
+	// ラジアンを設定
+	void Set_Radian(Vector3D set_playerpos);
+
+	// 角度を取得
+	inline float Get_Degree();
+	// ラジアンを取得
+	inline float Get_Radian();
+
 private:
 	// 角度(度数法)
 	float degree;

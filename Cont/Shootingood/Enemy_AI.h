@@ -15,7 +15,7 @@ public:
 	// –ˆƒtƒŒ[ƒ€“ü‚é
 	void Update();
 
-	void MoveAI0();
+	void Move_AI0();
 
 	std::shared_ptr<Enemy> enemy;
 private:

@@ -122,7 +122,7 @@ public:
 		z += vec.z;
 		return *this;
 	}
-	//DxLibのVector変換
+	// DxLibのVector変換
 	inline operator DxLib::VECTOR() const
 	{
 		return DxLib::VGet(x, y, z);
@@ -130,9 +130,8 @@ public:
 #pragma endregion
 
 #pragma region Math
-	//ベクトルレングス
-	static Vector3D VectorLength(Vector3D vector)
-	{
+	// ベクトルレングス
+	static Vector3D VectorLength(Vector3D vector) {
 		Vector3D tmp;
 
 		tmp.x = vector.x * vector.x;
@@ -141,9 +140,15 @@ public:
 
 		return tmp;
 	}
-	// ノルムを返す
+	// ベクトルの長さを返す
 	static float Norm(float x, float y, float z = 0) {
 		return sqrt(pow(x, 2) + pow(y , 2) + pow(x, 2));
+	}
+
+	//TEST
+	static Vector3D Hoge(Vector3D vec1, Vector3D center) {
+		Vector3D result = vec1;
+		return result.operator-(center);
 	}
 
 	// 2点間の距離を求める(3次元用)
@@ -151,9 +156,8 @@ public:
 		return sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2) + pow((z2 - z1), 2));
 	}
 
-	//平方根計算（バビロニア人メソッド）
-	static float sqrt(float s)
-	{
+	// 平方根計算（バビロニア人メソッド）
+	static float sqrt(float s) {
 		float tmp_x = s / 2.0; // Is there any better way to determine initial value?
 		float last_x = 0.0; // the value one before the last step
 
@@ -165,28 +169,25 @@ public:
 
 		return tmp_x;
 	}
-	//ベクトルのノーマライズ
-	static Vector3D normalize(Vector3D vector)
-	{
+	// ベクトルのノーマライズ
+	static Vector3D normalize(Vector3D vector) {
 		float mag = 1 / Norm(vector.x, vector.y);
 		float _x = vector.x * mag;
 		float _y = vector.y * mag;
 
 		return Vector3D(VGet(_x, _y, 0));
 	}
-	//内積計算
-	static float dot(Vector3D vector,Vector3D vector2)
-	{
+	// 内積計算
+	static float dot(Vector3D vector,Vector3D vector2) {
 		float a[] = { vector.x,vector.y,vector.z };
 		float b[] = { vector2.x,vector2.y,vector2.z };
-		//スタンダードライブラリの内積計算
+		// スタンダードライブラリの内積計算
 		float result = std::inner_product(a, a + sizeof(a) / sizeof(a[0]), b, 0);
 
 		return result;
 	}
-	//クロス積計算
-	static Vector3D cross(Vector3D vector,Vector3D vector2)
-	{
+	// クロス積計算
+	static Vector3D cross(Vector3D vector,Vector3D vector2) {
 		Vector3D TempVector;
 		TempVector.x = vector.y * vector2.z - vector.z * vector2.y;
 		TempVector.y = vector.x * vector2.z - vector.z * vector2.x;
@@ -194,17 +195,15 @@ public:
 
 		return TempVector;
 	}
-	//ラジアン計算 (進行方向計算用)
-	static float MoveOnAngleOfElevation(Vector3D vector,Vector3D vector2)
-	{
+	// ラジアン計算 (進行方向計算用)
+	static float MoveOnAngleOfElevation(Vector3D vector,Vector3D vector2) {
 		const double px = static_cast<double> (vector.x - vector2.x);
 		const double pz = static_cast<double> (vector.z - vector2.z);
 		//atan2 は 引数がy xのため pz,pxの順で挿入する
 		return static_cast<float> (std::atan2(pz, px));
 	}
-	//ラジアン計算(モデル回転)
-	static float RotateOnAngleOfElevation(Vector3D vector, Vector3D vector2)
-	{
+	// ラジアン計算(モデル回転)
+	static float RotateOnAngleOfElevation(Vector3D vector, Vector3D vector2) {
 		const double px = static_cast<double> (vector.x - vector2.x);
 		const double pz = static_cast<double> (vector.z - vector2.z);
 		//atan2 は 引数がy xだが、なぜか回転がおかしくなるのでx zで挿入する

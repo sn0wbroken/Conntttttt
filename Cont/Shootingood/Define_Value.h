@@ -80,6 +80,8 @@ public:
 	static constexpr float ENEMY_DEPTH = 15.0f;
 	// 出現するエネミーの数
 	static const int ENEMY_NUMBER = 5;
+	// エネミーの移動速度
+	static constexpr float ENEMY_SPEED = 5.0f;
 	// プレイヤーの回転角度(操作で1フレームに6度回転する)
 	static constexpr float ROTATION_VALUE = 6;
 

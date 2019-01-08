@@ -43,6 +43,8 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 	// 最初のシーンへ
 	scene_manager->Change_Scene(scene_manager->scene_state);
 
+	float degree = 0;
+
 	// ゲームループ
 	while (ProcessMessage() != -1) {
 		// 画面をクリア
@@ -52,11 +54,25 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 		// カメラの座標と注視点
 		SetCameraPositionAndTarget_UpVecY(camera_position, VGet(0,0,0));
 		
-		//TODO:背景が邪魔で消したら見にくかったので置いた。
-		DrawTriangle3D(
-			VGet(1000.0f, 1000.0f,  -10.0f),
-			VGet(-1000.0f, 1000.0f, -10.0f),
-			VGet(500.0f, -3000.0f,  -10.0f), GetColor(255, 255, 255), TRUE);
+		////TODO:背景が邪魔で消したら見にくかったので置いた。
+		//DrawTriangle3D(
+		//	VGet(1000.0f, 1000.0f,  -10.0f),
+		//	VGet(-1000.0f, 1000.0f, -10.0f),
+		//	VGet(500.0f, -3000.0f,  -10.0f), GetColor(255, 255, 255), TRUE);
+		
+		auto origin = VGet(0.0, 0.0, 0.0);
+		auto a = VGet(100.0f, 100.0f, 0.0f);
+		auto b = VGet(100.0f, 400.0f, 0.0f);
+		auto c = VGet(500.0f, 400.0f, 0.0f);
+		auto g = VGet(700.0f / 3.0f, 300.0f, 0.0f);
+		auto rad = (degree += 0.1f);
+		auto t = MMult(MGetTranslate(VScale(g, -1.0f)), MMult(MGetRotZ(rad), MGetTranslate(g)));
+		auto ta = VTransform(a, t);
+		auto tb = VTransform(b, t);
+		auto tc = VTransform(c, t);
+
+		DrawTriangle3D(ta, tb, tc, GetColor(255, 255, 255), TRUE);
+
 
 		key_Checker->Update_Key();
 		scene_manager->Update();

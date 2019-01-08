@@ -105,13 +105,7 @@ void Main_Scene::Render() {
 	}
 	// ”wŒi‚ÌƒXƒNƒ[ƒ‹
 	Scroll();
-
-	//TEST
-	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
-	for (auto ene : enemy_manager->enemies) {
-		ene->RENDER();
-	}
-}	
+}
 
 // ”wŒi‚Ì‰æ‘œ‚ğ“®‚©‚·
 void Main_Scene::Scroll() {
