@@ -58,7 +58,8 @@ void Main_Scene::Update() {
 	if (m_timer >= 1.0f)
 	{
 		OutputDebugString("aaa");
-		enemy_manager->Enemy_Arrange(Vector3D(200.0f,0,200.0f),player->vector3d);
+		//TEST
+		enemy_manager->Enemy_Arrange(Vector3D(200.0f, 0, 200.0f),player->vector3d);
 		m_timer = 0.0f;
 	}
 	// エネミーのアップデート処理
@@ -105,13 +106,7 @@ void Main_Scene::Render() {
 	}
 	// 背景のスクロール
 	Scroll();
-
-	//TEST
-	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
-	for (auto ene : enemy_manager->enemies) {
-		ene->RENDER();
-	}
-}	
+}
 
 // 背景の画像を動かす
 void Main_Scene::Scroll() {

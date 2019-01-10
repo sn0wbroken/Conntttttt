@@ -35,3 +35,10 @@ enum class eActor_State {
 	Action,
 	Break
 };
+
+// 現在撃っているボムのタイプ
+enum class eEnable_Bomb_Type {
+	None, // ボム攻撃を行っていない
+	Fullrange, // 全方位に弾を飛ばすボム
+	Rain // 弾を降らすボム
+};

@@ -52,7 +52,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 		// カメラの座標と注視点
 		SetCameraPositionAndTarget_UpVecY(camera_position, VGet(0,0,0));
 		
-		//TODO:背景が邪魔で消したら見にくかったので置いた。
+		//TODO:弾が見にくいので置いた。後で消す
 		DrawTriangle3D(
 			VGet(1000.0f, 1000.0f,  -10.0f),
 			VGet(-1000.0f, 1000.0f, -10.0f),

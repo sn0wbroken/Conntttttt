@@ -1,12 +1,15 @@
 #include"Bullet.h"
 #include"Player_Weapon.h"
 #include"Player_Manager.h"
-#include "Random_Number_Generator.h"
+#include"Random_Number_Generator.h"
 
 // コンストラクタ
 Player_Weapon::Player_Weapon() : 
 	degree(90), 
-	living_bomb(false), 
+	enable_bomb(false),
+	shot_button_flag(false),
+	bomb_type(eBomb_Type::Fullrange),
+	enable_bomb_type(eEnable_Bomb_Type::None), 
 	timer(0) {
 
 }
@@ -40,8 +43,11 @@ void Player_Weapon::Initialize() {
 	}
 
 	// 初期ボムを設定
-	bomb_type = [&]() {
-		Fullrange_Shot(player->magazine);
+	shoot_bomb = [&]() {
+		Fullrange_Shot();
+	};
+	bullet_erase = [&]() {
+		Time_Limit_Erase_Bullet();
 	};
 }
 
@@ -53,11 +59,11 @@ void Player_Weapon::Update() {
 	Rotation();
 	// ボムを選択する
 	Chose_Bomb();
-	// ボムの弾が有効かどうかを判断する
-	Check_Enable_Bomb();
 
-	// 子にも回す
-	Actor::Update();
+	if (enable_bomb) {
+		// 弾を消す
+		bullet_erase();
+	}
 }
 
 // 描画
@@ -72,26 +78,43 @@ void Player_Weapon::Render() {
 void Player_Weapon::Fire() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		// 通常攻撃
+		if (shot_button_flag == false) {
+		}
+		shot_button_flag = true;
+	}
+	else {
+		shot_button_flag = false;
 	}
 
-	if (CheckHitKey(KEY_INPUT_RETURN)) {
-		bomb_type();
-		living_bomb = true;
+	if (!enable_bomb) {
+		if (CheckHitKey(KEY_INPUT_Z)) {
+			shoot_bomb();
+			bullet_erase = [&]() {
+				switch (bomb_type) {
+				case eBomb_Type::Fullrange:
+					Time_Limit_Erase_Bullet();
+					break;
+				case eBomb_Type::Rain:
+					Reference_Coordinates_Erase_Bullet(bomb_bullets);
+				default: break;
+				}
+			};
+		}
 	}
 }
 
-// 状態に応じたボムを設定する
+// 選択中のボムの弾幕を設定する
 void Player_Weapon::Set_Bomb() {
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	player = player_manager->player;
 
-	bomb_type = [&]() {
-		switch (ebomb_type) {
+	shoot_bomb = [&]() {
+		switch (bomb_type) {
 			case eBomb_Type::Fullrange:
-				Fullrange_Shot(player->magazine);
+				Fullrange_Shot();
 				break;
 			case eBomb_Type::Rain:
-				Rain(player->magazine);
+				Rain();
 			default: break;
 		}
 	};
@@ -120,19 +143,6 @@ void Player_Weapon::Rotation() {
 	}
 }
 
-// ボムの弾が有効かどうかを判断する
-void Player_Weapon::Check_Enable_Bomb() {
-	if (living_bomb) {
-		if (timer == clear_count) {
- 			Return_Bullet_Pooling();
-			bomb_bullets.clear();
-			living_bomb = false;
-			timer = 0;
-		}
-		++timer;
-	}
-}
-
 // 画面外に出た弾をプールへもどす
 void Player_Weapon::Return_Bullet_Pooling() {
 	// 仕事を終えた弾をプールに戻す
@@ -144,17 +154,18 @@ void Player_Weapon::Return_Bullet_Pooling() {
 // ボムを選択する
 void Player_Weapon::Chose_Bomb() {
 	//TODO: ボムの撃てる条件を決める とりあえず2種類打てるようにしておく
-	if (CheckHitKey(KEY_INPUT_RIGHT)) {
-		ebomb_type = eBomb_Type::Fullrange;
+	if (CheckHitKey(KEY_INPUT_A)) {
+		bomb_type = eBomb_Type::Fullrange;
+		Set_Bomb();
 	}
-	else if (CheckHitKey(KEY_INPUT_LEFT)) {
-		ebomb_type = eBomb_Type::Rain;
+	else if (CheckHitKey(KEY_INPUT_S)) {
+		bomb_type = eBomb_Type::Rain;
+		Set_Bomb();
 	}
-	Set_Bomb();
 }
 
 // 全方位に弾を飛ばすボム
-void Player_Weapon::Fullrange_Shot(std::list<Bullet*> magazine) {
+void Player_Weapon::Fullrange_Shot() {
 	// 20発飛ばす
 	auto degree = 360 / 20;
 
@@ -178,10 +189,14 @@ void Player_Weapon::Fullrange_Shot(std::list<Bullet*> magazine) {
 		
 		clear_count = 30;
 	}
+	// ボム攻撃中フラグをオン
+	enable_bomb = true;
+	// 行っている攻撃を設定
+	enable_bomb_type = eEnable_Bomb_Type::Fullrange;
 }
 
 // 攻撃を降らす
-void Player_Weapon::Rain(std::list<Bullet*> magazine) {
+void Player_Weapon::Rain() {
 	// ランダマイザー
 	Utility::Number_Generator *random_number;
 	random_number = new Utility::Number_Generator;
@@ -202,9 +217,40 @@ void Player_Weapon::Rain(std::list<Bullet*> magazine) {
 		bullet->Set_Z(random_number->Generate_Number(-300, 300));
 		bullet->Set_Speed(0, -10, 0);
 		bullet->Set_Radian(radian);
-		bullet->actor_state = eActor_State::Action;	
+		bullet->actor_state = eActor_State::Action;
+	}
+	// ボム攻撃中フラグをオン
+	enable_bomb = true;
+	// 行っている攻撃を設定
+	enable_bomb_type = eEnable_Bomb_Type::Rain;
+}
 
-		clear_count = 100;
+// 時間経過で弾を消す
+void Player_Weapon::Time_Limit_Erase_Bullet() {
+	if (timer == clear_count) {
+		Return_Bullet_Pooling();
+		bomb_bullets.clear();
+		timer = 0;
+
+		enable_bomb = false;
+		enable_bomb_type = eEnable_Bomb_Type::None;
+	}
+	++timer;
+}
+
+// 座標をみて弾を消す
+void Player_Weapon::Reference_Coordinates_Erase_Bullet(std::list<Bullet*> bullets) {
+	for (auto iterator = bullets.begin(); iterator != bullets.end(); ++iterator) {
+		if ((*iterator)->Get_Y() <= 0) {
+			player->magazine.push_back(*iterator);
+			bullets.erase(iterator);
+		}
+		
+		// 全ての弾が消えたら攻撃終了
+		if (bullets.size() == 0) {
+			enable_bomb = false;
+			enable_bomb_type = eEnable_Bomb_Type::None;
+		}
 	}
 }
 

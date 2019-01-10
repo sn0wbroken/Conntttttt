@@ -20,6 +20,8 @@ public:
 
 	// 引数の2点間の距離を求めて返す
 	float Get_Distance(Vector3D coordinates_1, Vector3D coordinates_2);
+	// 引数の2点のヴェクトルを求めて返す point1 > point2となるように
+	Vector3D Get_Vector(Vector3D point1, Vector3D point2);
 
 	// 線分と平面の当たり判定
 	bool Line_To_Face(std::shared_ptr<Enemy> enemy);
