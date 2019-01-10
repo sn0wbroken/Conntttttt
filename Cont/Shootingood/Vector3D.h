@@ -145,10 +145,9 @@ public:
 		return sqrt(pow(x, 2) + pow(y , 2) + pow(x, 2));
 	}
 
-	//TEST
-	static Vector3D Hoge(Vector3D vec1, Vector3D center) {
-		Vector3D result = vec1;
-		return result.operator-(center);
+	// 2点からベクトルを生成 point1を減算するため　point1 > point2になるように
+	static Vector3D Make_Vector(Vector3D point1, Vector3D point2) {
+		return point1.operator-(point2);
 	}
 
 	// 2点間の距離を求める(3次元用)

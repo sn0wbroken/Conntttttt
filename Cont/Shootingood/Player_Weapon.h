@@ -27,7 +27,7 @@ public:
 	Vector3D Get_Limit_Range();
 
 	// プレイヤーのショットタイプ
-	eBomb_Type ebomb_type;
+	eBomb_Type bomb_type;
 
 	// プールから取り出したものを入れる入れ物
 	Bullet* bullet;
@@ -48,25 +48,33 @@ private:
 	// 銃口の位置を変える
 	void Rotation();
 
-	// ボムの弾が有効かどうかを判断する
-	void Check_Enable_Bomb();
 	// 画面外に出た弾をプールへもどす
 	void Return_Bullet_Pooling();
 
 	// ボムを選択する
 	void Chose_Bomb();
 	// 全方位に弾を飛ばすボム
-	void Fullrange_Shot(std::list<Bullet*> magazine);
+	void Fullrange_Shot();
 	// 攻撃を降らす
-	void Rain(std::list<Bullet*> magazine);
+	void Rain();
 	
-	// 弾幕の種類
-	std::function<void()> bomb_type;
+	// 時間経過で弾を消す
+	void Time_Limit_Erase_Bullet();
+	// 座標をみて弾を消す
+	void Reference_Coordinates_Erase_Bullet(std::list<Bullet*> bullets);
+
+	// ボム
+	std::function<void()> shoot_bomb;
+	// 撃った弾を消す処理
+	std::function<void()> bullet_erase;
 	
 	// 回転の中心(プレイヤーの中心に同じ)
 	Vector3D center_position;
 	// 弾が飛ぶ最大地点
 	Vector3D distance_limit;
+
+	// 現在行っているボムのタイプ
+	eEnable_Bomb_Type enable_bomb_type;
 
 	// 度数法
 	float degree;
@@ -75,6 +83,10 @@ private:
 	// 半径(中心から銃口までの)
 	float radius;
 
+	// ボム攻撃の最中かどうか
+	bool enable_bomb;
+	// 連射にならないように押されているかを覚える
+	bool shot_button_flag;
 	// ボムの攻撃が継続しているかどうかのフラグ
 	bool living_bomb;
 
@@ -84,5 +96,5 @@ private:
 	int clear_count;
 
 	//TEST
-	const float fire_range = 3000;
+	const float fire_range = 300;
 };

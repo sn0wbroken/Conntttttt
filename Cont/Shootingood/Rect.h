@@ -28,7 +28,10 @@ public:
 	Vector3D Get_Centor_Position();
 
 	// 法線ベクトルを返す
-	Vector3D Get_Normal_Vector(Rect rect);
+	void Set_Normal_Vector(Rect& rect);
+	
+	// 矩形を回転させる
+	std::unordered_map<std::string, Rect> Rotation_Rectangle(std::unordered_map<std::string, Rect>& rects, Vector3D axis, float radian);
 
 	// 四角形の左上隅の座標
 	Vector3D top_left;
@@ -40,9 +43,6 @@ public:
 	Vector3D bottom_left;
 	// 法線ベクトル。線分との判定に使う
 	Vector3D normal_vector;
-
-	// 矩形を回転させる
-	std::unordered_map<std::string, Rect> Rotation_Rectangle(std::unordered_map<std::string, Rect>& rects, float radian);
 
 	// 幅
 	float width;

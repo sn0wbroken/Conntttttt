@@ -58,7 +58,8 @@ void Main_Scene::Update() {
 	if (m_timer >= 1.0f)
 	{
 		OutputDebugString("aaa");
-		enemy_manager->Enemy_Arrange(Vector3D(200.0f,0,200.0f),player->vector3d);
+		//TEST
+		enemy_manager->Enemy_Arrange(Vector3D(200.0f, 0, 200.0f),player->vector3d);
 		m_timer = 0.0f;
 	}
 	// エネミーのアップデート処理

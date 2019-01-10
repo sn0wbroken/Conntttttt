@@ -17,7 +17,7 @@ std::unordered_map<std::string, Rect> Rect::Make_3DBox(Rect top_face, Object_Siz
 	// 面の中心点を設定
 	front_face.Set_Centor_Position();
 	//TEST
-	Get_Normal_Vector(front_face);
+	Set_Normal_Vector(front_face);
 	rects["front_face"] = front_face;
 	
 	// 背面作成
@@ -104,39 +104,37 @@ Vector3D Rect::Get_Centor_Position() {
 	return centor_positon;
 }
 
-// 法線ベクトルを返す
-Vector3D Rect::Get_Normal_Vector(Rect rect) {
+// 法線ベクトルを求めて設定する
+void Rect::Set_Normal_Vector(Rect& rect) {
 	Vector3D result;
 	
-	auto AO = vector.Hoge(rect.centor_positon, rect.top_left);
-	auto BO = vector.Hoge(rect.centor_positon, rect.top_right);
+	auto AO = vector.Make_Vector(rect.top_left, rect.centor_positon);
+	auto BO = vector.Make_Vector(rect.top_right, rect.centor_positon);
 
-	//TODO:機能ある cross
+	//TODO:機能ある
 	result.x = BO.y * AO.z - AO.y * BO.z;
 	result.y = BO.x * AO.z - AO.x * BO.z;
 	result.z = BO.x * AO.y - AO.x * BO.y;
 
-	return result;
+	rect.normal_vector = result;
 }
 
 // 矩形を回転させる //TODO:mapをイテレータで回すのよろしくない？
-std::unordered_map<std::string, Rect> Rect::Rotation_Rectangle(std::unordered_map<std::string, Rect>& rects, float radian) {
+std::unordered_map<std::string, Rect> Rect::Rotation_Rectangle(std::unordered_map<std::string, Rect>& rects, Vector3D axis, float radian) {
 	// rectsに格納されている矩形全てを回転させる
 	for (auto iterator = begin(rects); iterator != end(rects); ++iterator) {
 		MATRIX matrix;
 
-		matrix = MGetRotY(radian);
+		auto rotate_value = MMult(MGetTranslate(VScale(axis, -1.0f)), MMult(MGetRotY(radian), MGetTranslate(axis)));
 
-//		auto t = MMult(MGetTranslate(MGetTranslate(VScale(collision_centor, -1.0f)), MMult(MGetRotZ(radian), MGetTranslate(centor_position));
-
-		iterator->second.top_right    = VTransform(iterator->second.top_right   , matrix);
-		iterator->second.top_left     = VTransform(iterator->second.top_left    , matrix);
-		iterator->second.bottom_right = VTransform(iterator->second.bottom_right, matrix);
-		iterator->second.bottom_left  = VTransform(iterator->second.bottom_left , matrix);
+		iterator->second.top_right    = VTransform(iterator->second.top_right   , rotate_value);
+		iterator->second.top_left     = VTransform(iterator->second.top_left    , rotate_value);
+		iterator->second.bottom_right = VTransform(iterator->second.bottom_right, rotate_value);
+		iterator->second.bottom_left  = VTransform(iterator->second.bottom_left , rotate_value);
 
 		//TODO: 少々雑か？
 		if (iterator == rects.find("front_face")) {
-			iterator->second.centor_positon = VTransform(iterator->second.centor_positon, matrix);
+			iterator->second.centor_positon = VTransform(iterator->second.centor_positon, rotate_value);
 		}
 	}
 
