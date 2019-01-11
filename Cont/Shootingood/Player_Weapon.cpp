@@ -239,13 +239,17 @@ void Player_Weapon::Time_Limit_Erase_Bullet() {
 }
 
 // 座標をみて弾を消す
-void Player_Weapon::Reference_Coordinates_Erase_Bullet(std::list<Bullet*> bullets) {
-	for (auto iterator = bullets.begin(); iterator != bullets.end(); ++iterator) {
+void Player_Weapon::Reference_Coordinates_Erase_Bullet(std::list<Bullet*>& bullets) {	
+	for (auto iterator = bullets.begin(); iterator != bullets.end();) {
+		// 地面に到達しているものがあればプールへ戻す
 		if ((*iterator)->Get_Y() <= 0) {
 			player->magazine.push_back(*iterator);
-			bullets.erase(iterator);
+			iterator = bullets.erase(iterator);
 		}
-		
+		else {
+			++iterator;
+		}
+
 		// 全ての弾が消えたら攻撃終了
 		if (bullets.size() == 0) {
 			enable_bomb = false;

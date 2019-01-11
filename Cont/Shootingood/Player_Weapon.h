@@ -61,7 +61,7 @@ private:
 	// ŠÔŒo‰ß‚Å’e‚ğÁ‚·
 	void Time_Limit_Erase_Bullet();
 	// À•W‚ğ‚İ‚Ä’e‚ğÁ‚·
-	void Reference_Coordinates_Erase_Bullet(std::list<Bullet*> bullets);
+	void Reference_Coordinates_Erase_Bullet(std::list<Bullet*>& bullets);
 
 	// ƒ{ƒ€
 	std::function<void()> shoot_bomb;
