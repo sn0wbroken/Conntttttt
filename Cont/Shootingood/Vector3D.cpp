@@ -34,11 +34,11 @@ DxLib::VECTOR Vector3D::GetVECTOR() {
 }
 
 // ˆø”‚Ì—v‘f‚ğ©ì‚ÌVector3DŒ^‚É‚µ‚Ä•Ô‚·
-Vector3D Vector3D::Get_Vector(float x, float y, float z) {
+Vector3D Vector3D::Get_Vector(float set_x, float set_y, float set_z) {
 	Vector3D result;
-	result.x = x;
-	result.y = y;
-	result.z = z;
+	result.x = set_x;
+	result.y = set_y;
+	result.z = set_z;
 	return result;
 }
 

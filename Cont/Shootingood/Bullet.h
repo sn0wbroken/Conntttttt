@@ -32,7 +32,7 @@ public:
 	int Get_Radius();
 
 	// ’e‚ÌˆÚ“®
-	void Move(float speed_x = 0.0f, float speed_y = 0.0f, float speed_z = 0.0f);
+	void Move();
 	// ”ò‚ñ‚Å‚¢‚­Šp“x‚ğİ’è‚·‚é
 	void Set_Radian(float set_radian);
 	// ”ò‚ñ‚Å‚¢‚­‘¬“x‚ğİ’è‚·‚é

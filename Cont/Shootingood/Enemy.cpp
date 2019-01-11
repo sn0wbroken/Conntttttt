@@ -39,9 +39,10 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 // デストラクタ
 Enemy::~Enemy() {}
 
-void Enemy::Set_Collision_Centor(std::unordered_map<std::string, Rect> rects) {
-	auto x_coordinates = rects.find("right_face")->second.top_right.x - size.width / 2;
-	auto z_coordinates = rects.find("front_face")->second.top_right.z - size.depth / 2;
+// 当たり判定用の箱の中心座標を設定する
+void Enemy::Set_Collision_Centor(std::unordered_map<std::string, Rect> set_rects) {
+	auto z_coordinates = set_rects.find("front_face")->second.top_right.z - size.depth / 2;
+	auto x_coordinates = set_rects.find("right_face")->second.top_right.x - size.width / 2;
 
 	collision_centor= vector3d.Get_Vector(x_coordinates, 0, z_coordinates);
 }

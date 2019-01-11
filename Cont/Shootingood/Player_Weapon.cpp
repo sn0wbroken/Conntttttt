@@ -29,7 +29,7 @@ void Player_Weapon::Initialize() {
 	// 中心座標を取得
 	center_position = player->vector3d;
 	// 銃口の座標を設定
-	vector3d.Set_Vector(center_position.x - 1.5, center_position.y + 16, center_position.z - radius);
+	vector3d.Set_Vector(center_position.x - 1.5f, center_position.y + 16.0f, center_position.z - radius);
 
 	// 通常攻撃の射程を設定する
 	distance_limit.x -= fire_range * cos(radian);
@@ -37,9 +37,9 @@ void Player_Weapon::Initialize() {
 
 	// 弾丸をプーリング
 	for (int i = 0; i < define_value.MAX_BULLET; ++i) {
-		Bullet* bullet = new Bullet();
-		bullet->actor_state = eActor_State::Break;
-		player->magazine.push_back(bullet);
+		Bullet* pool_bullet = new Bullet();
+		pool_bullet->actor_state = eActor_State::Break;
+		player->magazine.push_back(pool_bullet);
 	}
 
 	// 初期ボムを設定
@@ -69,8 +69,8 @@ void Player_Weapon::Update() {
 // 描画
 void Player_Weapon::Render() {
 	// 撃ち出したボムの弾を描画
-	for (auto bullet : bomb_bullets) {
-		bullet->Render();
+	for (auto bomb_bullet : bomb_bullets) {
+		bomb_bullet->Render();
 	}
 }
 
@@ -146,8 +146,8 @@ void Player_Weapon::Rotation() {
 // 画面外に出た弾をプールへもどす
 void Player_Weapon::Return_Bullet_Pooling() {
 	// 仕事を終えた弾をプールに戻す
-	for (auto bullet : bomb_bullets) {
-		player->magazine.push_back(bullet);
+	for (auto bomb_bullet : bomb_bullets) {
+		player->magazine.push_back(bomb_bullet);
 	}
 }
 
@@ -166,8 +166,8 @@ void Player_Weapon::Chose_Bomb() {
 
 // 全方位に弾を飛ばすボム
 void Player_Weapon::Fullrange_Shot() {
-	// 20発飛ばす
-	auto degree = 360 / 20;
+	// 20発を360°の範囲で均等になるように
+	auto fire_angle_degree = 360 / 20;
 
 	for (int i = 0; i < 20; ++i) {
 		bullet = player->magazine.back();
@@ -175,17 +175,17 @@ void Player_Weapon::Fullrange_Shot() {
 		player->magazine.pop_back();
 	}
 
-	for (auto bullet : bomb_bullets) {
-		// 弧度法に変換
-		auto radian = degree * DX_PI_F / 180;
+	for (auto bomb_bullet : bomb_bullets) {
+		// 撃ち出す位置(角度)をラジアンに変換
+		auto fire_angle_radian = fire_angle_degree * DX_PI_F / 180;
 	
-		bullet->Set_X(vector3d.x);
-		bullet->Set_Z(vector3d.z);
-		bullet->Set_Speed(15,0,15);
-		bullet->Set_Radian(radian);
-		bullet->actor_state = eActor_State::Action;
+		bomb_bullet->Set_X(vector3d.x);
+		bomb_bullet->Set_Z(vector3d.z);
+		bomb_bullet->Set_Speed(15,0,15);
+		bomb_bullet->Set_Radian(fire_angle_radian);
+		bomb_bullet->actor_state = eActor_State::Action;
 		
-		degree += 360 / 20;
+		fire_angle_degree += 360 / 20;
 		
 		clear_count = 30;
 	}
@@ -207,17 +207,17 @@ void Player_Weapon::Rain() {
 		player->magazine.pop_back();
 	}
 
-	for (auto bullet : bomb_bullets) {
+	for (auto bomb_bullet : bomb_bullets) {
 		// 弧度法に変換
-		auto radian = 180 * DX_PI_F / 180;
+		auto fire_angle = 180 * DX_PI_F / 180;
 
 		//TOOD:ひとまず作っただけ要調整
-		bullet->Set_X(random_number->Generate_Number(-300, 300));
-		bullet->Set_Y(random_number->Generate_Number(400, 800));
-		bullet->Set_Z(random_number->Generate_Number(-300, 300));
-		bullet->Set_Speed(0, -10, 0);
-		bullet->Set_Radian(radian);
-		bullet->actor_state = eActor_State::Action;
+		bomb_bullet->Set_X(random_number->Generate_Number(-300.0f, 300.0f));
+		bomb_bullet->Set_Y(random_number->Generate_Number(400.0f, 800.0f));
+		bomb_bullet->Set_Z(random_number->Generate_Number(-300.0f, 300.0f));
+		bomb_bullet->Set_Speed(0, -10, 0);
+		bomb_bullet->Set_Radian(fire_angle);
+		bomb_bullet->actor_state = eActor_State::Action;
 	}
 	// ボム攻撃中フラグをオン
 	enable_bomb = true;
