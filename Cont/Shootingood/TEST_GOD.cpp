@@ -19,7 +19,6 @@ TEST_GOD::TEST_GOD() {
 	Create_Enemy(player_manager->player->vector3d);
 
 	//TEST
-<<<<<<< Updated upstream
 	unique_ptr<Enemy_Manager>& enemy_manager  = Enemy_Manager::Get_Instance();
 	
 	Vector3D vec;
@@ -34,27 +33,6 @@ TEST_GOD::TEST_GOD() {
 	vec.x = -200.0f; vec.y = 0.0f; vec.z = 200.0f;
 	enemy_manager->Enemy_Arrange(vec, player_manager->player->vector3d);
 	actor->Add_Child("Enemy_3", enemy_manager->enemies.back());
-=======
-	//unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
-
-	//Vector3D vec;
-	//vec.x = 200.0f; vec.y = 0.0f; vec.z = -200.0f;
-	//enemy_manager->Enemy_Arrange(vec, player_manager->player->vector3d);
-	//enemy_manager->enemies.push_back(std::make_shared<Enemy>(vec, player_manager->player->vector3d));
-	//actor->Add_Child("Enemy_1", enemy_manager->enemies.front());
-
-	//vec.x = -200.0f; vec.y = 0.0f; vec.z = -200.0f;
-	//enemy_manager->Enemy_Arrange(vec, player_manager->player->vector3d);
-	//actor->Add_Child("Enemy_2", enemy_manager->enemies.back());
-
-	//vec.x = -200.0f; vec.y = 0.0f; vec.z = 200.0f;
-	//enemy_manager->Enemy_Arrange(vec, player_manager->player->vector3d);
-	//actor->Add_Child("Enemy_3", enemy_manager->enemies.back());
-
-	//	vec.x = 0.0f; vec.y = 0.0f; vec.z = -100.0f;
-	//	enemy_manager->Enemy_Arrange(vec, 135);
-	//	actor->Add_Child("Enemy_4" ,enemy_manager->enemies.back());
->>>>>>> Stashed changes
 }
 
 TEST_GOD::~TEST_GOD()

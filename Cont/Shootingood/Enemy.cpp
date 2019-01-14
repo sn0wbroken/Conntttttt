@@ -33,13 +33,11 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	}
 	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
 	MV1SetScale(model_handle, VGet(0.6f, 0.6f, 0.6f));
-<<<<<<< Updated upstream
-	MV1SetRotationXYZ(model_handle, VGet(0, radian, 0));
-=======
-	MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::RotateOnAngleOfElevation(set_playerpos, position) + 3.14f, 0));
-	anim_handle = MV1AttachAnim(model_handle, 1);
+	//現在アニメーションを設定したおかげでなぜか逆になっているので正常に戻す（?）ためにPIを足す
+	MV1SetRotationXYZ(model_handle, VGet(0, radian + DxLib::DX_PI, 0));
+	//歩行モーションのハンドルを取得する。
+	anim_handle = MV1AttachAnim(model_handle, 0);
 	Anim_CurrentFrame = 0;
->>>>>>> Stashed changes
 
 	// 基準となる面(天井部)を生成
 	rects["top_face"] = rect.Make_Top_Face(vector3d, size);

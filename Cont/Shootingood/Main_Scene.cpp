@@ -57,13 +57,9 @@ void Main_Scene::Update() {
 	m_timer += 0.01f;
 	/*if (m_timer >= 1.0f)
 	{
-<<<<<<< Updated upstream
 		OutputDebugString("aaa");
 		//TEST
 		enemy_manager->Enemy_Arrange(Vector3D(200.0f, 0, 200.0f),player->vector3d);
-=======
-		enemy_manager->Enemy_Arrange(Vector3D(200.0f,0,200.0f),player->vector3d);
->>>>>>> Stashed changes
 		m_timer = 0.0f;
 	}*/
 	// エネミーのアップデート処理

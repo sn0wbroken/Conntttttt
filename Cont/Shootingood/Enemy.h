@@ -25,7 +25,6 @@ public:
 	// 被せる矩形(当たり判定に使用) TODO:キーに難あり 左面、右面では合わない
 	std::unordered_map<std::string, Rect> rects;
 
-<<<<<<< Updated upstream
 	//TEST 合ってたらSetはプライベート
 	// 当たり判定用の箱の中心
 	Vector3D collision_centor;
@@ -38,39 +37,20 @@ public:
 	inline float Get_Degree();
 	// ラジアンを取得
 	inline float Get_Radian();
-
-=======
-	//ラジアンを設定
-	void set_radian(Vector3D set_playerpos) {
-
-		radian = Vector3D::MoveOnAngleOfElevation(set_playerpos, vector3d);
-		MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::RotateOnAngleOfElevation(set_playerpos, vector3d), 0));
-	}
-	//角度を取得
-	inline float get_degree()
-	{
-		return degree;
-	}
-	//ラジアンを取得
-	inline float get_radian()
-	{
-		return radian;
-	}
-
-
+	//アニメーションのハンドル
 	int anim_handle;
+	//アニメーションの現在の時間
 	float Anim_CurrentFrame;
-	//現在のフレームを増やす
+	//アニメーションの現在の時間を増やす
 	float AddAnimIndex()
 	{
 		Anim_CurrentFrame++;
-		if (Anim_CurrentFrame >= MV1GetAttachAnimTotalTime(model_handle,anim_handle))//TODO::MAGICNUMBER
+		if (Anim_CurrentFrame >= MV1GetAttachAnimTotalTime(model_handle,anim_handle))
 		{
-			Anim_CurrentFrame = 1; //TODO::MAGICNUMBER
+			Anim_CurrentFrame = 0; //時間をリセットする。
 		}
 		return Anim_CurrentFrame;
 	}
->>>>>>> Stashed changes
 private:
 	// 角度(度数法)
 	float degree;
