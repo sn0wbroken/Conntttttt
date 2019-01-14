@@ -34,23 +34,15 @@ public:
 	void Set_Radian(Vector3D set_playerpos);
 
 	// 角度を取得
-	inline float Get_Degree();
+	float Get_Degree();
 	// ラジアンを取得
-	inline float Get_Radian();
+	float Get_Radian();
 	//アニメーションのハンドル
 	int anim_handle;
 	//アニメーションの現在の時間
 	float Anim_CurrentFrame;
-	//アニメーションの現在の時間を増やす
-	float AddAnimIndex()
-	{
-		Anim_CurrentFrame++;
-		if (Anim_CurrentFrame >= MV1GetAttachAnimTotalTime(model_handle,anim_handle))
-		{
-			Anim_CurrentFrame = 0; //時間をリセットする。
-		}
-		return Anim_CurrentFrame;
-	}
+	//アニメーションの現在の時間を増やし、モデルの動きをセットする。 
+	void Add_AnimIndex();
 private:
 	// 角度(度数法)
 	float degree;
