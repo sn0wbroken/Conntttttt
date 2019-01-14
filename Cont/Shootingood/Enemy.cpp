@@ -15,7 +15,7 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	// 大きさを設定
 	size.Set_Size(define_value.ENEMY_WIDTH, define_value.ENEMY_HEIGHT, define_value.ENEMY_DEPTH);
 	// 角度をプレイヤーの方向に設定
-	radian = Vector3D::RotateOnAngleOfElevation(player_position, position);
+	radian = Vector3D::AngleOfElevation(player_position, position);
 
 	// ステータスをセット
 	enemy_status = std::make_shared<Enemy_Status>(scene_manager->Get_Stage());
@@ -64,7 +64,7 @@ void Enemy::Set_Collision_Centor(std::unordered_map<std::string, Rect> set_rects
 //ラジアンを設定
 void Enemy::Set_Radian(Vector3D set_playerpos) {
 	radian = Vector3D::MoveOnAngleOfElevation(set_playerpos, vector3d);
-	MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::RotateOnAngleOfElevation(set_playerpos, vector3d), 0));
+	MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::AngleOfElevation(set_playerpos, vector3d), 0));
 }
 
 // 角度を取得

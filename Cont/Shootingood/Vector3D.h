@@ -193,15 +193,8 @@ public:
 
 		return TempVector;
 	}
-	// ラジアン計算 (進行方向計算用)
-	static float MoveOnAngleOfElevation(Vector3D vector,Vector3D vector2) {
-		const double px = static_cast<double> (vector.x - vector2.x);
-		const double pz = static_cast<double> (vector.z - vector2.z);
-		//atan2 は 引数がy xのため pz,pxの順で挿入する
-		return static_cast<float> (std::atan2(pz, px));
-	}
 	// ラジアン計算(モデル回転)
-	static float RotateOnAngleOfElevation(Vector3D vector, Vector3D vector2) {
+	static float AngleOfElevation(Vector3D vector, Vector3D vector2) {
 		const double px = static_cast<double> (vector.x - vector2.x);
 		const double pz = static_cast<double> (vector.z - vector2.z);
 		//atan2 は 引数がy xだが、なぜか回転がおかしくなるのでx zで挿入する
