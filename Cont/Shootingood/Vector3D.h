@@ -22,7 +22,7 @@ public:
 	// DxlibのVECTORを使う(Dxlibの機能でこの型を扱うものが多い為合わせる)
 	VECTOR GetVECTOR();
 	// 引数の要素を自作のVector3D型にして返す
-	Vector3D Get_Vector(float x, float y, float z);
+	Vector3D Get_Vector(float set_x, float set_y, float set_z);
 	// X座標を返す
 	float Get_X();
 	// Y座標を返す
@@ -141,7 +141,7 @@ public:
 		return tmp;
 	}
 	// ベクトルの長さを返す
-	static float Norm(float x, float y, float z = 0) {
+	static float Norm(float x, float y) {
 		return sqrt(pow(x, 2) + pow(y , 2) + pow(x, 2));
 	}
 
@@ -157,13 +157,13 @@ public:
 
 	// 平方根計算（バビロニア人メソッド）
 	static float sqrt(float s) {
-		float tmp_x = s / 2.0; // Is there any better way to determine initial value?
+		float tmp_x = s / 2.0f; // Is there any better way to determine initial value?
 		float last_x = 0.0; // the value one before the last step
 
 		while (tmp_x != last_x) // until the difference is not significant
 		{ // apply Babylonian method step
 			last_x = tmp_x;
-			tmp_x = (tmp_x + s / tmp_x) / 2.0;
+			tmp_x = static_cast<float>((tmp_x + s / tmp_x) / 2.0);
 		}
 
 		return tmp_x;
@@ -181,7 +181,7 @@ public:
 		float a[] = { vector.x,vector.y,vector.z };
 		float b[] = { vector2.x,vector2.y,vector2.z };
 		// スタンダードライブラリの内積計算
-		float result = std::inner_product(a, a + sizeof(a) / sizeof(a[0]), b, 0);
+		float result = static_cast<float>(std::inner_product(a, a + sizeof(a) / sizeof(a[0]), b, 0));
 
 		return result;
 	}

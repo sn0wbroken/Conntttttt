@@ -123,8 +123,6 @@ void Rect::Set_Normal_Vector(Rect& rect) {
 std::unordered_map<std::string, Rect> Rect::Rotation_Rectangle(std::unordered_map<std::string, Rect>& rects, Vector3D axis, float radian) {
 	// rects‚ÉŠi”[‚³‚ê‚Ä‚¢‚é‹éŒ`‘S‚Ä‚ð‰ñ“]‚³‚¹‚é
 	for (auto iterator = begin(rects); iterator != end(rects); ++iterator) {
-		MATRIX matrix;
-
 		auto rotate_value = MMult(MGetTranslate(VScale(axis, -1.0f)), MMult(MGetRotY(radian), MGetTranslate(axis)));
 
 		iterator->second.top_right    = VTransform(iterator->second.top_right   , rotate_value);

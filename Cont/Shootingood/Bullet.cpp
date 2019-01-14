@@ -13,7 +13,7 @@ Bullet::~Bullet() {
 void Bullet::Render() {
 	if (actor_state == eActor_State::Action) {
 		DrawSphere3D(vector3d.GetVECTOR(), 5, 5, GetColor(255, 0, 255), GetColor(0, 0, 0), TRUE);
-		Move(vector3d.x, vector3d.y, vector3d.z);
+		Move();
 	}
 }
 
@@ -50,7 +50,7 @@ int Bullet::Get_Radius() {
 }
 
 // ’e‚ÌˆÚ“®
-void Bullet::Move(float speed_x, float speed_y, float speed_z) {
+void Bullet::Move() {
 	vector3d.Move(speed.x * cos(radian), speed.y, speed.z * sin(radian));
 }
 

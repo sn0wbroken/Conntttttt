@@ -33,9 +33,6 @@ private:
 	// UI表示クラス
 	std::shared_ptr<UI> UI_class;
 
-	// アクターの基底クラス
-	std::shared_ptr<Actor> actor;
-
 	// プレイヤー本体のクラス
 	std::shared_ptr<Player> player;
 	// プレイヤーの行動を管理するクラス
