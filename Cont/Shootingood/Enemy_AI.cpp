@@ -20,9 +20,8 @@ void Enemy_AI::Update() {
 	auto enemies = enemy_manager->enemies;
 	for (auto enemy : enemies) {
 		//TODO::MAGICNUMBER
-		enemy->vector3d.Move(1.0f * std::cosf(enemy->get_radian()), 0.0f, 1.0f * std::sinf(enemy->get_radian()));
-		//現在のアニメーションのタイムを設定する。
-		MV1SetAttachAnimTime(enemy->Get_Model_Handle(), enemy->anim_handle, enemy->AddAnimIndex());
+		enemy->vector3d.Move(1.0f * std::cosf(enemy->Get_Radian()), 0.0f, 1.0f * std::sinf(enemy->Get_Radian()));
+		enemy->Add_AnimIndex();
 	}
 }
 

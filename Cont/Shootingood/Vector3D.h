@@ -205,7 +205,7 @@ public:
 		const double px = static_cast<double> (vector.x - vector2.x);
 		const double pz = static_cast<double> (vector.z - vector2.z);
 		//atan2 ‚Í ˆø”‚ªy x‚¾‚ªA‚È‚º‚©‰ñ“]‚ª‚¨‚©‚µ‚­‚È‚é‚Ì‚Åx z‚Å‘}“ü‚·‚é
-		return static_cast<float> (std::atan2(px, pz));
+		return static_cast<float> (std::atan2(pz, px));
 	}
 #pragma endregion
 };
