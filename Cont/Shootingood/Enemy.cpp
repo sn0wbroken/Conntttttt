@@ -8,10 +8,10 @@ Enemy::Enemy() {}
 Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	// プレイするステージを取得
 	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
+	unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 
 	//座標を設定
 	vector3d.Set_Vector(position.x, position.y, position.z);
-	OutputDebugString("AAA\n");
 	// 大きさを設定
 	size.Set_Size(define_value.ENEMY_WIDTH, define_value.ENEMY_HEIGHT, define_value.ENEMY_DEPTH);
 	// 角度をプレイヤーの方向に設定
@@ -21,10 +21,25 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	enemy_status = std::make_shared<Enemy_Status>(scene_manager->Get_Stage());
 
 	// モデルを設定する
-	Create_Actor("Resources/Enemy/Enemy.x");
+	if (enemy_manager->enemies.size() < 1)
+	{
+		//enemymanagerの配列に何も入っていなかった場合は作成する。
+		Create_Actor("Resources/Enemy/Enemy.x");
+	}
+	else
+	{
+		//もう一度モデルを読み込むよりこちらの方が若干高速
+		model_handle = MV1DuplicateModel(enemy_manager->enemies.front()->Get_Model_Handle());
+	}
 	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
 	MV1SetScale(model_handle, VGet(0.6f, 0.6f, 0.6f));
+<<<<<<< Updated upstream
 	MV1SetRotationXYZ(model_handle, VGet(0, radian, 0));
+=======
+	MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::RotateOnAngleOfElevation(set_playerpos, position) + 3.14f, 0));
+	anim_handle = MV1AttachAnim(model_handle, 1);
+	Anim_CurrentFrame = 0;
+>>>>>>> Stashed changes
 
 	// 基準となる面(天井部)を生成
 	rects["top_face"] = rect.Make_Top_Face(vector3d, size);

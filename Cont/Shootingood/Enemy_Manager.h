@@ -25,8 +25,8 @@ public:
 	// 毎フレーム呼ばれる
 	void Update();
 
-	// エネミーを配置
-	void Enemy_Arrange(Vector3D set_vector3d, Vector3D set_playerpos);
+	//// エネミーを配置
+	//void Enemy_Arrange(Vector3D set_vector3d, Vector3D set_playerpos);
 
 	// エネミーが全滅したかどうか
 	bool Is_Enemy_All_Ded();

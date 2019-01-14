@@ -9,6 +9,7 @@
 #include"Enemy_Controller.h"
 #include"Player_Manager.h"
 #include"Unique_Component.h"
+#include"Scene_Manager.h"
 
 #include<memory>
 
@@ -23,6 +24,7 @@ public:
 	
 	~TEST_GOD();
 
+	void Create_Enemy(Vector3D PlayerPos);
 	shared_ptr<Weapon> weapon;
 	shared_ptr<Bullet> bullet;
 	shared_ptr<Character> character;

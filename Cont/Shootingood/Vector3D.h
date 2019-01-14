@@ -140,9 +140,15 @@ public:
 
 		return tmp;
 	}
+<<<<<<< Updated upstream
 	// ベクトルの長さを返す
 	static float Norm(float x, float y) {
 		return sqrt(pow(x, 2) + pow(y , 2) + pow(x, 2));
+=======
+	// ノルムを返す
+	static float Norm(float x, float y, float z = 0) {
+		return sqrt(pow(x, 2) + pow(y , 2) + pow(z, 2));
+>>>>>>> Stashed changes
 	}
 
 	// 2点からベクトルを生成 point1を減算するため　point1 > point2になるように
@@ -176,12 +182,20 @@ public:
 
 		return Vector3D(VGet(_x, _y, 0));
 	}
+<<<<<<< Updated upstream
 	// 内積計算
 	static float dot(Vector3D vector,Vector3D vector2) {
 		float a[] = { vector.x,vector.y,vector.z };
 		float b[] = { vector2.x,vector2.y,vector2.z };
 		// スタンダードライブラリの内積計算
 		float result = static_cast<float>(std::inner_product(a, a + sizeof(a) / sizeof(a[0]), b, 0));
+=======
+	//内積計算
+	static float dot(Vector3D vector,Vector3D vector2)
+	{
+		//DXライブラリの内積計算
+		float result = DxLib::VDot(vector, vector2);
+>>>>>>> Stashed changes
 
 		return result;
 	}
