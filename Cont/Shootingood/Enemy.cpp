@@ -63,7 +63,7 @@ void Enemy::Set_Collision_Centor(std::unordered_map<std::string, Rect> set_rects
 
 //ƒ‰ƒWƒAƒ“‚ğİ’è
 void Enemy::Set_Radian(Vector3D set_playerpos) {
-	radian = Vector3D::MoveOnAngleOfElevation(set_playerpos, vector3d);
+	radian = Vector3D::AngleOfElevation(set_playerpos, vector3d);
 	MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::AngleOfElevation(set_playerpos, vector3d), 0));
 }
 
