@@ -33,9 +33,7 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	}
 	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
 	MV1SetScale(model_handle, VGet(0.6f, 0.6f, 0.6f));
-	//そもそもモデル自体が下を見ているため、回転がおかしくなるため(Radianは右が0度)、ラジアン的な0度に変更するために、Piと半分のPiを足す。
-	//以上の問題はモデル自体の問題なので早いところ解決する予定。
-	MV1SetRotationXYZ(model_handle, VGet(0, radian + (DX_PI_F + (DX_PI_F / 2.0f)), 0));
+	MV1SetRotationXYZ(model_handle, VGet(0, radian, 0));
 	//歩行モーションのハンドルを取得する。
 	anim_handle = MV1AttachAnim(model_handle, 0);
 	Anim_CurrentFrame = 0;
