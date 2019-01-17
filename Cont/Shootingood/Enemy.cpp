@@ -8,7 +8,7 @@ Enemy::Enemy() {}
 Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	// プレイするステージを取得
 	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
-	unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
+	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 
 	//座標を設定
 	vector3d.Set_Vector(position.x, position.y, position.z);
@@ -16,7 +16,6 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	size.Set_Size(define_value.ENEMY_WIDTH, define_value.ENEMY_HEIGHT, define_value.ENEMY_DEPTH);
 	// 角度をプレイヤーの方向に設定
 	radian = Vector3D::AngleOfElevation(player_position, position);
-
 	// ステータスをセット
 	enemy_status = std::make_shared<Enemy_Status>(scene_manager->Get_Stage());
 
@@ -31,9 +30,11 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 		//もう一度モデルを読み込むよりこちらの方が若干高速
 		model_handle = MV1DuplicateModel(enemy_manager->enemies.front()->Get_Model_Handle());
 	}
-	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
+
+	MV1SetPosition(model_handle, vector3d);
 	MV1SetScale(model_handle, VGet(0.6f, 0.6f, 0.6f));
-	MV1SetRotationXYZ(model_handle, VGet(0, radian, 0));
+	//radianに-を付けると普通に回転する。　謎
+	MV1SetRotationXYZ(model_handle, VGet(0, -radian, 0));
 	//歩行モーションのハンドルを取得する。
 	anim_handle = MV1AttachAnim(model_handle, 0);
 	Anim_CurrentFrame = 0;
