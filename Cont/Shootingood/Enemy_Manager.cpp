@@ -7,44 +7,32 @@ Enemy_Manager::Enemy_Manager() {
 
 // 毎フレーム呼ばれる
 void Enemy_Manager::Update() {
-	//TODO::敵がいないことはあり得ないとは思うので要らないかもしれない
-	if (enemies.empty())
+	//敵がいないことはあり得ないとは思うので要らないかもしれない
+	if (active_enemies.empty())
 	{
 		return;
+	}
+	for (auto itr = active_enemies.begin(); itr != active_enemies.end();)
+	{
+		if ((*itr)->enemy_status->Is_Dead())
+		{
+			(*itr)->actor_state = eActor_State::Break;
+			inactive_enemies.push_back((*itr));
+			itr = active_enemies.erase(itr);
+		}
+		else
+		{
+			itr++;
+		}
 	}
 	enemy_controller->Update();
 }
 
-// 敵を配置
-void Enemy_Manager::Enemy_Arrange(Vector3D set_vector3d, Vector3D set_playerpos) {
-	int i = 0; //itr
-	for (auto enemy : enemies) {
-		// 配列の中で誰も死んでいなかった場合は、新しく追加する。
-		//if (i == (signed int)enemies.size() - 1)
-		//{
-		//	enemies.push_back(std::make_shared<Enemy>(set_vector3d, set_playerpos));
-		//	break;
-		//}
-		// 死んでいる敵がいれば再利用する。
-		if (enemy->enemy_status->Is_Dead()) {
-			enemy->Set_Vector3D(set_vector3d);
-			enemy->Set_Radian(set_playerpos);
-			enemy->enemy_status->Initialize_HitPoint();
-			break;
-		}
-		i++;
-	}
-
-	//そもそも配列の中が空の場合こちらで追加する。
-	if (enemies.empty()) {
-		enemies.push_back(std::make_shared<Enemy>(set_vector3d, set_playerpos));
-	}
-	//追加する　しないとモデルが描画されない
-	std::unique_ptr<Actor>& actor = Actor::Get_Instance();
-	actor->Add_Child("Enemy" + enemies.size(), enemies.back());
-}
-
 // 敵が全滅しているかを返す。全滅でtrue
 bool Enemy_Manager::Is_Enemy_All_Ded() {
+	if (active_enemies.empty())
+	{
+		return true;
+	}
 	return false;
 }

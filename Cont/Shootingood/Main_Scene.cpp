@@ -36,6 +36,10 @@ void Main_Scene::Initialize() {
 	// プレイヤーの初期化
 	player->Initialize();
 	player_action->Initialize();
+
+	// アクターを構成するオブジェクトを生成する
+	std::unique_ptr<TEST_GOD>& god = TEST_GOD::Get_Instance();
+	god->Create_Enemy();
 }
 
 // 毎フレーム入る
@@ -55,13 +59,7 @@ void Main_Scene::Update() {
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	actor->Update();
 	m_timer += 0.01f;
-	if (m_timer >= 1.0f)
-	{
-		OutputDebugString("aaa");
-		//TEST
-		enemy_manager->Enemy_Arrange(Vector3D(200.0f, 0, 200.0f),player->vector3d);
-		m_timer = 0.0f;
-	}
+
 	// エネミーのアップデート処理
 	enemy_manager->Update();
 

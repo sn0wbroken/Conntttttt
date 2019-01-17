@@ -140,9 +140,9 @@ public:
 
 		return tmp;
 	}
-	// ベクトルの長さを返す
-	static float Norm(float x, float y) {
-		return sqrt(pow(x, 2) + pow(y , 2) + pow(x, 2));
+	// ノルムを返す
+	static float Norm(float x, float y, float z = 0) {
+		return sqrt(pow(x, 2) + pow(y , 2) + pow(z, 2));
 	}
 
 	// 2点からベクトルを生成　第1引数が引かれる値
@@ -176,12 +176,11 @@ public:
 
 		return Vector3D(VGet(_x, _y, 0));
 	}
-	// 内積計算
-	static float Dot(Vector3D vector,Vector3D vector2) {
-		float a[] = { vector.x,vector.y,vector.z };
-		float b[] = { vector2.x,vector2.y,vector2.z };
-		// スタンダードライブラリの内積計算
-		float result = static_cast<float>(std::inner_product(a, a + sizeof(a) / sizeof(a[0]), b, 0));
+	//内積計算
+	static float Dot(Vector3D vector,Vector3D vector2)
+	{
+		//スタンダードライブラリの内積計算からDXライブラリの内積計算に変更
+		float result = DxLib::VDot(vector, vector2);
 
 		return result;
 	}
@@ -202,19 +201,11 @@ public:
 
 		return result = vec1.operator*(vec2);
 	};
-	// ラジアン計算 (進行方向計算用)
-	static float MoveOnAngleOfElevation(Vector3D vector,Vector3D vector2) {
+	// 仰角を計算する　返り値はラジアンを返す。
+	static float AngleOfElevation(Vector3D vector, Vector3D vector2) {
 		const double px = static_cast<double> (vector.x - vector2.x);
 		const double pz = static_cast<double> (vector.z - vector2.z);
-		//atan2 は 引数がy xのため pz,pxの順で挿入する
 		return static_cast<float> (std::atan2(pz, px));
-	}
-	// ラジアン計算(モデル回転)
-	static float RotateOnAngleOfElevation(Vector3D vector, Vector3D vector2) {
-		const double px = static_cast<double> (vector.x - vector2.x);
-		const double pz = static_cast<double> (vector.z - vector2.z);
-		//atan2 は 引数がy xだが、なぜか回転がおかしくなるのでx zで挿入する
-		return static_cast<float> (std::atan2(px, pz));
 	}
 #pragma endregion
 };

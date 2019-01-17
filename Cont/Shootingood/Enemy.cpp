@@ -1,6 +1,6 @@
 #include"Enemy.h"
 #include"Scene_Manager.h"
-#include <sstream>
+
 // コンストラクタ
 Enemy::Enemy() {}
 
@@ -8,23 +8,39 @@ Enemy::Enemy() {}
 Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	// プレイするステージを取得
 	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
+	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 
 	//座標を設定
 	vector3d.Set_Vector(position.x, position.y, position.z);
-	OutputDebugString("AAA\n");
 	// 大きさを設定
 	size.Set_Size(define_value.ENEMY_WIDTH, define_value.ENEMY_HEIGHT, define_value.ENEMY_DEPTH);
 	// 角度をプレイヤーの方向に設定
-	radian = Vector3D::RotateOnAngleOfElevation(player_position, position);
-
+	radian = Vector3D::AngleOfElevation(player_position, position);
 	// ステータスをセット
 	enemy_status = std::make_shared<Enemy_Status>(scene_manager->Get_Stage());
 
 	// モデルを設定する
-	Create_Actor("Resources/Enemy/Enemy.x");
-	MV1SetPosition(model_handle, VGet(vector3d.x, vector3d.y, vector3d.z));
+	if (enemy_manager->active_enemies.size() < 1)
+	{
+		//enemymanagerの配列に何も入っていなかった場合は作成する。
+		Create_Actor("Resources/Enemy/Enemy.x");
+	}
+	else
+	{
+		//もう一度モデルを読み込むよりこちらの方が若干高速
+		model_handle = MV1DuplicateModel(enemy_manager->active_enemies.front()->Get_Model_Handle());
+	}
+
+	MV1SetPosition(model_handle, vector3d);
 	MV1SetScale(model_handle, VGet(0.6f, 0.6f, 0.6f));
-	MV1SetRotationXYZ(model_handle, VGet(0, radian, 0));
+	//radianに-を付けると普通に回転する。　謎
+	MV1SetRotationXYZ(model_handle, VGet(0, -radian, 0));
+	//歩行モーションのハンドルを取得
+	walk_animhandle = MV1AttachAnim(model_handle, 0);
+	//死亡モーションのハンドルを取得
+	death_animhandle = MV1AttachAnim(model_handle, 1);
+	//アニメーションの初期フレームを修正
+	Anim_CurrentFrame = 0;
 
 	// 基準となる面(天井部)を生成
 	rects["top_face"] = rect.Make_Top_Face(vector3d, size);
@@ -34,6 +50,9 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	Set_Collision_Centor(rects);
 	// 当たり判定用の箱をキャラクターの向きに合わせて回転させる
 	rect.Rotation_Rectangle(rects, collision_centor, radian);
+
+	//debug
+	enemy_status->Damage();
 }
 
 // デストラクタ
@@ -44,20 +63,51 @@ void Enemy::Set_Collision_Centor(std::unordered_map<std::string, Rect> set_rects
 	auto z_coordinates = set_rects.find("front_face")->second.top_right.z - size.depth / 2;
 	auto x_coordinates = set_rects.find("right_face")->second.top_right.x - size.width / 2;
 
-	collision_centor= vector3d.Get_Vector(x_coordinates, 0, z_coordinates);
+	collision_centor = vector3d.Get_Vector(x_coordinates, 0, z_coordinates);
 }
 
 //ラジアンを設定
 void Enemy::Set_Radian(Vector3D set_playerpos) {
-	radian = Vector3D::MoveOnAngleOfElevation(set_playerpos, vector3d);
-	MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::RotateOnAngleOfElevation(set_playerpos, vector3d), 0));
+	radian = Vector3D::AngleOfElevation(set_playerpos, vector3d);
+	MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::AngleOfElevation(set_playerpos, vector3d), 0));
 }
 
 // 角度を取得
-inline float Enemy::Get_Degree() {
+float Enemy::Get_Degree() {
 	return degree;
 }
 // ラジアンを取得
-inline float Enemy::Get_Radian() {
+float Enemy::Get_Radian() {
 	return radian;
+}
+
+void Enemy::Animation_Controller()
+{
+	if (enemy_status->Is_Dead())
+	{
+		Add_DeathAnimIndex();
+	}
+	else
+	{
+		Add_WalkAnimIndex();
+	}
+}
+
+void Enemy::Add_WalkAnimIndex() {
+	Anim_CurrentFrame++;
+	if (Anim_CurrentFrame >= MV1GetAttachAnimTotalTime(model_handle, walk_animhandle)){
+		Anim_CurrentFrame = 0; //時間をリセットする。
+	}
+	//現在のアニメーションのタイムを設定する。
+	MV1SetAttachAnimTime(model_handle, walk_animhandle, Anim_CurrentFrame);
+}
+
+void Enemy::Add_DeathAnimIndex()
+{
+	if (Anim_CurrentFrame >= MV1GetAttachAnimTotalTime(model_handle, death_animhandle)) {
+		return; //死亡モーションは一回だけで良いので一回りしたら返す。
+	}
+	Anim_CurrentFrame++;
+	//現在のアニメーションのタイムを設定する。
+	MV1SetAttachAnimTime(model_handle, death_animhandle, Anim_CurrentFrame);
 }

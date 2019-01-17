@@ -16,10 +16,11 @@ Enemy_AI::~Enemy_AI() {}
 // –ˆƒtƒŒ[ƒ€“ü‚é
 void Enemy_AI::Update() {
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
-	auto enemies = enemy_manager->enemies;
+	auto enemies = enemy_manager->active_enemies;
 	for (auto enemy : enemies) {
 		//TODO::MAGICNUMBER
-		//enemy->vector3d.Move(5.0f * std::cosf(enemy->Get_Radian()), 0.0f, 5.0f * std::sinf(enemy->Get_Radian()));
+		enemy->vector3d.Move(1.0f * std::cosf(enemy->Get_Radian()), 0.0f, 1.0f * std::sinf(enemy->Get_Radian()));
+		enemy->Animation_Controller();
 	}
 }
 

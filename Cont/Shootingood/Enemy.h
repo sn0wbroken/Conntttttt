@@ -15,7 +15,7 @@ public:
 	// コンストラクタ
 	Enemy();
 	// コンストラクタ
-	Enemy(Vector3D position,Vector3D set_playerpos);
+	Enemy(Vector3D position, Vector3D set_playerpos);
 	// デストラクタ
 	~Enemy();
 
@@ -34,15 +34,26 @@ public:
 	void Set_Radian(Vector3D set_playerpos);
 
 	// 角度を取得
-	inline float Get_Degree();
+	float Get_Degree();
 	// ラジアンを取得
-	inline float Get_Radian();
-
+	float Get_Radian();
+	//関数名ガバ 歩行するか死亡するかの選択を行う。
+	void Animation_Controller();
+	//アニメーションの現在の時間　同時に二つのアニメーションを再生しないため一つのみ
+	float Anim_CurrentFrame;
+	//アニメーションの現在の時間を増やし、モデルの動きをセットする。 
+	void Add_WalkAnimIndex();
+	void Add_DeathAnimIndex();
 private:
 	// 角度(度数法)
 	float degree;
 	// 角度(弧度法)
 	float radian;
+
+	//歩くアニメーションのハンドル
+	int walk_animhandle;
+	//死ぬアニメーションのハンドル
+	int death_animhandle;
 
 	// 打ち出す弾の速度
 	int bullet_speed;
