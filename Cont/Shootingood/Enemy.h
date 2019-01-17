@@ -37,17 +37,23 @@ public:
 	float Get_Degree();
 	// ラジアンを取得
 	float Get_Radian();
-	//アニメーションのハンドル
-	int anim_handle;
-	//アニメーションの現在の時間
+	//関数名ガバ 歩行するか死亡するかの選択を行う。
+	void Animation_Controller();
+	//アニメーションの現在の時間　同時に二つのアニメーションを再生しないため一つのみ
 	float Anim_CurrentFrame;
 	//アニメーションの現在の時間を増やし、モデルの動きをセットする。 
-	void Add_AnimIndex();
+	void Add_WalkAnimIndex();
+	void Add_DeathAnimIndex();
 private:
 	// 角度(度数法)
 	float degree;
 	// 角度(弧度法)
 	float radian;
+
+	//歩くアニメーションのハンドル
+	int walk_animhandle;
+	//死ぬアニメーションのハンドル
+	int death_animhandle;
 
 	// 打ち出す弾の速度
 	int bullet_speed;

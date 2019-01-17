@@ -17,7 +17,6 @@ public:
 
 	void Move_AI0();
 
-	std::shared_ptr<Enemy> enemy;
 private:
 	// ’è”‚ğ‚Ü‚Æ‚ß‚Ä‚¨‚­ƒNƒ‰ƒX
 	Define_Value define_value;
