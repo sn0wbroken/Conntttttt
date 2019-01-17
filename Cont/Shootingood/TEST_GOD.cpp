@@ -43,17 +43,15 @@ void TEST_GOD::Create_Enemy() {
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 	// プレイするステージを取得 ステージにあった敵の数作成する。
-	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
+	//std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
 	//敵生成部分
 	Vector3D vec;
 
 	for (int i = 0; i < 50; i++) {
-		vec.x = -1000 + i * 30; vec.y = 0.0f; vec.z = 1000 - i * 30;
+		vec.x = -1000.0f + i * 30.0f; vec.y = 0.0f; vec.z = 1000.0f - i * 30.0f;
 		enemy_manager->active_enemies.push_back(std::make_shared<Enemy>(vec, playerpos));
 		actor->Add_Child("Enemy" + i, enemy_manager->active_enemies.back());
-		break;
 	}
-
 	/*switch (scene_manager->Get_Stage()) {
 	case eStage::stage1: {
 		if (!enemy_manager->inactive_enemies.empty())

@@ -177,7 +177,7 @@ public:
 		return Vector3D(VGet(_x, _y, 0));
 	}
 	//内積計算
-	static float dot(Vector3D vector,Vector3D vector2)
+	static float Dot(Vector3D vector,Vector3D vector2)
 	{
 		//スタンダードライブラリの内積計算からDXライブラリの内積計算に変更
 		float result = DxLib::VDot(vector, vector2);
