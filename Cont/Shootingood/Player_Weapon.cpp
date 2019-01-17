@@ -57,12 +57,13 @@ void Player_Weapon::Update() {
 	Fire();
 	// キー入力で銃口を回転させる
 	Rotation();
-	// ボムを選択する
-	Chose_Bomb();
 
 	if (enable_bomb) {
 		// 弾を消す
 		bullet_erase();
+
+		// ボムを選択する
+		Chose_Bomb();
 	}
 }
 
