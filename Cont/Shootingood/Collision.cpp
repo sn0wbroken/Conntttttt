@@ -6,12 +6,12 @@ Collision::Collision() {
 
 // 毎フレーム呼ばれる更新処理
 void Collision::Update() {
-	std::unique_ptr<Actor>& actor = Actor::Get_Instance();
-	//TEST
-	Line_To_Face(std::static_pointer_cast<Enemy>(actor->children["Enemy_1"]));
-	Line_To_Face(std::static_pointer_cast<Enemy>(actor->children["Enemy_2"]));
+	//std::unique_ptr<Actor>& actor = Actor::Get_Instance();
+	////TEST
+	//Line_To_Face(std::static_pointer_cast<Enemy>(actor->children["Enemy_1"]));
+	//Line_To_Face(std::static_pointer_cast<Enemy>(actor->children["Enemy_2"]));
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
-	auto enemys = enemy_manager->enemies;
+	auto enemys = enemy_manager->active_enemies;
 	for (auto enemy : enemys) {
 		Line_To_Face(enemy);
 	}

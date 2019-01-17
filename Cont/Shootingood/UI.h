@@ -5,8 +5,8 @@
 #include"Enemy_Manager.h"
 #include"Player_Manager.h"
 
-#include<sstream>
 
+#include <sstream>
 // UI•\¦ƒNƒ‰ƒX
 class UI {
 public:
