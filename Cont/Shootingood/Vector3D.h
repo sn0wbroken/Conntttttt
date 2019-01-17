@@ -145,7 +145,7 @@ public:
 		return sqrt(pow(x, 2) + pow(y , 2) + pow(x, 2));
 	}
 
-	// 2点からベクトルを生成 point1を減算するため　point1 > point2になるように
+	// 2点からベクトルを生成　第1引数が引かれる値
 	static Vector3D Make_Vector(Vector3D point1, Vector3D point2) {
 		return point1.operator-(point2);
 	}
@@ -177,7 +177,7 @@ public:
 		return Vector3D(VGet(_x, _y, 0));
 	}
 	// 内積計算
-	static float dot(Vector3D vector,Vector3D vector2) {
+	static float Dot(Vector3D vector,Vector3D vector2) {
 		float a[] = { vector.x,vector.y,vector.z };
 		float b[] = { vector2.x,vector2.y,vector2.z };
 		// スタンダードライブラリの内積計算
@@ -185,15 +185,23 @@ public:
 
 		return result;
 	}
-	// クロス積計算
-	static Vector3D cross(Vector3D vector,Vector3D vector2) {
-		Vector3D TempVector;
-		TempVector.x = vector.y * vector2.z - vector.z * vector2.y;
-		TempVector.y = vector.x * vector2.z - vector.z * vector2.x;
-		TempVector.z = vector.x * vector2.y - vector.y * vector2.x;
+	// 外積計算
+	static Vector3D Cross(Vector3D vector1 ,Vector3D vector2) {
+		Vector3D result;
+		result.x = vector1.y * vector2.z - vector1.z * vector2.y;
+		result.y = vector1.x * vector2.z - vector1.z * vector2.x;
+		result.z = vector1.x * vector2.y - vector1.y * vector2.x;
 
-		return TempVector;
+		return result;
 	}
+	// スカラー3重積
+	static Vector3D Scalar_Triple(Vector3D vector1, Vector3D vector2, Vector3D vector3) {
+		Vector3D result;
+		auto vec1 = vector1.operator*(vector3);
+		auto vec2 = vector2.operator*(vector3);
+
+		return result = vec1.operator*(vec2);
+	};
 	// ラジアン計算 (進行方向計算用)
 	static float MoveOnAngleOfElevation(Vector3D vector,Vector3D vector2) {
 		const double px = static_cast<double> (vector.x - vector2.x);

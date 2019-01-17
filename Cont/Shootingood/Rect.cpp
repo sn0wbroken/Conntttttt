@@ -90,31 +90,31 @@ void Rect::Move(std::unordered_map<std::string, Rect>& rects, float speed, float
 		
 		//TODO: 少々雑か？
 		if (iterator == rects.find("front_face")) {
-			iterator->second.centor_positon.Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
+			iterator->second.center_position.Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
 		}
 	}
 }
 
 // 前面の中心座標を設定する
 void Rect::Set_Centor_Position() {
-	centor_positon = vector.Get_Vector(top_right.x - (width / 2), top_right.y - (height / 2), top_right.z);
+	center_position = calcurator.Get_Vector(top_right.x - (width / 2), top_right.y - (height / 2), top_right.z);
 }
 // 前面の中心座標を返す
 Vector3D Rect::Get_Centor_Position() {
-	return centor_positon;
+	return center_position;
 }
 
 // 法線ベクトルを求めて設定する
 void Rect::Set_Normal_Vector(Rect& rect) {
 	Vector3D result;
-	
-	auto AO = vector.Make_Vector(rect.top_left, rect.centor_positon);
-	auto BO = vector.Make_Vector(rect.top_right, rect.centor_positon);
 
-	//TODO:機能ある
-	result.x = BO.y * AO.z - AO.y * BO.z;
-	result.y = BO.x * AO.z - AO.x * BO.z;
-	result.z = BO.x * AO.y - AO.x * BO.y;
+	auto vec1 = calcurator.Make_Vector(rect.center_position, rect.top_left);
+	auto vec2 = calcurator.Make_Vector(rect.center_position, rect.top_right);
+	result = calcurator.Cross(vec1, vec2);
+
+	result.x = vec2.y * vec1.z - vec1.y * vec2.z;
+	result.y = vec2.x * vec1.z - vec1.x * vec2.z;
+	result.z = vec2.x * vec1.y - vec1.x * vec2.y;
 
 	rect.normal_vector = result;
 }
@@ -132,9 +132,15 @@ std::unordered_map<std::string, Rect> Rect::Rotation_Rectangle(std::unordered_ma
 
 		//TODO: 少々雑か？
 		if (iterator == rects.find("front_face")) {
-			iterator->second.centor_positon = VTransform(iterator->second.centor_positon, rotate_value);
+			iterator->second.center_position = VTransform(iterator->second.center_position, rotate_value);
 		}
 	}
 
 	return rects;
+}
+
+// 自身を対角線で分断し、2つの三角形に分ける
+void Rect::Split_Rect() {
+	triangles[0].Set_Triangle(top_left, bottom_left, bottom_right);
+	triangles[1].Set_Triangle(top_right, top_left, bottom_right);
 }

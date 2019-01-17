@@ -7,6 +7,20 @@
 #include<string>
 #include<unordered_map>
 
+// 対角線で割った時にできる三角形。当たり判定に使用
+struct Triangle {
+	Vector3D vertex1;
+	Vector3D vertex2;
+	Vector3D vertex3;
+
+	// 各頂点の座標を設定し、三角形を作る
+	void Set_Triangle(Vector3D set_vertex_1, Vector3D set_vertex_2, Vector3D set_vertex_3) {
+		vertex1 = set_vertex_1;
+		vertex2 = set_vertex_2;
+		vertex3 = set_vertex_3;
+	};
+};
+
 // 矩形クラス
 class Rect {
 public:
@@ -35,12 +49,12 @@ public:
 
 	// 四角形の左上隅の座標
 	Vector3D top_left;
-	// 四角形の角で一番大きいもの(基準点に使う)
-	Vector3D top_right;
-	// 四角形の右下隅の座標
-	Vector3D bottom_right;
 	// 四角形の左下隅の座標
 	Vector3D bottom_left;
+	// 四角形の右下隅の座標
+	Vector3D bottom_right;
+	// 四角形の角で一番大きいもの(基準点に使う)
+	Vector3D top_right;
 	// 法線ベクトル。線分との判定に使う
 	Vector3D normal_vector;
 
@@ -50,11 +64,16 @@ public:
 	float height;
 
 	// 面の中心座標
-	Vector3D centor_positon;
+	Vector3D center_position;
+	// 分割したときの3角形2つを格納
+	Triangle triangles[2];
+
+	// 自身を対角線で分断し、2つの三角形に分ける
+	void Split_Rect();
 
 private:
 	// 3次元数の取得、計算に使用
-	Vector3D vector;
+	Vector3D calcurator;
 
 	/*// 指定された点を含むかどうかを判定するメソッド
 	inline bool contains(const float x, const float y) const throw() {

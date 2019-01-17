@@ -96,5 +96,5 @@ private:
 	int clear_count;
 
 	//TEST
-	const float fire_range = 300;
+	const float fire_range = 1000;
 };
