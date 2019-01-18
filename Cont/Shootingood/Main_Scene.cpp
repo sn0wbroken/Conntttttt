@@ -58,7 +58,7 @@ void Main_Scene::Update() {
 	player_action->Update();
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	actor->Update();
-	m_timer += 0.01f;
+	//m_timer += 0.01f;
 
 	// エネミーのアップデート処理
 	enemy_manager->Update();

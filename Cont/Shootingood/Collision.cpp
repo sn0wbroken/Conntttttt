@@ -12,7 +12,7 @@ void Collision::Update() {
 	// ’ÊíUŒ‚‚Æ‚Ì“–‚½‚è”»’è‚ğs‚¤
 	for (auto enemy : enemys) {
 		if (Nomal_Attack_To_Enemy(enemy)) {
-			enemy->enemy_status->Is_Dead();
+			enemy->enemy_status->Dead();
 		}
 	}
 }

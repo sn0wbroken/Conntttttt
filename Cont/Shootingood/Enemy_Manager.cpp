@@ -1,4 +1,5 @@
 #include"Enemy_Manager.h"
+#include<sstream>
 
 // コンストラクタ
 Enemy_Manager::Enemy_Manager() {
@@ -16,6 +17,9 @@ void Enemy_Manager::Update() {
 	{
 		if ((*itr)->enemy_status->Is_Dead())
 		{
+			std::stringstream oss;
+			oss <<(*itr)->enemy_status->Is_Dead() << std::endl;
+			OutputDebugString(oss.str().c_str());
 			(*itr)->actor_state = eActor_State::Break;
 			inactive_enemies.push_back((*itr));
 			itr = active_enemies.erase(itr);
