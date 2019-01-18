@@ -138,9 +138,3 @@ std::unordered_map<std::string, Rect> Rect::Rotation_Rectangle(std::unordered_ma
 
 	return rects;
 }
-
-// ©g‚ğ‘ÎŠpü‚Å•ª’f‚µA2‚Â‚ÌOŠpŒ`‚É•ª‚¯‚é
-void Rect::Split_Rect() {
-	triangles[0].Set_Triangle(top_left, bottom_left, bottom_right);
-	triangles[1].Set_Triangle(top_right, top_left, bottom_right);
-}

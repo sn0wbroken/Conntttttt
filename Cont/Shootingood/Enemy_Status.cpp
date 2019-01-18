@@ -8,6 +8,7 @@ Enemy_Status::Enemy_Status() {};
 // コピーコンストラクタ
 Enemy_Status::Enemy_Status(eStage stage) :
 	hit_point(define_value.ENEMY_MAX_HP),
+	is_dead(false),
 	is_damage(false),
 	move_direction(eMove_Direction::Right) {
 	// ステージに合わせたスタータスをセット
@@ -43,9 +44,14 @@ int Enemy_Status::Get_Bullet_Speed() {
 	return bullet_speed;
 }
 
-// 死亡判定。死んでいたらtrue
+// 死んでいるかを返す
 bool Enemy_Status::Is_Dead() {
-	return hit_point <= 0;
+	return is_dead;
+}
+
+// 死んでもらう。攻撃を受けたときに呼ばれる
+void Enemy_Status::Dead() {
+	is_dead = true;
 }
 
 // ダメージ判定を元に戻す
