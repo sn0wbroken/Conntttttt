@@ -27,8 +27,10 @@ public:
 	// 弾の速度を返す
 	int Get_Bullet_Speed();
 
-	// 死亡判定。trueで死亡。ダメージを受けたときに判断
+	// 死んでいるかを返す
 	bool Is_Dead();
+	// 死んでもらう。攻撃を受けたときに呼ばれる
+	void Dead();
 	// ダメージ判定を元に戻す
 	void Initialize_Is_Damage();
 	// ヒットポイントを元に戻す。
