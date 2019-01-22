@@ -7,11 +7,11 @@
 Player_Weapon::Player_Weapon() : 
 	degree(90), 
 	enable_bomb(false),
+	is_shooting(false),
 	shot_button_flag(false),
 	bomb_type(eBomb_Type::Fullrange),
 	enable_bomb_type(eEnable_Bomb_Type::None), 
 	timer(0) {
-
 }
 
 // デストラクタ
@@ -80,6 +80,7 @@ void Player_Weapon::Fire() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		// 通常攻撃
 		if (shot_button_flag == false) {
+			is_shooting = true;
 		}
 		shot_button_flag = true;
 	}
@@ -257,6 +258,15 @@ void Player_Weapon::Reference_Coordinates_Erase_Bullet(std::list<Bullet*>& bulle
 			enable_bomb_type = eEnable_Bomb_Type::None;
 		}
 	}
+}
+
+// 通常攻撃を撃ったかどうか
+bool Player_Weapon::Get_Is_Shooting() {
+	return is_shooting;
+}
+// 通常攻撃の撃ったらフラグを元に戻す
+void Player_Weapon::Initialize_Is_Shooting() {
+	is_shooting = false;
 }
 
 // 通常攻撃の射程限界点を返す

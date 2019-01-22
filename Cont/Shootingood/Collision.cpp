@@ -1,20 +1,32 @@
 #include "Collision.h"
 
+#include"TEST_GOD.h"
+
 Collision::Collision() {
 
 }
 
 // 毎フレーム呼ばれる更新処理
-void Collision::Update() {	
+void Collision::Update() {
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 	auto enemys = enemy_manager->active_enemies;
 	
+	//TODO: 強引か
+	std::unique_ptr<TEST_GOD>& god = TEST_GOD::Get_Instance();
+	auto PlaWep = god->weapon->children.find("Player_Weapon");
+	std::shared_ptr<Player_Weapon> player_weapon = std::dynamic_pointer_cast<Player_Weapon>(PlaWep->second);
+
 	// 通常攻撃との当たり判定を行う
 	for (auto enemy : enemys) {
-		if (Nomal_Attack_To_Enemy(enemy)) {
-			enemy->enemy_status->Is_Dead();
+		if (!player_weapon->Get_Is_Shooting()) {
+			return;
+		}
+		else if (Nomal_Attack_To_Enemy(enemy)) {
+			enemy->enemy_status->Dead();
 		}
 	}
+	// 通常攻撃は敵を貫通するのでフラグを戻すのは最後
+	player_weapon->Initialize_Is_Shooting();
 }
 
 // 引数の2点間の距離を求めて返す

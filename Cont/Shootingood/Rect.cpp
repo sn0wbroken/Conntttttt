@@ -81,18 +81,11 @@ Rect Rect::Make_Top_Face(Vector3D position, Object_Size size) {
 
 // 貼られているモデルに合わせて動かす
 void Rect::Move(std::unordered_map<std::string, Rect>& rects, float speed, float radian) {
-	// rectsに格納されている矩形全てを回転させる
-	for (auto iterator = begin(rects); iterator != end(rects); ++iterator) {
-		iterator->second.top_right   .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-		iterator->second.top_left    .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-		iterator->second.bottom_right.Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-		iterator->second.bottom_left .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-		
-		//TODO: 少々雑か？
-		if (iterator == rects.find("front_face")) {
-			iterator->second.center_position.Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-		}
-	}
+	// 矩形(自分の持っている頂点)の移動
+	top_right   .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
+	top_left    .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
+	bottom_right.Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
+	bottom_left .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
 }
 
 // 前面の中心座標を設定する

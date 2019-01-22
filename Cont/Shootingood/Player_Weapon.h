@@ -34,6 +34,11 @@ public:
 	// プールから取得した撃ち出す弾をまとめる
 	std::list<Bullet*> bomb_bullets;
 
+	// 通常攻撃を撃ったかどうか
+	bool Get_Is_Shooting();
+	// 通常攻撃の撃ったらフラグを元に戻す
+	void Initialize_Is_Shooting();
+
 private:
 	std::shared_ptr<Player> player;
 	std::unique_ptr<Key_Checker>& key_checker = Key_Checker::Get_Instance();
@@ -94,6 +99,9 @@ private:
 	int timer;
 	// timerがこの数値に達したら撃った弾を消す
 	int clear_count;
+
+	// 通常攻撃を撃ったフレームはtrue
+	bool is_shooting;
 
 	//TEST
 	const float fire_range = 1000;

@@ -18,9 +18,23 @@ void Enemy_AI::Update() {
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 	auto enemies = enemy_manager->active_enemies;
 	for (auto enemy : enemies) {
-		//TODO::MAGICNUMBER
+		//TODO:テストの値。決まり次第Define_Valueで定義して使う
+		auto speed = 1.0f;
 		enemy->vector3d.Move(1.0f * std::cosf(enemy->Get_Radian()), 0.0f, 1.0f * std::sinf(enemy->Get_Radian()));
 		enemy->Animation_Controller();
+
+		// 当たり判定も一緒に動かす
+		for (auto iterator = begin(enemy->rects); iterator != end(enemy->rects); ++iterator) {
+			iterator->second.top_right.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+			iterator->second.top_left.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+			iterator->second.bottom_right.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+			iterator->second.bottom_left.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+
+			//TODO: 少々雑か？
+			if (iterator == enemy->rects.find("front_face")) {
+				iterator->second.center_position.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+			}
+		}
 	}
 }
 
