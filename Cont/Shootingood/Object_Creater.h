@@ -17,12 +17,12 @@ using std::shared_ptr;
 using std::make_shared;
 using std::unique_ptr;
 
-// テスト
-class TEST_GOD : public Unique_Component<TEST_GOD> {
+// ゲームに必要なオブジェクトを生成する大元
+class Object_Creater : public Unique_Component<Object_Creater> {
 public:
-	TEST_GOD();
+	Object_Creater();
 	
-	~TEST_GOD();
+	~Object_Creater();
 
 	void Create_Enemy();
 	shared_ptr<Weapon> weapon;
@@ -32,6 +32,6 @@ public:
 	shared_ptr<Enemy_Controller> enemy_controller;
 	
 	// 引数に自身を指定したものだけに生成をゆるす
-	friend class Unique_Component<TEST_GOD>;
+	friend class Unique_Component<Object_Creater>;
 };
 

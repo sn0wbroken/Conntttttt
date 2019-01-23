@@ -22,13 +22,12 @@ public:
 	// エネミーのステータス関係のクラス
 	std::shared_ptr<Enemy_Status> enemy_status;
 
-	// 被せる矩形(当たり判定に使用) TODO:キーに難あり 左面、右面では合わない
+	// 被せる矩形(当たり判定に使用)
 	std::unordered_map<std::string, Rect> rects;
 
-	//TEST 合ってたらSetはプライベート
-	// 当たり判定用の箱の中心
-	Vector3D collision_centor;
-	void Set_Collision_Centor(std::unordered_map<std::string, Rect> rects);
+	//TODO:箱と向きのずれはこれで直るかも…？一応取っておく
+	//// モデルのではなく、当たり判定用の箱の中心座標を返す
+	//Vector3D Get_Collition_Center();
 
 	// ラジアンを設定
 	void Set_Radian(Vector3D set_playerpos);
@@ -37,13 +36,15 @@ public:
 	float Get_Degree();
 	// ラジアンを取得
 	float Get_Radian();
-	//関数名ガバ 歩行するか死亡するかの選択を行う。
+
+	// 歩行するか死亡するかの選択を行う。
 	void Animation_Controller();
 	//アニメーションの現在の時間　同時に二つのアニメーションを再生しないため一つのみ
 	float Anim_CurrentFrame;
 	//アニメーションの現在の時間を増やし、モデルの動きをセットする。 
 	void Add_WalkAnimIndex();
 	void Add_DeathAnimIndex();
+
 private:
 	// 角度(度数法)
 	float degree;
@@ -59,4 +60,9 @@ private:
 	int bullet_speed;
 	// エネミーの前方向の当たり判定の座標(プレイヤーの通常攻撃の当たり判定に使用)
 	Vector3D flont_face_position;
+	
+	// 当たり判定用の箱の中心
+	Vector3D collision_centor;
+	// モデルではなく、当たり判定に使う箱の中心座標を設定
+	void Set_Collision_Centor(std::unordered_map<std::string, Rect> rects);
 };

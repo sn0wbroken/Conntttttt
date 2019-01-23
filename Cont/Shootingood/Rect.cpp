@@ -16,7 +16,7 @@ std::unordered_map<std::string, Rect> Rect::Make_3DBox(Rect top_face, Object_Siz
 
 	// 面の中心点を設定
 	front_face.Set_Centor_Position();
-	//TEST
+	// 法線ベクトルを求める
 	Set_Normal_Vector(front_face);
 	rects["front_face"] = front_face;
 	
@@ -119,7 +119,7 @@ void Rect::Set_Normal_Vector(Rect& rect) {
 	rect.normal_vector = result;
 }
 
-// 矩形を回転させる //TODO:mapをイテレータで回すのよろしくない？
+// 矩形を回転させる
 std::unordered_map<std::string, Rect> Rect::Rotation_Rectangle(std::unordered_map<std::string, Rect>& rects, Vector3D axis, float radian) {
 	// rectsに格納されている矩形全てを回転させる
 	for (auto iterator = begin(rects); iterator != end(rects); ++iterator) {
@@ -130,7 +130,6 @@ std::unordered_map<std::string, Rect> Rect::Rotation_Rectangle(std::unordered_ma
 		iterator->second.bottom_right = VTransform(iterator->second.bottom_right, rotate_value);
 		iterator->second.bottom_left  = VTransform(iterator->second.bottom_left , rotate_value);
 
-		//TODO: 少々雑か？
 		if (iterator == rects.find("front_face")) {
 			iterator->second.center_position = VTransform(iterator->second.center_position, rotate_value);
 		}

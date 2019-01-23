@@ -1,6 +1,6 @@
-#include "Collision.h"
+#include"Collision.h"
 
-#include"TEST_GOD.h"
+#include"Object_Creater.h"
 
 Collision::Collision() {
 
@@ -121,16 +121,8 @@ bool Collision::Distance_Collition(float distance, float judge_value) {
 bool Collision::Player_To_Enemy(std::shared_ptr<Player> player, std::shared_ptr<Enemy> enemy) {
 	// プレイヤー、エネミー間の距離
 	auto distance = Get_Distance(player->Get_Position(), enemy->Get_Position());
-	auto piyo = player->Get_Position();
-	auto hogehoge = enemy->Get_Position();
 	// お互いの幅を足したもの
 	auto judge_value = player->Get_Size().depth + enemy->Get_Size().height;
-	auto hoge = player->Get_Size().depth;
-	auto fuga = enemy->Get_Size().height;
-
-	if (Distance_Collition(distance, judge_value)) {
-		auto hoge = 0;
-	}
 
 	return Distance_Collition(distance, judge_value);
 }

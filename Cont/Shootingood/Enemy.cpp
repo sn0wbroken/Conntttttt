@@ -50,9 +50,6 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	Set_Collision_Centor(rects);
 	// 当たり判定用の箱をキャラクターの向きに合わせて回転させる
 	rect.Rotation_Rectangle(rects, collision_centor, radian);
-
-	//debug
-	enemy_status->Damage();
 }
 
 // デストラクタ
@@ -65,6 +62,11 @@ void Enemy::Set_Collision_Centor(std::unordered_map<std::string, Rect> set_rects
 
 	collision_centor = vector3d.Get_Vector(x_coordinates, 0, z_coordinates);
 }
+
+//// モデルのではなく、当たり判定用の箱の中心座標を返す
+//Vector3D Enemy::Get_Collition_Center() {
+//	return collision_centor;
+//}
 
 //ラジアンを設定
 void Enemy::Set_Radian(Vector3D set_playerpos) {
