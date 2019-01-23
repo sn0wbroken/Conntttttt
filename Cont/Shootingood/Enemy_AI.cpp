@@ -25,12 +25,10 @@ void Enemy_AI::Update() {
 
 		// 当たり判定も一緒に動かす
 		for (auto iterator = begin(enemy->rects); iterator != end(enemy->rects); ++iterator) {
-			iterator->second.Move(speed, enemy->Get_Radian());   //speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
-			iterator->second.Move(speed, enemy->Get_Radian());   //speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
-			iterator->second.Move(speed, enemy->Get_Radian());   //speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
-			iterator->second.Move(speed, enemy->Get_Radian());   //speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+			iterator->second.Move(speed, enemy->Get_Radian());
 
 			//TODO: 少々雑か？
+			// 判定に使うので前面だけは一緒に動かす
 			if (iterator == enemy->rects.find("front_face")) {
 				iterator->second.center_position.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
 			}
