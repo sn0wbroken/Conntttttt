@@ -15,11 +15,9 @@ void Enemy_Manager::Update() {
 	}
 	for (auto itr = active_enemies.begin(); itr != active_enemies.end();)
 	{
-		if ((*itr)->enemy_status->Is_Dead())
+		if ((*itr)->enemy_status->Is_Dead() || (*itr)->vector3d.Get_X() > 1000 || (*itr)->vector3d.Get_X() < -1000 || (*itr)->vector3d.Get_Z() > 1000 || (*itr)->vector3d.Get_Z() < -1000)
 		{
-			std::stringstream oss;
-			oss <<(*itr)->enemy_status->Is_Dead() << std::endl;
-			OutputDebugString(oss.str().c_str());
+			(*itr)->enemy_status->Dead();
 			(*itr)->actor_state = eActor_State::Break;
 			inactive_enemies.push_back((*itr));
 			itr = active_enemies.erase(itr);
