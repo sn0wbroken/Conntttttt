@@ -20,7 +20,7 @@ public:
 	Rect Make_Top_Face(Vector3D posiotin, Object_Size size);
 
 	// 貼られているモデルに合わせて動かす
-	void Move(std::unordered_map<std::string, Rect>& rects, float speed, float radian);
+	void Move(float speed, float radian);
 
 	// 前面の中心座標を設定する
 	void Set_Centor_Position();

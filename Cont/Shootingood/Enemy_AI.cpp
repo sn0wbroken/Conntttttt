@@ -20,15 +20,15 @@ void Enemy_AI::Update() {
 	for (auto enemy : enemies) {
 		//TODO:テストの値。決まり次第Define_Valueで定義して使う
 		auto speed = 1.0f;
-		enemy->vector3d.Move(1.0f * std::cosf(enemy->Get_Radian()), 0.0f, 1.0f * std::sinf(enemy->Get_Radian()));
+		enemy->vector3d.Move(speed * std::cosf(enemy->Get_Radian()), 0.0f, speed * std::sinf(enemy->Get_Radian()));
 		enemy->Animation_Controller();
 
 		// 当たり判定も一緒に動かす
 		for (auto iterator = begin(enemy->rects); iterator != end(enemy->rects); ++iterator) {
-			iterator->second.top_right.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
-			iterator->second.top_left.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
-			iterator->second.bottom_right.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
-			iterator->second.bottom_left.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+			iterator->second.Move(speed, enemy->Get_Radian());   //speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+			iterator->second.Move(speed, enemy->Get_Radian());   //speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+			iterator->second.Move(speed, enemy->Get_Radian());   //speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+			iterator->second.Move(speed, enemy->Get_Radian());   //speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
 
 			//TODO: 少々雑か？
 			if (iterator == enemy->rects.find("front_face")) {

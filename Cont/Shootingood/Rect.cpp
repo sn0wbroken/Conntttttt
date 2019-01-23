@@ -80,12 +80,20 @@ Rect Rect::Make_Top_Face(Vector3D position, Object_Size size) {
 }
 
 // 貼られているモデルに合わせて動かす
-void Rect::Move(std::unordered_map<std::string, Rect>& rects, float speed, float radian) {
+void Rect::Move(float speed, float radian) {
 	// 矩形(自分の持っている頂点)の移動
 	top_right   .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
 	top_left    .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
 	bottom_right.Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
 	bottom_left .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
+
+	//TEST
+	auto color = GetColor(0,0,0);
+	DrawLine3D(top_right   , top_left    , color);
+	DrawLine3D(top_right   , bottom_right, color);
+	DrawLine3D(top_left    , bottom_left , color);
+	DrawLine3D(bottom_right, bottom_left , color);
+
 }
 
 // 前面の中心座標を設定する
