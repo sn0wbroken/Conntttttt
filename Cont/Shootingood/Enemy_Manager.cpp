@@ -15,7 +15,7 @@ void Enemy_Manager::Update() {
 	}
 	for (auto itr = active_enemies.begin(); itr != active_enemies.end();)
 	{
-		if ((*itr)->enemy_status->Is_Dead() || (*itr)->vector3d.Get_X() > 1000 || (*itr)->vector3d.Get_X() < -1000 || (*itr)->vector3d.Get_Z() > 1000 || (*itr)->vector3d.Get_Z() < -1000)
+		if ((*itr)->enemy_status->Is_Dead())
 		{
 			(*itr)->enemy_status->Dead();
 			(*itr)->actor_state = eActor_State::Break;
@@ -31,7 +31,7 @@ void Enemy_Manager::Update() {
 }
 
 // “G‚ª‘S–Å‚µ‚Ä‚¢‚é‚©‚ğ•Ô‚·B‘S–Å‚Åtrue
-bool Enemy_Manager::Is_Enemy_All_Ded() {
+bool Enemy_Manager::Is_Enemy_All_Dead() {
 	if (active_enemies.empty())
 	{
 		return true;

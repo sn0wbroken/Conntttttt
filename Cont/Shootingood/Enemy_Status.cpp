@@ -59,9 +59,9 @@ void Enemy_Status::Initialize_Is_Damage() {
 	is_damage = false;
 }
 
-void Enemy_Status::Initialize_HitPoint()
+void Enemy_Status::Initialize_IsDead()
 {
-	hit_point = define_value.ENEMY_MAX_HP;
+	is_dead = false;
 }
 
 // ƒ_ƒ[ƒW‚ğó‚¯‚½‚©‚Ç‚¤‚©‚ğ•Ô‚·

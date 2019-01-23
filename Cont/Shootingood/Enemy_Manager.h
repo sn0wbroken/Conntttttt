@@ -26,7 +26,7 @@ public:
 	//void Enemy_Arrange(Vector3D set_vector3d, Vector3D set_playerpos);
 
 	// エネミーが全滅したかどうか
-	bool Is_Enemy_All_Ded();
+	bool Is_Enemy_All_Dead();
 
 	// デストラクタ
 	~Enemy_Manager() {}

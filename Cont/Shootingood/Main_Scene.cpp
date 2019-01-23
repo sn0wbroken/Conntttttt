@@ -62,7 +62,7 @@ void Main_Scene::Update() {
 	enemy_manager->Update();
 
 	// エネミーの殲滅でクリア
-	if (enemy_manager->Is_Enemy_All_Ded()) {
+	if (enemy_manager->Is_Enemy_All_Dead()) {
 		// 最終ステージでなければ次のステージへ
 		if (!(static_cast<int>(scene_manager->Get_Stage()) == define_value.FINAL_STAGE)) {
 			scene_manager->Next_Stage();

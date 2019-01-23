@@ -15,9 +15,6 @@ void Collision::Update() {
 	auto player_weapon = player_manager->player_weapon;
 
 	for (auto enemy : enemys) {
-<<<<<<< HEAD
-		if (Nomal_Attack_To_Enemy(enemy)) {
-=======
 		// プレイヤーとエネミーの当たり判定
 		if (Player_To_Enemy(player_manager->player, enemy)) {
 			// 当たっていたらダメージ
@@ -31,7 +28,6 @@ void Collision::Update() {
 			continue;
 		}
 		else if (Nomal_Attack_To_Enemy(enemy)) {
->>>>>>> ishikuraBranch
 			enemy->enemy_status->Dead();
 		}
 	}
@@ -68,6 +64,7 @@ bool Collision::Nomal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
 		Vector3D intersection = Get_Intersection(vector1, vector2, limit_fire_range, muzzule_position, front_face);
 		// 交点が判定基準の面に接しているかを調べる
 		if (Point_To_Rectangle(intersection, muzzule_position, limit_fire_range, normal_vector, front_face)) {
+			OutputDebugString("Bell\n");
 			return true;
 		}
 	}
