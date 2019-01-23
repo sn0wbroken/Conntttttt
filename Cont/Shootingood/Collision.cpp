@@ -11,15 +11,21 @@ void Collision::Update() {
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 	auto enemys = enemy_manager->active_enemies;
 	
-	//TODO: 強引か
-	std::unique_ptr<TEST_GOD>& god = TEST_GOD::Get_Instance();
-	auto PlaWep = god->weapon->children.find("Player_Weapon");
-	std::shared_ptr<Player_Weapon> player_weapon = std::dynamic_pointer_cast<Player_Weapon>(PlaWep->second);
+	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
+	auto player_weapon = player_manager->player_weapon;
 
-	// 通常攻撃との当たり判定を行う
 	for (auto enemy : enemys) {
+		// プレイヤーとエネミーの当たり判定
+		if (Player_To_Enemy(player_manager->player, enemy)) {
+			// 当たっていたらダメージ
+			player_manager->player_status->Damage();
+			// 当たった敵は死亡。戦車にぶつかるんだから当たりまえだよなぁ
+			enemy->enemy_status->Dead();
+		}
+
+		// 通常攻撃との当たり判定を行う
 		if (!player_weapon->Get_Is_Shooting()) {
-			return;
+			continue;
 		}
 		else if (Nomal_Attack_To_Enemy(enemy)) {
 			enemy->enemy_status->Dead();
@@ -38,14 +44,13 @@ float Collision::Get_Distance(Vector3D coordinates_1, Vector3D coordinates_2) {
 bool Collision::Nomal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
 	// 線分と平面の当たり判定を行う
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
-	auto player_position = player_manager->player->vector3d;
+	auto muzzule_position = player_manager->player_weapon->Get_Position();
 	auto limit_fire_range = player_manager->player_weapon->Get_Limit_Range();
 	auto front_face = enemy->rects["front_face"];
 	auto normal_vector = front_face.normal_vector;
 
-	//TODO:pla_posじゃなくて通常攻撃の出る位置か
 	// 面の点から始点
-	auto vector1 = calculator.Make_Vector(front_face.Get_Centor_Position(), player_position);
+	auto vector1 = calculator.Make_Vector(front_face.Get_Centor_Position(), muzzule_position);
 	// 面の点から終点
 	auto vector2 = calculator.Make_Vector(front_face.Get_Centor_Position(), limit_fire_range);	
 	// 面の点から始点の内積
@@ -56,9 +61,9 @@ bool Collision::Nomal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
 	// 線分が平面を貫いているか
 	if (dot1 * dot2 <= 0) {
 		// 交点を求める
-		Vector3D intersection = Get_Intersection(vector1, vector2, limit_fire_range, player_position, front_face);
+		Vector3D intersection = Get_Intersection(vector1, vector2, limit_fire_range, muzzule_position, front_face);
 		// 交点が判定基準の面に接しているかを調べる
-		if (Point_To_Rectangle(intersection,player_position, limit_fire_range, normal_vector, front_face)) {
+		if (Point_To_Rectangle(intersection, muzzule_position, limit_fire_range, normal_vector, front_face)) {
 			return true;
 		}
 	}
@@ -107,10 +112,27 @@ bool Collision::Point_To_Rectangle(Vector3D intersection, Vector3D start_point, 
 	return true;
 }
 
-// 距離で見る当たり判定
-bool Collision::Distance_Collition() {
-		
-	return true;
+// 距離で見る当たり判定。距離が判定の値より短いと当たっている
+bool Collision::Distance_Collition(float distance, float judge_value) {
+	return distance < judge_value;
+}
+
+// プレイヤーとエネミーの当たり判定。距離で行う
+bool Collision::Player_To_Enemy(std::shared_ptr<Player> player, std::shared_ptr<Enemy> enemy) {
+	// プレイヤー、エネミー間の距離
+	auto distance = Get_Distance(player->Get_Position(), enemy->Get_Position());
+	auto piyo = player->Get_Position();
+	auto hogehoge = enemy->Get_Position();
+	// お互いの幅を足したもの
+	auto judge_value = player->Get_Size().depth + enemy->Get_Size().height;
+	auto hoge = player->Get_Size().depth;
+	auto fuga = enemy->Get_Size().height;
+
+	if (Distance_Collition(distance, judge_value)) {
+		auto hoge = 0;
+	}
+
+	return Distance_Collition(distance, judge_value);
 }
 
 // 線分と平面の交点を求める

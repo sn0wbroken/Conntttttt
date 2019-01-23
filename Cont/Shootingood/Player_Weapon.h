@@ -34,6 +34,9 @@ public:
 	// プールから取得した撃ち出す弾をまとめる
 	std::list<Bullet*> bomb_bullets;
 
+	// 自分(銃口)の座標を取得する
+	Vector3D Get_Position();
+
 	// 通常攻撃を撃ったかどうか
 	bool Get_Is_Shooting();
 	// 通常攻撃の撃ったらフラグを元に戻す
@@ -75,6 +78,8 @@ private:
 	
 	// 回転の中心(プレイヤーの中心に同じ)
 	Vector3D center_position;
+	// 砲口の座標
+	Vector3D muzzle_poziiton;
 	// 弾が飛ぶ最大地点
 	Vector3D distance_limit;
 

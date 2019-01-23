@@ -32,6 +32,9 @@ private:
 	// 点が面に内接しているかを調べる。同一平面上にあることが前提
 	bool Point_To_Rectangle(Vector3D intersection, Vector3D start_point, Vector3D end_position, Vector3D normal_vector, Rect face);
 
-	// 距離で見る当たり判定
-	bool Distance_Collition();
+	// 距離で見る当たり判定。距離が判定の値より短いと当たっている
+	bool Distance_Collition(float distance, float judge_value);
+
+	// プレイヤーとエネミーの当たり判定。距離で行う
+	bool Player_To_Enemy(std::shared_ptr<Player> player, std::shared_ptr<Enemy> enemy);
 };

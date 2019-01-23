@@ -30,8 +30,13 @@ public:
 
 	// 出現位置を設定する
 	void Set_Arrange_Poisition(float set_x, float set_y, float set_z);
-	// vectorを設定する
-	void Set_Vector3D(Vector3D Vec3);
+	// 座標を設定する
+	void Set_Position(Vector3D set_ecor3);
+	// 座標を返す
+	Vector3D Get_Position();
+
+	// 大きさを返す
+	Object_Size Get_Size();
 
 	// アクターの右端の座標を返す
 	float Get_Right_Edge();
@@ -44,9 +49,6 @@ public:
 	
 	// アクターのモデルハンドルを返す
 	int &Get_Model_Handle();
-
-	// 大きさをまとめて保持
-	Object_Size size;
 
 protected:
 	// 自分の中心の座標
@@ -72,4 +74,7 @@ protected:
 
 	// 矩形の作成に使用
 	Rect rect;
+	
+	// 大きさをまとめて保持
+	Object_Size size;
 };
