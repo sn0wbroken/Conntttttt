@@ -16,7 +16,7 @@ std::unordered_map<std::string, Rect> Rect::Make_3DBox(Rect top_face, Object_Siz
 
 	// 面の中心点を設定
 	front_face.Set_Centor_Position();
-	//TEST
+	// 法線ベクトルを求める
 	Set_Normal_Vector(front_face);
 	rects["front_face"] = front_face;
 	
@@ -80,19 +80,19 @@ Rect Rect::Make_Top_Face(Vector3D position, Object_Size size) {
 }
 
 // 貼られているモデルに合わせて動かす
-void Rect::Move(std::unordered_map<std::string, Rect>& rects, float speed, float radian) {
-	// rectsに格納されている矩形全てを回転させる
-	for (auto iterator = begin(rects); iterator != end(rects); ++iterator) {
-		iterator->second.top_right   .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-		iterator->second.top_left    .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-		iterator->second.bottom_right.Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-		iterator->second.bottom_left .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-		
-		//TODO: 少々雑か？
-		if (iterator == rects.find("front_face")) {
-			iterator->second.center_position.Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-		}
-	}
+void Rect::Move(float speed, float radian) {
+	// 矩形(自分の持っている頂点)の移動
+	top_right   .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
+	top_left    .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
+	bottom_left .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
+	bottom_right.Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
+
+	//TEST　当たり判定の可視化
+	auto color = GetColor(0,0,0);
+	DrawLine3D(top_right   , top_left    , color);
+	DrawLine3D(top_right   , bottom_right, color);
+	DrawLine3D(top_left    , bottom_left , color);
+	DrawLine3D(bottom_right, bottom_left , color);
 }
 
 // 前面の中心座標を設定する
@@ -119,7 +119,7 @@ void Rect::Set_Normal_Vector(Rect& rect) {
 	rect.normal_vector = result;
 }
 
-// 矩形を回転させる //TODO:mapをイテレータで回すのよろしくない？
+// 矩形を回転させる
 std::unordered_map<std::string, Rect> Rect::Rotation_Rectangle(std::unordered_map<std::string, Rect>& rects, Vector3D axis, float radian) {
 	// rectsに格納されている矩形全てを回転させる
 	for (auto iterator = begin(rects); iterator != end(rects); ++iterator) {
@@ -130,7 +130,6 @@ std::unordered_map<std::string, Rect> Rect::Rotation_Rectangle(std::unordered_ma
 		iterator->second.bottom_right = VTransform(iterator->second.bottom_right, rotate_value);
 		iterator->second.bottom_left  = VTransform(iterator->second.bottom_left , rotate_value);
 
-		//TODO: 少々雑か？
 		if (iterator == rects.find("front_face")) {
 			iterator->second.center_position = VTransform(iterator->second.center_position, rotate_value);
 		}

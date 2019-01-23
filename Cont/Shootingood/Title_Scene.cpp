@@ -55,17 +55,20 @@ void Title_Scene::Update() {
 	// マニュアル閲覧中なら、マニュアルの操作を受付
 	else{
 		manual->Update();
-}
+	}
 }
 
 
 // 描画
 void Title_Scene::Render() {
+	// 背景
 	DrawExtendGraph(0, 0, define_value.WINDOW_X, define_value.WINDOW_Y, background_graph, TRUE);
-	//DrawTriangle(icon_position_x, icon_position_y,
-	//	icon_position_x, icon_position_y + icon_height,
-	//icon_position_x + icon_width, icon_position_y + (icon_height / 2),
-	//	GetColor(0, 0, 0), TRUE);
+	
+	// 選択アイコン
+	DrawTriangle(icon_position_x, icon_position_y,
+		icon_position_x, icon_position_y + icon_height,
+	icon_position_x + icon_width, icon_position_y + (icon_height / 2),
+		GetColor(0, 0, 0), TRUE);
 
 	// マニュアル閲覧中なら、マニュアルを表示
 	if (is_watch_manual) {

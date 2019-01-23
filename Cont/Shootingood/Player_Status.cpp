@@ -10,7 +10,7 @@ Player_Status::Player_Status() {
 Player_Status::~Player_Status() {
 }
 
-// 死んだら呼ばれる。残機を1減らす
+// 敵に当たったら呼ばれる。ライフを1減らす
 void Player_Status::Damage() {
 	--life;
 }

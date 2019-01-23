@@ -38,8 +38,18 @@ void Character::Set_Arrange_Poisition(float set_x, float set_y, float set_z) {
 }
 
 // vectorを設定する
-void Character::Set_Vector3D(Vector3D Vec3) {
-	vector3d = Vec3;
+void Character::Set_Position(Vector3D set_vector3) {
+	vector3d = set_vector3;
+}
+
+// 座標を返す
+Vector3D Character::Get_Position() {
+	return vector3d;
+}
+
+// 大きさを返す
+Object_Size Character::Get_Size() {
+	return size;
 }
 
 // アクターの右端の座標を返す

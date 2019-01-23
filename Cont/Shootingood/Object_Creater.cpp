@@ -1,6 +1,6 @@
-#include "TEST_GOD.h"
+#include"Object_Creater.h"
 
-TEST_GOD::TEST_GOD() {
+Object_Creater::Object_Creater() {
 	unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 
@@ -17,10 +17,10 @@ TEST_GOD::TEST_GOD() {
 	actor->Add_Child("Collision", collision);
 }
 
-TEST_GOD::~TEST_GOD() {
+Object_Creater::~Object_Creater() {
 }
 
-void TEST_GOD::Create_Enemy() {
+void Object_Creater::Create_Enemy() {
 	unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	Vector3D playerpos = player_manager->player->vector3d;
 	//TEST

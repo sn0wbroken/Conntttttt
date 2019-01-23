@@ -4,8 +4,8 @@
 
 // コンストラクタ
 Main_Scene::Main_Scene() {
-	// アクターを構成するオブジェクトを生成する
-	std::unique_ptr<TEST_GOD>& god = TEST_GOD::Get_Instance();
+	// ゲームを構成するオブジェクトを生成する
+	std::unique_ptr<Object_Creater>& object_creater = Object_Creater::Get_Instance();
 
 	// プレイヤーのマネージャクラス
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
@@ -28,7 +28,6 @@ Main_Scene::Main_Scene() {
 
 	// メインに入った時はインターバルとする
 	is_interval = true;
-	m_timer = 0.0f;
 }
 
 // 初期化
@@ -38,8 +37,8 @@ void Main_Scene::Initialize() {
 	player_action->Initialize();
 
 	// アクターを構成するオブジェクトを生成する
-	std::unique_ptr<TEST_GOD>& god = TEST_GOD::Get_Instance();
-	god->Create_Enemy();
+	std::unique_ptr<Object_Creater>& object_creater = Object_Creater::Get_Instance();
+	object_creater->Create_Enemy();
 }
 
 // 毎フレーム入る
@@ -58,7 +57,6 @@ void Main_Scene::Update() {
 	player_action->Update();
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	actor->Update();
-	//m_timer += 0.01f;
 
 	// エネミーのアップデート処理
 	enemy_manager->Update();
@@ -101,22 +99,6 @@ void Main_Scene::Render() {
 		DrawString(300, 200, "Ready?", GetColor(0, 0, 0));
 		DrawString(285, 400, "Push Enter", GetColor(0, 0, 0));
 		return;
-	}
-	// 背景のスクロール
-	Scroll();
-}
-
-// 背景の画像を動かす
-void Main_Scene::Scroll() {
-	++x1;
-	++x2;
-
-	// 画面から完全に出切ったタイミングでもう1枚の背景の上に動かす
-	if (x1 >= define_value.MAX_SCREEN_X) {
-		x1 = -define_value.MAX_SCREEN_X;
-	}
-	if (x2 >= define_value.MAX_SCREEN_X) {
-		x2 = -define_value.MAX_SCREEN_X;
 	}
 }
 

@@ -5,8 +5,6 @@
 
 #include<memory>
 
-#include"TEST_GOD.h"
-
 //GPUを使用するためのコード
 extern "C"
 {

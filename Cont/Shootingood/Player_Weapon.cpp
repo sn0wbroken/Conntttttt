@@ -7,11 +7,11 @@
 Player_Weapon::Player_Weapon() : 
 	degree(90), 
 	enable_bomb(false),
+	is_shooting(false),
 	shot_button_flag(false),
 	bomb_type(eBomb_Type::Fullrange),
 	enable_bomb_type(eEnable_Bomb_Type::None), 
 	timer(0) {
-
 }
 
 // デストラクタ
@@ -23,7 +23,7 @@ void Player_Weapon::Initialize() {
 	player = player_manager->player;
 
 	// モデルの大きさに合った半径を設定
-	radius = player->size.height / 2 + 15;
+	radius = player->Get_Size().height / 2 + 15;
 	// 初期配置の銃口の角度を設定
 	radian = degree * DX_PI_F / 180;
 	// 中心座標を取得
@@ -80,6 +80,7 @@ void Player_Weapon::Fire() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		// 通常攻撃
 		if (shot_button_flag == false) {
+			is_shooting = true;
 		}
 		shot_button_flag = true;
 	}
@@ -257,6 +258,20 @@ void Player_Weapon::Reference_Coordinates_Erase_Bullet(std::list<Bullet*>& bulle
 			enable_bomb_type = eEnable_Bomb_Type::None;
 		}
 	}
+}
+
+// 銃口の座標を取得する
+Vector3D Player_Weapon::Get_Position() {
+	return vector3d;
+}
+
+// 通常攻撃を撃ったかどうか
+bool Player_Weapon::Get_Is_Shooting() {
+	return is_shooting;
+}
+// 通常攻撃の撃ったらフラグを元に戻す
+void Player_Weapon::Initialize_Is_Shooting() {
+	is_shooting = false;
 }
 
 // 通常攻撃の射程限界点を返す

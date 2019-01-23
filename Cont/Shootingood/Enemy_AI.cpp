@@ -18,9 +18,20 @@ void Enemy_AI::Update() {
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 	auto enemies = enemy_manager->active_enemies;
 	for (auto enemy : enemies) {
-		//TODO::MAGICNUMBER
-		enemy->vector3d.Move(1.0f * std::cosf(enemy->Get_Radian()), 0.0f, 1.0f * std::sinf(enemy->Get_Radian()));
+		//TODO:テストの値。決まり次第Define_Valueで定義して使う
+		auto speed = 1.0f;
+		enemy->vector3d.Move(speed * std::cosf(enemy->Get_Radian()), 0.0f, speed * std::sinf(enemy->Get_Radian()));
 		enemy->Animation_Controller();
+
+		// 当たり判定も一緒に動かす
+		for (auto iterator = begin(enemy->rects); iterator != end(enemy->rects); ++iterator) {
+			iterator->second.Move(speed, enemy->Get_Radian());
+
+			// 判定に使うので前面だけは一緒に動かす
+			if (iterator == enemy->rects.find("front_face")) {
+				iterator->second.center_position.Move(speed * cosf(enemy->Get_Radian()), 0.0f, speed * sinf(enemy->Get_Radian()));
+			}
+		}
 	}
 }
 

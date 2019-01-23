@@ -1,6 +1,6 @@
 #pragma once
 
-#include"TEST_GOD.h"
+#include"Object_Creater.h"
 
 #include"UI.h"
 #include"Actor.h"
@@ -46,10 +46,6 @@ private:
 	// エネミーのマネージャクラス
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 
-
-	float m_timer;
-	// 背景の座標を動かす TODO:背景もモデルにするので気が付いたらいらなくなってるかも
-	void Scroll();
 	// 背景1のx座標
 	int x1;
 	// 背景2のx座標
