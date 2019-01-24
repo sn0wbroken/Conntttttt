@@ -53,7 +53,8 @@ void Object_Creater::Create_Enemy() {
 	case eStage::stage3:SpawnEnemyNum = 50; break;
 	default:SpawnEnemyNum = 50; break;
 	}
-
+	enemy_manager->active_enemies.clear();
+	enemy_manager->inactive_enemies.clear();
 	//アクティブな敵がいないか確認
 	if (!enemy_manager->active_enemies.empty())
 	{

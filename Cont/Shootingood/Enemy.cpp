@@ -72,6 +72,8 @@ void Enemy::Set_Collision_Centor(std::unordered_map<std::string, Rect> set_rects
 void Enemy::Set_Radian(Vector3D set_playerpos) {
 	radian = Vector3D::AngleOfElevation(set_playerpos, vector3d);
 	MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::AngleOfElevation(set_playerpos, vector3d), 0));
+	// 当たり判定用の箱をキャラクターの向きに合わせて回転させる
+	rect.Rotation_Rectangle(rects, collision_centor, radian);
 }
 
 // 角度を取得
@@ -83,33 +85,25 @@ float Enemy::Get_Radian() {
 	return radian;
 }
 
+void Enemy::Set_Vector3D(Vector3D t_vector)
+{
+	/*vector3d = t_vector;
+	for (auto rect : rects)
+	{
+		rect.second.
+	}*/
+}
+
 void Enemy::Animation_Controller()
 {
-	if (enemy_status->Is_Dead())
-	{
-		Add_DeathAnimIndex();
-	}
-	else
-	{
-		Add_WalkAnimIndex();
-	}
+	Add_WalkAnimIndex();
 }
 
 void Enemy::Add_WalkAnimIndex() {
 	Anim_CurrentFrame++;
-	if (Anim_CurrentFrame >= MV1GetAttachAnimTotalTime(model_handle, walk_animhandle)){
+	if (Anim_CurrentFrame >= MV1GetAttachAnimTotalTime(model_handle, walk_animhandle)) {
 		Anim_CurrentFrame = 0; //時間をリセットする。
 	}
 	//現在のアニメーションのタイムを設定する。
 	MV1SetAttachAnimTime(model_handle, walk_animhandle, Anim_CurrentFrame);
-}
-
-void Enemy::Add_DeathAnimIndex()
-{
-	if (Anim_CurrentFrame >= MV1GetAttachAnimTotalTime(model_handle, death_animhandle)) {
-		return; //死亡モーションは一回だけで良いので一回りしたら返す。
-	}
-	Anim_CurrentFrame++;
-	//現在のアニメーションのタイムを設定する。
-	MV1SetAttachAnimTime(model_handle, death_animhandle, Anim_CurrentFrame);
 }
