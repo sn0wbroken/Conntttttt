@@ -37,6 +37,8 @@ public:
 	// ラジアンを取得
 	float Get_Radian();
 
+	void Set_Vector3D(Vector3D vector);
+
 	// 歩行するか死亡するかの選択を行う。
 	void Animation_Controller();
 	//アニメーションの現在の時間　同時に二つのアニメーションを再生しないため一つのみ

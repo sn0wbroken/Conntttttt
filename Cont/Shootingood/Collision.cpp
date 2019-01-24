@@ -64,6 +64,7 @@ bool Collision::Nomal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
 		Vector3D intersection = Get_Intersection(vector1, vector2, limit_fire_range, muzzule_position, front_face);
 		// Œğ“_‚ª”»’èŠî€‚Ì–Ê‚ÉÚ‚µ‚Ä‚¢‚é‚©‚ğ’²‚×‚é
 		if (Point_To_Rectangle(intersection, muzzule_position, limit_fire_range, normal_vector, front_face)) {
+			OutputDebugString("Bell\n");
 			return true;
 		}
 	}

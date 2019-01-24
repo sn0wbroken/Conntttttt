@@ -1,4 +1,5 @@
 #include"Enemy_Manager.h"
+#include<sstream>
 
 // コンストラクタ
 Enemy_Manager::Enemy_Manager() {
@@ -16,6 +17,7 @@ void Enemy_Manager::Update() {
 	{
 		if ((*itr)->enemy_status->Is_Dead())
 		{
+			(*itr)->enemy_status->Dead();
 			(*itr)->actor_state = eActor_State::Break;
 			inactive_enemies.push_back((*itr));
 			itr = active_enemies.erase(itr);
@@ -29,7 +31,7 @@ void Enemy_Manager::Update() {
 }
 
 // 敵が全滅しているかを返す。全滅でtrue
-bool Enemy_Manager::Is_Enemy_All_Ded() {
+bool Enemy_Manager::Is_Enemy_All_Dead() {
 	if (active_enemies.empty())
 	{
 		return true;
