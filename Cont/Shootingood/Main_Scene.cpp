@@ -35,7 +35,7 @@ void Main_Scene::Initialize() {
 	// プレイヤーの初期化
 	player->Initialize();
 	player_action->Initialize();
-
+	
 	// アクターを構成するオブジェクトを生成する
 	std::unique_ptr<Object_Creater>& object_creater = Object_Creater::Get_Instance();
 	object_creater->Create_Enemy();
@@ -92,7 +92,7 @@ void Main_Scene::Render() {
 	// オブジェクトの描画
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	actor->Render();
-	
+
 	// インターバル中は背景のスクロール無し
 	if (is_interval) {
 		// アナウンスを表示
