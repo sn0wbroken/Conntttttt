@@ -37,8 +37,6 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	MV1SetRotationXYZ(model_handle, VGet(0, -radian, 0));
 	//歩行モーションのハンドルを取得
 	walk_animhandle = MV1AttachAnim(model_handle, 0);
-	//死亡モーションのハンドルを取得
-	death_animhandle = MV1AttachAnim(model_handle, 1);
 	//アニメーションの初期フレームを修正
 	Anim_CurrentFrame = 0;
 

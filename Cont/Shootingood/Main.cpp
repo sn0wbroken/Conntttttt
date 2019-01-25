@@ -40,7 +40,7 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 
 	// 最初のシーンへ
 	scene_manager->Change_Scene(scene_manager->scene_state);
-
+	//MV1DrawModel(haikeihandle);
 	// ゲームループ
 	while (ProcessMessage() != -1) {
 		// 画面をクリア
@@ -49,7 +49,6 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 		SetDrawScreen(DX_SCREEN_BACK);
 		// カメラの座標と注視点
 		SetCameraPositionAndTarget_UpVecY(camera_position, VGet(0,0,0));
-		
 		//TODO:弾が見にくいので置いた。後で消す
 		DrawTriangle3D(
 			VGet(1000.0f, 1000.0f,  -10.0f),
