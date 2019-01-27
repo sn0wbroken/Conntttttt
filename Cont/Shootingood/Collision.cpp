@@ -57,14 +57,16 @@ bool Collision::Nomal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
 	auto dot1 = calculator.Dot(vector1, normal_vector);
 	// 面の点から始点の内積
 	auto dot2 = calculator.Dot(vector2, normal_vector);
-	
+	DrawLine3D(vector1, vector2, GetColor(0, 255, 0));
 	// 線分が平面を貫いているか
 	if (dot1 * dot2 <= 0) {
 		// 交点を求める
 		Vector3D intersection = Get_Intersection(vector1, vector2, limit_fire_range, muzzule_position, front_face);
+		DrawLine3D(vector1,vector2, GetColor(0,0,255));
 		// 交点が判定基準の面に接しているかを調べる
 		if (Point_To_Rectangle(intersection, muzzule_position, limit_fire_range, normal_vector, front_face)) {
-			OutputDebugString("Bell\n");
+			OutputDebugString("Bell");
+			DrawLine3D(vector1,vector2,GetColor(255,0,0));
 			return true;
 		}
 	}
