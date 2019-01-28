@@ -45,9 +45,14 @@ void UI::Player_Life() {
 
 	switch (player_manager->player_status->Get_Life()) {
 	case 2:
+		DrawString(define_value.UI_X, define_value.UI_BASE_Y + (define_value.FELLOW_UI_SPACE * 5), "ÅZ", GetColor(0, 0, 0));
+		DrawString(define_value.UI_X, define_value.UI_BASE_Y + (define_value.FELLOW_UI_SPACE * 6), "ÅZ", GetColor(0, 0, 0));
 		// TODO: ÉvÉåÉCÉÑÅ[ÇÃécã@ï\é¶ópÇÃÉÇÉfÉãÇï`âÊ
 		break;
 	case 3:
+		DrawString(define_value.UI_X, define_value.UI_BASE_Y + (define_value.FELLOW_UI_SPACE * 5), "ÅZ", GetColor(0, 0, 0));
+		DrawString(define_value.UI_X, define_value.UI_BASE_Y + (define_value.FELLOW_UI_SPACE * 6), "ÅZ", GetColor(0, 0, 0));
+		DrawString(define_value.UI_X, define_value.UI_BASE_Y + (define_value.FELLOW_UI_SPACE * 7), "ÅZ", GetColor(0, 0, 0));
 		break;
 	}
 }
