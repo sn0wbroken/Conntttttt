@@ -33,7 +33,7 @@ Main_Scene::Main_Scene() {
 
 	// 背景モデル読み込み
 	background_model = MV1LoadModel("Resources/BackGround/background.dome.x");
-	MV1SetScale(background_model, VGet(20,20,20));
+	MV1SetScale(background_model, VGet(10,10,10));
 	// 背景モデルの座標を設定する
 	Set_BackGround_Position();
 }
@@ -98,7 +98,7 @@ void Main_Scene::Render() {
 	//背景のライティングを削るため力業　いい方法があれば変更してください。
 	SetUseLighting(false);
 	//ビルボード力業 マジックナンバー
-	DrawBillboard3D(VGet(400.0f, 0.0f, 300.0f), 1.0f, 1.0f, 1000.0f, 0.0f, ground_handle, FALSE);
+	DrawBillboard3D(VGet(400.0f, 0.0f, 600.0f), 1.0f, 1.0f, 1500.0f, 0.0f, ground_handle, FALSE);
 	MV1DrawModel(background_model);
 	SetUseLighting(true);
 
@@ -126,7 +126,7 @@ void Main_Scene::Player_Dead() {
 void Main_Scene::Set_BackGround_Position() {
 	VECTOR vector;
 	vector.x = define_value.CAMERA_POSITION_X;
-	vector.y = -100; define_value.CAMERA_POSITION_Y; //-1000
+	vector.y = 200; define_value.CAMERA_POSITION_Y; //-1000
 	vector.z = define_value.CAMERA_POSITION_Z; //300
 
 	MV1SetPosition(background_model, vector);
