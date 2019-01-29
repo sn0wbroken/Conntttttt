@@ -26,10 +26,8 @@ void Collision::Update() {
 		if (!player_manager->player_weapon->Get_Is_Shooting()) {
 			continue;
 		}
-		else {
-			if (Nomal_Attack_To_Enemy(enemy)) {
-				enemy->enemy_status->Dead();
-			}
+		else if (Normal_Attack_To_Enemy(enemy)) {
+			enemy->enemy_status->Dead();
 		}
 		
 	}
@@ -43,7 +41,7 @@ float Collision::Get_Distance(Vector3D coordinates_1, Vector3D coordinates_2) {
 }
 
 // 通常攻撃を行ったときにエネミーにヒットしたかを調べる
-bool Collision::Nomal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
+bool Collision::Normal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
 	// 線分と平面の当たり判定を行う
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	auto muzzule_position = player_manager->player_weapon->Get_Position();
@@ -59,7 +57,6 @@ bool Collision::Nomal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
 	auto dot1 = calculator.Dot(vector1, normal_vector);
 	// 面の点から始点の内積
 	auto dot2 = calculator.Dot(vector2, normal_vector);
-	
 	// 線分が平面を貫いているか
 	if (dot1 * dot2 <= 0) {
 		//// 交点を求める
@@ -72,14 +69,8 @@ bool Collision::Nomal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
 		auto check3 = Point_To_Rectangle(muzzule_position, limit_fire_range, normal_vector, left_face);
 
 		if (check1 || check2 || check3) {
-			OutputDebugString("Bell\n");
 			return true;
 		}
-
-		//if (Point_To_Rectangle(muzzule_position, limit_fire_range, normal_vector, front_face)) {
-		//	OutputDebugString("Bell\n");
-		//	return true;
-		//}
 	}
 
 	return false;
