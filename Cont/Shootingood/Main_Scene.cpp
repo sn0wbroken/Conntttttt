@@ -31,6 +31,7 @@ Main_Scene::Main_Scene() {
 
 	// ”wŒiƒ‚ƒfƒ‹“Ç‚İ‚İ
 	background_model = MV1LoadModel("Resources/BackGround/background.dome.x");
+	MV1SetScale(background_model, VGet(10,10,10));
 	// ”wŒiƒ‚ƒfƒ‹‚ÌÀ•W‚ğİ’è‚·‚é
 	Set_BackGround_Position();
 }
@@ -117,9 +118,9 @@ void Main_Scene::Player_Dead() {
 // ”wŒiƒ‚ƒfƒ‹‚ÌÀ•W‚ğİ’è‚·‚é
 void Main_Scene::Set_BackGround_Position() {
 	VECTOR vector;
-	vector.x = define_value.CAMERA_POSITION_X;
-	vector.y = define_value.CAMERA_POSITION_Y;
-	vector.z = define_value.CAMERA_POSITION_Z;
+	vector.x = 0; define_value.CAMERA_POSITION_X;
+	vector.y = 0; define_value.CAMERA_POSITION_Y;
+	vector.z = -90; define_value.CAMERA_POSITION_Z;
 
 	MV1SetPosition(background_model, vector);
 }
