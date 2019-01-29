@@ -18,7 +18,7 @@ void CSVData::LoadSound(){
 	//　列の配列　　要素の配列をcsvreaderから受け取る
 	std::vector<std::vector <std::string>> vector_temp = m_reader.Read_File("Resources/CSV/SoundPathes.csv");
 	for (const auto & a : vector_temp){
-		if (a.size() <= 0) { //列の中の要素が０以下の場合は飛ばす。
+		if (a.size() <= 0) { //列の中の要素が0以下の場合は飛ばす。
 			continue;
 		}
 

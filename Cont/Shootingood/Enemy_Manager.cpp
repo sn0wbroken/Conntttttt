@@ -1,5 +1,4 @@
 #include"Enemy_Manager.h"
-#include<sstream>
 
 // コンストラクタ
 Enemy_Manager::Enemy_Manager() {
@@ -8,22 +7,13 @@ Enemy_Manager::Enemy_Manager() {
 
 // 毎フレーム呼ばれる
 void Enemy_Manager::Update() {
-	//敵がいないことはあり得ないとは思うので要らないかもしれない
-	if (active_enemies.empty())
-	{
-		return;
-	}
-	for (auto itr = active_enemies.begin(); itr != active_enemies.end();)
-	{
-		if ((*itr)->enemy_status->Is_Dead())
-		{
-			(*itr)->enemy_status->Dead();
+	for (auto itr = active_enemies.begin(); itr != active_enemies.end();) {
+		if ((*itr)->enemy_status->Is_Dead()) {
 			(*itr)->actor_state = eActor_State::Break;
 			inactive_enemies.push_back((*itr));
 			itr = active_enemies.erase(itr);
 		}
-		else
-		{
+		else {
 			itr++;
 		}
 	}

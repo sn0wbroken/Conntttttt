@@ -33,14 +33,13 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 	}
 
 	// カメラの座標を設定
-	VECTOR camera_position ;
-	camera_position.x = 0.0f;
-	camera_position.y = 300.0f;
-	camera_position.z = -400.0f;
+	VECTOR camera_position;
+	camera_position.x = define_value.CAMERA_POSITION_X;
+	camera_position.y = define_value.CAMERA_POSITION_Y;
+	camera_position.z = define_value.CAMERA_POSITION_Z;
 
 	// 最初のシーンへ
 	scene_manager->Change_Scene(scene_manager->scene_state);
-	//MV1DrawModel(haikeihandle);
 	// ゲームループ
 	while (ProcessMessage() != -1) {
 		// 画面をクリア
@@ -49,11 +48,6 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 		SetDrawScreen(DX_SCREEN_BACK);
 		// カメラの座標と注視点
 		SetCameraPositionAndTarget_UpVecY(camera_position, VGet(0,0,0));
-		//TODO:弾が見にくいので置いた。後で消す
-		DrawTriangle3D(
-			VGet(1000.0f, 1000.0f,  -10.0f),
-			VGet(-1000.0f, 1000.0f, -10.0f),
-			VGet(500.0f, -3000.0f,  -10.0f), GetColor(255, 255, 255), TRUE);
 
 		key_Checker->Update_Key();
 		scene_manager->Update();

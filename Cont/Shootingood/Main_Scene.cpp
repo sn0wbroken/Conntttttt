@@ -5,7 +5,7 @@
 // コンストラクタ
 Main_Scene::Main_Scene() {
 	// ゲームを構成するオブジェクトを生成する
-	std::unique_ptr<Object_Creater>& object_creater = Object_Creater::Get_Instance();
+	Object_Creater::Get_Instance();
 
 	// プレイヤーのマネージャクラス
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
@@ -28,6 +28,11 @@ Main_Scene::Main_Scene() {
 
 	// メインに入った時はインターバルとする
 	is_interval = true;
+
+	// 背景モデル読み込み
+	background_model = MV1LoadModel("Resources/BackGround/background.dome.x");
+	// 背景モデルの座標を設定する
+	Set_BackGround_Position();
 }
 
 // 初期化
@@ -68,7 +73,6 @@ void Main_Scene::Update() {
 			scene_manager->Next_Stage();
 			is_interval = true;
 			Initialize();
-			player->Set_Power_Up(true);
 			return;
 		}
 		// 最終ステージクリアでリザルト
@@ -87,15 +91,17 @@ void Main_Scene::Update() {
 
 // メインシーンに必要なものを描画
 void Main_Scene::Render() {
+//	MV1SetUseZBuffer(background_model, false);
+	MV1DrawModel(background_model);
+
 	// UIの描画
 	UI_class->Render();
 	// オブジェクトの描画
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	actor->Render();
 
-	// インターバル中は背景のスクロール無し
+	// インターバル中はアナウンスを表示
 	if (is_interval) {
-		// アナウンスを表示
 		DrawString(300, 200, "Ready?", GetColor(0, 0, 0));
 		DrawString(285, 400, "Push Enter", GetColor(0, 0, 0));
 		return;
@@ -106,4 +112,14 @@ void Main_Scene::Render() {
 void Main_Scene::Player_Dead() {
 	is_interval = true;
 	player->Initialize();
+}
+
+// 背景モデルの座標を設定する
+void Main_Scene::Set_BackGround_Position() {
+	VECTOR vector;
+	vector.x = define_value.CAMERA_POSITION_X;
+	vector.y = define_value.CAMERA_POSITION_Y;
+	vector.z = define_value.CAMERA_POSITION_Z;
+
+	MV1SetPosition(background_model, vector);
 }

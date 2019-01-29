@@ -7,7 +7,6 @@ Enemy_Status::Enemy_Status() {};
 
 // コピーコンストラクタ
 Enemy_Status::Enemy_Status(eStage stage) :
-	hit_point(define_value.ENEMY_MAX_HP),
 	is_dead(false),
 	is_damage(false),
 	move_direction(eMove_Direction::Right) {

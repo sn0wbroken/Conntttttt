@@ -1,5 +1,5 @@
 #include"Actor.h"
-#include "Player_Manager.h"
+#include"Player_Manager.h"
 
 // コンストラクタ
 Player_Manager::Player_Manager() {

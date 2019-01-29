@@ -79,8 +79,8 @@ void Player_Weapon::Render() {
 void Player_Weapon::Fire() {
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		// í èÌçUåÇ
-		if (shot_button_flag == false) {
-			is_shooting = true;
+		if (!shot_button_flag) {
+ 			is_shooting = true;
 		}
 		shot_button_flag = true;
 	}
