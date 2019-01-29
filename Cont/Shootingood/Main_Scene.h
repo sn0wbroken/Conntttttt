@@ -53,4 +53,10 @@ private:
 
 	// ゲーム開始までのインターバル。操作不能。エンターキーの押下で解除(ゲームスタート)
 	bool is_interval;
+
+	// 背景モデルのデータ
+	int background_model;
+
+	// 背景モデルの座標を設定
+	void Set_BackGround_Position();
 };

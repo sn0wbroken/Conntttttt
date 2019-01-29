@@ -23,6 +23,13 @@ public:
 	// 画面の下端
 	static const int MAX_WINDOW_Y = 600;
 
+	// カメラのX座標(固定)
+	static constexpr float CAMERA_POSITION_X = 0.0f;
+	// カメラのY座標(固定)
+	static constexpr float CAMERA_POSITION_Y = 300.0f;
+	// カメラのZ座標(固定)
+	static constexpr float CAMERA_POSITION_Z = -400.0f;
+
 	// UIを表示するときのX座標
 	static constexpr float UI_X = 640.0f;
 	// UIを表示するときのY座標の基準値
@@ -81,24 +88,24 @@ public:
 	// 出現するエネミーの数
 	static const int ENEMY_NUMBER = 5;
 	// エネミーの移動速度
-	static constexpr float ENEMY_SPEED = 5.0f;
+	static constexpr float ENEMY_SPEED = 1.0f;
 	// プレイヤーの回転角度(操作で1フレームに6度回転する)
-	static constexpr float ROTATION_VALUE = 6;
+	static constexpr float ROTATION_VALUE = 6.0f;
 
 #pragma endregion
 
 #pragma region 選択アイコン (タイトルにあるどれを選んでいるかの三角形のこと)
 
 	// 選択アイコンの幅
-	static constexpr float DECIDE_ICON_WIDTH = 33.0f;
+	static const int DECIDE_ICON_WIDTH = 33;
 	// 選択アイコンの高さ
-	static constexpr float DECIDE_ICON_HEIGHT = 30.0f;
+	static const int DECIDE_ICON_HEIGHT = 30;
 	// 選択アイコンの初期x座標
-	static constexpr float INITIALIZE_POSITION_X = 550.0f;
+	static const int INITIALIZE_POSITION_X = 550;
 	// 選択アイコンの初期y座標
-	static constexpr float INITIALIZE_POSITION_Y = 317.0f;
+	static const int INITIALIZE_POSITION_Y = 317;
 	// 選択アイコンの移動量
-	static constexpr float ICON_MOVE_VALUE = 70.0f;
+	static const int ICON_MOVE_VALUE = 70;
 
 #pragma endregion
 

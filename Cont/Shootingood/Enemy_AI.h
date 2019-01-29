@@ -15,7 +15,8 @@ public:
 	// 毎フレーム入る
 	void Update();
 
-	void Move_AI0();
+	// 敵を動かす
+	void Move_Enemy();
 
 private:
 	// 定数をまとめておくクラス

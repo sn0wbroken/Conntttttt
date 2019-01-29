@@ -30,7 +30,7 @@ private:
 	// 通常攻撃を行ったときにエネミーにヒットしたかを調べる
 	bool Nomal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy);
 	// 点が面に内接しているかを調べる。同一平面上にあることが前提
-	bool Point_To_Rectangle(Vector3D intersection, Vector3D start_point, Vector3D end_position, Vector3D normal_vector, Rect face);
+	bool Point_To_Rectangle(Vector3D start_point, Vector3D end_position, Vector3D normal_vector, Rect face);
 
 	// 距離で見る当たり判定。距離が判定の値より短いと当たっている
 	bool Distance_Collition(float distance, float judge_value);

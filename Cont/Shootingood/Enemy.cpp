@@ -20,20 +20,18 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	enemy_status = std::make_shared<Enemy_Status>(scene_manager->Get_Stage());
 
 	// モデルを設定する
-	if (enemy_manager->active_enemies.size() < 1)
-	{
+	if (enemy_manager->active_enemies.size() < 1) {
 		//enemymanagerの配列に何も入っていなかった場合は作成する。
 		Create_Actor("Resources/Enemy/Enemy.x");
 	}
-	else
-	{
+	else {
 		//もう一度モデルを読み込むよりこちらの方が若干高速
 		model_handle = MV1DuplicateModel(enemy_manager->active_enemies.front()->Get_Model_Handle());
 	}
 
 	MV1SetPosition(model_handle, vector3d);
 	MV1SetScale(model_handle, VGet(0.6f, 0.6f, 0.6f));
-	//radianに-を付けると普通に回転する。　謎
+	//radianに-を付けると普通に回転する。謎
 	MV1SetRotationXYZ(model_handle, VGet(0, -radian, 0));
 	//歩行モーションのハンドルを取得
 	walk_animhandle = MV1AttachAnim(model_handle, 0);

@@ -41,13 +41,13 @@ private:
 	std::unique_ptr<Key_Checker>& key_checker = Key_Checker::Get_Instance();
 
 	// 選択アイコンのx座標
-	float icon_position_x;
+	int icon_position_x;
 	// 選択アイコンのy座標
-	float icon_position_y;
+	int icon_position_y;
 	// 選択アイコンの幅
-	float icon_width;
+	int icon_width;
 	// 選択アイコンの高さ
-	float icon_height;
+	int icon_height;
 
 	// マニュアルを見ているか。選択されたらtrueに
 	bool is_watch_manual;

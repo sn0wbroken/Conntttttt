@@ -34,32 +34,35 @@ void Object_Creater::Create_Enemy() {
 	Vector3D vec;
 	//敵を生成する範囲
 	auto EnemySppawnArea = [&]() {
-		if (NGen.Generate_Number(0, 1) == 0)
-		{
+		if (NGen.Generate_Number(0, 1) == 0) {
 			return -NGen.Generate_Number(500.0f, 900.0f);
 		}
-		else
-		{
+		else {
 			return NGen.Generate_Number(500.0f, 900.0f);
 		}
 	};
 	//敵の生成数
-	int SpawnEnemyNum = 0;
+	int SpawnEnemyNum;
 	//ステージによって敵の生成を変える WARNING MAGICNUMBER
-	switch (scene_manager->Get_Stage())
-	{
-	case eStage::stage1:SpawnEnemyNum = 25; break;
-	case eStage::stage2:SpawnEnemyNum = 40; break;
-	case eStage::stage3:SpawnEnemyNum = 50; break;
-	default:SpawnEnemyNum = 50; break;
+	switch (scene_manager->Get_Stage()) {
+		case eStage::stage1:
+			SpawnEnemyNum = 1;
+			break;
+		case eStage::stage2:
+			SpawnEnemyNum = 1;
+			break;
+		case eStage::stage3:
+			SpawnEnemyNum = 1;
+			break;
+		default:
+			SpawnEnemyNum = 0;
 	}
 	enemy_manager->active_enemies.clear();
 	enemy_manager->inactive_enemies.clear();
+
 	//アクティブな敵がいないか確認
-	if (!enemy_manager->active_enemies.empty())
-	{
-		for (auto enemy : enemy_manager->active_enemies)
-		{
+	if (!enemy_manager->active_enemies.empty()) {
+		for (auto enemy : enemy_manager->active_enemies) {
 			vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
 			enemy->vector3d = vec;
 			enemy->Set_Radian(playerpos);
@@ -72,8 +75,7 @@ void Object_Creater::Create_Enemy() {
 			enemy_manager->active_enemies.push_back(std::make_shared<Enemy>(vec, playerpos));
 			actor->Add_Child("Enemy" + i, enemy_manager->active_enemies.back());
 		}
-		else
-		{
+		else {
 			auto enemy = enemy_manager->inactive_enemies.front();
 			enemy->enemy_status->Initialize_IsDead();
 			vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
@@ -83,5 +85,4 @@ void Object_Creater::Create_Enemy() {
 			enemy_manager->inactive_enemies.remove(enemy);
 		}
 	}
-
 }
