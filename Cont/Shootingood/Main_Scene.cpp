@@ -91,7 +91,7 @@ void Main_Scene::Update() {
 
 // メインシーンに必要なものを描画
 void Main_Scene::Render() {
-	MV1SetUseZBuffer(background_model, false);
+//	MV1SetUseZBuffer(background_model, false);
 	MV1DrawModel(background_model);
 
 	// UIの描画

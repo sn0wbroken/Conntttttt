@@ -46,13 +46,13 @@ void Object_Creater::Create_Enemy() {
 	//ステージによって敵の生成を変える WARNING MAGICNUMBER
 	switch (scene_manager->Get_Stage()) {
 		case eStage::stage1:
-			SpawnEnemyNum = 1;
+			SpawnEnemyNum = 5;
 			break;
 		case eStage::stage2:
-			SpawnEnemyNum = 1;
+			SpawnEnemyNum = 10;
 			break;
 		case eStage::stage3:
-			SpawnEnemyNum = 1;
+			SpawnEnemyNum = 20;
 			break;
 		default:
 			SpawnEnemyNum = 0;

@@ -49,12 +49,6 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 		// ƒJƒƒ‰‚ÌÀ•W‚Æ’‹“_
 		SetCameraPositionAndTarget_UpVecY(camera_position, VGet(0,0,0));
 
-		//TEST
-		DrawTriangle3D(
-			VGet(1000.0f, 1000.0f, -10.0f),
-			VGet(-1000.0f, 1000.0f, -10.0f),
-			VGet(500.0f, -3000.0f, -10.0f), GetColor(255, 255, 255), TRUE);
-
 		key_Checker->Update_Key();
 		scene_manager->Update();
 		scene_manager->Render();
