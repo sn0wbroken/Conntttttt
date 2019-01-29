@@ -25,7 +25,7 @@ void UI::Now_Stage() {
 	std::ostringstream now_stage;
 	// enumの値に揃えて＋1
 	now_stage << "Stage " << static_cast<int>(scene_manager->Get_Stage()) + 1;
-	DrawString(define_value.UI_X + (define_value.ADJUSTMENT_VALUE * 30), define_value.UI_BASE_Y, now_stage.str().c_str(), GetColor(0, 0, 0));
+	DrawString(define_value.UI_X + (1.0f * 30), define_value.UI_BASE_Y, now_stage.str().c_str(), GetColor(0, 0, 0));
 }
 
 // エネミーの数を表示

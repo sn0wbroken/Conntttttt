@@ -27,7 +27,7 @@ public:
 	//CSVDataのコンストラクタが動いた時Load処理を開始するのでprivateにしておく
 	//構造体もprivateでいいかもしれない。
 private:
-	CSV_Reader m_reader; //TODO::とりあえずここに
+	CSV_Reader m_reader;
 //CSVデータロード関数
 	//サウンドデータをメモリにロード
 	void LoadSound();

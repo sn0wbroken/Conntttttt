@@ -2,13 +2,13 @@
 #include"DxLib.h" 
 #include<string>
 
-//TODO::ここにCSVデータロード関数のコードを追加する
+//ここにCSVデータロード関数のコードを追加する
 CSVData::CSVData()
 {
 	LoadSound();
 	//LoadEnemyArriveList();
 }
-//TODO::いらないかも
+//いらないかも
 CSVData::~CSVData()
 {
 }
