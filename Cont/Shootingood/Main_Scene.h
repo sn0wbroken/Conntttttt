@@ -54,6 +54,9 @@ private:
 	// ゲーム開始までのインターバル。操作不能。エンターキーの押下で解除(ゲームスタート)
 	bool is_interval;
 
+	//地面データ
+	int ground_handle;
+
 	// 背景モデルのデータ
 	int background_model;
 
