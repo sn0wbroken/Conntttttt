@@ -86,3 +86,22 @@ void Object_Creater::Create_Enemy() {
 		}*/
 	}
 }
+
+void Object_Creater::Play_Sound()
+{
+	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
+	//ステージによって流す曲を変える
+	switch (scene_manager->Get_Stage()) {
+	case eStage::stage1:
+		PlaySoundMem(sounddata.m_sounds[11].SHandle,DX_PLAYTYPE_LOOP);
+		break;
+	case eStage::stage2:
+		PlaySoundMem(sounddata.m_sounds[12].SHandle, DX_PLAYTYPE_LOOP);
+		break;
+	case eStage::stage3:
+		PlaySoundMem(sounddata.m_sounds[13].SHandle,DX_PLAYTYPE_LOOP);
+		break;
+	default:
+		PlaySoundMem(sounddata.m_sounds[14].SHandle, DX_PLAYTYPE_LOOP);
+	}
+}
