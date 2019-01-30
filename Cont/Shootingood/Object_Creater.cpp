@@ -60,22 +60,22 @@ void Object_Creater::Create_Enemy() {
 	enemy_manager->active_enemies.clear();
 	enemy_manager->inactive_enemies.clear();
 
-	//アクティブな敵がいないか確認
-	if (!enemy_manager->active_enemies.empty()) {
-		for (auto enemy : enemy_manager->active_enemies) {
-			vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
-			enemy->vector3d = vec;
-			enemy->Set_Radian(playerpos);
-		}
-	}
+	////アクティブな敵がいないか確認
+	//if (!enemy_manager->active_enemies.empty()) {
+	//	for (auto enemy : enemy_manager->active_enemies) {
+	//		vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
+	//		enemy->vector3d = vec;
+	//		enemy->Set_Radian(playerpos);
+	//	}
+	//}
 	//敵生成
 	for (int i = 0; i < SpawnEnemyNum; i++) {
-		if (enemy_manager->inactive_enemies.empty()) {
+		/*if (enemy_manager->inactive_enemies.empty()) {*/
 			vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
 			enemy_manager->active_enemies.push_back(std::make_shared<Enemy>(vec, playerpos));
 			actor->Add_Child("Enemy" + i, enemy_manager->active_enemies.back());
-		}
-		else {
+		/*}*/
+		/*else {
 			auto enemy = enemy_manager->inactive_enemies.front();
 			enemy->enemy_status->Initialize_IsDead();
 			vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
@@ -83,6 +83,6 @@ void Object_Creater::Create_Enemy() {
 			enemy->Set_Radian(playerpos);
 			enemy_manager->active_enemies.push_back(enemy);
 			enemy_manager->inactive_enemies.remove(enemy);
-		}
+		}*/
 	}
 }
