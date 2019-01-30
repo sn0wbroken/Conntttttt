@@ -55,6 +55,7 @@ void Main_Scene::Initialize() {
 	// アクターを構成するオブジェクトを生成する
 	std::unique_ptr<Object_Creater>& object_creater = Object_Creater::Get_Instance();
 	object_creater->Create_Enemy();
+	object_creater->Play_Sound();
 }
 
 // 毎フレーム入る

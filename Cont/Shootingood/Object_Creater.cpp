@@ -16,6 +16,8 @@ Object_Creater::Object_Creater() {
 
 	collision = make_shared<Collision>();
 	actor->Add_Child("Collision", collision);
+
+	c_pshandle = 0;
 }
 
 Object_Creater::~Object_Creater() {
@@ -70,18 +72,26 @@ void Object_Creater::Create_Enemy() {
 void Object_Creater::Play_Sound()
 {
 	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
+	if (c_pshandle != 0)
+	{
+		StopSoundMem(c_pshandle);
+	}
 	//ステージによって流す曲を変える
 	switch (scene_manager->Get_Stage()) {
 	case eStage::stage1:
-		PlaySoundMem(sounddata.m_sounds[11].SHandle,DX_PLAYTYPE_LOOP);
+		c_pshandle = sounddata.m_sounds[11].SHandle;
+		PlaySoundMem(c_pshandle,DX_PLAYTYPE_LOOP);
 		break;
 	case eStage::stage2:
-		PlaySoundMem(sounddata.m_sounds[12].SHandle, DX_PLAYTYPE_LOOP);
+		c_pshandle = sounddata.m_sounds[12].SHandle;
+		PlaySoundMem(c_pshandle, DX_PLAYTYPE_LOOP);
 		break;
 	case eStage::stage3:
-		PlaySoundMem(sounddata.m_sounds[13].SHandle,DX_PLAYTYPE_LOOP);
+		c_pshandle = sounddata.m_sounds[13].SHandle;
+		PlaySoundMem(c_pshandle,DX_PLAYTYPE_LOOP);
 		break;
 	default:
-		PlaySoundMem(sounddata.m_sounds[14].SHandle, DX_PLAYTYPE_LOOP);
+		c_pshandle = sounddata.m_sounds[14].SHandle;
+		PlaySoundMem(c_pshandle, DX_PLAYTYPE_LOOP);
 	}
 }
