@@ -35,14 +35,8 @@ public:
 	void Initialize_Is_Damage();
 	// ヒットポイントを元に戻す。
 	void Initialize_IsDead();
-	// ダメージを受けたかどうかを返す
-	bool Is_Damage();
 
-	// ダメージを受ける。プレイヤーの弾に当たったら呼ばれる
-	void Damage();
 private:
-	// 簡易ファクトリー ステージに合わせてステータスを変更
-	void Fake_Factory(eStage stage);
 
 	// 定数をまとめておくクラス
 	Define_Value define_value;
