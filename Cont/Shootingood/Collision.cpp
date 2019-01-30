@@ -59,7 +59,7 @@ bool Collision::Normal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
 	auto dot2 = calculator.Dot(vector2, normal_vector);
 	// ü•ª‚ª•½–Ê‚ğŠÑ‚¢‚Ä‚¢‚é‚©
 	if (dot1 * dot2 <= 0) {
-		//// Œğ“_‚ğ‹‚ß‚é
+		// Œğ“_‚ğ‹‚ß‚é
 		auto right_face = enemy->rects["right_face"];
 		auto left_face = enemy->rects["leht_face"];
 
