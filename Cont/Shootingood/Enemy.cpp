@@ -90,11 +90,6 @@ void Enemy::Set_Vector3D(Vector3D t_vector)
 	}*/
 }
 
-void Enemy::Animation_Controller()
-{
-	Add_WalkAnimIndex();
-}
-
 void Enemy::Add_WalkAnimIndex() {
 	Anim_CurrentFrame++;
 	if (Anim_CurrentFrame >= MV1GetAttachAnimTotalTime(model_handle, walk_animhandle)) {

@@ -24,7 +24,7 @@ void Enemy_AI::Move_Enemy() {
 
 	for (auto enemy : enemies) {
 		enemy->vector3d.Move(speed * std::cosf(enemy->Get_Radian()), 0.0f, speed * std::sinf(enemy->Get_Radian()));
-		enemy->Animation_Controller();
+		enemy->Add_WalkAnimIndex();
 
 		// “–‚½‚è”»’è‚àˆê‚É“®‚©‚·
 		for (auto iterator = begin(enemy->rects); iterator != end(enemy->rects); ++iterator) {
