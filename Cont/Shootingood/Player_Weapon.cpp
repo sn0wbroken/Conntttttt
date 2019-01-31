@@ -29,7 +29,7 @@ void Player_Weapon::Initialize() {
 	// ’†SÀ•W‚ğæ“¾
 	center_position = player->vector3d;
 	// eŒû‚ÌÀ•W‚ğİ’è
-	vector3d.Set_Vector(center_position.x - 1.5f, center_position.y + 16.0f, center_position.z - radius);
+	vector3d.Set_Vector(center_position.x - 1.5f, center_position.y + 10.0f, center_position.z - radius);
 
 	// ’ÊíUŒ‚‚ÌË’ö‚ğİ’è‚·‚é
 	distance_limit.x -= fire_range * cos(radian);
@@ -69,6 +69,9 @@ void Player_Weapon::Update() {
 
 // •`‰æ
 void Player_Weapon::Render() {
+	//TEST
+	DrawLine3D(vector3d, Get_Limit_Range(), GetColor(255, 255, 255));
+
 	// Œ‚‚¿o‚µ‚½ƒ{ƒ€‚Ì’e‚ğ•`‰æ
 	for (auto bomb_bullet : bomb_bullets) {
 		bomb_bullet->Render();

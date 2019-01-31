@@ -102,9 +102,9 @@ void Main_Scene::Render() {
 	MV1SetWriteZBuffer(background_model, false);
 	//背景のライティングを削るため力業　いい方法があれば変更してください。
 	SetUseLighting(false);
-	MV1DrawModel(background_model);
+	//MV1DrawModel(background_model);
 	//ビルボード力業 マジックナンバー
-	DrawBillboard3D(VGet(400.0f, 0.0f, 600.0f), 1.0f, 1.0f, 1500.0f, 0.0f, ground_handle, FALSE);
+	//DrawBillboard3D(VGet(400.0f, 0.0f, 600.0f), 1.0f, 1.0f, 1500.0f, 0.0f, ground_handle, FALSE);
 	SetUseLighting(true);
 
 	// UIの描画

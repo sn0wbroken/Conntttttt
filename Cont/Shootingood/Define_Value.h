@@ -63,7 +63,7 @@ public:
 	// プレイヤーの回転速度
 	static constexpr float PLAYER_ROTATE_SPEED = 6.0f;
 	// プレイヤーの回転角度(操作で1フレームに6度回転する)
-	static constexpr float ROTATION_VALUE = 6.0f;
+	static constexpr float ROTATION_VALUE = 3.0f;
 	// プレイヤーが飛ばす弾の最大保持数(ボムの時に使う) 
 	//TODO:操作がまだ曖昧でエラー吐くので大きめに
 	static const int MAX_BULLET = 500;
@@ -73,7 +73,7 @@ public:
 #pragma region エネミー
 
 	// エネミーの大きさ(幅)
-	static constexpr float ENEMY_WIDTH = 20.0f;
+	static constexpr float ENEMY_WIDTH = 40.0f;
 	// エネミーの大きさ(高さ)
 	static constexpr float ENEMY_HEIGHT = 50.0f;
 	// エネミーの大きさ(奥行)
