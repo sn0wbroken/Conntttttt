@@ -153,12 +153,16 @@ void Player_Weapon::CheckCollision()
 	for (auto enemy : enemy_manager->active_enemies) {
 		for (auto bomb_bullet : bomb_bullets)
 		{
+			/*if (bomb_bullet == nullptr)
+			{
+				continue;
+			}
 			int hitflag = 0;
 			hitflag = MV1CollCheck_Sphere(enemy->Get_Model_Handle(), -1, bomb_bullet->vector3d, 50.0f).Dim->HitFlag;
 			if (hitflag == 1)
 			{
 				enemy->enemy_status->Dead();
-			}
+			}*/
 		}
 	}
 }
