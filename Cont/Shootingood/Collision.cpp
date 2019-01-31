@@ -17,7 +17,7 @@ void Collision::Update() {
 		// プレイヤーとエネミーの当たり判定
 		if (Player_To_Enemy(player_manager->player, enemy)) {
 			// 当たっていたらダメージ
-			player_manager->player_status->Damage();
+			//player_manager->player_status->Damage();
 			// 当たった敵は死亡。戦車にぶつかるんだから当たりまえだよなぁ
 			enemy->enemy_status->Dead();
 		}
@@ -59,20 +59,11 @@ bool Collision::Normal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
 	auto dot2 = calculator.Dot(vector2, normal_vector);
 	// 線分が平面を貫いているか
 	if (dot1 * dot2 <= 0) {
-		// 交点を求める
-		auto right_face = enemy->rects["right_face"];
-		auto left_face = enemy->rects["leht_face"];
-
 		// 交点が判定基準の面に接しているかを調べる
-		auto check1 = Point_To_Rectangle(muzzule_position, limit_fire_range, normal_vector, front_face);
-		auto check2 = Point_To_Rectangle(muzzule_position, limit_fire_range, normal_vector, right_face);
-		auto check3 = Point_To_Rectangle(muzzule_position, limit_fire_range, normal_vector, left_face);
-
-		if (check1 || check2 || check3) {
+		if (Point_To_Rectangle(muzzule_position, limit_fire_range, normal_vector, front_face)) {
 			return true;
 		}
 	}
-
 	return false;
 }
 

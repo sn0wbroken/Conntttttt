@@ -47,7 +47,7 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	// 当たり判定の中心の座標を設定する
 	Set_Collision_Centor(rects);
 	// 当たり判定用の箱をキャラクターの向きに合わせて回転させる
-	rect.Rotation_Rectangle(rects, collision_centor, radian);
+	rect.Rotation_Rectangle(rects, collision_centor, -radian);
 }
 
 // デストラクタ
@@ -71,7 +71,7 @@ void Enemy::Set_Radian(Vector3D set_playerpos) {
 	radian = Vector3D::AngleOfElevation(set_playerpos, vector3d);
 	MV1SetRotationXYZ(model_handle, VGet(0, Vector3D::AngleOfElevation(set_playerpos, vector3d), 0));
 	// 当たり判定用の箱をキャラクターの向きに合わせて回転させる
-	rect.Rotation_Rectangle(rects, collision_centor, radian);
+	rect.Rotation_Rectangle(rects, collision_centor, -radian);
 }
 
 // 角度を取得

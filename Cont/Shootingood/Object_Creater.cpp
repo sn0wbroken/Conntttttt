@@ -54,7 +54,7 @@ void Object_Creater::Create_Enemy() {
 			SpawnEnemyNum = 10;
 			break;
 		case eStage::stage3:
-			SpawnEnemyNum = 20;
+			SpawnEnemyNum = 15;
 			break;
 		default:
 			SpawnEnemyNum = 0;
