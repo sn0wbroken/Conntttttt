@@ -69,9 +69,6 @@ void Player_Weapon::Update() {
 
 // •`‰æ
 void Player_Weapon::Render() {
-	//TEST
-	DrawLine3D(vector3d, Get_Limit_Range(), GetColor(255, 255, 255));
-
 	// Œ‚‚¿o‚µ‚½ƒ{ƒ€‚Ì’e‚ğ•`‰æ
 	for (auto bomb_bullet : bomb_bullets) {
 		bomb_bullet->Render();

@@ -98,12 +98,6 @@ void Rect::Move(float speed, float radian) {
 	top_left    .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
 	bottom_left .Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
 	bottom_right.Move(speed * cosf(radian), 0.0f, speed * sinf(radian));
-
-	auto color = GetColor(255, 255, 255);
-	DrawLine3D(top_right, top_left, color);
-	DrawLine3D(top_right, bottom_right, color);
-	DrawLine3D(top_left, bottom_left, color);
-	DrawLine3D(bottom_right, bottom_left, color);
 }
 
 // ‘O–Ê‚Ì’†SÀ•W‚ğİ’è‚·‚é
