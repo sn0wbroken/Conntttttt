@@ -38,6 +38,8 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	//アニメーションの初期フレームを修正
 	Anim_CurrentFrame = 0;
 
+	//MV1SetupCollInfo(model_handle, -1);
+
 	// 基準となる面(天井部)を生成
 	rects["top_face"] = rect.Make_Top_Face(vector3d, size);
 	// 当たり判定に使用する矩形を生成

@@ -55,7 +55,8 @@ private:
 	void Set_Bomb();
 	// 銃口の位置を変える
 	void Rotation();
-
+	// 当たり判定
+	void CheckCollision();
 	// 画面外に出た弾をプールへもどす
 	void Return_Bullet_Pooling();
 
