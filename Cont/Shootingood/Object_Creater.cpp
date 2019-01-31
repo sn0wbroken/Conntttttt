@@ -18,6 +18,7 @@ Object_Creater::Object_Creater() {
 	actor->Add_Child("Collision", collision);
 
 	c_pshandle = 0;
+	itr = 0;
 }
 
 Object_Creater::~Object_Creater() {
@@ -64,8 +65,13 @@ void Object_Creater::Create_Enemy() {
 	//“G¶¬
 	for (int i = 0; i < SpawnEnemyNum; i++) {
 			vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
+			while (vec.x < 0 && vec.z > 0)
+			{
+				vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
+			}
 			enemy_manager->active_enemies.push_back(std::make_shared<Enemy>(vec, playerpos));
-			actor->Add_Child("Enemy" + i, enemy_manager->active_enemies.back());
+			actor->Add_Child("Enemy" + itr, enemy_manager->active_enemies.back());
+			itr++;
 	}
 }
 

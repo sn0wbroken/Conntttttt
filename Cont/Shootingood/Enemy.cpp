@@ -27,6 +27,10 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	else {
 		//‚à‚¤ˆê“xƒ‚ƒfƒ‹‚ð“Ç‚Ýž‚Þ‚æ‚è‚±‚¿‚ç‚Ì•û‚ªŽáŠ±‚‘¬
 		model_handle = MV1DuplicateModel(enemy_manager->active_enemies.front()->Get_Model_Handle());
+		if (model_handle < 0)
+		{
+			Create_Actor("Resources/Enemy/Enemy.x");
+		}
 	}
 
 	MV1SetPosition(model_handle, vector3d);
