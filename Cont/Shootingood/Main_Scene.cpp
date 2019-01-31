@@ -29,8 +29,11 @@ Main_Scene::Main_Scene() {
 	// メインに入った時はインターバルとする
 	is_interval = true;
 
-	ground_handle = LoadGraph("Resources/BackGround/asphalt.jpg");
 
+
+	//ground_handle = LoadGraph("Resources/BackGround/asphalt.png");//MV1LoadModel("Resources/BackGround/ground.x");
+	//MV1SetPosition(ground_handle, VGet(0.0f,0.0f,0.0f));
+	//MV1SetScale(ground_handle, VGet(10, 1, 10));
 	// 背景モデル読み込み
 	background_model = MV1LoadModel("Resources/BackGround/background.dome.x");
 	MV1SetScale(background_model, VGet(10,10,10));
@@ -52,6 +55,7 @@ void Main_Scene::Initialize() {
 	// アクターを構成するオブジェクトを生成する
 	std::unique_ptr<Object_Creater>& object_creater = Object_Creater::Get_Instance();
 	object_creater->Create_Enemy();
+	object_creater->Play_Sound();
 }
 
 // 毎フレーム入る
@@ -102,9 +106,9 @@ void Main_Scene::Render() {
 	MV1SetWriteZBuffer(background_model, false);
 	//背景のライティングを削るため力業　いい方法があれば変更してください。
 	SetUseLighting(false);
-	//MV1DrawModel(background_model);
-	//ビルボード力業 マジックナンバー
-	//DrawBillboard3D(VGet(400.0f, 0.0f, 600.0f), 1.0f, 1.0f, 1500.0f, 0.0f, ground_handle, FALSE);
+	//MV1DrawModel(ground_handle);
+	//DrawBillboard3D(VGet(0.0f,1.0f,0.0f), 0.0f, 0.0f, 10, 0.0f, ground_handle, false);
+	MV1DrawModel(background_model);
 	SetUseLighting(true);
 
 	// UIの描画

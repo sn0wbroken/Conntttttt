@@ -16,6 +16,8 @@ Object_Creater::Object_Creater() {
 
 	collision = make_shared<Collision>();
 	actor->Add_Child("Collision", collision);
+
+	c_pshandle = 0;
 }
 
 Object_Creater::~Object_Creater() {
@@ -59,30 +61,37 @@ void Object_Creater::Create_Enemy() {
 	}
 	enemy_manager->active_enemies.clear();
 	enemy_manager->inactive_enemies.clear();
-
-	//アクティブな敵がいないか確認
-	if (!enemy_manager->active_enemies.empty()) {
-		for (auto enemy : enemy_manager->active_enemies) {
-			vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
-			enemy->vector3d = vec;
-			enemy->Set_Radian(playerpos);
-		}
-	}
 	//敵生成
 	for (int i = 0; i < SpawnEnemyNum; i++) {
-		if (enemy_manager->inactive_enemies.empty()) {
 			vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
 			enemy_manager->active_enemies.push_back(std::make_shared<Enemy>(vec, playerpos));
 			actor->Add_Child("Enemy" + i, enemy_manager->active_enemies.back());
-		}
-		else {
-			auto enemy = enemy_manager->inactive_enemies.front();
-			enemy->enemy_status->Initialize_IsDead();
-			vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
-			enemy->vector3d = vec;
-			enemy->Set_Radian(playerpos);
-			enemy_manager->active_enemies.push_back(enemy);
-			enemy_manager->inactive_enemies.remove(enemy);
-		}
+	}
+}
+
+void Object_Creater::Play_Sound()
+{
+	std::unique_ptr<Scene_Manager>& scene_manager = Scene_Manager::Get_Instance();
+	if (c_pshandle != 0)
+	{
+		StopSoundMem(c_pshandle);
+	}
+	//ステージによって流す曲を変える
+	switch (scene_manager->Get_Stage()) {
+	case eStage::stage1:
+		c_pshandle = sounddata.m_sounds[11].SHandle;
+		PlaySoundMem(c_pshandle,DX_PLAYTYPE_LOOP);
+		break;
+	case eStage::stage2:
+		c_pshandle = sounddata.m_sounds[12].SHandle;
+		PlaySoundMem(c_pshandle, DX_PLAYTYPE_LOOP);
+		break;
+	case eStage::stage3:
+		c_pshandle = sounddata.m_sounds[13].SHandle;
+		PlaySoundMem(c_pshandle,DX_PLAYTYPE_LOOP);
+		break;
+	default:
+		c_pshandle = sounddata.m_sounds[14].SHandle;
+		PlaySoundMem(c_pshandle, DX_PLAYTYPE_LOOP);
 	}
 }

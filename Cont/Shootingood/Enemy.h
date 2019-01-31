@@ -39,13 +39,10 @@ public:
 
 	void Set_Vector3D(Vector3D vector);
 
-	// 歩行するか死亡するかの選択を行う。
-	void Animation_Controller();
-	//アニメーションの現在の時間　同時に二つのアニメーションを再生しないため一つのみ
+	//アニメーションの現在の時間
 	float Anim_CurrentFrame;
 	//アニメーションの現在の時間を増やし、モデルの動きをセットする。 
 	void Add_WalkAnimIndex();
-	void Add_DeathAnimIndex();
 
 private:
 	// 角度(度数法)
@@ -55,8 +52,6 @@ private:
 
 	//歩くアニメーションのハンドル
 	int walk_animhandle;
-	//死ぬアニメーションのハンドル
-	int death_animhandle;
 
 	// 打ち出す弾の速度
 	int bullet_speed;

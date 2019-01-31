@@ -2,6 +2,7 @@
 #include"Player_Weapon.h"
 #include"Player_Manager.h"
 #include"Random_Number_Generator.h"
+#include"Enemy_Manager.h"
 
 // コンストラクタ
 Player_Weapon::Player_Weapon() : 
@@ -58,6 +59,7 @@ void Player_Weapon::Update() {
 	// キー入力で銃口を回転させる
 	Rotation();
 
+	CheckCollision();
 	if (enable_bomb) {
 		// 弾を消す
 		bullet_erase();
@@ -142,6 +144,26 @@ void Player_Weapon::Rotation() {
 
 		vector3d.x = center_position.x + radius * cos(radian);
 		vector3d.z = center_position.z + radius * sin(radian);
+	}
+}
+
+void Player_Weapon::CheckCollision()
+{
+	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
+	for (auto enemy : enemy_manager->active_enemies) {
+		for (auto bomb_bullet : bomb_bullets)
+		{
+			/*if (bomb_bullet == nullptr)
+			{
+				continue;
+			}
+			int hitflag = 0;
+			hitflag = MV1CollCheck_Sphere(enemy->Get_Model_Handle(), -1, bomb_bullet->vector3d, 50.0f).Dim->HitFlag;
+			if (hitflag == 1)
+			{
+				enemy->enemy_status->Dead();
+			}*/
+		}
 	}
 }
 

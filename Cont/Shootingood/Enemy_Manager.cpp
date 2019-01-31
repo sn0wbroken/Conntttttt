@@ -10,7 +10,7 @@ void Enemy_Manager::Update() {
 	for (auto itr = active_enemies.begin(); itr != active_enemies.end();) {
 		if ((*itr)->enemy_status->Is_Dead()) {
 			(*itr)->actor_state = eActor_State::Break;
-			inactive_enemies.push_back((*itr));
+			MV1DeleteModel((*itr)->Get_Model_Handle());
 			itr = active_enemies.erase(itr);
 		}
 		else {
