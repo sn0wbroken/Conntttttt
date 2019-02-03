@@ -21,7 +21,7 @@ void Manual::Update() {
 
 // 描画
 void Manual::Render() {
-	DrawExtendGraph(0, 0, define_value.WINDOW_X, define_value.WINDOW_Y, manual_graph[now_page_number], TRUE);
+	DrawExtendGraph(0, 0, define_value.WINDOW_X, define_value.WINDOW_Y, manual_graph[now_page_number], FALSE);
 }
 
 // マニュアルを閉じたときにページを最初に戻す

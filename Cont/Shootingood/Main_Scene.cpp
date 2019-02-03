@@ -29,21 +29,33 @@ Main_Scene::Main_Scene() {
 	// メインに入った時はインターバルとする
 	is_interval = true;
 
-
-
-	//ground_handle = LoadGraph("Resources/BackGround/asphalt.png");//MV1LoadModel("Resources/BackGround/ground.x");
-	//MV1SetPosition(ground_handle, VGet(0.0f,0.0f,0.0f));
-	//MV1SetScale(ground_handle, VGet(10, 1, 10));
+	ground_handle =  MV1LoadModel("Resources/BackGround/ground.x"); //LoadGraph("Resources/BackGround/ground.png");
+	MV1SetPosition(ground_handle,VGet(0.0f,0.0f,-700.0f));
+	MV1SetScale(ground_handle, VGet(1000, 1, 1000));
 	// 背景モデル読み込み
 	background_model = MV1LoadModel("Resources/BackGround/background.dome.x");
 	MV1SetScale(background_model, VGet(10,10,10));
 	//Xをカメラと同じ角度傾ける
 	MV1SetRotationXYZ(background_model, VGet(45, 0, 0));
 
-	SetUseLighting(false);
-
 	// 背景モデルの座標を設定する
 	Set_BackGround_Position();
+}
+
+Main_Scene::~Main_Scene()
+{
+	unique_ptr<Actor>& actor = Actor::Get_Instance();
+	auto character = actor->children["Character"];
+	auto player = actor->children["Player"];
+	auto weapon = actor->children["Weapon"];
+	auto player_weapon = weapon->children["Player_Weapon"];
+	auto collision = actor->children["Collision"];
+	actor->children.clear();
+	actor->Add_Child("Charactor", character);
+	actor->Add_Child("Player", player);
+	actor->Add_Child("Weapon", weapon);
+	weapon->Add_Child("Player_Weapon", player_weapon);
+	actor->Add_Child("Collision", collision);
 }
 
 // 初期化
@@ -104,18 +116,19 @@ void Main_Scene::Update() {
 // メインシーンに必要なものを描画
 void Main_Scene::Render() {
 	MV1SetWriteZBuffer(background_model, false);
+	MV1SetWriteZBuffer(ground_handle, false);
 	//背景のライティングを削るため力業　いい方法があれば変更してください。
 	SetUseLighting(false);
-	//MV1DrawModel(ground_handle);
-	//DrawBillboard3D(VGet(0.0f,1.0f,0.0f), 0.0f, 0.0f, 10, 0.0f, ground_handle, false);
 	MV1DrawModel(background_model);
+	MV1DrawModel(ground_handle);
+	//DrawBillboard3D(VGet(300.0f, 0.0f, 0.0f), 1.0f, 1.0f, 1000.0f, 0.0f, ground_handle, FALSE);
 	SetUseLighting(true);
-
-	// UIの描画
-	UI_class->Render();
 	// オブジェクトの描画
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	actor->Render();
+
+	// UIの描画
+	UI_class->Render();
 
 	// インターバル中はアナウンスを表示
 	if (is_interval) {

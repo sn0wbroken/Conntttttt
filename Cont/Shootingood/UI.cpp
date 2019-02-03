@@ -14,7 +14,7 @@ UI::UI() {
 // ï`âÊ
 void UI::Render() {
 	DrawExtendGraph((int)define_value.MAX_SCREEN_X, (int)define_value.MIN_WINDOW_Y,
-		define_value.WINDOW_X, define_value.MAX_WINDOW_Y, UI_background_graph, TRUE);
+		define_value.WINDOW_X, define_value.MAX_WINDOW_Y, UI_background_graph, FALSE);
 	Now_Stage();
 	Enemy_Number();
 	Player_Life();
@@ -24,7 +24,14 @@ void UI::Render() {
 void UI::Now_Stage() {
 	std::ostringstream now_stage;
 	// enumÇÃílÇ…ëµÇ¶ÇƒÅ{1
-	now_stage << "Stage " << static_cast<int>(scene_manager->Get_Stage()) + 1;
+	std::string FinalString = "Final";
+	switch (scene_manager->Get_Stage())
+	{
+	case eStage::stage1:now_stage << "Stage " << static_cast<int>(scene_manager->Get_Stage()) + 1; break;
+	case eStage::stage2:now_stage << "Stage " << static_cast<int>(scene_manager->Get_Stage()) + 1; break;
+	case eStage::stage3:now_stage << "Stage " << FinalString; break;
+	default:break;
+	}
 	DrawString(define_value.UI_X + (1.0f * 30), define_value.UI_BASE_Y, now_stage.str().c_str(), GetColor(0, 0, 0));
 }
 

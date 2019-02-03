@@ -1,5 +1,6 @@
 #include"Object_Creater.h"
 #include "Random_Number_Generator.h"
+#include<sstream>
 
 Object_Creater::Object_Creater() {
 	unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
@@ -18,6 +19,7 @@ Object_Creater::Object_Creater() {
 	actor->Add_Child("Collision", collision);
 
 	c_pshandle = 0;
+	itr = 0;
 }
 
 Object_Creater::~Object_Creater() {
@@ -64,8 +66,15 @@ void Object_Creater::Create_Enemy() {
 	//ìGê∂ê¨
 	for (int i = 0; i < SpawnEnemyNum; i++) {
 			vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
+			while (vec.x < 0 && vec.z > 0)
+			{
+				vec.x = EnemySppawnArea(); vec.y = 0.0f; vec.z = EnemySppawnArea();
+			}
 			enemy_manager->active_enemies.push_back(std::make_shared<Enemy>(vec, playerpos));
-			actor->Add_Child("Enemy" + i, enemy_manager->active_enemies.back());
+			std::stringstream oss;
+			oss << "Enemy" << itr;
+			actor->Add_Child(oss.str(), enemy_manager->active_enemies.back());
+			itr++;
 	}
 }
 

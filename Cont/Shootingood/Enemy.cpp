@@ -27,8 +27,13 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 	else {
 		//もう一度モデルを読み込むよりこちらの方が若干高速
 		model_handle = MV1DuplicateModel(enemy_manager->active_enemies.front()->Get_Model_Handle());
+		if (model_handle < 0)
+		{
+			Create_Actor("Resources/Enemy/Enemy.x");
+		}
 	}
 
+	actor_state = eActor_State::Action;
 	MV1SetPosition(model_handle, vector3d);
 	MV1SetScale(model_handle, VGet(0.6f, 0.6f, 0.6f));
 	//radianに-を付けると普通に回転する。謎

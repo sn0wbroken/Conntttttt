@@ -17,7 +17,7 @@ void Collision::Update() {
 		// プレイヤーとエネミーの当たり判定
 		if (Player_To_Enemy(player_manager->player, enemy)) {
 			// 当たっていたらダメージ
-			//player_manager->player_status->Damage();
+			player_manager->player_status->Damage();
 			// 当たった敵は死亡。戦車にぶつかるんだから当たりまえだよなぁ
 			enemy->enemy_status->Dead();
 		}

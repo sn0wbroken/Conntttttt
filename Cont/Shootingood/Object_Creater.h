@@ -30,6 +30,8 @@ public:
 	void Play_Sound();
 	//現在再生しているbgmのハンドル
 	int c_pshandle;
+	//イテレータ
+	int itr;
 	CSVData sounddata;
 	shared_ptr<Weapon> weapon;
 	shared_ptr<Bullet> bullet;

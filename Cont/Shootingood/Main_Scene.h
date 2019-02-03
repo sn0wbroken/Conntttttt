@@ -15,6 +15,7 @@ public:
 	// コンストラクタ
 	Main_Scene();
 
+	~Main_Scene();
 	// 毎フレーム入る
 	void Update() override;
 	// 描画
