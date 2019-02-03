@@ -8,7 +8,7 @@ Enemy_Manager::Enemy_Manager() {
 // –ˆƒtƒŒ[ƒ€ŒÄ‚Î‚ê‚é
 void Enemy_Manager::Update() {
 	for (auto itr = active_enemies.begin(); itr != active_enemies.end();) {
-		if ((*itr)->enemy_status->Is_Dead()) {
+		if ((*itr)->enemy_status->Is_Dead() || (*itr)->actor_state == eActor_State::Break) {
 			(*itr)->actor_state = eActor_State::Break;
 			//MV1DeleteModel((*itr)->Get_Model_Handle());
 			itr = active_enemies.erase(itr);

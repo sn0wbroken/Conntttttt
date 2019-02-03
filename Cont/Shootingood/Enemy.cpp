@@ -33,6 +33,7 @@ Enemy::Enemy(Vector3D position, Vector3D player_position) {
 		}
 	}
 
+	actor_state = eActor_State::Action;
 	MV1SetPosition(model_handle, vector3d);
 	MV1SetScale(model_handle, VGet(0.6f, 0.6f, 0.6f));
 	//radian‚É-‚ğ•t‚¯‚é‚Æ•’Ê‚É‰ñ“]‚·‚éB“ä

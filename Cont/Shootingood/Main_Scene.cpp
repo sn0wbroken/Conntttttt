@@ -42,6 +42,22 @@ Main_Scene::Main_Scene() {
 	Set_BackGround_Position();
 }
 
+Main_Scene::~Main_Scene()
+{
+	unique_ptr<Actor>& actor = Actor::Get_Instance();
+	auto character = actor->children["Character"];
+	auto player = actor->children["Player"];
+	auto weapon = actor->children["Weapon"];
+	auto player_weapon = weapon->children["Player_Weapon"];
+	auto collision = actor->children["Collision"];
+	actor->children.clear();
+	actor->Add_Child("Charactor", character);
+	actor->Add_Child("Player", player);
+	actor->Add_Child("Weapon", weapon);
+	weapon->Add_Child("Player_Weapon", player_weapon);
+	actor->Add_Child("Collision", collision);
+}
+
 // ‰Šú‰»
 void Main_Scene::Initialize() {
 	// ƒvƒŒƒCƒ„[‚Ì‰Šú‰»
