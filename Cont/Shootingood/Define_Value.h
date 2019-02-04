@@ -44,6 +44,9 @@ public:
 	// 最終ステージ enumに合わせて0からのカウント
 	static const int FINAL_STAGE = 2;
 
+	// 60FPSでの1秒
+	static const int ONE_SECOND = 60;
+
 #pragma region プレイヤー
 
 	// プレイヤーの最大体力

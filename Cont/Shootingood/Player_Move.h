@@ -25,4 +25,3 @@ private:
 	// ’è”‚ğ‚Ü‚Æ‚ß‚Ä‚¨‚­ƒNƒ‰ƒX
 	Define_Value define_value;
 };
-

@@ -18,6 +18,8 @@ public:
 	// 描画
 	void Render();
 
+	// インターバル中のアナウンスを表示
+	void Interval_Announce();
 private:
 	std::shared_ptr<Player_Weapon> player_weapon;
 
@@ -29,6 +31,8 @@ private:
 	void Now_Stage();
 	// プレイヤーの残機を表示
 	void Player_Life();
+	// 戦車の残弾を表示
+	void Tank_ammo();
 
 	// 定数をまとめておくクラスs
 	Define_Value define_value;

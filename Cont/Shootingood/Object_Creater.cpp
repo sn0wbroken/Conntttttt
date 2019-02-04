@@ -29,7 +29,6 @@ void Object_Creater::Create_Enemy() {
 	Utility::Number_Generator NGen;
 	unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	Vector3D playerpos = player_manager->player->vector3d;
-	//TEST
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 	// プレイするステージを取得 ステージにあった敵の数作成する。
