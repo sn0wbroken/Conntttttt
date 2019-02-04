@@ -42,6 +42,11 @@ public:
 	// 通常攻撃の撃ったらフラグを元に戻す
 	void Initialize_Is_Shooting();
 
+	// 残弾数を返す
+	int Get_Ammo();
+	// 弾の残弾を設定する 敵の数＋５発
+	void Set_Ammo(int enemy_number);
+
 private:
 	std::shared_ptr<Player> player;
 	std::unique_ptr<Key_Checker>& key_checker = Key_Checker::Get_Instance();
@@ -72,6 +77,9 @@ private:
 	// 座標をみて弾を消す
 	void Reference_Coordinates_Erase_Bullet(std::list<Bullet*>& bullets);
 
+	// 残弾を回復する
+	void Reload();
+
 	// ボム
 	std::function<void()> shoot_bomb;
 	// 撃った弾を消す処理
@@ -94,6 +102,11 @@ private:
 	// 半径(中心から銃口までの)
 	float radius;
 
+	// 戦車の残弾
+	int ammo;
+	// 弾の最大数。出現する敵＋５発
+	int max_ammo;
+
 	// ボム攻撃の最中かどうか
 	bool enable_bomb;
 	// 連射にならないように押されているかを覚える
@@ -101,8 +114,12 @@ private:
 	// ボムの攻撃が継続しているかどうかのフラグ
 	bool living_bomb;
 
+	// 残弾数が残っているか
+	bool is_empty;
+	// リロードにかかる時k難を計測する
+	int reload_timer;
 	// 弾を撃った瞬間からカウント開始
-	int timer;
+	int bomb_timer;
 	// timerがこの数値に達したら撃った弾を消す
 	int clear_count;
 

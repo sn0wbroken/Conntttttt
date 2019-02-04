@@ -5,14 +5,16 @@
 #include"Enemy_Manager.h"
 
 // コンストラクタ
-Player_Weapon::Player_Weapon() : 
-	degree(90), 
+Player_Weapon::Player_Weapon() :
+	degree(90),
 	enable_bomb(false),
 	is_shooting(false),
+	is_empty(false),
 	shot_button_flag(false),
 	bomb_type(eBomb_Type::Fullrange),
-	enable_bomb_type(eEnable_Bomb_Type::None), 
-	timer(0) {
+	enable_bomb_type(eEnable_Bomb_Type::None),
+	bomb_timer(0),
+	reload_timer(0) {
 }
 
 // デストラクタ
@@ -79,10 +81,21 @@ void Player_Weapon::Render() {
 
 // 攻撃を行う
 void Player_Weapon::Fire() {
+	if (is_empty) {
+		Reload();
+		return;
+	}
+
 	if (CheckHitKey(KEY_INPUT_SPACE)) {
 		// 通常攻撃
-		if (!shot_button_flag) {
- 			is_shooting = true;
+		if (!shot_button_flag && ammo > 0) {
+			is_shooting = true;
+			// 残弾を減らす
+			--ammo;
+			// フラグをOnにする
+			if (ammo <= 0) {
+				is_empty = true;
+			}
 		}
 		shot_button_flag = true;
 	}
@@ -151,18 +164,7 @@ void Player_Weapon::CheckCollision()
 {
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 	for (auto enemy : enemy_manager->active_enemies) {
-		for (auto bomb_bullet : bomb_bullets)
-		{
-			/*if (bomb_bullet == nullptr)
-			{
-				continue;
-			}
-			int hitflag = 0;
-			hitflag = MV1CollCheck_Sphere(enemy->Get_Model_Handle(), -1, bomb_bullet->vector3d, 50.0f).Dim->HitFlag;
-			if (hitflag == 1)
-			{
-				enemy->enemy_status->Dead();
-			}*/
+		for (auto bomb_bullet : bomb_bullets) {
 		}
 	}
 }
@@ -251,15 +253,15 @@ void Player_Weapon::Rain() {
 
 // 時間経過で弾を消す
 void Player_Weapon::Time_Limit_Erase_Bullet() {
-	if (timer == clear_count) {
+	if (bomb_timer == clear_count) {
 		Return_Bullet_Pooling();
 		bomb_bullets.clear();
-		timer = 0;
+		bomb_timer = 0;
 
 		enable_bomb = false;
 		enable_bomb_type = eEnable_Bomb_Type::None;
 	}
-	++timer;
+	++bomb_timer;
 }
 
 // 座標をみて弾を消す
@@ -282,6 +284,21 @@ void Player_Weapon::Reference_Coordinates_Erase_Bullet(std::list<Bullet*>& bulle
 	}
 }
 
+// 残弾を回復する
+void Player_Weapon::Reload() {
+	++reload_timer;
+	if (reload_timer == define_value.ONE_SECOND * 3) {
+		ammo = max_ammo;
+		reload_timer = 0;
+		is_empty = false;
+	}
+}
+
+// 残弾数を返す
+int Player_Weapon::Get_Ammo() {
+	return ammo;
+}
+
 // 銃口の座標を取得する
 Vector3D Player_Weapon::Get_Position() {
 	return vector3d;
@@ -294,6 +311,12 @@ bool Player_Weapon::Get_Is_Shooting() {
 // 通常攻撃の撃ったらフラグを元に戻す
 void Player_Weapon::Initialize_Is_Shooting() {
 	is_shooting = false;
+}
+
+// 弾の残弾を設定する エネミーの数＋５発
+void Player_Weapon::Set_Ammo(int enemy_number) {
+	ammo = enemy_number + 5;
+	max_ammo = ammo;
 }
 
 // 通常攻撃の射程限界点を返す

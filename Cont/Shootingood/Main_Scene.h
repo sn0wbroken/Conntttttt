@@ -40,6 +40,9 @@ private:
 	std::shared_ptr<Player_Action> player_action;
 	// プレイヤーのステータス関係のクラス
 	std::shared_ptr<Player_Status> player_status;
+	// プレイヤーの武器関係のクラス
+	std::shared_ptr<Player_Weapon> player_weapon;
+
 
 	// 当たり判定を行うクラス
 	std::shared_ptr<Collision> collision;

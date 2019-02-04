@@ -12,6 +12,7 @@ Main_Scene::Main_Scene() {
 	player = player_manager->player;
 	player_action = player_manager->player_action;
 	player_status = player_manager->player_status;
+	player_weapon = player_manager->player_weapon;
 
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	// 登場人物の初期化をすべて行う
@@ -68,6 +69,8 @@ void Main_Scene::Initialize() {
 	std::unique_ptr<Object_Creater>& object_creater = Object_Creater::Get_Instance();
 	object_creater->Create_Enemy();
 	object_creater->Play_Sound();
+
+	player_weapon->Set_Ammo(enemy_manager->active_enemies.size());
 }
 
 // 毎フレーム入る
@@ -117,11 +120,11 @@ void Main_Scene::Update() {
 void Main_Scene::Render() {
 	MV1SetWriteZBuffer(background_model, false);
 	MV1SetWriteZBuffer(ground_handle, false);
-	//背景のライティングを削るため力業　いい方法があれば変更してください。
+	//背景のライティングを削るため力業
 	SetUseLighting(false);
 	MV1DrawModel(background_model);
 	MV1DrawModel(ground_handle);
-	//DrawBillboard3D(VGet(300.0f, 0.0f, 0.0f), 1.0f, 1.0f, 1000.0f, 0.0f, ground_handle, FALSE);
+
 	SetUseLighting(true);
 	// オブジェクトの描画
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
@@ -132,8 +135,7 @@ void Main_Scene::Render() {
 
 	// インターバル中はアナウンスを表示
 	if (is_interval) {
-		DrawString(300, 200, "Ready?", GetColor(0, 0, 0));
-		DrawString(285, 400, "Push Enter", GetColor(0, 0, 0));
+		UI_class->Interval_Announce();
 		return;
 	}
 }
