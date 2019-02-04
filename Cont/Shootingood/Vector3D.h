@@ -122,6 +122,22 @@ public:
 		z += vec.z;
 		return *this;
 	}
+
+	inline bool operator==(const Vector3D& vec)
+	{
+		if (x == vec.x)
+		{
+			if (y == vec.y)
+			{
+				if (z == vec.z)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	// DxLib‚ÌVector•ÏŠ·
 	inline operator DxLib::VECTOR() const
 	{

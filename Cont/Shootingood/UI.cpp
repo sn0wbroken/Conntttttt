@@ -76,7 +76,7 @@ void UI::Tank_ammo() {
 
 	std::ostringstream ammo_number;
 
-	ammo_number << "Žc’i” : " << player_weapon->Get_Ammo();
+	ammo_number << "Žc’e” : " << player_weapon->Get_Ammo();
 	DrawString(define_value.UI_X, define_value.UI_BASE_Y + define_value.FELLOW_UI_SPACE * 2, ammo_number.str().c_str(), GetColor(0, 0, 0));
 	
 	if (player_weapon->Get_Ammo() <= 0) {

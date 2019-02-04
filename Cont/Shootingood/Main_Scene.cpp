@@ -129,7 +129,8 @@ void Main_Scene::Render() {
 	// オブジェクトの描画
 	unique_ptr<Actor>& actor = Actor::Get_Instance();
 	actor->Render();
-
+	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
+	enemy_manager->PlayEffect();
 	// UIの描画
 	UI_class->Render();
 

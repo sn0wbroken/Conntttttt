@@ -125,6 +125,14 @@ private:
 
 	// 通常攻撃を撃ったフレームはtrue
 	bool is_shooting;
+	//攻撃エフェクトハンドル
+	int fire_effect[5];
+	//今のエフェクトフレーム
+	int CurrentFrame;
+	//エフェクトが有効か
+	bool active_effect;
+	//エフェクト再生
+	void Play_Effect();
 
 	//TEST
 	const float fire_range = 1000;

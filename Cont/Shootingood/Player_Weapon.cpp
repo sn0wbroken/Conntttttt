@@ -15,6 +15,7 @@ Player_Weapon::Player_Weapon() :
 	enable_bomb_type(eEnable_Bomb_Type::None),
 	bomb_timer(0),
 	reload_timer(0) {
+	LoadDivGraph("Resources/Effect/fireeffect.png", 5, 5, 1, 480, 480, fire_effect);
 }
 
 // ƒfƒXƒgƒ‰ƒNƒ^
@@ -24,6 +25,8 @@ Player_Weapon::~Player_Weapon() {}
 void Player_Weapon::Initialize() {
 	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
 	player = player_manager->player;
+
+	CurrentFrame = 0;
 
 	// ƒ‚ƒfƒ‹‚Ì‘å‚«‚³‚É‡‚Á‚½”¼Œa‚ðÝ’è
 	radius = player->Get_Size().height / 2 + 15;
@@ -73,6 +76,9 @@ void Player_Weapon::Update() {
 
 // •`‰æ
 void Player_Weapon::Render() {
+
+	Play_Effect();
+
 	// Œ‚‚¿o‚µ‚½ƒ{ƒ€‚Ì’e‚ð•`‰æ
 	for (auto bomb_bullet : bomb_bullets) {
 		bomb_bullet->Render();
@@ -90,6 +96,7 @@ void Player_Weapon::Fire() {
 		// ’ÊíUŒ‚
 		if (!shot_button_flag && ammo > 0) {
 			is_shooting = true;
+			active_effect = true;
 			// Žc’e‚ðŒ¸‚ç‚·
 			--ammo;
 			// ƒtƒ‰ƒO‚ðOn‚É‚·‚é
@@ -291,6 +298,20 @@ void Player_Weapon::Reload() {
 		ammo = max_ammo;
 		reload_timer = 0;
 		is_empty = false;
+	}
+}
+
+void Player_Weapon::Play_Effect()
+{
+	if (active_effect)
+	{
+		DrawBillboard3D(vector3d, 0.5f, 0.5f, 100.0f, 0, fire_effect[CurrentFrame], TRUE);
+		CurrentFrame++;
+		if (CurrentFrame >= 10)
+		{
+			CurrentFrame = 0;
+			active_effect = false;
+		}
 	}
 }
 
