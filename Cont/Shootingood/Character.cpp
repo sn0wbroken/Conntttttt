@@ -2,7 +2,7 @@
 
 // コンストラクタ
 Character::Character() {
-
+	model_handle = 0;
 }
 
 // 現在のx座標を返す

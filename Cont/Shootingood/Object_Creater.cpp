@@ -18,6 +18,8 @@ Object_Creater::Object_Creater() {
 	collision = make_shared<Collision>();
 	actor->Add_Child("Collision", collision);
 
+	//enemy‚Ìˆ—‚ğ‘‚­line
+
 	c_pshandle = 0;
 	itr = 0;
 }
