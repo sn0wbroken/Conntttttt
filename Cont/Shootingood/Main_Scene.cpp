@@ -18,8 +18,6 @@ Main_Scene::Main_Scene() {
 	// 登場人物の初期化をすべて行う
 	actor->Initialize();
 
-	collision = std::make_shared<Collision>();
-
 	Initialize();
 	
 	UI_class = std::make_shared<UI>();
@@ -30,7 +28,7 @@ Main_Scene::Main_Scene() {
 	// メインに入った時はインターバルとする
 	is_interval = true;
 
-	ground_handle =  MV1LoadModel("Resources/BackGround/ground.x"); //LoadGraph("Resources/BackGround/ground.png");
+	ground_handle =  MV1LoadModel("Resources/BackGround/ground.x");
 	MV1SetPosition(ground_handle,VGet(0.0f,0.0f,-700.0f));
 	MV1SetScale(ground_handle, VGet(1000, 1, 1000));
 	// 背景モデル読み込み

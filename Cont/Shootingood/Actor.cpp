@@ -13,6 +13,10 @@ Actor::~Actor() {
 // アクターオブジェクトを生成する
 void Actor::Create_Actor(TCHAR*model_path) {
 	for (auto iterator = children.begin(); iterator != children.end(); ++iterator) {
+		if (iterator->second == nullptr)
+		{
+			continue;
+		}
 		if (iterator->second->actor_state != eActor_State::Break) {
 			++iterator;
 			iterator->second->Create_Actor(model_path);
@@ -23,6 +27,10 @@ void Actor::Create_Actor(TCHAR*model_path) {
 // 初期化を行う
 void Actor::Initialize() {
 	for (auto iterator = children.begin(); iterator != children.end(); ++iterator) {
+		if (iterator->second == nullptr)
+		{
+			continue;
+		}
 		if (iterator->second->actor_state != eActor_State::Break) {
 			iterator->second->Initialize();
 		}
@@ -32,6 +40,10 @@ void Actor::Initialize() {
 // 毎フレーム入る更新処理
 void Actor::Update() {
 	for (auto iterator = children.begin(); iterator != children.end(); ++iterator) {
+		if (iterator->second == nullptr)
+		{
+			continue;
+		}
 		if (iterator->second->actor_state != eActor_State::Break) {
 			iterator->second->Update();
 		}
@@ -41,6 +53,10 @@ void Actor::Update() {
 // アクティブなアクターを描画する
 void Actor::Render() {
 	for (auto iterator = children.begin(); iterator != children.end(); ++iterator) {
+		if (iterator->second == nullptr)
+		{
+			continue;
+		}
 		if (iterator->second->actor_state != eActor_State::Break) {
 			iterator->second->Render();
 		}

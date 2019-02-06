@@ -43,10 +43,6 @@ private:
 	// プレイヤーの武器関係のクラス
 	std::shared_ptr<Player_Weapon> player_weapon;
 
-
-	// 当たり判定を行うクラス
-	std::shared_ptr<Collision> collision;
-
 	// エネミーのマネージャクラス
 	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
 
