@@ -1,67 +1,48 @@
-#include "Enemy_Manager.h"
-
-#include<iterator>
+#include"Enemy_Manager.h"
 
 // コンストラクタ
-Enemy_Manager::Enemy_Manager() {}
+Enemy_Manager::Enemy_Manager() {
+	enemy_controller = std::make_shared<Enemy_Controller>();
+	LoadDivGraph("Resources/Effect/explosion.png",7,7,1,240,240,e_explosionhandle);
+}
 
-// 初期化
-void Enemy_Manager::Initialize() {
-	enemy_bullet.clear();
-
-	// 配列の初期化
-	enemies.clear();
-	// 配置
-	Enemy_Arrange();
+void Enemy_Manager::PlayEffect()
+{
+	if (!active_effectList.empty())
+	{
+		for(auto itr = active_effectList.begin(); itr != active_effectList.end();){
+			DrawBillboard3D(itr->pos, 0.5f, 0.5f, 100.0f, 0, e_explosionhandle[itr->effect_sec], TRUE);
+			itr->effect_sec++;
+			if (itr->effect_sec >= 7)
+			{
+				itr = active_effectList.erase(itr);
+			}
+			itr++;
+		}
+	}
 }
 
 // 毎フレーム呼ばれる
 void Enemy_Manager::Update() {
-	// ダメージ受けていたらダメージ判定を元に戻す
-	for (auto& enemy : enemies) {
-		auto& enemy_status_ = enemy.enemy_status;
-		if (enemy_status_->Is_Damage()) {
-			enemy_status_->Initialize_Is_Damage();
+	for (auto itr = active_enemies.begin(); itr != active_enemies.end();) {
+		if ((*itr)->enemy_status->Is_Dead() || (*itr)->actor_state == eActor_State::Break) {
+			active_effectList.emplace_back((*itr)->vector3d,0);
+			(*itr)->actor_state = eActor_State::Break;
+			itr = active_enemies.erase(itr);
+		}
+		else {
+			itr++;
 		}
 	}
-
-	enemy_AI->Update();
-
-	// 撃った弾だけ更新
-	for (auto& enemy_bullet_ : enemy_bullet) {
-		enemy_bullet_.Update();
-	}
+	enemy_controller->Update();
 }
 
-// 描画
-void Enemy_Manager::Render() {
-	for (auto& enemy : enemies) {
-		enemy.Render();
+// 敵が全滅しているかを返す。全滅でtrue
+bool Enemy_Manager::Is_Enemy_All_Dead() {
+	if (active_enemies.empty())
+	{
+		return true;
 	}
-
-	// 撃った弾だけ描画
-	for (int i = 0; i < enemies.size(); ++i) {
-		for (auto& enemy_bullet_ : enemy_bullet) {
-			enemy_bullet_.Render();
-		}
-	}
+	return false;
 }
 
-// 敵を配置
-void Enemy_Manager::Enemy_Arrange() {
-	for (int i = 0; i < define_value.ENEMY_NUMBER; ++i) {
-		auto x = i % define_value.ENEMY_NUMBER * define_value.ENEMY_WIDTH;
-		auto y = define_value.ENEMY_HEIGHT / 2 + i % define_value.ENEMY_NUMBER * define_value.ENEMY_HEIGHT;
-		enemies.emplace_back(Enemy(x, y));
-	}
-	std::reverse(enemies.begin(), enemies.end());
-}
-
-// エネミーを元の位置に配置しなおす
-void Enemy_Manager::Reset_Enemy() {
-	for (auto& enemy : enemies) {
-		enemy.Set_X(enemy.Get_Initialize_Position_X());
-		enemy.Set_Y(enemy.Get_Initialize_Position_Y());
-		enemy_bullet.clear();
-	}
-}

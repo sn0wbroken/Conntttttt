@@ -1,6 +1,5 @@
 #pragma once
 
-#include"Player.h"
 #include"Define_Value.h"
 
 #include<memory>
@@ -13,20 +12,19 @@ public:
 	// デストラクタ
 	~Player_Status();
 
-	// 死んだら呼ばれる。残機を1減らす
-	void Dead();
+	// 攻撃を受けたら呼ばれる。体力を1減らす
+	void Damage();
 	// 残機をリセットする
 	void Reset_Life();
+
 	// 残機を返す
 	int Get_Life();
 
-	// 移動速度を返す
-	int Get_Speed();
+	// 死んでいるかを返す
+	bool Get_Is_Dead();
 
 private:
-	std::shared_ptr<Player> player;
-
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 
 	// 攻撃力(敵のHP - 攻撃力で計算)

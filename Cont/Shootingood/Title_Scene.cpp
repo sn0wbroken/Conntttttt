@@ -1,5 +1,5 @@
 #include"Title_Scene.h"
-#include"Game_Manager.h"
+#include"Scene_Manager.h"
 
 // コンストラクタ
 Title_Scene::Title_Scene() {
@@ -22,7 +22,7 @@ Title_Scene::Title_Scene() {
 // 毎フレーム入る
 void Title_Scene::Update() {
 	// ゲームの進行を管理するクラス
-	std::unique_ptr<Game_Manager> &game_manager = Game_Manager::Get_Instance();
+	std::unique_ptr<Scene_Manager> &game_manager = Scene_Manager::Get_Instance();
 
 	// エスケープキーでマニュアルの閲覧を終了
 	if (key_checker->key[KEY_INPUT_ESCAPE] == 1) {
@@ -38,7 +38,7 @@ void Title_Scene::Update() {
 		if (key_checker->key[KEY_INPUT_RETURN] == 1) {
 			switch (select_command) {
 			case eSelect_Command::Start:
-				game_manager->Change_Scene(Game_Manager::Main);
+				game_manager->Change_Scene(Scene_Manager::Main);
 				break;
 			case eSelect_Command::Manual:
 				// 操作説明UI表示
@@ -53,19 +53,22 @@ void Title_Scene::Update() {
 		return;
 	}
 	// マニュアル閲覧中なら、マニュアルの操作を受付
-	else {
+	else{
 		manual->Update();
 	}
 }
 
+
 // 描画
 void Title_Scene::Render() {
+	// 背景
 	DrawExtendGraph(0, 0, define_value.WINDOW_X, define_value.WINDOW_Y, background_graph, TRUE);
-
-	DrawTriangle(icon_position_x, icon_position_y,
-		icon_position_x, icon_position_y + icon_height,
-		icon_position_x + icon_width, icon_position_y + (icon_height / 2),
-		GetColor(0, 0, 0), TRUE);
+	
+	// 選択アイコン
+	DrawTriangle(icon_position_x,               icon_position_y,
+				 icon_position_x,               icon_position_y + icon_height,
+				 icon_position_x + icon_width,  icon_position_y + (icon_height / 2),
+				 GetColor(0, 0, 0), TRUE);
 
 	// マニュアル閲覧中なら、マニュアルを表示
 	if (is_watch_manual) {

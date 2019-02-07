@@ -1,20 +1,20 @@
 #pragma once
 
 #include"DxLib.h"
+#include"Actor.h"
+#include"Vector3D.h"
 #include"Define_Value.h"
-#include "Vector3D.h"
+
 // アクターが打ち出す弾丸
-class Bullet {
+class Bullet : public Actor {
 public:
 	// コンストラクタ
-	Bullet(float set_x = 0.0f, float set_y = 0.0f, float set_z = 0.0f, float set_direction_x = 0.0f, float set_direction_y = 0.0f, float set_direction_z = 0.0f);
+	Bullet();
 	// デストラクタ
 	~Bullet();
 
-	// 毎フレーム呼ばれる
-	void Update();
 	// 描画
-	void Render();
+	void Render() override;
 
 	// x座標を返す
 	float Get_X();
@@ -32,8 +32,25 @@ public:
 	int Get_Radius();
 
 	// 弾の移動
-	void Move(float x = 0.0f, float y = 0.0f, float z = 0.0f);
+	void Move();
+	// 飛んでいく角度を設定する
+	void Set_Radian(float set_radian);
+	// 飛んでいく速度を設定する
+	void Set_Speed(float set_speed_x, float set_speed_y , float set_speed_z);
+	// 弾丸が表示範囲外に出ているかを判断
+	bool Off_Screen();
 
+private:
+	// 弾の半径
+	int radius;
+	// 飛んでいく角度
+	float radian;
+	// 飛んでいく速度
+	Vector3D speed;
+
+	//弾の進む方向
+	Vector3D Direction;
+	
 	// 画面右端から出ようとしてないか
 	bool Is_Over_Max_X();
 	// 画面下端から出ようとしていないか
@@ -42,18 +59,4 @@ public:
 	bool Is_Over_Min_X();
 	// 画面左端から出ようとしてないか
 	bool Is_Over_Min_Y();
-
-	// 弾丸が表示範囲外に出ているかを判断
-	bool Bullet_Off_Screen(Bullet& player_bullet);
-
-private:
-	//現在の座標
-	Vector3D vector3;
-	// 弾の半径
-	int radius;
-	//弾の進む方向
-	Vector3D Direction;
-
-	// 定数をまとめておく構造体
-	Define_Value define_value;
 };

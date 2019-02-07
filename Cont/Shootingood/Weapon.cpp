@@ -1,4 +1,6 @@
-#include "Weapon.h"
+#include"Weapon.h"
+#include"Player_Weapon.h"
+#include"Player_Manager.h"
 
 // コンストラクタ
 Weapon::Weapon() {
@@ -10,7 +12,8 @@ Weapon::~Weapon() {
 
 }
 
-// 攻撃を行う
-void Weapon::Attack() {
-	
+// 初期化
+void Weapon::Initialize() {
+	// 子も回す
+	Actor::Initialize();
 }

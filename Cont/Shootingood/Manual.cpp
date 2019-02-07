@@ -6,7 +6,7 @@ Manual::Manual() {
 	manual_graph[1] = LoadGraph("Picture/Manual/スライド2.PNG");
 	manual_graph[2] = LoadGraph("Picture/Manual/スライド3.PNG");
 
-	// 初期値はもちろん0
+	// スタートは0ページから
 	now_page_number = 0;
 }
 
@@ -21,7 +21,7 @@ void Manual::Update() {
 
 // 描画
 void Manual::Render() {
-	DrawExtendGraph(0, 0, define_value.WINDOW_X, define_value.WINDOW_Y, manual_graph[now_page_number], TRUE);
+	DrawExtendGraph(0, 0, define_value.WINDOW_X, define_value.WINDOW_Y, manual_graph[now_page_number], FALSE);
 }
 
 // マニュアルを閉じたときにページを最初に戻す

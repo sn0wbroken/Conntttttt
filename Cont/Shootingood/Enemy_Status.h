@@ -27,20 +27,18 @@ public:
 	// 弾の速度を返す
 	int Get_Bullet_Speed();
 
-	// 死亡判定。trueで死亡。ダメージを受けたときに判断
+	// 死んでいるかを返す
 	bool Is_Dead();
+	// 死んでもらう。攻撃を受けたときに呼ばれる
+	void Dead();
 	// ダメージ判定を元に戻す
 	void Initialize_Is_Damage();
-	// ダメージを受けたかどうかを返す
-	bool Is_Damage();
+	// ヒットポイントを元に戻す。
+	void Initialize_IsDead();
 
-	// ダメージを受ける。プレイヤーの弾に当たったら呼ばれる
-	void Damage();
 private:
-	// 簡易ファクトリー ステージに合わせてステータスを変更
-	void Fake_Factory(eStage stage);
 
-	// 定数をまとめておく構造体
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 
 	// 移動速度

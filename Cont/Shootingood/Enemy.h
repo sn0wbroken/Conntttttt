@@ -1,54 +1,65 @@
 #pragma once
 
 #include"DxLib.h"
-#include"Actor.h"
+#include"Rect.h"
 #include"Bullet.h"
+#include"Character.h"
 #include"Enemy_Status.h"
 
 #include<vector>
-#include<memory>
+#include<unordered_map>
 
 // エネミー本体のクラス
-class Enemy : public Actor {
+class Enemy : public Character {
 public:
 	// コンストラクタ
 	Enemy();
-	// コピーコンストラクタ
-	Enemy(float set_x, float set_y);
+	// コンストラクタ
+	Enemy(Vector3D position, Vector3D set_playerpos);
 	// デストラクタ
 	~Enemy();
-
-	// エネミーを描画
-	void Render() override;
-
-	// エネミーの右端の座標を返す
-	float Get_Right_Edge() override;
-	// エネミーの左端の座標を返す
-	float Get_Left_Edge() override;
-	// エネミーの上端の座標を返す
-	float Get_Top_Edge() override;
-	// エネミーの下端の座標を返す
-	float Get_Bottom_Edge() override;
-	// 弾の発射する位置を返す
-	float Get_Shot_Point();
-	// 初期x座標を返す
-	float Get_Initialize_Position_X();
-	// 初期y座標を返す
-	float Get_Initialize_Position_Y();
 
 	// エネミーのステータス関係のクラス
 	std::shared_ptr<Enemy_Status> enemy_status;
 
-private:
-	// 初期x座標を覚えておく
-	float initialize_position_x;
-	// 初期y座標を覚えておく
-	float initialize_position_y;
+	// 被せる矩形(当たり判定に使用)
+	std::unordered_map<std::string, Rect> rects;
 
-	// エネミーの画像
-	int enemy_graph;
-	// 攻撃を受けているときのエネミーの画像
-	int damage_enemy_graph;
+	//TODO:箱と向きのずれはこれで直るかも…？一応取っておく
+	//// モデルのではなく、当たり判定用の箱の中心座標を返す
+	//Vector3D Get_Collition_Center();
+
+	// ラジアンを設定
+	void Set_Radian(Vector3D set_playerpos);
+
+	// 角度を取得
+	float Get_Degree();
+	// ラジアンを取得
+	float Get_Radian();
+
+	void Set_Vector3D(Vector3D vector);
+
+	//アニメーションの現在の時間
+	float Anim_CurrentFrame;
+	//アニメーションの現在の時間を増やし、モデルの動きをセットする。 
+	void Add_WalkAnimIndex();
+
+private:
+	// 角度(度数法)
+	float degree;
+	// 角度(弧度法)
+	float radian;
+
+	//歩くアニメーションのハンドル
+	int walk_animhandle;
+
 	// 打ち出す弾の速度
 	int bullet_speed;
+	// エネミーの前方向の当たり判定の座標(プレイヤーの通常攻撃の当たり判定に使用)
+	Vector3D flont_face_position;
+	
+	// 当たり判定用の箱の中心
+	Vector3D collision_centor;
+	// モデルではなく、当たり判定に使う箱の中心座標を設定
+	void Set_Collision_Centor(std::unordered_map<std::string, Rect> rects);
 };

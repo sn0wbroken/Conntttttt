@@ -4,8 +4,6 @@
 
 #include"DxLib.h"
 #include"Define_Value.h"
-#include"Player.h"
-#include"Player_Status.h"
 
 #include<cmath>
 #include<memory>
@@ -15,8 +13,6 @@ class Player_Move {
 public:
 	// コンストラクタ
 	Player_Move();
-	// コピーコンストラクタ
-	Player_Move(std::shared_ptr<Player> set_player, std::shared_ptr<Player_Status> set_player_status);
 	// デストラクタ
 	~Player_Move();
 
@@ -28,8 +24,4 @@ public:
 private:
 	// 定数をまとめておくクラス
 	Define_Value define_value;
-
-	std::shared_ptr<Player> player;
-	std::shared_ptr<Player_Status> player_status;
 };
-

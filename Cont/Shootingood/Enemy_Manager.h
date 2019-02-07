@@ -1,5 +1,6 @@
 #pragma once
 
+#include"Enemy_Controller.h"
 #include"Enemy.h"
 #include"Enemy_AI.h"
 #include"Enemy_Status.h"
@@ -9,43 +10,64 @@
 #include<memory>
 #include<vector>
 
-// エネミーのマネージャークラス
-class Enemy_Manager : public  Unique_Component<Enemy_Manager> {
+class Effect_Info
+{
 public:
-	// エネミーのステータス関係を扱うクラス
-	std::shared_ptr<Enemy_Status> enemy_status = std::make_shared<Enemy_Status>();
-	// エネミーのAIを管理
-	std::shared_ptr<Enemy_AI> enemy_AI = std::make_shared<Enemy_AI>();
+	Effect_Info(Vector3D t_pos, int sec)
+	{
+		pos = t_pos;
+		effect_sec = sec;
+	}
 
-	// 初期化
-	void Initialize();
+	bool operator==(const Effect_Info& Ei)
+	{
+		if (pos == Ei.pos)
+		{
+			if (Ei.effect_sec == effect_sec)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	Vector3D pos;
+	int		 effect_sec;
+};
+
+// エネミーのマネージャークラス(エネミーの情報(各クラス)を知っておく)
+class Enemy_Manager : public Unique_Component<Enemy_Manager> {
+public:
+	//エネミーのコントローラー ここから動きを制御する
+	std::shared_ptr<Enemy_Controller> enemy_controller;
+	std::list<std::shared_ptr<Enemy>> active_enemies;
+	std::list<std::shared_ptr<Enemy>> inactive_enemies;
 
 	// 毎フレーム呼ばれる
 	void Update();
-	// 描画
-	void Render();
 
-	// エネミーを配置
-	void Enemy_Arrange();
-	// エネミーを元の位置に配置しなおす
-	void Reset_Enemy();
-
-	// 画面上で動く敵
-	std::vector<Enemy> enemies;
-
-	// エネミーが撃つ弾
-	std::vector<Bullet> enemy_bullet;
+	// エネミーが全滅したかどうか
+	bool Is_Enemy_All_Dead();
 
 	// デストラクタ
 	~Enemy_Manager() {}
+
+	// 座標
+	Vector3D position;
+
+	void PlayEffect();
 
 private:
 	// コンストラクタ
 	Enemy_Manager();
 
-	// 定数をまとめておく構造体
+	int e_explosionhandle[7];
+
+	// 定数をまとめておくクラス
 	Define_Value define_value;
 
 	// 引数に自身を指定したものだけに生成をゆるす
 	friend class Unique_Component<Enemy_Manager>;
+
+	std::list<Effect_Info> active_effectList;
 };

@@ -1,22 +1,143 @@
-#include "Collision.h"
+#include"Collision.h"
 
-// アクター同士での当たり判定
-bool Collision::Box_To_Box(int right_edge1, int left_edge1, int top_edge1, int right_edge2, int left_edge2, int bottom_edge2) {
-	return
-		right_edge1 >= left_edge2 && left_edge1 <= right_edge2 &&
-		top_edge1 <= bottom_edge2;
+#include"Object_Creater.h"
+
+Collision::Collision() {
+
 }
 
-// プレイヤーとエネミーの弾の当たり判定
-bool Collision::Player_To_Enemy_Bullet(int right_edge, int left_edge, int top_edge, int bottom_edge, int bullet_position_x, int bullet_position_y, int bullet_radius) {
-	return
-		right_edge >= bullet_position_x - bullet_radius && left_edge <= bullet_position_x + bullet_radius &&
-		top_edge <= bullet_position_y + bullet_radius && bottom_edge >= bullet_position_y + bullet_radius;
+// 毎フレーム呼ばれる更新処理
+void Collision::Update() {
+	std::unique_ptr<Enemy_Manager>& enemy_manager = Enemy_Manager::Get_Instance();
+	auto enemys = enemy_manager->active_enemies;
+	
+	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
+
+	for (auto enemy : enemys) {
+		// プレイヤーとエネミーの当たり判定
+		if (Player_To_Enemy(player_manager->player, enemy)) {
+			// 当たっていたらダメージ
+			player_manager->player_status->Damage();
+			// 当たった敵は死亡。戦車にぶつかるんだから当たりまえだよなぁ
+			enemy->enemy_status->Dead();
+		}
+
+		// 通常攻撃を行っていたら当たり判定を行う
+		if (!player_manager->player_weapon->Get_Is_Shooting()) {
+			continue;
+		}
+		else if (Normal_Attack_To_Enemy(enemy)) {
+			enemy->enemy_status->Dead();
+		}
+		
+	}
+	// 通常攻撃は敵を貫通するのでフラグを戻すのは最後
+	player_manager->player_weapon->Initialize_Is_Shooting();
 }
 
-// エネミーとプレイヤーの弾の当たり判定
-bool Collision::Enemy_To_Player_Bullet(int right_edge, int left_edge, int top_edge, int bottom_edge, int bullet_position_x, int bullet_position_y, int bullet_radius) {
-	return
-		right_edge >= bullet_position_x - bullet_radius && left_edge <= bullet_position_x + bullet_radius &&
-		top_edge <= bullet_position_y - bullet_radius && bottom_edge >= bullet_position_y + bullet_radius;
+// 引数の2点間の距離を求めて返す
+float Collision::Get_Distance(Vector3D coordinates_1, Vector3D coordinates_2) {
+	return calculator.Norm_3D(coordinates_1.x, coordinates_1.y, coordinates_1.z, coordinates_2.x, coordinates_2.y, coordinates_2.z);
+}
+
+// 通常攻撃を行ったときにエネミーにヒットしたかを調べる
+bool Collision::Normal_Attack_To_Enemy(std::shared_ptr<Enemy> enemy) {
+	// 線分と平面の当たり判定を行う
+	std::unique_ptr<Player_Manager>& player_manager = Player_Manager::Get_Instance();
+	auto muzzule_position = player_manager->player_weapon->Get_Position();
+	auto limit_fire_range = player_manager->player_weapon->Get_Limit_Range();
+	auto front_face = enemy->rects["front_face"];
+	auto normal_vector = front_face.normal_vector;
+
+	// 面の点から始点のベクトル
+	auto vector1 = calculator.Make_Vector(front_face.Get_Centor_Position(), muzzule_position);
+	// 面の点から終点のベクトル
+	auto vector2 = calculator.Make_Vector(front_face.Get_Centor_Position(), limit_fire_range);
+	// 面の点から始点の内積
+	auto dot1 = calculator.Dot(vector1, normal_vector);
+	// 面の点から始点の内積
+	auto dot2 = calculator.Dot(vector2, normal_vector);
+	// 線分が平面を貫いているか
+	if (dot1 * dot2 <= 0) {
+		// 交点が判定基準の面に接しているかを調べる
+		if (Point_To_Rectangle(muzzule_position, limit_fire_range, normal_vector, front_face)) {
+			return true;
+		}
+	}
+	return false;
+}
+
+// 点が矩形に内接しているかを調べる 同一平面上にあることが前提
+bool Collision::Point_To_Rectangle(Vector3D start_point, Vector3D end_point, Vector3D normal_vector, Rect face) {
+	// 始点をp,終点をqとする
+	auto p = start_point;
+	auto q = end_point;
+	// 調べる面の各頂点を反時計回りにabcdとする
+	auto a = face.top_left;
+	auto b = face.bottom_left;
+	auto c = face.bottom_right;
+	auto d = face.top_right;
+
+	// 調べる線分
+	auto pq = calculator.Make_Vector(end_point, start_point);
+
+	auto pa = calculator.Make_Vector(a, p);
+	auto pb = calculator.Make_Vector(b, p);
+	auto pc = calculator.Make_Vector(c, p);
+
+	auto m = calculator.Cross(pc, pq);
+	auto v = calculator.Dot(pa, m);
+
+	if (v <= 0.0f) {
+		float u = -calculator.Dot(pb, m);
+		if (u < 0.0f) return false;
+
+		float w = calculator.Dot(calculator.Cross(pq, pb), pa);
+		if (w < 0.0f) return false;
+	}
+	else {
+		auto pd = d - p;
+
+		float u = calculator.Dot(pd, m);
+		if (u < 0.0f) return false;
+		
+		float w = calculator.Dot(calculator.Cross(pq, pa), pd);
+		if (w < 0.0f) return false;
+	}
+
+	return true;
+}
+
+// 距離で見る当たり判定。距離が判定の値より短いと当たっている
+bool Collision::Distance_Collition(float distance, float judge_value) {
+	return distance < judge_value;
+}
+
+// プレイヤーとエネミーの当たり判定。距離で行う
+bool Collision::Player_To_Enemy(std::shared_ptr<Player> player, std::shared_ptr<Enemy> enemy) {
+	// プレイヤー、エネミー間の距離
+	auto distance = Get_Distance(player->Get_Position(), enemy->Get_Position());
+	// お互いの幅を足したもの
+	auto judge_value = player->Get_Size().width + enemy->Get_Size().width;
+
+	return Distance_Collition(distance, judge_value);
+}
+
+// 線分と平面の交点を求める
+Vector3D Collision::Get_Intersection(Vector3D vector1, Vector3D vector2, Vector3D start_point, Vector3D end_point, Rect face) {
+	auto dot1 = calculator.Dot(vector1, face.Get_Centor_Position());
+	auto dot2 = calculator.Dot(vector2, face.Get_Centor_Position());
+
+	// 線分のベクトル
+	auto line = calculator.Make_Vector(end_point, start_point);
+	// 交点から、始点の距離 : 終点の距離の比率
+	auto ratio = std::abs(dot1) / (std::abs(dot1) + std::abs(dot2));
+
+	// 交点を格納
+	Vector3D result;
+	result.x = start_point.x + (line.x + ratio);
+	result.y = start_point.y + (line.y + ratio);
+	result.z = start_point.z + (line.z + ratio);
+	
+	return result;
 }
